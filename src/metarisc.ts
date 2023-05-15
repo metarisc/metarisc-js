@@ -6,7 +6,7 @@ interface RequestConfig {
     params ?: {[param: string]: string | string[]},
     endpoint ?: string,
     method ?: string
-};
+}
 
 export class Metarisc
 {
@@ -31,7 +31,7 @@ export class Metarisc
 
     async * autoPagingIterator<T>(config : RequestConfig) : AsyncGenerator<T, void, unknown> {
         let current_page : number = config.params && 'page' in config.params ? parseInt(config.params['page'].toString()) : 1;
-        let per_page : number = config.params && 'per_page' in  config.params ? parseInt(config.params['per_page'].toString()) : 25;
+        const per_page : number = config.params && 'per_page' in  config.params ? parseInt(config.params['per_page'].toString()) : 25;
 
         while (true) {
             const response = <AxiosResponse<{
@@ -47,7 +47,7 @@ export class Metarisc
                 };
                 }>> await this.request({...config, ...{params: {page: current_page.toString(), per_page: per_page.toString()}}});
 
-            for (let element of response.data.data) {
+            for (const element of response.data.data) {
                 yield element;
             }
 
