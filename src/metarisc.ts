@@ -28,4 +28,34 @@ export class Metarisc
             data: config.body
         });
     }
+
+    async * autoPagingIterator<T>(config : RequestConfig) : AsyncGenerator<T, void, unknown> {
+        let current_page : number = config.params && 'page' in config.params ? parseInt(config.params['page'].toString()) : 1;
+        let per_page : number = config.params && 'per_page' in  config.params ? parseInt(config.params['per_page'].toString()) : 25;
+
+        while (true) {
+            const response = <AxiosResponse<{
+                data?: Array<T>;
+                meta?: {
+                    pagination?: {
+                        total?: number;
+                        count?: number;
+                        per_page?: number;
+                        current_page?: number;
+                        total_pages?: number;
+                      };
+                };
+                }>> await this.request({...config, ...{params: {page: current_page.toString(), per_page: per_page.toString()}}});
+
+            for (let element of response.data.data) {
+                yield element;
+            }
+
+            if (response.data.meta.pagination.current_page === response.data.meta.pagination.total_pages) {
+                break;
+            }
+
+            current_page++;
+        }
+    }
 }

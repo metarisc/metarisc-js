@@ -14,5 +14,6 @@ export declare class Metarisc {
     private axios;
     constructor();
     request<T>(config: RequestConfig): Promise<AxiosResponse<T>>;
+    autoPagingIterator<T>(config: RequestConfig): AsyncGenerator<T, void, unknown>;
 }
 export {};
