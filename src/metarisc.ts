@@ -29,7 +29,8 @@ export class Metarisc
         });
     }
 
-    async * autoPagingIterator<T>(config : RequestConfig) : AsyncGenerator<T, void, unknown> {
+    async * autoPagingIterator<T>(config : RequestConfig) : AsyncGenerator<T, void, unknown>
+    {
         let current_page : number = config.params && 'page' in config.params ? parseInt(config.params['page'].toString()) : 1;
         const per_page : number = config.params && 'per_page' in  config.params ? parseInt(config.params['per_page'].toString()) : 25;
 
