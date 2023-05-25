@@ -1,3 +1,6 @@
+# Compiler output directory
+lib
+
 # Dependencies
 node_modules
 

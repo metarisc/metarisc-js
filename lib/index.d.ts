@@ -1,1 +1,0 @@
-export { Metarisc } from './metarisc';
