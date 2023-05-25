@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 interface RequestConfig {
     body ?: any,
-    headers ?: string | {[name: string]: string | string[]},
+    headers ?: {[name: string]: string | string[]},
     params ?: {[param: string]: string | string[]},
     endpoint ?: string,
     method ?: string
@@ -25,7 +25,8 @@ export class Metarisc
             method: config.method || 'GET',
             url: config.endpoint || '/',
             params: config.params,
-            data: config.body
+            data: config.body,
+            headers: config.headers
         });
     }
 
