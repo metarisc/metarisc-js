@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
+import axiosRetry from 'axios-retry';
 
 interface RequestConfig {
     body ?: any,
@@ -16,6 +17,12 @@ export class Metarisc
     {
         this.axios = axios.create({
             baseURL: 'https://api.metarisc.fr/'
+        });
+
+        // Axios interceptor : Retry strategy
+        axiosRetry(this.axios, {
+            retries: 3,
+            retryDelay: axiosRetry.exponentialDelay
         });
     }
 
