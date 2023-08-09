@@ -9,14 +9,18 @@ interface RequestConfig {
     method ?: string
 }
 
+interface MetariscConfig {
+    metarisc_url ?: string,
+}
+
 export class Metarisc
 {
     private axios : AxiosInstance;
 
-    constructor()
+    constructor(config : MetariscConfig)
     {
         this.axios = axios.create({
-            baseURL: 'https://api.metarisc.fr/'
+            baseURL: config.metarisc_url ?? 'https://api.metarisc.fr/'
         });
 
         // Axios interceptor : Retry strategy
