@@ -24,7 +24,7 @@ export enum DomanialiteEnum {
     Privee = 'privee',
     Publique = 'publique',
     PriveeConventionnee = 'privee_conventionnee'
-};
+}
 export enum NatureEnum {
     PointAspiration = 'POINT_ASPIRATION',
     CiterneAerienne = 'CITERNE_AERIENNE',
@@ -38,17 +38,17 @@ export enum NatureEnum {
     PoteauAspiration1x100 = 'POTEAU_ASPIRATION_1x100',
     PoteauAspiration2x100 = 'POTEAU_ASPIRATION_2x100',
     BoucheAspiration1x100 = 'BOUCHE_ASPIRATION_1x100'
-};
+}
 export enum CaracteristiquesParticulieresEnum {
     Renversable = 'RENVERSABLE',
     PreMelange = 'PRE_MELANGE'
-};
+}
 export enum EssaisEnginUtiliseEnum {
     Aucun = 'AUCUN',
     Fpt = 'FPT',
     Mpr = 'MPR',
     Ccf = 'CCF'
-};
+}
 export enum EquipementsEnum {
     Guichet = 'GUICHET',
     CanneAspiration = 'CANNE_ASPIRATION',
@@ -56,5 +56,5 @@ export enum EquipementsEnum {
     TrouHomme = 'TROU_HOMME',
     RaccordTournant = 'RACCORD_TOURNANT',
     PriseDirecte = 'PRISE_DIRECTE'
-};
+}
 

@@ -29,5 +29,5 @@ export enum DomanialiteEnum {
     Privee = 'privee',
     Publique = 'publique',
     PriveeConventionnee = 'privee_conventionnee'
-};
+}
 

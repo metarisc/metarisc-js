@@ -22,5 +22,5 @@ export enum NatureEnum {
     AdductionEau = 'ADDUCTION_EAU',
     Toiture = 'TOITURE',
     Autre = 'AUTRE'
-};
+}
 

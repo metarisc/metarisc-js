@@ -31,7 +31,7 @@ export enum DomanialiteEnum {
     Privee = 'privee',
     Publique = 'publique',
     PriveeConventionnee = 'privee_conventionnee'
-};
+}
 export enum NatureEnum {
     Pi1x65 = 'PI1x65',
     Pi1x65Pi2x45 = 'PI1x65+PI2x45',
@@ -41,9 +41,9 @@ export enum NatureEnum {
     Bi1x80 = 'BI1x80',
     Bi1x100 = 'BI1x100',
     Bi2x100 = 'BI2x100'
-};
+}
 export enum CaracteristiquesParticulieresEnum {
     Renversable = 'RENVERSABLE',
     PreMelange = 'PRE_MELANGE'
-};
+}
 
