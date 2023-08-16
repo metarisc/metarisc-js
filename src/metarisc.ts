@@ -1,49 +1,53 @@
 import { Core, MetariscConfig } from "./core";
 
-import { DossiersAPI } from "./apis/DossiersAPI";
 
-import { NotificationsAPI } from "./apis/NotificationsAPI";
+import { DossiersAPI } from './api/DossiersAPI';
 
-import { OrganisationAPI } from "./apis/OrganisationAPI";
+import { NotificationsAPI } from './api/NotificationsAPI';
 
-import { POIAPI } from "./apis/POIAPI";
+import { OrganisationAPI } from './api/OrganisationAPI';
 
-import { PingAPI } from "./apis/PingAPI";
+import { POIAPI } from './api/POIAPI';
 
-import { ResumableFileUploadsAPI } from "./apis/ResumableFileUploadsAPI";
+import { PingAPI } from './api/PingAPI';
 
-import { UtilisateursAPI } from "./apis/UtilisateursAPI";
+import { ResumableFileUploadsAPI } from './api/ResumableFileUploadsAPI';
 
-import { WFSAPI } from "./apis/WFSAPI";
+import { UtilisateursAPI } from './api/UtilisateursAPI';
 
-export class Metarisc extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+import { WFSAPI } from './api/WFSAPI';
 
-    return new Proxy(this, {
-      get: function (metarisc, name) {
-        switch (name) {
-          case "DossiersAPI":
-            return new DossiersAPI(config);
-          case "NotificationsAPI":
-            return new NotificationsAPI(config);
-          case "OrganisationAPI":
-            return new OrganisationAPI(config);
-          case "POIAPI":
-            return new POIAPI(config);
-          case "PingAPI":
-            return new PingAPI(config);
-          case "ResumableFileUploadsAPI":
-            return new ResumableFileUploadsAPI(config);
-          case "UtilisateursAPI":
-            return new UtilisateursAPI(config);
-          case "WFSAPI":
-            return new WFSAPI(config);
 
-          default:
-            return;
-        }
-      },
-    });
-  }
+export class Metarisc extends Core
+{
+    constructor(config : MetariscConfig)
+    {
+        super(config);
+
+        return new Proxy(this, {
+            get: function(metarisc, name) {
+                switch(name) {
+                    case 'DossiersAPI':
+                        return new DossiersAPI(config);
+                    case 'NotificationsAPI':
+                        return new NotificationsAPI(config);
+                    case 'OrganisationAPI':
+                        return new OrganisationAPI(config);
+                    case 'POIAPI':
+                        return new POIAPI(config);
+                    case 'PingAPI':
+                        return new PingAPI(config);
+                    case 'ResumableFileUploadsAPI':
+                        return new ResumableFileUploadsAPI(config);
+                    case 'UtilisateursAPI':
+                        return new UtilisateursAPI(config);
+                    case 'WFSAPI':
+                        return new WFSAPI(config);
+                    
+                    default:
+                        return;
+                }
+            }
+        });
+    }
 }
