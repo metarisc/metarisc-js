@@ -10,9 +10,19 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+import { AdressePostale } from '../../src/models/AdressePostale';
+import { DescriptifTechnique } from '../../src/models/DescriptifTechnique';
+import { POIReferencesExterieuresInner } from '../../src/models/POIReferencesExterieuresInner';
+
+
+export type POI = {
+    'id'?: string;
+    'dateDeRealisation'?: Date;
+    'dateDeDerniereMiseAJour'?: Date;
+    'statut'?: string;
+    'referencesExterieures'?: Array<POIReferencesExterieuresInner>;
+    'descriptifTechnique'?: DescriptifTechnique;
+    'geometrie'?: string;
+    'adressePostale'?: AdressePostale;
 };
+

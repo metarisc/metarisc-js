@@ -10,9 +10,13 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+import { Feature } from '../../src/models/Feature';
+import { GetFeature200ResponseCrs } from '../../src/models/GetFeature200ResponseCrs';
+
+
+export type GetFeature200Response = {
+    'type'?: string;
+    'crs'?: GetFeature200ResponseCrs;
+    'features'?: Array<Feature>;
 };
+

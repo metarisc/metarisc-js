@@ -10,9 +10,17 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+
+
+export type DescriptifTechniquePENAAllOfRealimentation = {
+    'debit'?: number;
+    'diametreCanalisation'?: number;
+    'nature'?: NatureEnum;
 };
+
+export enum NatureEnum {
+    AdductionEau = 'ADDUCTION_EAU',
+    Toiture = 'TOITURE',
+    Autre = 'AUTRE'
+}
+

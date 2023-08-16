@@ -10,12 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { FeatureGeometry } from '../models/FeatureGeometry';
-import { FeatureProperties } from '../models/FeatureProperties';
+import { FeatureGeometry } from "../../src/models/FeatureGeometry";
 
 export type Feature = {
-    'type'?: string;
-    'properties'?: FeatureProperties;
-    'geometry'?: FeatureGeometry;
-}
-
+  type?: string;
+  properties?: any;
+  geometry?: FeatureGeometry;
+};

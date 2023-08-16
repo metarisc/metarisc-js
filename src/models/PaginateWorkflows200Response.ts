@@ -10,9 +10,12 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+import { PaginateDossiers200ResponseMeta } from '../../src/models/PaginateDossiers200ResponseMeta';
+import { Workflow } from '../../src/models/Workflow';
+
+
+export type PaginateWorkflows200Response = {
+    'data'?: Array<Workflow>;
+    'meta'?: PaginateDossiers200ResponseMeta;
 };
+

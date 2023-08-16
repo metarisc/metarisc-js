@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
-};
+import { WorkflowDossiersLies } from '../../src/models/WorkflowDossiersLies';
+import { WorkflowRemiseEnServicePEI } from '../../src/models/WorkflowRemiseEnServicePEI';
+
+
+export type Workflow = WorkflowDossiersLies | WorkflowRemiseEnServicePEI;
+

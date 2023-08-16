@@ -10,9 +10,12 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+import { Email } from '../../src/models/Email';
+import { PaginateMoiEmails200ResponseMeta } from '../../src/models/PaginateMoiEmails200ResponseMeta';
+
+
+export type PaginateMoiEmails200Response = {
+    'data'?: Array<Email>;
+    'meta'?: PaginateMoiEmails200ResponseMeta;
 };
+

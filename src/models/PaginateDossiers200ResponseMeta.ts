@@ -10,9 +10,10 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+import { PaginationMetadata1 } from '../../src/models/PaginationMetadata1';
+
+
+export type PaginateDossiers200ResponseMeta = {
+    'pagination'?: PaginationMetadata1;
 };
+

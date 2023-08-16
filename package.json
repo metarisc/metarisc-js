@@ -2,9 +2,9 @@
     "name": "@metarisc/metarisc-js",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
-    "version": "0.0.1-alpha.4",
+    "version": "0.0.1-alpha.5",
     "scripts": {
-        "lint": "eslint . --ext .ts",
+        "lint": "eslint . --ext .ts --fix",
         "compile": "tsc"
     },
     "devDependencies": {

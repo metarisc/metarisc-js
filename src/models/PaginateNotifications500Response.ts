@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+
+
+export type PaginateNotifications500Response = {
+    ''?: string;
 };
+

@@ -10,9 +10,19 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+
+
+export type WorkflowBase = {
+    'id'?: string;
+    'titre'?: string;
+    'dateDeCreation'?: Date;
+    'dateDeFin'?: Date;
+    'workflowAutomatise'?: boolean;
+    'etat'?: string;
+    'groupeDeTravail'?: string;
+    'observations'?: string;
+    'estComplet'?: boolean;
+    'listePoi'?: string;
+    'documents'?: string;
 };
+

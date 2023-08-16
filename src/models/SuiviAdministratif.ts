@@ -10,9 +10,12 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+
+
+export type SuiviAdministratif = {
+    'description'?: string;
+    'dateAjout'?: Date;
+    'evenementAutomatique'?: boolean;
+    'createur'?: string;
 };
+

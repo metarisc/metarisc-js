@@ -10,18 +10,13 @@
  * Do not edit the class manually.
  */
 
-
-/**
-* 
-*/
 export type Utilisateur = {
-    'id'?: string;
-    'firstName'?: string;
-    'lastName'?: string;
-    'createdAt'?: string;
-    'updatedAt'?: string;
-    'timezone'?: string;
-    'isActive'?: string;
-    'isVerified'?: string;
-}
-
+  id?: string;
+  firstName?: string;
+  lastName?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  timezone?: string;
+  isActive?: boolean;
+  isVerified?: boolean;
+};

@@ -10,11 +10,9 @@
  * Do not edit the class manually.
  */
 
-
 export type Email = {
-    'email'?: string;
-    'isPrimary'?: boolean;
-    'isPubliclyVisible'?: boolean;
-    'isVerified'?: boolean;
-}
-
+  email?: string;
+  isPrimary?: boolean;
+  isPubliclyVisible?: boolean;
+  isVerified?: boolean;
+};

@@ -10,9 +10,24 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+import { AnomalieDECI } from '../../src/models/AnomalieDECI';
+
+import { DescriptifTechniqueBase } from '../models/DescriptifTechniqueBase';
+
+
+export type DescriptifTechniqueDECIBase = DescriptifTechniqueBase & { 
+    'anomalies'?: Array<AnomalieDECI>;
+    'estReglementaire'?: boolean;
+    'estReforme'?: boolean;
+    'domanialite'?: DomanialiteEnum;
+    'estConforme'?: boolean;
+    'performanceTheorique'?: number;
+    'performanceReelle'?: number;
 };
+
+export enum DomanialiteEnum {
+    Privee = 'privee',
+    Publique = 'publique',
+    PriveeConventionnee = 'privee_conventionnee'
+}
+

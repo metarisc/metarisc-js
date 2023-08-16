@@ -10,11 +10,9 @@
  * Do not edit the class manually.
  */
 
-
 export type PostNotification500Response = {
-    'statusCode'?: number;
-    'type'?: string;
-    'title'?: string;
-    'detail'?: string;
-}
-
+  statusCode?: number;
+  type?: string;
+  title?: string;
+  detail?: string;
+};

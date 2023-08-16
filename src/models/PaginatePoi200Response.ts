@@ -10,9 +10,12 @@
  * Do not edit the class manually.
  */
 
-export type PostNotification400Response = {
-  statusCode?: number;
-  type?: string;
-  title?: string;
-  detail?: string;
+import { POI } from '../../src/models/POI';
+import { PaginatePoi200ResponseMeta } from '../../src/models/PaginatePoi200ResponseMeta';
+
+
+export type PaginatePoi200Response = {
+    'data'?: Array<POI>;
+    'meta'?: PaginatePoi200ResponseMeta;
 };
+

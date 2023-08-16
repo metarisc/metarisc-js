@@ -1,70 +1,49 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
-import axiosRetry from 'axios-retry';
+import { Core, MetariscConfig } from "./core";
 
-export interface RequestConfig {
-    body ?: any,
-    headers ?: {[name: string]: string | string[] | number},
-    params ?: {[param: string]: string | string[] | number},
-    endpoint ?: string,
-    method ?: string
-}
+import { DossiersAPI } from "./apis/DossiersAPI";
 
-export class Metarisc
-{
-    private axios : AxiosInstance;
+import { NotificationsAPI } from "./apis/NotificationsAPI";
 
-    constructor()
-    {
-        this.axios = axios.create({
-            baseURL: 'https://api.metarisc.fr/'
-        });
+import { OrganisationAPI } from "./apis/OrganisationAPI";
 
-        // Axios interceptor : Retry strategy
-        axiosRetry(this.axios, {
-            retries: 3,
-            retryDelay: axiosRetry.exponentialDelay
-        });
-    }
+import { POIAPI } from "./apis/POIAPI";
 
-    async request<T>(config : RequestConfig) : Promise<AxiosResponse<T>>
-    {
-        return this.axios.request<T>({
-            method: config.method || 'GET',
-            url: config.endpoint || '/',
-            params: config.params,
-            data: config.body,
-            headers: config.headers
-        });
-    }
+import { PingAPI } from "./apis/PingAPI";
 
-    async * autoPagingIterator<T>(config : RequestConfig) : AsyncGenerator<T, void, unknown>
-    {
-        let current_page : number = config.params && 'page' in config.params ? parseInt(config.params['page'].toString()) : 1;
-        const per_page : number = config.params && 'per_page' in  config.params ? parseInt(config.params['per_page'].toString()) : 25;
+import { ResumableFileUploadsAPI } from "./apis/ResumableFileUploadsAPI";
 
-        while (true) {
-            const response = <AxiosResponse<{
-                data?: Array<T>;
-                meta?: {
-                    pagination?: {
-                        total?: number;
-                        count?: number;
-                        per_page?: number;
-                        current_page?: number;
-                        total_pages?: number;
-                      };
-                };
-                }>> await this.request({...config, ...{params: {page: current_page.toString(), per_page: per_page.toString()}}});
+import { UtilisateursAPI } from "./apis/UtilisateursAPI";
 
-            for (const element of response.data.data) {
-                yield element;
-            }
+import { WFSAPI } from "./apis/WFSAPI";
 
-            if (response.data.meta.pagination.current_page === response.data.meta.pagination.total_pages) {
-                break;
-            }
+export class Metarisc extends Core {
+  constructor(config: MetariscConfig) {
+    super(config);
 
-            current_page++;
+    return new Proxy(this, {
+      get: function (metarisc, name) {
+        switch (name) {
+          case "DossiersAPI":
+            return new DossiersAPI(config);
+          case "NotificationsAPI":
+            return new NotificationsAPI(config);
+          case "OrganisationAPI":
+            return new OrganisationAPI(config);
+          case "POIAPI":
+            return new POIAPI(config);
+          case "PingAPI":
+            return new PingAPI(config);
+          case "ResumableFileUploadsAPI":
+            return new ResumableFileUploadsAPI(config);
+          case "UtilisateursAPI":
+            return new UtilisateursAPI(config);
+          case "WFSAPI":
+            return new WFSAPI(config);
+
+          default:
+            return;
         }
-    }
+      },
+    });
+  }
 }
