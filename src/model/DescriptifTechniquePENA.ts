@@ -4,7 +4,6 @@ import { DescriptifTechniquePENAAllOfVolumes } from '../../src/model/DescriptifT
 
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
 
-
 export type DescriptifTechniquePENA = DescriptifTechniqueDECIBase & { 
     'essaisEnginUtilise'?: EssaisEnginUtiliseEnum;
     'equipements'?: EquipementsEnum;
@@ -46,4 +45,3 @@ export enum NatureEnum {
     PoteauAspiration2x100 = 'POTEAU_ASPIRATION_2x100',
     BoucheAspiration1x100 = 'BOUCHE_ASPIRATION_1x100'
 }
-

@@ -1,5 +1,3 @@
-
-
 export type Utilisateur = {
     'id'?: string;
     'firstName'?: string;
@@ -10,4 +8,3 @@ export type Utilisateur = {
     'isActive'?: boolean;
     'isVerified'?: boolean;
 };
-

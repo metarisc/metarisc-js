@@ -1,6 +1,5 @@
 import { Core, MetariscConfig } from "./core";
 
-
 import { DossiersAPI } from './api/DossiersAPI';
 
 import { NotificationsAPI } from './api/NotificationsAPI';
@@ -16,7 +15,6 @@ import { ResumableFileUploadsAPI } from './api/ResumableFileUploadsAPI';
 import { UtilisateursAPI } from './api/UtilisateursAPI';
 
 import { WFSAPI } from './api/WFSAPI';
-
 
 export class Metarisc extends Core
 {

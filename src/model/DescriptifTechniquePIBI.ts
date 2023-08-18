@@ -3,7 +3,6 @@ import { DescriptifTechniquePIBIAllOfPesees } from '../../src/model/DescriptifTe
 
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
 
-
 export type DescriptifTechniquePIBI = DescriptifTechniqueDECIBase & { 
     'numeroSerieAppareil'?: string;
     /**
@@ -34,4 +33,3 @@ export enum CaracteristiquesParticulieresEnum {
     Renversable = 'RENVERSABLE',
     PreMelange = 'PRE_MELANGE'
 }
-

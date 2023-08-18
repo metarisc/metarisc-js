@@ -1,5 +1,3 @@
-
-
 export type PaginateMoiEmails200ResponseMetaPagination = {
     'total'?: number;
     'count'?: number;
@@ -7,4 +5,3 @@ export type PaginateMoiEmails200ResponseMetaPagination = {
     'currentPage'?: number;
     'totalPages'?: number;
 };
-

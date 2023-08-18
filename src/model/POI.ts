@@ -2,7 +2,6 @@ import { AdressePostale } from '../../src/model/AdressePostale';
 import { DescriptifTechnique } from '../../src/model/DescriptifTechnique';
 import { POIReferencesExterieuresInner } from '../../src/model/POIReferencesExterieuresInner';
 
-
 export type POI = {
     'id'?: string;
     'dateDeRealisation'?: Date;
@@ -13,4 +12,3 @@ export type POI = {
     'geometrie'?: string;
     'adressePostale'?: AdressePostale;
 };
-

@@ -1,5 +1,3 @@
-
-
 export type WorkflowBase = {
     'id'?: string;
     'titre'?: string;
@@ -13,4 +11,3 @@ export type WorkflowBase = {
     'listePoi'?: string;
     'documents'?: string;
 };
-

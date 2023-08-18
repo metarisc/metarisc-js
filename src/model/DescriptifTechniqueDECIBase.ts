@@ -2,7 +2,6 @@ import { AnomalieDECI } from '../../src/model/AnomalieDECI';
 
 import { DescriptifTechniqueBase } from '../model/DescriptifTechniqueBase';
 
-
 export type DescriptifTechniqueDECIBase = DescriptifTechniqueBase & { 
     'anomalies'?: Array<AnomalieDECI>;
     'estReglementaire'?: boolean;
@@ -18,4 +17,3 @@ export enum DomanialiteEnum {
     Publique = 'publique',
     PriveeConventionnee = 'privee_conventionnee'
 }
-

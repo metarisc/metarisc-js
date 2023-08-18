@@ -1,5 +1,3 @@
-
-
 export type DescriptifTechniquePENAAllOfRealimentation = {
     'debit'?: number;
     'diametreCanalisation'?: number;
@@ -11,4 +9,3 @@ export enum NatureEnum {
     Toiture = 'TOITURE',
     Autre = 'AUTRE'
 }
-

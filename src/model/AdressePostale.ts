@@ -1,5 +1,3 @@
-
-
 /**
 * Représente une adresse postale permettant de localiser un POI.
 */
@@ -10,4 +8,3 @@ export type AdressePostale = {
     'codeInsee'?: string;
     'arrondissement'?: string;
 };
-

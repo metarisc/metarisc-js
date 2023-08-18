@@ -5,7 +5,6 @@ import { DescriptifTechniquePENAAllOfVolumes } from '../../src/model/DescriptifT
 import { DescriptifTechniquePIBI } from '../../src/model/DescriptifTechniquePIBI';
 import { DescriptifTechniquePIBIAllOfPesees } from '../../src/model/DescriptifTechniquePIBIAllOfPesees';
 
-
 export type DescriptifTechnique = DescriptifTechniquePIBI | DescriptifTechniquePENA;
 
 export enum DomanialiteEnum {
@@ -45,4 +44,3 @@ export enum EquipementsEnum {
     RaccordTournant = 'RACCORD_TOURNANT',
     PriseDirecte = 'PRISE_DIRECTE'
 }
-

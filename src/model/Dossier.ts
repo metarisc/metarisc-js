@@ -1,6 +1,5 @@
 import { Type } from '../../src/model/Type';
 
-
 /**
 * Un dossier représente la vie d\'un POI
 */
@@ -14,4 +13,3 @@ export type Dossier = {
     'applicationUtilisee'?: string;
     'statut'?: string;
 };
-

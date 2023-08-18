@@ -1,5 +1,3 @@
-
-
 export type PaginationMetadata1 = {
     'total'?: number;
     'count'?: number;
@@ -7,4 +5,3 @@ export type PaginationMetadata1 = {
     'currentPage'?: number;
     'totalPages'?: number;
 };
-
