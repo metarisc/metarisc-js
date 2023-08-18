@@ -7,17 +7,13 @@ import { PaginateSuiviAdministratif200Response } from '../../src/model/PaginateS
 import { PaginateTags200Response } from '../../src/model/PaginateTags200Response';
 import { PaginateWorkflows200Response } from '../../src/model/PaginateWorkflows200Response';
 
-/**
- * no description
- */
 export class DossiersAPI extends Core {
     constructor(config : MetariscConfig) {
         super(config);
     }
 
     /**
-     * Récupération de l\'ensemble des données d\'un dossier.
-     * Détails d\'un dossier
+     * Récupération de l'ensemble des données d'un dossier.
      * @param dossierId ID du dossier
      */
     async getDossier(dossierId: string): Promise<AxiosResponse<Dossier>>
@@ -34,7 +30,6 @@ export class DossiersAPI extends Core {
 
     /**
      * Récupération de la liste des dossiers selon des critères de recherche.
-     * Liste des dossiers
      */
     paginateDossiers(): AsyncGenerator<PaginateDossiers200Response>
     {
@@ -49,8 +44,7 @@ export class DossiersAPI extends Core {
     }
 
     /**
-     * Récupération de la liste du suivi administratif d\'un dossier.
-     * Liste du suivi administratif
+     * Récupération de la liste du suivi administratif d'un dossier.
      * @param dossierId ID du dossier
      */
     paginateSuiviAdministratif(dossierId: string): AsyncGenerator<PaginateSuiviAdministratif200Response>
@@ -66,8 +60,7 @@ export class DossiersAPI extends Core {
     }
 
     /**
-     * Récupération de la liste des tags d\'un dossier.
-     * Liste des tags
+     * Récupération de la liste des tags d'un dossier.
      * @param dossierId ID du dossier
      */
     paginateTags(dossierId: string): AsyncGenerator<PaginateTags200Response>
@@ -83,8 +76,7 @@ export class DossiersAPI extends Core {
     }
 
     /**
-     * Récupération de la liste des workflows d\'un dossier.
-     * Liste des workflows
+     * Récupération de la liste des workflows d'un dossier.
      * @param dossierId ID du dossier
      */
     paginateWorkflows(dossierId: string): AsyncGenerator<PaginateWorkflows200Response>
@@ -100,8 +92,7 @@ export class DossiersAPI extends Core {
     }
 
     /**
-     * Modification d\'un dossier existant.
-     * Mettre à jour un dossier
+     * Modification d'un dossier existant.
      * @param dossierId ID du dossier
      */
     async patchDossier(dossierId: string): Promise<AxiosResponse<Dossier>>
@@ -117,8 +108,7 @@ export class DossiersAPI extends Core {
     }
 
     /**
-     * Création d\'un nouveau dossier.
-     * Créer un dossier
+     * Création d'un nouveau dossier.
      * @param dossier 
      */
     async postDossier(dossier?: Dossier): Promise<AxiosResponse<Dossier>>

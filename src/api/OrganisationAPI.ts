@@ -3,18 +3,14 @@ import Utils from "../utils";
 import type { AxiosResponse } from 'axios';
 import { Organisation } from '../../src/model/Organisation';
 
-/**
- * no description
- */
 export class OrganisationAPI extends Core {
     constructor(config : MetariscConfig) {
         super(config);
     }
 
     /**
-     * Récupération des détails d\'une organisation.
-     * Détails d\'une organisation
-     * @param orgId ID de l\&#39;organisation
+     * Récupération des détails d'une organisation.
+     * @param orgId ID de l'organisation
      */
     async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
     {

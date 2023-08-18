@@ -6,17 +6,13 @@ import { PaginateContacts200Response } from '../../src/model/PaginateContacts200
 import { PaginateHistorique200Response } from '../../src/model/PaginateHistorique200Response';
 import { PaginatePoi200Response } from '../../src/model/PaginatePoi200Response';
 
-/**
- * no description
- */
 export class POIAPI extends Core {
     constructor(config : MetariscConfig) {
         super(config);
     }
 
     /**
-     * Récupération de l\'ensemble des données d\'un POI.
-     * Récupération des détails d\'un POI
+     * Récupération de l'ensemble des données d'un POI.
      * @param poiId ID du POI
      */
     async getPoi(poiId: string): Promise<AxiosResponse<POI>>
@@ -32,8 +28,7 @@ export class POIAPI extends Core {
     }
 
     /**
-     * Récupération de la liste des contacts d\'un POI.
-     * Liste des contacts
+     * Récupération de la liste des contacts d'un POI.
      * @param poiId ID du POI
      */
     paginateContacts(poiId: string): AsyncGenerator<PaginateContacts200Response>
@@ -49,8 +44,7 @@ export class POIAPI extends Core {
     }
 
     /**
-     * Récupération de l\'historique d\'un POI.
-     * Historique d\'un POI
+     * Récupération de l'historique d'un POI.
      * @param poiId ID du POI
      */
     paginateHistorique(poiId: string): AsyncGenerator<PaginateHistorique200Response>
@@ -66,8 +60,7 @@ export class POIAPI extends Core {
     }
 
     /**
-     * Récupération de la liste des pièces jointes d\'un POI.
-     * Liste des pièces jointes
+     * Récupération de la liste des pièces jointes d'un POI.
      * @param poiId ID du POI
      */
     paginatePiecesJointes(poiId: string): AsyncGenerator<PaginateContacts200Response>
@@ -84,7 +77,6 @@ export class POIAPI extends Core {
 
     /**
      * Récupération de la liste des POI selon des critères de recherche.
-     * Liste des POI
      */
     paginatePoi(): AsyncGenerator<PaginatePoi200Response>
     {
@@ -100,7 +92,6 @@ export class POIAPI extends Core {
 
     /**
      * Modifier un POI existant.
-     * Modifier un POI
      * @param poiId ID du POI
      */
     async patchPoi(poiId: string): Promise<AxiosResponse<POI>>

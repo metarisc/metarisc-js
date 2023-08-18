@@ -1,20 +1,19 @@
-export { Metarisc } from './metarisc';
-export { OAuth2 } from './oauth2';
-export { Core } from './core';
+export { Metarisc } from "./metarisc";
+export { OAuth2 } from "./oauth2";
+export { Core } from "./core";
 
+export { DossiersAPI } from "./api/DossiersAPI";
 
-export { DossiersAPI } from './apis/DossiersAPI';
+export { NotificationsAPI } from "./api/NotificationsAPI";
 
-export { NotificationsAPI } from './apis/NotificationsAPI';
+export { OrganisationAPI } from "./api/OrganisationAPI";
 
-export { OrganisationAPI } from './apis/OrganisationAPI';
+export { POIAPI } from "./api/POIAPI";
 
-export { POIAPI } from './apis/POIAPI';
+export { PingAPI } from "./api/PingAPI";
 
-export { PingAPI } from './apis/PingAPI';
+export { ResumableFileUploadsAPI } from "./api/ResumableFileUploadsAPI";
 
-export { ResumableFileUploadsAPI } from './apis/ResumableFileUploadsAPI';
+export { UtilisateursAPI } from "./api/UtilisateursAPI";
 
-export { UtilisateursAPI } from './apis/UtilisateursAPI';
-
-export { WFSAPI } from './apis/WFSAPI';
+export { WFSAPI } from "./api/WFSAPI";

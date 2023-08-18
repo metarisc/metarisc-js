@@ -8,18 +8,14 @@ import { PaginateNotifications500Response } from '../../src/model/PaginateNotifi
 import { PostNotification400Response } from '../../src/model/PostNotification400Response';
 import { PostNotification500Response } from '../../src/model/PostNotification500Response';
 
-/**
- * no description
- */
 export class NotificationsAPI extends Core {
     constructor(config : MetariscConfig) {
         super(config);
     }
 
     /**
-     * Suppression d\'une notification correspondante à l\'id donné.
-     * Suppression d\'une notification
-     * @param notificationId L\&#39;id de la notification demandée
+     * Suppression d'une notification correspondante à l'id donné.
+     * @param notificationId L'id de la notification demandée
      */
     async deleteNotification(notificationId: string): Promise<AxiosResponse<void>>
     {
@@ -34,9 +30,8 @@ export class NotificationsAPI extends Core {
     }
 
     /**
-     * Récupération des détails d\'une notification correspondante à l\'id donné.
-     * Récupération des détails d\'une notification
-     * @param notificationId L\&#39;id de la notification demandée
+     * Récupération des détails d'une notification correspondante à l'id donné.
+     * @param notificationId L'id de la notification demandée
      * @param notification 
      */
     async getNotification(notificationId: string, notification?: Notification): Promise<AxiosResponse<Notification>>
@@ -53,9 +48,8 @@ export class NotificationsAPI extends Core {
 
     /**
      * Récupération des détails de toutes les notifications existantes.
-     * Liste des notifications
      * @param page Le numéro de la page.
-     * @param perPage Limite le nombre d\&#39;objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateNotifications(page?: number, perPage?: number): AsyncGenerator<PaginateNotifications200Response>
     {
@@ -70,8 +64,7 @@ export class NotificationsAPI extends Core {
     }
 
     /**
-     * Création d\'une notification.
-     * Déclenchement d\'une notification
+     * Création d'une notification.
      * @param notification 
      */
     async postNotification(notification?: Notification): Promise<AxiosResponse<Notification>>
