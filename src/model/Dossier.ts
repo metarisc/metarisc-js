@@ -7,7 +7,6 @@ export type Dossier = {
     'id'?: string;
     'type'?: Type;
     'description'?: string;
-    'programmation'?: string;
     'dateDeCreation'?: Date;
     'createur'?: string;
     'applicationUtilisee'?: string;

@@ -6,7 +6,7 @@ export type Notification = {
     'title': string;
     'message': string;
     'contexte': any;
-    'dateCreation': string;
-    'dateDeLecture'?: string;
+    'dateCreation': Date;
+    'dateDeLecture'?: Date;
     'utilisateurId'?: string;
 };

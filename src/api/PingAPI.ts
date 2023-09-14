@@ -7,7 +7,7 @@ export class PingAPI extends Core {
     constructor(config : MetariscConfig) {
         super(config);
     }
-
+    
     /**
      * Permet de s'assurer que le service Metarisc est en ligne. Ping ... Pong !
      */
@@ -22,4 +22,5 @@ export class PingAPI extends Core {
             body: {}
         });
     }
+    
 }

@@ -7,7 +7,7 @@ export class OrganisationAPI extends Core {
     constructor(config : MetariscConfig) {
         super(config);
     }
-
+    
     /**
      * Récupération des détails d'une organisation.
      * @param orgId ID de l'organisation
@@ -23,4 +23,5 @@ export class OrganisationAPI extends Core {
             body: {}
         });
     }
+    
 }
