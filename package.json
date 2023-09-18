@@ -5,7 +5,8 @@
     "version": "0.0.1-alpha.5",
     "scripts": {
         "lint": "eslint . --ext .ts --fix",
-        "compile": "tsc"
+        "compile": "tsc",
+        "tests": "npm run compile && node tests/index.mjs"
     },
     "devDependencies": {
         "@types/node": "^18.14.4",
