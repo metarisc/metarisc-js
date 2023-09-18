@@ -1,16 +1,16 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import axiosRetry from 'axios-retry';
+import axiosRetry from "axios-retry";
 
 interface RequestConfig {
-    body ?: any,
-    headers ?: {[name: string]: string | string[]},
-    params ?: {[param: string]: string | string[]},
-    endpoint ?: string,
-    method ?: string
+    body ?: any;
+    headers ?: {[name: string]: string | string[]};
+    params ?: {[param: string]: string | string[]};
+    endpoint ?: string;
+    method ?: string;
 }
 
 export interface MetariscConfig {
-    metarisc_url ?: string,
+    metarisc_url ?: string;
 }
 
 export class Core

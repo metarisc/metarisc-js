@@ -14,3 +14,7 @@ Thumbs.db
 
 # Misc
 *.cache
+
+# Openapi files
+.openapi-generator
+.openapi-generator-ignore
