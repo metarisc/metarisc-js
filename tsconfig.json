@@ -3,8 +3,9 @@
     "outDir": "./lib",
     "module": "commonjs",
     "target": "es2020",
-    "declaration": true,
-    "esModuleInterop": true
+    "declaration": true
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }
