@@ -43,7 +43,7 @@ export class DossiersAPI extends Core {
       method: "GET",
       endpoint: Utils.constructPath(pathVariable, "/dossiers/"),
       headers: {},
-      params: { page: page, per_page: perPage },
+      params: { page: page.toString(), per_page: perPage.toString() },
       body: {},
     });
   }
@@ -67,7 +67,7 @@ export class DossiersAPI extends Core {
         "/dossiers/{dossier_id}/suivi_administratif"
       ),
       headers: {},
-      params: { page: page, per_page: perPage },
+      params: { page: page.toString(), per_page: perPage.toString() },
       body: {},
     });
   }
@@ -91,7 +91,7 @@ export class DossiersAPI extends Core {
         "/dossiers/{dossier_id}/tags"
       ),
       headers: {},
-      params: { page: page, per_page: perPage },
+      params: { page: page.toString(), per_page: perPage.toString() },
       body: {},
     });
   }
@@ -117,7 +117,7 @@ export class DossiersAPI extends Core {
         "/dossiers/{dossier_id}/workflows/{workflow_id}/documents"
       ),
       headers: {},
-      params: { page: page, per_page: perPage },
+      params: { page: page.toString(), per_page: perPage.toString() },
       body: {},
     });
   }
@@ -141,7 +141,7 @@ export class DossiersAPI extends Core {
         "/dossiers/{dossier_id}/workflows"
       ),
       headers: {},
-      params: { page: page, per_page: perPage },
+      params: { page: page.toString(), per_page: perPage.toString() },
       body: {},
     });
   }

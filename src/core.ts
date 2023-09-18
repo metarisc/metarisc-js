@@ -3,8 +3,8 @@ import axiosRetry from "axios-retry";
 
 interface RequestConfig {
   body?: any;
-  headers?: { [name: string]: string | string[] | number };
-  params?: { [param: string]: string | string[] | number };
+  headers?: { [name: string]: string | string[] };
+  params?: { [param: string]: string | string[] };
   endpoint?: string;
   method?: string;
 }
