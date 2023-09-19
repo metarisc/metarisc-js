@@ -15,6 +15,15 @@ import { SupportAPI } from "./api/SupportAPI";
 import { UtilisateursAPI } from "./api/UtilisateursAPI";
 
 export class Metarisc extends Core {
+
+  public dossiers ?: DossiersAPI;
+  public notifications ?: NotificationsAPI;
+  public organisations ?: OrganisationAPI;
+  public poi ?: POIAPI;
+  public ping ?: PingAPI;
+  public support ?: SupportAPI;
+  public utilisateurs ?: UtilisateursAPI;
+
   constructor(config: MetariscConfig) {
     super(config);
 
