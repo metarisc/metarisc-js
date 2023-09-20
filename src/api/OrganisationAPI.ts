@@ -8,10 +8,6 @@ export class OrganisationAPI extends Core {
         super(config);
     }
     
-    /**
-     * Récupération des détails d'une organisation.
-     * @param orgId ID de l'organisation
-     */
     async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
     {
         const pathVariable = { 'org_id': orgId };

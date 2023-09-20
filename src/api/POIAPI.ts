@@ -13,10 +13,6 @@ export class POIAPI extends Core {
     super(config);
   }
 
-  /**
-   * Récupération de l'ensemble des données d'un POI.
-   * @param poiId ID du POI
-   */
   async getPoi(poiId: string): Promise<AxiosResponse<POI>> {
     const pathVariable = { poi_id: poiId };
     return this.request({
@@ -35,6 +31,26 @@ export class POIAPI extends Core {
    * @param perPage Nombre de résultats demandé
    */
   paginateContacts(
+    poiId: string,
+    page?: number,
+    perPage?: number
+  ): Promise<AxiosResponse<PaginateContacts200Response>> {
+    const pathVariable = { poi_id: poiId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(pathVariable, "/poi/{poi_id}/contacts"),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de la liste des contacts d'un POI.
+   * @param poiId ID du POI
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateContactsIterator(
     poiId: string,
     page?: number,
     perPage?: number
@@ -59,6 +75,26 @@ export class POIAPI extends Core {
     poiId: string,
     page?: number,
     perPage?: number
+  ): Promise<AxiosResponse<PaginateHistorique200Response>> {
+    const pathVariable = { poi_id: poiId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(pathVariable, "/poi/{poi_id}/historique"),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de l'historique d'un POI.
+   * @param poiId ID du POI
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateHistoriqueIterator(
+    poiId: string,
+    page?: number,
+    perPage?: number
   ): AsyncGenerator<PaginateHistorique200Response> {
     const pathVariable = { poi_id: poiId };
     return this.autoPagingIterator({
@@ -77,6 +113,29 @@ export class POIAPI extends Core {
    * @param perPage Nombre de résultats demandé
    */
   paginatePiecesJointes(
+    poiId: string,
+    page?: number,
+    perPage?: number
+  ): Promise<AxiosResponse<PaginatePiecesJointes200Response>> {
+    const pathVariable = { poi_id: poiId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(
+        pathVariable,
+        "/poi/{poi_id}/pieces_jointes"
+      ),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de la liste des pièces jointes d'un POI.
+   * @param poiId ID du POI
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginatePiecesJointesIterator(
     poiId: string,
     page?: number,
     perPage?: number
@@ -102,6 +161,24 @@ export class POIAPI extends Core {
   paginatePoi(
     page?: number,
     perPage?: number
+  ): Promise<AxiosResponse<PaginatePoi200Response>> {
+    const pathVariable = {};
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(pathVariable, "/poi/"),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de la liste des POI selon des critères de recherche.
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginatePoiIterator(
+    page?: number,
+    perPage?: number
   ): AsyncGenerator<PaginatePoi200Response> {
     const pathVariable = {};
     return this.autoPagingIterator({
@@ -113,11 +190,6 @@ export class POIAPI extends Core {
     });
   }
 
-  /**
-   * Modifier un POI existant.
-   * @param poiId ID du POI
-   * @param patchPoiRequest
-   */
   async patchPoi(
     poiId: string,
     patchPoiRequest?: PatchPoiRequest

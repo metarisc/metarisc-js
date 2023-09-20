@@ -9,9 +9,6 @@ export class UtilisateursAPI extends Core {
     super(config);
   }
 
-  /**
-   * L'utilisateur connecté retourné par ce point de terminaison utilise le token d'accès généré par le service OpenID Connect afin de le lier à une identité connue de Metarisc. Si l'utilisateur est inconnu une erreur est retournée.
-   */
   async getUtilisateursMoi(): Promise<AxiosResponse<Utilisateur>> {
     const pathVariable = {};
     return this.request({
@@ -23,9 +20,6 @@ export class UtilisateursAPI extends Core {
     });
   }
 
-  /**
-   * L'utilisateur connecté retourné par ce point de terminaison utilise le token d'accès généré par le service OpenID Connect afin de le lier à une identité connue de Metarisc. Si l'utilisateur est inconnu une erreur est retournée.
-   */
   async getUtilisateursMoi1(): Promise<AxiosResponse<Utilisateur>> {
     const pathVariable = {};
     return this.request({
@@ -45,6 +39,24 @@ export class UtilisateursAPI extends Core {
   paginateMoiEmails(
     page?: number,
     perPage?: number
+  ): Promise<AxiosResponse<PaginateMoiEmails200Response>> {
+    const pathVariable = {};
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(pathVariable, "/@moi/emails"),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Liste toutes les adresses mail de l'utilisateur connecté, y compris les adresses non publiquement accessibles.
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateMoiEmailsIterator(
+    page?: number,
+    perPage?: number
   ): AsyncGenerator<PaginateMoiEmails200Response> {
     const pathVariable = {};
     return this.autoPagingIterator({
@@ -62,6 +74,24 @@ export class UtilisateursAPI extends Core {
    * @param perPage Nombre de résultats demandé
    */
   paginateMoiEmails1(
+    page?: number,
+    perPage?: number
+  ): Promise<AxiosResponse<PaginateMoiEmails200Response>> {
+    const pathVariable = {};
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(pathVariable, "/utilisateurs/@moi/emails"),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Liste toutes les adresses mail de l'utilisateur connecté, y compris les adresses non publiquement accessibles.
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateMoiEmails1Iterator(
     page?: number,
     perPage?: number
   ): AsyncGenerator<PaginateMoiEmails200Response> {

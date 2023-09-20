@@ -14,10 +14,6 @@ export class DossiersAPI extends Core {
     super(config);
   }
 
-  /**
-   * Récupération de l'ensemble des données d'un dossier.
-   * @param dossierId ID du dossier
-   */
   async getDossier(dossierId: string): Promise<AxiosResponse<Dossier>> {
     const pathVariable = { dossier_id: dossierId };
     return this.request({
@@ -35,6 +31,24 @@ export class DossiersAPI extends Core {
    * @param perPage Nombre de résultats demandé
    */
   paginateDossiers(
+    page?: number,
+    perPage?: number
+  ): Promise<AxiosResponse<PaginateDossiers200Response>> {
+    const pathVariable = {};
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(pathVariable, "/dossiers/"),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de la liste des dossiers selon des critères de recherche.
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateDossiersIterator(
     page?: number,
     perPage?: number
   ): AsyncGenerator<PaginateDossiers200Response> {
@@ -55,6 +69,29 @@ export class DossiersAPI extends Core {
    * @param perPage Nombre de résultats demandé
    */
   paginateSuiviAdministratif(
+    dossierId: string,
+    page?: number,
+    perPage?: number
+  ): Promise<AxiosResponse<PaginateSuiviAdministratif200Response>> {
+    const pathVariable = { dossier_id: dossierId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(
+        pathVariable,
+        "/dossiers/{dossier_id}/suivi_administratif"
+      ),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de la liste du suivi administratif d'un dossier.
+   * @param dossierId ID du dossier
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateSuiviAdministratifIterator(
     dossierId: string,
     page?: number,
     perPage?: number
@@ -79,6 +116,29 @@ export class DossiersAPI extends Core {
    * @param perPage Nombre de résultats demandé
    */
   paginateTags(
+    dossierId: string,
+    page?: number,
+    perPage?: number
+  ): Promise<AxiosResponse<PaginateTags200Response>> {
+    const pathVariable = { dossier_id: dossierId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(
+        pathVariable,
+        "/dossiers/{dossier_id}/tags"
+      ),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de la liste des tags d'un dossier.
+   * @param dossierId ID du dossier
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateTagsIterator(
     dossierId: string,
     page?: number,
     perPage?: number
@@ -108,6 +168,31 @@ export class DossiersAPI extends Core {
     workflowId: string,
     page?: number,
     perPage?: number
+  ): Promise<AxiosResponse<PaginateWorkflowDocuments200Response>> {
+    const pathVariable = { dossier_id: dossierId, workflow_id: workflowId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(
+        pathVariable,
+        "/dossiers/{dossier_id}/workflows/{workflow_id}/documents"
+      ),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Liste des documents liés à un workflow.
+   * @param dossierId
+   * @param workflowId
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateWorkflowDocumentsIterator(
+    dossierId: string,
+    workflowId: string,
+    page?: number,
+    perPage?: number
   ): AsyncGenerator<PaginateWorkflowDocuments200Response> {
     const pathVariable = { dossier_id: dossierId, workflow_id: workflowId };
     return this.autoPagingIterator({
@@ -132,6 +217,29 @@ export class DossiersAPI extends Core {
     dossierId: string,
     page?: number,
     perPage?: number
+  ): Promise<AxiosResponse<PaginateWorkflows200Response>> {
+    const pathVariable = { dossier_id: dossierId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(
+        pathVariable,
+        "/dossiers/{dossier_id}/workflows"
+      ),
+      headers: {},
+      params: { page: page.toString(), per_page: perPage.toString() },
+      body: {},
+    });
+  }
+  /**
+   * Récupération de la liste des workflows d'un dossier.
+   * @param dossierId ID du dossier
+   * @param page Numéro de page
+   * @param perPage Nombre de résultats demandé
+   */
+  paginateWorkflowsIterator(
+    dossierId: string,
+    page?: number,
+    perPage?: number
   ): AsyncGenerator<PaginateWorkflows200Response> {
     const pathVariable = { dossier_id: dossierId };
     return this.autoPagingIterator({
@@ -146,11 +254,6 @@ export class DossiersAPI extends Core {
     });
   }
 
-  /**
-   * Modification d'un dossier existant.
-   * @param dossierId ID du dossier
-   * @param dossier
-   */
   async patchDossier(
     dossierId: string,
     dossier?: Dossier
@@ -173,10 +276,6 @@ export class DossiersAPI extends Core {
     });
   }
 
-  /**
-   * Création d'un nouveau dossier.
-   * @param postDossierRequest
-   */
   async postDossier(
     postDossierRequest?: PostDossierRequest
   ): Promise<AxiosResponse<Dossier>> {

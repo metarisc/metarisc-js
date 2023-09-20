@@ -8,9 +8,6 @@ export class PingAPI extends Core {
         super(config);
     }
     
-    /**
-     * Permet de s'assurer que le service Metarisc est en ligne. Ping ... Pong !
-     */
     async ping(): Promise<AxiosResponse<Ping200Response>>
     {
         const pathVariable = {  };
