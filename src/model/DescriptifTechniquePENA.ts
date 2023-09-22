@@ -5,7 +5,7 @@ import { DescriptifTechniquePENAAllOfVolumes } from '../../src/model/DescriptifT
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePENA = DescriptifTechniqueDECIBase & { 
-    'essaisEnginUtilise'?: EssaisEnginUtiliseEnum;
+    'essais_engin_utilise'?: EssaisEnginUtiliseEnum;
     'equipements'?: EquipementsEnum;
     'nature'?: NatureEnum;
     'volumes'?: DescriptifTechniquePENAAllOfVolumes;

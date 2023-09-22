@@ -1,6 +1,6 @@
 export type DescriptifTechniquePENAAllOfRealimentation = {
     'debit'?: number;
-    'diametreCanalisation'?: number;
+    'diametre_canalisation'?: number;
     'nature'?: NatureEnum;
 };
 

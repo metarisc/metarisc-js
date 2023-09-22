@@ -1,10 +1,10 @@
 export type Utilisateur = {
     'id'?: string;
-    'firstName'?: string;
-    'lastName'?: string;
-    'createdAt'?: Date;
-    'updatedAt'?: Date;
+    'first_name'?: string;
+    'last_name'?: string;
+    'created_at'?: Date;
+    'updated_at'?: Date;
     'timezone'?: string;
-    'isActive'?: boolean;
-    'isVerified'?: boolean;
+    'is_active'?: boolean;
+    'is_verified'?: boolean;
 };

@@ -1,6 +1,6 @@
 export type SuiviAdministratif = {
     'description'?: string;
-    'dateAjout'?: Date;
-    'evenementAutomatique'?: boolean;
+    'date_ajout'?: Date;
+    'evenement_automatique'?: boolean;
     'createur'?: string;
 };

@@ -4,13 +4,13 @@ import { DescriptifTechniquePIBIAllOfPesees } from '../../src/model/DescriptifTe
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePIBI = DescriptifTechniqueDECIBase & { 
-    'numeroSerieAppareil'?: string;
+    'numero_serie_appareil'?: string;
     /**
     * Surpression mesurée en bar
     */
     'surpression'?: number;
     'nature'?: NatureEnum;
-    'caracteristiquesParticulieres'?: CaracteristiquesParticulieresEnum;
+    'caracteristiques_particulieres'?: CaracteristiquesParticulieresEnum;
     'pesees'?: DescriptifTechniquePIBIAllOfPesees;
 };
 

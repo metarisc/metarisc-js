@@ -1,6 +1,6 @@
 export type Email = {
     'email'?: string;
-    'isPrimary'?: boolean;
-    'isPubliclyVisible'?: boolean;
-    'isVerified'?: boolean;
+    'is_primary'?: boolean;
+    'is_publicly_visible'?: boolean;
+    'is_verified'?: boolean;
 };

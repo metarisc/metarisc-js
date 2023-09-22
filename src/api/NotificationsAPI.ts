@@ -95,7 +95,7 @@ export class NotificationsAPI extends Core {
         title: postNotificationRequest?.title,
         message: postNotificationRequest?.message,
         contexte: postNotificationRequest?.contexte,
-        utilisateurId: postNotificationRequest?.utilisateurId,
+        utilisateur_id: postNotificationRequest?.utilisateur_id,
       },
     });
   }

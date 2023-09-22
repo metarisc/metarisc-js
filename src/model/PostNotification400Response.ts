@@ -1,5 +1,5 @@
 export type PostNotification400Response = {
-    'statusCode'?: number;
+    'status_code'?: number;
     'type'?: string;
     'title'?: string;
     'detail'?: string;

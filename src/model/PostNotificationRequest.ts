@@ -5,5 +5,5 @@ export type PostNotificationRequest = {
     /**
     * L\'utilisateur que l\'on souhaite notifier
     */
-    'utilisateurId': string;
+    'utilisateur_id': string;
 };

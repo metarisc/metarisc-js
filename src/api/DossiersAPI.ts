@@ -268,9 +268,9 @@ export class DossiersAPI extends Core {
         id: dossier?.id,
         type: dossier?.type,
         description: dossier?.description,
-        dateDeCreation: dossier?.dateDeCreation,
+        date_de_creation: dossier?.date_de_creation,
         createur: dossier?.createur,
-        applicationUtilisee: dossier?.applicationUtilisee,
+        application_utilisee: dossier?.application_utilisee,
         statut: dossier?.statut,
       },
     });

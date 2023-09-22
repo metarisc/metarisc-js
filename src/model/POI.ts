@@ -4,11 +4,11 @@ import { POIReferencesExterieuresInner } from '../../src/model/POIReferencesExte
 
 export type POI = {
     'id'?: string;
-    'dateDeRealisation'?: Date;
-    'dateDeDerniereMiseAJour'?: Date;
+    'date_de_realisation'?: Date;
+    'date_de_derniere_mise_a_jour'?: Date;
     'statut'?: string;
-    'referencesExterieures'?: Array<POIReferencesExterieuresInner>;
-    'descriptifTechnique'?: DescriptifTechnique;
+    'references_exterieures'?: Array<POIReferencesExterieuresInner>;
+    'descriptif_technique'?: DescriptifTechnique;
     'geometrie'?: string;
-    'adressePostale'?: AdressePostale;
+    'adresse_postale'?: AdressePostale;
 };
