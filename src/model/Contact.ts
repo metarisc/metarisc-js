@@ -6,4 +6,8 @@ export type Contact = {
     'telephone'?: string;
     'adresse'?: string;
     'site_web_url'?: string;
+    'civilite'?: string;
+    'societe'?: string;
+    'email'?: string;
+    'observations'?: string;
 };

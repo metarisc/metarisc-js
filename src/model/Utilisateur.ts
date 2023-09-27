@@ -7,4 +7,6 @@ export type Utilisateur = {
     'timezone'?: string;
     'is_active'?: boolean;
     'is_verified'?: boolean;
+    'fonction'?: string;
+    'avatar_url'?: string;
 };
