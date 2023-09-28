@@ -2,6 +2,8 @@ import { Core, MetariscConfig } from "./core";
 
 import { DossiersAPI } from "./api/DossiersAPI";
 
+import { EvenementsAPI } from "./api/EvenementsAPI";
+
 import { NotificationsAPI } from "./api/NotificationsAPI";
 
 import { OrganisationAPI } from "./api/OrganisationAPI";
@@ -15,14 +17,13 @@ import { SupportAPI } from "./api/SupportAPI";
 import { UtilisateursAPI } from "./api/UtilisateursAPI";
 
 export class Metarisc extends Core {
-
-  public dossiers ?: DossiersAPI;
-  public notifications ?: NotificationsAPI;
-  public organisations ?: OrganisationAPI;
-  public poi ?: POIAPI;
-  public ping ?: PingAPI;
-  public support ?: SupportAPI;
-  public utilisateurs ?: UtilisateursAPI;
+  public dossiers?: DossiersAPI;
+  public notifications?: NotificationsAPI;
+  public organisations?: OrganisationAPI;
+  public poi?: POIAPI;
+  public ping?: PingAPI;
+  public support?: SupportAPI;
+  public utilisateurs?: UtilisateursAPI;
 
   constructor(config: MetariscConfig) {
     super(config);
@@ -32,6 +33,8 @@ export class Metarisc extends Core {
         switch (name) {
           case "dossiers":
             return new DossiersAPI(config);
+          case "evenements":
+            return new EvenementsAPI(config);
           case "notifications":
             return new NotificationsAPI(config);
           case "organisations":
