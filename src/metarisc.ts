@@ -18,6 +18,7 @@ import { UtilisateursAPI } from "./api/UtilisateursAPI";
 
 export class Metarisc extends Core {
   public dossiers?: DossiersAPI;
+  public evenements?: EvenementsAPI;
   public notifications?: NotificationsAPI;
   public organisations?: OrganisationAPI;
   public poi?: POIAPI;
