@@ -8,6 +8,7 @@ import { PaginateTags200Response } from "../../src/model/PaginateTags200Response
 import { PaginateWorkflowDocuments200Response } from "../../src/model/PaginateWorkflowDocuments200Response";
 import { PaginateWorkflows200Response } from "../../src/model/PaginateWorkflows200Response";
 import { PostDossierRequest } from "../../src/model/PostDossierRequest";
+import { Workflow } from "../../src/model/Workflow";
 
 export class DossiersAPI extends Core {
   constructor(config: MetariscConfig) {
@@ -19,6 +20,23 @@ export class DossiersAPI extends Core {
     return this.request({
       method: "GET",
       endpoint: Utils.constructPath(pathVariable, "/dossiers/{dossier_id}"),
+      headers: {},
+      params: {},
+      body: {},
+    });
+  }
+
+  async getDossierWorkflowsWorkflow(
+    dossierId: string,
+    workflowId: string
+  ): Promise<AxiosResponse<Workflow>> {
+    const pathVariable = { dossier_id: dossierId, workflow_id: workflowId };
+    return this.request({
+      method: "GET",
+      endpoint: Utils.constructPath(
+        pathVariable,
+        "/dossiers/{dossier_id}/workflows/{workflow_id}"
+      ),
       headers: {},
       params: {},
       body: {},

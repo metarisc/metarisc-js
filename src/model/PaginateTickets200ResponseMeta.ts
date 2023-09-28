@@ -1,5 +1,5 @@
-import { PaginationMetadata3 } from '../../src/model/PaginationMetadata3';
+import { PaginationMetadata4 } from '../../src/model/PaginationMetadata4';
 
 export type PaginateTickets200ResponseMeta = {
-    'pagination'?: PaginationMetadata3;
+    'pagination'?: PaginationMetadata4;
 };

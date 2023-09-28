@@ -10,4 +10,5 @@ export type WorkflowBase = {
     'est_complet'?: boolean;
     'liste_poi'?: string;
     'documents'?: string;
+    'type'?: string;
 };
