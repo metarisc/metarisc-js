@@ -1,6 +1,7 @@
 export { Metarisc } from "./metarisc";
 export { OAuth2 } from "./oauth2";
 export { Core } from "./core";
+export { Collection } from "./collection";
 
 export { DossiersAPI } from "./api/DossiersAPI";
 

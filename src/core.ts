@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import axiosRetry from "axios-retry";
+import { Collection } from "./collection";
 
 interface RequestConfig {
     body ?: any;
@@ -39,6 +40,15 @@ export class Core
             url: config.endpoint || '/',
             params: config.params,
             data: config.body,
+            headers: config.headers
+        });
+    }
+
+    collect<T>(config : RequestConfig) : Collection<T>
+    {
+        return new Collection(this, {
+            endpoint: config.endpoint || '/',
+            params: config.params,
             headers: config.headers
         });
     }
