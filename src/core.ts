@@ -55,32 +55,10 @@ export class Core
 
     async * autoPagingIterator<T>(config : RequestConfig) : AsyncGenerator<T, void, unknown>
     {
-        let current_page : number = config.params && 'page' in config.params ? parseInt(config.params['page'].toString()) : 1;
-        const per_page : number = config.params && 'per_page' in  config.params ? parseInt(config.params['per_page'].toString()) : 25;
+        const generator = this.collect<T>(config).autoPagingIterator();
 
-        while (true) {
-            const response = <AxiosResponse<{
-                data?: Array<T>;
-                meta?: {
-                    pagination?: {
-                        total?: number;
-                        count?: number;
-                        per_page?: number;
-                        current_page?: number;
-                        total_pages?: number;
-                      };
-                };
-                }>> await this.request({...config, ...{params: {page: current_page.toString(), per_page: per_page.toString()}}});
-
-            for (const element of response.data.data) {
-                yield element;
-            }
-
-            if (response.data.meta.pagination.current_page === response.data.meta.pagination.total_pages) {
-                break;
-            }
-
-            current_page++;
+        for await (const item of generator) {
+            yield item;
         }
     }
 }
