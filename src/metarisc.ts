@@ -30,7 +30,7 @@ export class Metarisc extends Core {
     super(config);
 
     return new Proxy(this, {
-      get: function (metarisc, name) {
+      get: function (metarisc, name, receiver) {
         switch (name) {
           case "dossiers":
             return new DossiersAPI(config);
@@ -49,7 +49,7 @@ export class Metarisc extends Core {
           case "utilisateurs":
             return new UtilisateursAPI(config);
           default:
-            return;
+            return Reflect.get(metarisc, name, receiver); // Proxy to original Metarisc service
         }
       },
     });
