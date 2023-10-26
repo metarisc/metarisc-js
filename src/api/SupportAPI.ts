@@ -4,10 +4,11 @@ import type { AxiosResponse } from "axios";
 import { PaginateTickets200Response } from "../../src/model/PaginateTickets200Response";
 import { PostTicketRequest } from "../../src/model/PostTicketRequest";
 import { Ticket } from "../../src/model/Ticket";
+import { Client } from "../client";
 
 export class SupportAPI extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
   }
 
   async getTicket(ticketId: string): Promise<AxiosResponse<Ticket>> {

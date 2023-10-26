@@ -3,10 +3,11 @@ import Utils from "../utils";
 import type { AxiosResponse } from "axios";
 import { Organisation } from "../../src/model/Organisation";
 import { PaginateOrganisations200Response } from "../../src/model/PaginateOrganisations200Response";
+import { Client } from "../client";
 
 export class OrganisationAPI extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
   }
 
   async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>> {

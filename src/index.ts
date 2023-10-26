@@ -1,6 +1,9 @@
 export { Metarisc } from "./metarisc";
-export { OAuth2 } from "./oauth2";
+export { OAuth2 } from "./auth/oauth2";
 export { Core } from "./core";
+export { AuthMethod } from "./client";
+export { Tus } from "./tus";
+export { Client } from "./client";
 
 export { DossiersAPI } from "./api/DossiersAPI";
 

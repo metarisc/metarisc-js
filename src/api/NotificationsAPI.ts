@@ -1,16 +1,14 @@
 import { Core, MetariscConfig } from "../core";
 import Utils from "../utils";
 import type { AxiosResponse } from "axios";
-import { GetNotification404Response } from "../../src/model/GetNotification404Response";
 import { Notification } from "../../src/model/Notification";
 import { PaginateNotifications200Response } from "../../src/model/PaginateNotifications200Response";
-import { PostNotification400Response } from "../../src/model/PostNotification400Response";
-import { PostNotification500Response } from "../../src/model/PostNotification500Response";
 import { PostNotificationRequest } from "../../src/model/PostNotificationRequest";
+import { Client } from "../client";
 
 export class NotificationsAPI extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
   }
 
   async deleteNotification(

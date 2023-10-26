@@ -2,16 +2,14 @@ import { Core, MetariscConfig } from "../core";
 import Utils from "../utils";
 import type { AxiosResponse } from "axios";
 import { Evenement } from "../../src/model/Evenement";
-import { GetEvenement404Response } from "../../src/model/GetEvenement404Response";
 import { PaginateEvenementUtilisateurs200Response } from "../../src/model/PaginateEvenementUtilisateurs200Response";
 import { PaginateEvenements200Response } from "../../src/model/PaginateEvenements200Response";
 import { PostEvenementRequest } from "../../src/model/PostEvenementRequest";
-import { PostNotification400Response } from "../../src/model/PostNotification400Response";
-import { PostNotification500Response } from "../../src/model/PostNotification500Response";
+import { Client } from "../client";
 
 export class EvenementsAPI extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
   }
 
   async deleteEvenement(evenementId: string): Promise<AxiosResponse<void>> {

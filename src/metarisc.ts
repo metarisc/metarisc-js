@@ -1,4 +1,5 @@
-import { Core, MetariscConfig } from "./core";
+import { Core, MetariscConfig, OAuth2Options } from "./core";
+import { Tus } from "./tus";
 
 import { DossiersAPI } from "./api/DossiersAPI";
 
@@ -15,6 +16,7 @@ import { PingAPI } from "./api/PingAPI";
 import { SupportAPI } from "./api/SupportAPI";
 
 import { UtilisateursAPI } from "./api/UtilisateursAPI";
+import { Client } from "./client";
 
 export class Metarisc extends Core {
   public dossiers?: DossiersAPI;
@@ -25,29 +27,34 @@ export class Metarisc extends Core {
   public ping?: PingAPI;
   public support?: SupportAPI;
   public utilisateurs?: UtilisateursAPI;
+  public tus?: Tus;
 
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
+
+    const tmpClient = this.client;
 
     return new Proxy(this, {
       get: function (metarisc, name) {
         switch (name) {
           case "dossiers":
-            return new DossiersAPI(config);
+            return new DossiersAPI(config, tmpClient);
           case "evenements":
-            return new EvenementsAPI(config);
+            return new EvenementsAPI(config, tmpClient);
           case "notifications":
-            return new NotificationsAPI(config);
+            return new NotificationsAPI(config, tmpClient);
           case "organisations":
-            return new OrganisationAPI(config);
+            return new OrganisationAPI(config, tmpClient);
           case "poi":
-            return new POIAPI(config);
+            return new POIAPI(config, tmpClient);
           case "ping":
-            return new PingAPI(config);
+            return new PingAPI(config, tmpClient);
           case "support":
-            return new SupportAPI(config);
+            return new SupportAPI(config, tmpClient);
           case "utilisateurs":
-            return new UtilisateursAPI(config);
+            return new UtilisateursAPI(config, tmpClient);
+          case "tus":
+            return new Tus(config, tmpClient);
           default:
             return;
         }

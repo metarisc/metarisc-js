@@ -9,10 +9,11 @@ import { PaginateWorkflowDocuments200Response } from "../../src/model/PaginateWo
 import { PaginateWorkflows200Response } from "../../src/model/PaginateWorkflows200Response";
 import { PostDossierRequest } from "../../src/model/PostDossierRequest";
 import { Workflow } from "../../src/model/Workflow";
+import { Client } from "../client";
 
 export class DossiersAPI extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
   }
 
   async getDossier(dossierId: string): Promise<AxiosResponse<Dossier>> {

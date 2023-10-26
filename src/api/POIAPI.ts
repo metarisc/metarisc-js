@@ -7,10 +7,11 @@ import { PaginateHistorique200Response } from "../../src/model/PaginateHistoriqu
 import { PaginatePiecesJointes200Response } from "../../src/model/PaginatePiecesJointes200Response";
 import { PaginatePoi200Response } from "../../src/model/PaginatePoi200Response";
 import { PatchPoiRequest } from "../../src/model/PatchPoiRequest";
+import { Client } from "../client";
 
 export class POIAPI extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
   }
 
   async getPoi(poiId: string): Promise<AxiosResponse<POI>> {

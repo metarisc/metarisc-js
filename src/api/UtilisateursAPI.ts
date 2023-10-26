@@ -3,10 +3,11 @@ import Utils from "../utils";
 import type { AxiosResponse } from "axios";
 import { PaginateMoiEmails200Response } from "../../src/model/PaginateMoiEmails200Response";
 import { Utilisateur } from "../../src/model/Utilisateur";
+import { Client } from "../client";
 
 export class UtilisateursAPI extends Core {
-  constructor(config: MetariscConfig) {
-    super(config);
+  constructor(config: MetariscConfig, client?: Client) {
+    super(config, client);
   }
 
   async getUtilisateursMoi(): Promise<AxiosResponse<Utilisateur>> {
