@@ -35,7 +35,7 @@ export class Metarisc extends Core {
     const tmpClient = this.client;
 
     return new Proxy(this, {
-      get: function (metarisc, name) {
+      get: function (metarisc, name, receiver) {
         switch (name) {
           case "dossiers":
             return new DossiersAPI(config, tmpClient);
@@ -56,7 +56,7 @@ export class Metarisc extends Core {
           case "tus":
             return new Tus(config, tmpClient);
           default:
-            return;
+            return Reflect.get(metarisc, name, receiver); // Proxy to original Metarisc service
         }
       },
     });
