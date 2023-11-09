@@ -1,8 +1,16 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import axiosRetry from "axios-retry";
 import oauth from "axios-oauth-client";
-import { GrantResponse, MetariscConfig, OAuth2Options, RequestConfig } from './core';
+import { GrantResponse, MetariscConfig, OAuth2Options } from './core';
 import { OAuth2 } from "./auth/oauth2";
+
+interface RequestConfig {
+  body?: any;
+  headers?: { [name: string]: string | string[] };
+  params?: { [param: string]: string | string[] };
+  endpoint?: string;
+  method?: string;
+}
 
 export enum AuthMethod {
   CLIENT_CREDENTIALS,

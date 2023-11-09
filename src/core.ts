@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { AuthMethod, Client } from "./client";
 import { Collection } from "./collection";
 
-export interface RequestConfig {
+interface RequestConfig {
   body?: any;
   headers?: { [name: string]: string | string[] };
   params?: { [param: string]: string | string[] };
