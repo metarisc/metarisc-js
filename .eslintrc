@@ -2,7 +2,9 @@
     "root": true,
     "parser": "@typescript-eslint/parser",
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "unused-imports",
+        "import"
     ],
     "extends": [
         "eslint:recommended",
@@ -10,6 +12,9 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-        "no-multiple-empty-lines": [1, { "max": 1, "maxEOF": 0, "maxBOF": 0 }]
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "no-multiple-empty-lines": [1, { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
+        "unused-imports/no-unused-imports": "error",
+        "import/no-duplicates": ["error", {"considerQueryString": true, "prefer-inline": true}]
     }
 }

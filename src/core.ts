@@ -1,64 +1,70 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
-import axiosRetry from "axios-retry";
+import { AxiosResponse } from "axios";
+import { AuthMethod, Client } from "./client";
 import { Collection } from "./collection";
 
 interface RequestConfig {
-    body ?: any;
-    headers ?: {[name: string]: string | string[]};
-    params ?: {[param: string]: string | string[]};
-    endpoint ?: string;
-    method ?: string;
+  body?: any;
+  headers?: { [name: string]: string | string[] };
+  params?: { [param: string]: string | string[] };
+  endpoint?: string;
+  method?: string;
 }
 
 export interface MetariscConfig {
-    metarisc_url ?: string;
-    headers ?: {[name: string]: string | string[]}
+  metarisc_url?: string;
 }
 
-export class Core
-{
-    private axios : AxiosInstance;
-    
-    constructor(config : MetariscConfig)
-    {
-        this.axios = axios.create({
-            baseURL: config.metarisc_url ?? 'https://api.metarisc.fr/',
-            headers: config.headers ?? {}
-        });
+export interface OAuth2Options {
+  client_id?: string;
+  client_secret?: string;
+  response_type?: string;
+  redirect_uri?: string;
+  state?: string;
+  code?: string;
+  scope?: string;
+  [name: string]: string;
+}
 
-        // Axios interceptor : Retry strategy
-        axiosRetry(this.axios, {
-            retries: 3,
-            retryDelay: axiosRetry.exponentialDelay
-        });
-    }
+export interface GrantResponse {
+  access_token?: string;
+  expires_in?: number;
+  id_token?: string;
+  refresh_token?: string;
+  refresh_expires_in?: number;
+  session_state?: string;
+  token_type?: string;
+  error?: string;
+  error_description?: string;
+}
+
+export class Core {
+  protected client: Client;
+  protected config: MetariscConfig;
+
+  constructor(config: MetariscConfig, client?: Client) {
+    this.config = config;
+    this.client = client ?? new Client(config);
+  }
 
     async request<T>(config : RequestConfig) : Promise<AxiosResponse<T>>
     {
-        return this.axios.request<T>({
-            method: config.method || 'GET',
-            url: config.endpoint || '/',
-            params: config.params,
-            data: config.body,
-            headers: config.headers
-        });
+        return this.client.request<T>(config);
     }
 
     collect<T>(config : RequestConfig) : Collection<T>
     {
-        return new Collection(this, {
+        return new Collection<T>(this, {
             endpoint: config.endpoint || '/',
             params: config.params,
             headers: config.headers
         });
     }
 
-    async * autoPagingIterator<T>(config : RequestConfig) : AsyncGenerator<T, void, unknown>
-    {
-        const generator = this.collect<T>(config).autoPagingIterator();
+    async authenticate(auth_method: AuthMethod, options: OAuth2Options): Promise<GrantResponse> {
+        return await this.client.authenticate(auth_method, options);
+    }
 
-        for await (const item of generator) {
-            yield item;
-        }
+    setAccessToken(access_token: string): void {
+        this.client.setAccessToken(access_token);
     }
 }

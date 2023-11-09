@@ -1,4 +1,3 @@
-import { AnomalieDECI } from '../../src/model/AnomalieDECI';
 import { DescriptifTechniquePENAAllOfRealimentation } from '../../src/model/DescriptifTechniquePENAAllOfRealimentation';
 import { DescriptifTechniquePENAAllOfVolumes } from '../../src/model/DescriptifTechniquePENAAllOfVolumes';
 
@@ -17,12 +16,14 @@ export enum DomanialiteEnum {
     Publique = 'publique',
     PriveeConventionnee = 'privee_conventionnee'
 }
+
 export enum EssaisEnginUtiliseEnum {
     Aucun = 'AUCUN',
     Fpt = 'FPT',
     Mpr = 'MPR',
     Ccf = 'CCF'
 }
+
 export enum EquipementsEnum {
     Guichet = 'GUICHET',
     CanneAspiration = 'CANNE_ASPIRATION',
@@ -31,6 +32,7 @@ export enum EquipementsEnum {
     RaccordTournant = 'RACCORD_TOURNANT',
     PriseDirecte = 'PRISE_DIRECTE'
 }
+
 export enum NatureEnum {
     PointAspiration = 'POINT_ASPIRATION',
     CiterneAerienne = 'CITERNE_AERIENNE',
