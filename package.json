@@ -2,7 +2,7 @@
   "name": "@metarisc/metarisc-js",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "version": "0.0.1-alpha.16",
+  "version": "0.0.1-alpha.17",
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
     "compile": "tsc",
@@ -15,12 +15,12 @@
     "eslint": "^8.35.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "typescript": "^4.9.5",
-    "axios-oauth-client": "^2.0.4",
-    "tus-js-client": "^3.1.1"
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "axios": "^1.4.0",
-    "axios-retry": "^3.5.0"
+    "axios-retry": "^3.5.0",
+    "axios-oauth-client": "^2.0.4",
+    "tus-js-client": "^3.1.1"
   }
 }
