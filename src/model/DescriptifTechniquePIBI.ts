@@ -1,4 +1,3 @@
-import { AnomalieDECI } from '../../src/model/AnomalieDECI';
 import { DescriptifTechniquePIBIAllOfPesees } from '../../src/model/DescriptifTechniquePIBIAllOfPesees';
 
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
@@ -19,6 +18,7 @@ export enum DomanialiteEnum {
     Publique = 'publique',
     PriveeConventionnee = 'privee_conventionnee'
 }
+
 export enum NatureEnum {
     Pi1x65 = 'PI1x65',
     Pi1x65Pi2x45 = 'PI1x65+PI2x45',
@@ -29,6 +29,7 @@ export enum NatureEnum {
     Bi1x100 = 'BI1x100',
     Bi2x100 = 'BI2x100'
 }
+
 export enum CaracteristiquesParticulieresEnum {
     Renversable = 'RENVERSABLE',
     PreMelange = 'PRE_MELANGE'

@@ -5,13 +5,12 @@ const metarisc = new Metarisc({
   metarisc_url: "https://api.metarisc.fr/",
 });
 
-await metarisc.utilisateurs.authenticate(AuthMethod.CLIENT_CREDENTIALS, {
+const authenticationResponse = await metarisc.authenticate(AuthMethod.CLIENT_CREDENTIALS, {
   client_id: "integration-platau-dev",
   client_secret: "XLZul3JVnTYQO0zSWUp32NFVcAAo0Rgs",
   scope: "openid profile email",
 });
-
-// await metarisc.utilisateurs.authenticate(AuthMethod.AUTHORIZATION_CODE);
+console.log(authenticationResponse);
 
 let result = await metarisc.utilisateurs.getUtilisateursMoi();
 

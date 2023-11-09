@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import axiosRetry from "axios-retry";
-import oauth from 'axios-oauth-client';
+import oauth from "axios-oauth-client";
 import { GrantResponse, MetariscConfig, OAuth2Options, RequestConfig } from './core';
 import { OAuth2 } from "./auth/oauth2";
 
@@ -27,7 +27,7 @@ export class Client {
     });
   }
 
-  async authenticate(auth_method: AuthMethod, options: OAuth2Options): Promise<void> {
+  async authenticate(auth_method: AuthMethod, options: OAuth2Options): Promise<GrantResponse> {
     let result;
     switch (auth_method) {
       case AuthMethod.AUTHORIZATION_CODE:
@@ -43,14 +43,13 @@ export class Client {
     if (result) {
       const token = result.token_type + ' ' + result.access_token;
       this.setAccessToken(token);
-      this.axios.interceptors.request.use(function (config) {
-        config.headers['Authorization'] = token;
-        return config;
-      });
     }
+
+    return result;
   }
 
   async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
+    config.headers['Authorization'] = this.getAccessToken();
     return this.axios.request<T>({
       method: config.method || 'GET',
       url: config.endpoint || '/',
@@ -85,6 +84,10 @@ export class Client {
 
   setAccessToken(access_token: string): void {
     this.access_token = access_token;
+    this.axios.interceptors.request.use(function (config) {
+      config.headers['Authorization'] = access_token;
+      return config;
+    });
   }
 
   getAccessToken(): string {

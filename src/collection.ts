@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { Core } from "./core";
 
-type PaginationResults<T> = {
+export type PaginationResults<T> = {
     data?: Array<T>;
     meta?: {
         pagination?: {
@@ -25,9 +25,7 @@ export class Collection<T>
     constructor(
         private client : Core,
         private config : PaginationRequestConfig
-    )
-    {
-    }
+    ) {}
 
     /**
      * Fetch current page results.
