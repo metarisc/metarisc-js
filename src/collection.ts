@@ -9,11 +9,11 @@ export type PaginationResults<T> = {
 };
 
 export type PaginationData = {
-    total?: number;
-    count?: number;
-    per_page?: number;
-    current_page?: number;
-    total_pages?: number;
+    total: number;
+    count: number;
+    per_page: number;
+    current_page: number;
+    total_pages: number;
 };
 
 type PaginationRequestConfig = {
