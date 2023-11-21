@@ -4,14 +4,16 @@ import { Core } from "./core";
 export type PaginationResults<T> = {
     data?: Array<T>;
     meta?: {
-        pagination?: {
-            total?: number;
-            count?: number;
-            per_page?: number;
-            current_page?: number;
-            total_pages?: number;
-        };
+        pagination?: PaginationData;
     };
+};
+
+export type PaginationData = {
+    total?: number;
+    count?: number;
+    per_page?: number;
+    current_page?: number;
+    total_pages?: number;
 };
 
 type PaginationRequestConfig = {
