@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 import axiosRetry from "axios-retry";
 import oauth from "axios-oauth-client";
 import { GrantResponse, MetariscConfig, OAuth2Options } from './core';
@@ -27,6 +27,9 @@ export class Client {
   constructor(config : MetariscConfig) {
     this.axios = axios.create({
       baseURL: config.metarisc_url ?? 'https://api.metarisc.fr/',
+      'headers': {
+        'common': this.getDefaultHeaders()
+      }
     });
 
     // Axios Interceptors
@@ -110,5 +113,21 @@ export class Client {
 
   getAccessToken(): string {
     return this.access_token;
+  }
+
+  /**
+   * Retourne les headers HTTP par défauts devant être présents dans toutes les requêtes Metarisc.
+   */
+  private getDefaultHeaders() : RawAxiosRequestHeaders
+  {
+    const headers : RawAxiosRequestHeaders = {};
+
+    // UA Headers
+    headers['User-Agent'] = 'MetariscJs/dev'; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
+    headers['Metarisc-User-Agent'] = JSON.stringify({
+      'lang': 'js'
+    });
+
+    return headers;
   }
 }
