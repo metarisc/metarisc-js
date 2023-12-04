@@ -3,6 +3,7 @@ import axiosRetry from "axios-retry";
 import oauth from "axios-oauth-client";
 import { GrantResponse, MetariscConfig, OAuth2Options } from './core';
 import { OAuth2 } from "./auth/oauth2";
+import { setupCache } from 'axios-cache-interceptor';
 
 interface RequestConfig {
   body?: any;
@@ -27,6 +28,15 @@ export class Client {
     this.axios = axios.create({
       baseURL: config.metarisc_url ?? 'https://api.metarisc.fr/',
     });
+
+    // Axios Interceptors
+    // Request interceptors are FILO (First In Last Out)
+    // Response interceptors are FIFO (First In First Out)
+
+    // Axios interceptor : Enable HTTP Caching
+    // When combining axios-cache-interceptors with other interceptors, you may encounter some inconsistences.
+    // See : https://github.com/arthurfiorette/axios-cache-interceptor/issues/449#issuecomment-1370327566
+    this.axios = setupCache(this.axios);
 
     // Axios interceptor : Retry strategy
     axiosRetry(this.axios, {
