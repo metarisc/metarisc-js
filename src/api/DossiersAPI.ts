@@ -6,6 +6,8 @@ import { Collection } from "../collection";
 import { Dossier } from '../model/Dossier';
 import { PostDossierRequest } from '../model/PostDossierRequest';
 import { Workflow } from '../model/Workflow';
+import { Tag } from '../model/Tag';
+import { Document } from '../model/Document';
 
 export class DossiersAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -51,14 +53,14 @@ export class DossiersAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateDossierTags(dossierId: string, page?: number, perPage?: number): Collection<>
+    paginateDossierTags(dossierId: string, page?: number, perPage?: number): Collection<Tag>
     {
         const pathVariable = { 'dossier_id': dossierId };
-        return this.collect<>({
+        return this.collect<Tag>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -70,14 +72,14 @@ export class DossiersAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateDossierWorkflowDocuments(dossierId: string, workflowId: string, page?: number, perPage?: number): Collection<>
+    paginateDossierWorkflowDocuments(dossierId: string, workflowId: string, page?: number, perPage?: number): Collection<Document>
     {
         const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
-        return this.collect<>({
+        return this.collect<Document>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}/documents'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -88,14 +90,14 @@ export class DossiersAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateDossierWorkflows(dossierId: string, page?: number, perPage?: number): Collection<>
+    paginateDossierWorkflows(dossierId: string, page?: number, perPage?: number): Collection<Workflow>
     {
         const pathVariable = { 'dossier_id': dossierId };
-        return this.collect<>({
+        return this.collect<Workflow>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -105,14 +107,14 @@ export class DossiersAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateDossiers(page?: number, perPage?: number): Collection<>
+    paginateDossiers(page?: number, perPage?: number): Collection<Dossier>
     {
         const pathVariable = {  };
-        return this.collect<>({
+        return this.collect<Dossier>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
