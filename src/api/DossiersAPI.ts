@@ -7,12 +7,6 @@ import { Dossier } from '../model/Dossier';
 import { PostDossierRequest } from '../model/PostDossierRequest';
 import { Workflow } from '../model/Workflow';
 
-import { SuiviAdministratif } from '../model/SuiviAdministratif';
-
-import { Tag } from '../model/Tag';
-
-import { Document } from '../model/Document';
-
 export class DossiersAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
@@ -20,7 +14,7 @@ export class DossiersAPI extends Core {
     
     /**
      * Récupération de l'ensemble des données d'un dossier.
-     * @param dossierId ID du dossier
+     * @param dossierId Identifiant unique du Dossier
      */
     async getDossier(dossierId: string): Promise<AxiosResponse<Dossier>>
     {
@@ -35,11 +29,11 @@ export class DossiersAPI extends Core {
     }
     
     /**
-     * Rédupération des détails d'un workflow.
-     * @param dossierId 
-     * @param workflowId 
+     * Récupération des détails d'un workflow.
+     * @param dossierId Identifiant unique du Dossier
+     * @param workflowId Identifiant unique du Workflow
      */
-    async getDossierWorkflowsWorkflow(dossierId: string, workflowId: string): Promise<AxiosResponse<Workflow>>
+    async getDossierWorkflowsDetails(dossierId: string, workflowId: string): Promise<AxiosResponse<Workflow>>
     {
         const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
         return this.request({
@@ -52,50 +46,15 @@ export class DossiersAPI extends Core {
     }
     
     /**
-     * Récupération de la liste des dossiers selon des critères de recherche.
-     * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
-     */
-    paginateDossiers(page?: number, perPage?: number): Collection<Dossier>
-    {
-        const pathVariable = {  };
-        return this.collect<Dossier>({
-            method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/'),
-            headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
-            body: {}
-        });
-    }
-    
-    /**
-     * Récupération de la liste du suivi administratif d'un dossier.
-     * @param dossierId ID du dossier
-     * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
-     */
-    paginateSuiviAdministratif(dossierId: string, page?: number, perPage?: number): Collection<SuiviAdministratif>
-    {
-        const pathVariable = { 'dossier_id': dossierId };
-        return this.collect<SuiviAdministratif>({
-            method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/suivi_administratif'),
-            headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
-            body: {}
-        });
-    }
-    
-    /**
      * Récupération de la liste des tags d'un dossier.
-     * @param dossierId ID du dossier
+     * @param dossierId Identifiant unique du Dossier
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateTags(dossierId: string, page?: number, perPage?: number): Collection<Tag>
+    paginateDossierTags(dossierId: string, page?: number, perPage?: number): Collection<>
     {
         const pathVariable = { 'dossier_id': dossierId };
-        return this.collect<Tag>({
+        return this.collect<>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
             headers: {  },
@@ -106,15 +65,15 @@ export class DossiersAPI extends Core {
     
     /**
      * Liste des documents liés à un workflow.
-     * @param dossierId 
-     * @param workflowId 
+     * @param dossierId Identifiant unique du Dossier
+     * @param workflowId Identifiant unique du Workflow
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateWorkflowDocuments(dossierId: string, workflowId: string, page?: number, perPage?: number): Collection<Document>
+    paginateDossierWorkflowDocuments(dossierId: string, workflowId: string, page?: number, perPage?: number): Collection<>
     {
         const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
-        return this.collect<Document>({
+        return this.collect<>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}/documents'),
             headers: {  },
@@ -125,14 +84,14 @@ export class DossiersAPI extends Core {
     
     /**
      * Récupération de la liste des workflows d'un dossier.
-     * @param dossierId ID du dossier
+     * @param dossierId Identifiant unique du Dossier
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateWorkflows(dossierId: string, page?: number, perPage?: number): Collection<Workflow>
+    paginateDossierWorkflows(dossierId: string, page?: number, perPage?: number): Collection<>
     {
         const pathVariable = { 'dossier_id': dossierId };
-        return this.collect<Workflow>({
+        return this.collect<>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
             headers: {  },
@@ -142,8 +101,25 @@ export class DossiersAPI extends Core {
     }
     
     /**
-     * Modification d'un dossier existant.
-     * @param dossierId ID du dossier
+     * Récupération de la liste des dossiers selon des critères de recherche.
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
+     */
+    paginateDossiers(page?: number, perPage?: number): Collection<>
+    {
+        const pathVariable = {  };
+        return this.collect<>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers'),
+            headers: {  },
+            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            body: {}
+        });
+    }
+    
+    /**
+     * TODO : Modification d'un dossier existant.
+     * @param dossierId Identifiant unique du Dossier
      * @param dossier 
      */
     async patchDossier(dossierId: string, dossier?: Dossier): Promise<AxiosResponse<Dossier>>
@@ -159,7 +135,7 @@ export class DossiersAPI extends Core {
     }
     
     /**
-     * Création d'un nouveau dossier.
+     * TODO : Création d'un nouveau dossier.
      * @param postDossierRequest 
      */
     async postDossier(postDossierRequest?: PostDossierRequest): Promise<AxiosResponse<Dossier>>
@@ -167,7 +143,7 @@ export class DossiersAPI extends Core {
         const pathVariable = {  };
         return this.request({
             method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/'),
+            endpoint: Utils.constructPath(pathVariable, '/dossiers'),
             headers: {  },
             params: {  },
             body:  { 'titre': postDossierRequest?.titre, 'description': postDossierRequest?.description, 'workflows': postDossierRequest?.workflows } 
