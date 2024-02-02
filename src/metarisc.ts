@@ -6,6 +6,8 @@ import { DossiersAPI } from './api/DossiersAPI';
 
 import { EvenementsAPI } from './api/EvenementsAPI';
 
+import { FeedAPI } from './api/FeedAPI';
+
 import { NotificationsAPI } from './api/NotificationsAPI';
 
 import { OrganisationsAPI } from './api/OrganisationsAPI';
@@ -20,6 +22,8 @@ export class Metarisc extends Core
 {
     
     public utilisateurs?: UtilisateursAPI;
+    
+    public feed?: FeedAPI;
     
     public dossiers?: DossiersAPI;
     
@@ -46,6 +50,9 @@ export class Metarisc extends Core
                     
                     case 'utilisateurs':
                         return new UtilisateursAPI(config, tmpClient);
+                    
+                    case 'feed':
+                        return new FeedAPI(config, tmpClient);
                     
                     case 'dossiers':
                         return new DossiersAPI(config, tmpClient);
