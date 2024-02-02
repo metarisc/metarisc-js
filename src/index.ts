@@ -11,6 +11,8 @@ export { DossiersAPI } from './api/DossiersAPI';
 
 export { EvenementsAPI } from './api/EvenementsAPI';
 
+export { FeedAPI } from './api/FeedAPI';
+
 export { NotificationsAPI } from './api/NotificationsAPI';
 
 export { OrganisationsAPI } from './api/OrganisationsAPI';
