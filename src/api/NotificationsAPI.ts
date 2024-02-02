@@ -48,14 +48,14 @@ export class NotificationsAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateNotifications(page?: number, perPage?: number): Collection<>
+    paginateNotifications(page?: number, perPage?: number): Collection<Notification>
     {
         const pathVariable = {  };
-        return this.collect<>({
+        return this.collect<Notification>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }

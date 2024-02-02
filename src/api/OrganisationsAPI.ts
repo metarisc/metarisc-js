@@ -31,14 +31,14 @@ export class OrganisationsAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateOrganisations(page?: number, perPage?: number): Collection<>
+    paginateOrganisations(page?: number, perPage?: number): Collection<Organisation>
     {
         const pathVariable = {  };
-        return this.collect<>({
+        return this.collect<Organisation>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }

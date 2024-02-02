@@ -5,6 +5,7 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Evenement } from '../model/Evenement';
 import { PostEvenementRequest } from '../model/PostEvenementRequest';
+import { Utilisateur } from '../model/Utilisateur';
 
 export class EvenementsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -50,14 +51,14 @@ export class EvenementsAPI extends Core {
      * @param page Le numéro de la page.
      * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number): Collection<>
+    paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number): Collection<Utilisateur>
     {
         const pathVariable = { 'evenement_id': evenementId };
-        return this.collect<>({
+        return this.collect<Utilisateur>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -69,14 +70,14 @@ export class EvenementsAPI extends Core {
      * @param type Le type d'événement 
      * @param period la période (ISO 8601) séparée par un slash (/) pendant laquelle l'événement se déroule. Exemple 2004-12-02T23:00/2005-01-01T12:30
      */
-    paginateEvenements(page?: number, perPage?: number, type?: string, period?: string): Collection<>
+    paginateEvenements(page?: number, perPage?: number, type?: string, period?: string): Collection<Evenement>
     {
         const pathVariable = {  };
-        return this.collect<>({
+        return this.collect<Evenement>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString(), 'type': type, 'period': period },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'type': type, 'period': period },
             body: {}
         });
     }

@@ -4,6 +4,9 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { PEI } from '../model/PEI';
+import { Contact } from '../model/Contact';
+import { DescriptifTechnique } from '../model/DescriptifTechnique';
+import { PieceJointe } from '../model/PieceJointe';
 
 export class PEIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -31,14 +34,14 @@ export class PEIAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginatePei(page?: number, perPage?: number): Collection<>
+    paginatePei(page?: number, perPage?: number): Collection<PEI>
     {
         const pathVariable = {  };
-        return this.collect<>({
+        return this.collect<PEI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -49,14 +52,14 @@ export class PEIAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginatePeiContacts(peiId: string, page?: number, perPage?: number): Collection<>
+    paginatePeiContacts(peiId: string, page?: number, perPage?: number): Collection<Contact>
     {
         const pathVariable = { 'pei_id': peiId };
-        return this.collect<>({
+        return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -67,14 +70,14 @@ export class PEIAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginatePeiHistorique(peiId: string, page?: number, perPage?: number): Collection<>
+    paginatePeiHistorique(peiId: string, page?: number, perPage?: number): Collection<DescriptifTechnique>
     {
         const pathVariable = { 'pei_id': peiId };
-        return this.collect<>({
+        return this.collect<DescriptifTechnique>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -85,14 +88,14 @@ export class PEIAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginatePeiPiecesJointes(peiId: string, page?: number, perPage?: number): Collection<>
+    paginatePeiPiecesJointes(peiId: string, page?: number, perPage?: number): Collection<PieceJointe>
     {
         const pathVariable = { 'pei_id': peiId };
-        return this.collect<>({
+        return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/pieces_jointes'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }

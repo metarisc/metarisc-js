@@ -4,6 +4,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Utilisateur } from '../model/Utilisateur';
+import { Email } from '../model/Email';
 
 export class UtilisateursAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -30,14 +31,14 @@ export class UtilisateursAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateMoiEmails(page?: number, perPage?: number): Collection<>
+    paginateMoiEmails(page?: number, perPage?: number): Collection<Email>
     {
         const pathVariable = {  };
-        return this.collect<>({
+        return this.collect<Email>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
