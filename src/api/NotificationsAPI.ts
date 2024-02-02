@@ -13,7 +13,7 @@ export class NotificationsAPI extends Core {
     
     /**
      * Suppression d'une notification correspondante à l'id donné.
-     * @param notificationId L'id de la notification demandée
+     * @param notificationId Identifiant unique de la Notification
      */
     async deleteNotification(notificationId: string): Promise<AxiosResponse<void>>
     {
@@ -29,7 +29,7 @@ export class NotificationsAPI extends Core {
     
     /**
      * Récupération des détails d'une notification correspondante à l'id donné.
-     * @param notificationId L'id de la notification demandée
+     * @param notificationId Identifiant unique de la Notification
      */
     async getNotification(notificationId: string): Promise<AxiosResponse<Notification>>
     {
@@ -44,16 +44,16 @@ export class NotificationsAPI extends Core {
     }
     
     /**
-     * Récupération des détails de toutes les notifications existantes.
+     * Récupération des détails de toutes les notifications existantes pour l'utilisateur connecté.
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateNotifications(page?: number, perPage?: number): Collection<Notification>
+    paginateNotifications(page?: number, perPage?: number): Collection<>
     {
         const pathVariable = {  };
-        return this.collect<Notification>({
+        return this.collect<>({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/'),
+            endpoint: Utils.constructPath(pathVariable, '/notifications'),
             headers: {  },
             params: { 'page': page.toString(), 'per_page': perPage.toString() },
             body: {}
@@ -69,7 +69,7 @@ export class NotificationsAPI extends Core {
         const pathVariable = {  };
         return this.request({
             method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/'),
+            endpoint: Utils.constructPath(pathVariable, '/notifications'),
             headers: {  },
             params: {  },
             body:  { 'title': postNotificationRequest?.title, 'message': postNotificationRequest?.message, 'contexte': postNotificationRequest?.contexte, 'utilisateur_id': postNotificationRequest?.utilisateur_id } 

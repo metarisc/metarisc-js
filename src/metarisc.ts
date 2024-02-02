@@ -8,34 +8,30 @@ import { EvenementsAPI } from './api/EvenementsAPI';
 
 import { NotificationsAPI } from './api/NotificationsAPI';
 
-import { OrganisationAPI } from './api/OrganisationAPI';
+import { OrganisationsAPI } from './api/OrganisationsAPI';
 
-import { POIAPI } from './api/POIAPI';
+import { PEIAPI } from './api/PEIAPI';
 
 import { PingAPI } from './api/PingAPI';
-
-import { SupportAPI } from './api/SupportAPI';
 
 import { UtilisateursAPI } from './api/UtilisateursAPI';
 
 export class Metarisc extends Core
 {
     
+    public utilisateurs?: UtilisateursAPI;
+    
     public dossiers?: DossiersAPI;
+    
+    public organisations?: OrganisationsAPI;
+    
+    public pei?: PEIAPI;
+    
+    public ping?: PingAPI;
     
     public evenements?: EvenementsAPI;
     
     public notifications?: NotificationsAPI;
-    
-    public organisations?: OrganisationAPI;
-    
-    public poi?: POIAPI;
-    
-    public ping?: PingAPI;
-    
-    public support?: SupportAPI;
-    
-    public utilisateurs?: UtilisateursAPI;
     
     public tus?: Tus;
 
@@ -48,29 +44,26 @@ export class Metarisc extends Core
             get: function(metarisc, name, receiver) {
                 switch(name) {
                     
+                    case 'utilisateurs':
+                        return new UtilisateursAPI(config, tmpClient);
+                    
                     case 'dossiers':
                         return new DossiersAPI(config, tmpClient);
+                    
+                    case 'organisations':
+                        return new OrganisationsAPI(config, tmpClient);
+                    
+                    case 'pei':
+                        return new PEIAPI(config, tmpClient);
+                    
+                    case 'ping':
+                        return new PingAPI(config, tmpClient);
                     
                     case 'evenements':
                         return new EvenementsAPI(config, tmpClient);
                     
                     case 'notifications':
                         return new NotificationsAPI(config, tmpClient);
-                    
-                    case 'organisations':
-                        return new OrganisationAPI(config, tmpClient);
-                    
-                    case 'poi':
-                        return new POIAPI(config, tmpClient);
-                    
-                    case 'ping':
-                        return new PingAPI(config, tmpClient);
-                    
-                    case 'support':
-                        return new SupportAPI(config, tmpClient);
-                    
-                    case 'utilisateurs':
-                        return new UtilisateursAPI(config, tmpClient);
                     
                     case 'tus':
                         return new Tus(config, tmpClient);

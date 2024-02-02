@@ -6,8 +6,6 @@ import { Collection } from "../collection";
 import { Evenement } from '../model/Evenement';
 import { PostEvenementRequest } from '../model/PostEvenementRequest';
 
-import { Utilisateur1 } from '../model/Utilisateur1';
-
 export class EvenementsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
@@ -15,7 +13,7 @@ export class EvenementsAPI extends Core {
     
     /**
      * Suppression d'un événement correspondant à l'id donné.
-     * @param evenementId ID de l'événement
+     * @param evenementId Identifiant unique de l'Événement
      */
     async deleteEvenement(evenementId: string): Promise<AxiosResponse<void>>
     {
@@ -31,10 +29,10 @@ export class EvenementsAPI extends Core {
     
     /**
      * Récupération des détails d'un événement correspondant à l'id donné.
-     * @param evenementId ID de l'événement
+     * @param evenementId Identifiant unique de l'Événement
      * @param evenement 
      */
-    async getEvenement(evenementId: string, evenement?: Evenement): Promise<AxiosResponse<Evenement>>
+    async getEvenementDetails(evenementId: string, evenement?: Evenement): Promise<AxiosResponse<Evenement>>
     {
         const pathVariable = { 'evenement_id': evenementId };
         return this.request({
@@ -48,14 +46,14 @@ export class EvenementsAPI extends Core {
     
     /**
      * Récupération d'une liste paginée d'utilisateurs liés à un événement calendaire.
-     * @param evenementId 
+     * @param evenementId Identifiant unique de l'Événement
      * @param page Le numéro de la page.
      * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number): Collection<Utilisateur1>
+    paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number): Collection<>
     {
         const pathVariable = { 'evenement_id': evenementId };
-        return this.collect<Utilisateur1>({
+        return this.collect<>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
             headers: {  },
@@ -71,12 +69,12 @@ export class EvenementsAPI extends Core {
      * @param type Le type d'événement 
      * @param period la période (ISO 8601) séparée par un slash (/) pendant laquelle l'événement se déroule. Exemple 2004-12-02T23:00/2005-01-01T12:30
      */
-    paginateEvenements(page?: number, perPage?: number, type?: string, period?: string): Collection<Evenement>
+    paginateEvenements(page?: number, perPage?: number, type?: string, period?: string): Collection<>
     {
         const pathVariable = {  };
-        return this.collect<Evenement>({
+        return this.collect<>({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/'),
+            endpoint: Utils.constructPath(pathVariable, '/evenements'),
             headers: {  },
             params: { 'page': page.toString(), 'per_page': perPage.toString(), 'type': type, 'period': period },
             body: {}
@@ -84,7 +82,7 @@ export class EvenementsAPI extends Core {
     }
     
     /**
-     * Création d'un événement.
+     * TODO : Création d'un événement.
      * @param postEvenementRequest 
      */
     async postEvenement(postEvenementRequest?: PostEvenementRequest): Promise<AxiosResponse<Evenement>>
@@ -92,7 +90,7 @@ export class EvenementsAPI extends Core {
         const pathVariable = {  };
         return this.request({
             method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/'),
+            endpoint: Utils.constructPath(pathVariable, '/evenements'),
             headers: {  },
             params: {  },
             body:  { 'title': postEvenementRequest?.title, 'type': postEvenementRequest?.type, 'description': postEvenementRequest?.description, 'date_debut': postEvenementRequest?.date_debut, 'date_fin': postEvenementRequest?.date_fin } 
