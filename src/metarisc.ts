@@ -16,12 +16,16 @@ import { PEIAPI } from './api/PEIAPI';
 
 import { PingAPI } from './api/PingAPI';
 
+import { SupportAPI } from "./api/SupportAPI";
+
 import { UtilisateursAPI } from './api/UtilisateursAPI';
 
 export class Metarisc extends Core
 {
     
     public utilisateurs?: UtilisateursAPI;
+
+    public support?: SupportAPI;
     
     public feed?: FeedAPI;
     
@@ -50,6 +54,9 @@ export class Metarisc extends Core
                     
                     case 'utilisateurs':
                         return new UtilisateursAPI(config, tmpClient);
+
+                    case 'support':
+                        return new SupportAPI(config, tmpClient);
                     
                     case 'feed':
                         return new FeedAPI(config, tmpClient);
