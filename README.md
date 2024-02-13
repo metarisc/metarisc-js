@@ -14,14 +14,14 @@ npm i @metarisc/metarisc-js
 Pour utiliser la librairie, il suffit de l'importer comme ceci :
 
 ```php
-import { Metarisc } from '@metarisc/metarisc-js';';
+import { Metarisc } from '@metarisc/metarisc-js';
 ```
 
 ## Utilisation
 
 ### Requêtes
 
-Pour effectuer une requête sur Metarisc, qu'elle soit simple ou paginés (voir la [documentation](http://metarisc.fr/docs/api/#/#pagination)), faites de cette manière :
+Pour effectuer une requête sur Metarisc, qu'elle soit simple ou paginée (voir la [documentation](http://metarisc.fr/docs/api/#/#pagination)), faites de cette manière :
 
 Exemple :
 
