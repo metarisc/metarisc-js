@@ -12,6 +12,22 @@ export class UtilisateursAPI extends Core {
     }
     
     /**
+     * Retourne un utilisateur Metarisc.
+     * @param utilisateurId 
+     */
+    async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
+    {
+        const pathVariable = { 'utilisateur_id': utilisateurId };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
+    }
+    
+    /**
      * L'utilisateur connecté retourné par ce point de terminaison utilise le token d'accès généré par le service OpenID Connect afin de le lier à une identité connue de Metarisc. Si l'utilisateur est inconnu une erreur est retournée.
      */
     async getUtilisateursMoi(): Promise<AxiosResponse<Utilisateur>>
@@ -39,6 +55,22 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: {}
+        });
+    }
+    
+    /**
+     * Retourne une liste des adresses mail publiques d'un utilisateur.
+     * @param utilisateurId 
+     */
+    paginateUtilisateurEmails(utilisateurId: string): Collection<Email>
+    {
+        const pathVariable = { 'utilisateur_id': utilisateurId };
+        return this.collect<Email>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
+            headers: {  },
+            params: {  },
             body: {}
         });
     }

@@ -39,7 +39,7 @@ export class SupportAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/support/'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }

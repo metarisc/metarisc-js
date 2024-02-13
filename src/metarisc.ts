@@ -8,6 +8,8 @@ import { EvenementsAPI } from './api/EvenementsAPI';
 
 import { FeedAPI } from './api/FeedAPI';
 
+import { MoiAPI } from './api/MoiAPI';
+
 import { NotificationsAPI } from './api/NotificationsAPI';
 
 import { OrganisationsAPI } from './api/OrganisationsAPI';
@@ -16,7 +18,7 @@ import { PEIAPI } from './api/PEIAPI';
 
 import { PingAPI } from './api/PingAPI';
 
-import { SupportAPI } from "./api/SupportAPI";
+import { SupportAPI } from './api/SupportAPI';
 
 import { UtilisateursAPI } from './api/UtilisateursAPI';
 
@@ -24,8 +26,6 @@ export class Metarisc extends Core
 {
     
     public utilisateurs?: UtilisateursAPI;
-
-    public support?: SupportAPI;
     
     public feed?: FeedAPI;
     
@@ -35,9 +35,13 @@ export class Metarisc extends Core
     
     public pei?: PEIAPI;
     
+    public moi?: MoiAPI;
+    
     public ping?: PingAPI;
     
     public evenements?: EvenementsAPI;
+    
+    public support?: SupportAPI;
     
     public notifications?: NotificationsAPI;
     
@@ -54,9 +58,6 @@ export class Metarisc extends Core
                     
                     case 'utilisateurs':
                         return new UtilisateursAPI(config, tmpClient);
-
-                    case 'support':
-                        return new SupportAPI(config, tmpClient);
                     
                     case 'feed':
                         return new FeedAPI(config, tmpClient);
@@ -70,11 +71,17 @@ export class Metarisc extends Core
                     case 'pei':
                         return new PEIAPI(config, tmpClient);
                     
+                    case 'moi':
+                        return new MoiAPI(config, tmpClient);
+                    
                     case 'ping':
                         return new PingAPI(config, tmpClient);
                     
                     case 'evenements':
                         return new EvenementsAPI(config, tmpClient);
+                    
+                    case 'support':
+                        return new SupportAPI(config, tmpClient);
                     
                     case 'notifications':
                         return new NotificationsAPI(config, tmpClient);
