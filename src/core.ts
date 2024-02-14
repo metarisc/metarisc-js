@@ -12,11 +12,11 @@ interface RequestConfig {
 
 export interface MetariscConfig {
   metarisc_url?: string;
+  client_id: string;
+  client_secret?: string;
 }
 
 export interface OAuth2Options {
-  client_id?: string;
-  client_secret?: string;
   response_type?: string;
   redirect_uri?: string;
   state?: string;

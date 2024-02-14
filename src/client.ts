@@ -19,12 +19,16 @@ export enum AuthMethod {
 }
 
 export class Client {
-
+  private client_id : string;
+  private client_secret ?: string;
   private axios : AxiosInstance;
-
   private access_token: string;
 
   constructor(config : MetariscConfig) {
+    // Identification du client HTTP
+    this.client_id = config.client_id;
+    this.client_secret = config.client_secret;
+
     this.axios = axios.create({
       baseURL: config.metarisc_url ?? 'https://api.metarisc.fr/',
       'headers': {
@@ -84,8 +88,8 @@ export class Client {
     const fn = oauth.authorizationCode(
       axios.create(),
       OAuth2.ACCESS_TOKEN_URL,
-      options.client_id ?? '',
-      options.client_secret ?? '',
+      this.client_id,
+      this.client_secret ?? '',
       options.redirect_uri ?? '',
       options.code ?? '',
       options.scope ?? ''
@@ -97,8 +101,8 @@ export class Client {
     const fn = oauth.clientCredentials(
       axios.create(),
       OAuth2.ACCESS_TOKEN_URL,
-      options.client_id ?? '',
-      options.client_secret ?? ''
+      this.client_id,
+      this.client_secret ?? ''
     )
     return await fn(options.scope ?? '');
   }
