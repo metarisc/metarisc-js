@@ -138,7 +138,7 @@ export class Client {
         this.client_id,
         this.client_secret
       );
-      const result = await fn(this.refreshToken);
+      const result = await fn(this.getRefreshToken());
       console.log(result);
 
       if (result) {
