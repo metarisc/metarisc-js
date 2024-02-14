@@ -1,9 +1,14 @@
-import axios, { AxiosInstance, AxiosResponse, RawAxiosRequestHeaders } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  RawAxiosRequestHeaders,
+} from "axios";
 import axiosRetry from "axios-retry";
 import oauth from "axios-oauth-client";
-import { GrantResponse, MetariscConfig, OAuth2Options } from './core';
+import { GrantResponse, MetariscConfig, OAuth2Options } from "./core";
 import { OAuth2 } from "./auth/oauth2";
-import { setupCache } from 'axios-cache-interceptor';
+import { setupCache } from "axios-cache-interceptor";
+import Utils from "./utils";
 
 interface RequestConfig {
   body?: any;
@@ -15,21 +20,24 @@ interface RequestConfig {
 
 export enum AuthMethod {
   CLIENT_CREDENTIALS,
-  AUTHORIZATION_CODE
+  AUTHORIZATION_CODE,
 }
 
 export class Client {
+  private axios: AxiosInstance;
 
-  private axios : AxiosInstance;
+  private client_id: string;
+  private client_secret: string;
 
   private access_token: string;
+  private refresh_token: string;
 
-  constructor(config : MetariscConfig) {
+  constructor(config: MetariscConfig) {
     this.axios = axios.create({
-      baseURL: config.metarisc_url ?? 'https://api.metarisc.fr/',
-      'headers': {
-        'common': this.getDefaultHeaders()
-      }
+      baseURL: config.metarisc_url ?? "https://api.metarisc.fr/",
+      headers: {
+        common: this.getDefaultHeaders(),
+      },
     });
 
     // Axios Interceptors
@@ -43,12 +51,31 @@ export class Client {
 
     // Axios interceptor : Retry strategy
     axiosRetry(this.axios, {
-        retries: 3,
-        retryDelay: axiosRetry.exponentialDelay
+      retries: 3,
+      retryDelay: axiosRetry.exponentialDelay,
+    });
+
+    // Initialisation de l'interceptor pour la gestion du refresh token
+    this.axios.interceptors.request.use(async (config) => {
+      console.log("resquest interceptor");
+
+      // Si l'access_token a expiré
+      if (Utils.tokenExpired(this.access_token)) {
+        console.log("refresh token expired");
+        await this.refreshToken();
+      }
+      config.headers.Authorization = `Bearer`;
+      return config;
     });
   }
 
-  async authenticate(auth_method: AuthMethod, options: OAuth2Options): Promise<GrantResponse> {
+  async authenticate(
+    auth_method: AuthMethod,
+    options: OAuth2Options
+  ): Promise<GrantResponse> {
+    this.client_id = options.client_id ?? "";
+    this.client_secret = options.client_secret ?? "";
+
     let result;
     switch (auth_method) {
       case AuthMethod.AUTHORIZATION_CODE:
@@ -62,21 +89,21 @@ export class Client {
     }
 
     if (result) {
-      const token = result.token_type + ' ' + result.access_token;
-      this.setAccessToken(token);
+      this.setAccessToken(result.token_type + " " + result.access_token);
+      this.setRefreshToken(result.refresh_token);
     }
 
     return result;
   }
 
   async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
-    config.headers['Authorization'] = this.getAccessToken();
+    config.headers["Authorization"] = this.getAccessToken();
     return this.axios.request<T>({
-      method: config.method || 'GET',
-      url: config.endpoint || '/',
+      method: config.method || "GET",
+      url: config.endpoint || "/",
       params: config.params,
       data: config.body,
-      headers: config.headers
+      headers: config.headers,
     });
   }
 
@@ -84,29 +111,47 @@ export class Client {
     const fn = oauth.authorizationCode(
       axios.create(),
       OAuth2.ACCESS_TOKEN_URL,
-      options.client_id ?? '',
-      options.client_secret ?? '',
-      options.redirect_uri ?? '',
-      options.code ?? '',
-      options.scope ?? ''
-    )
-    return await fn(options.code ?? '', options.scope ?? '')
+      options.client_id ?? "",
+      options.client_secret ?? "",
+      options.redirect_uri ?? "",
+      options.code ?? "",
+      options.scope ?? ""
+    );
+    return await fn(options.code ?? "", options.scope ?? "");
   }
 
   async getClientCredentials(options: OAuth2Options): Promise<GrantResponse> {
     const fn = oauth.clientCredentials(
       axios.create(),
       OAuth2.ACCESS_TOKEN_URL,
-      options.client_id ?? '',
-      options.client_secret ?? ''
-    )
-    return await fn(options.scope ?? '');
+      options.client_id ?? "",
+      options.client_secret ?? ""
+    );
+    return await fn(options.scope ?? "");
+  }
+
+  async refreshToken(): Promise<void> {
+    if (this.refresh_token) {
+      const fn = oauth.refreshToken(
+        axios.create(),
+        OAuth2.ACCESS_TOKEN_URL,
+        this.client_id,
+        this.client_secret
+      );
+      const result = await fn(this.refreshToken);
+      console.log(result);
+
+      if (result) {
+        this.setAccessToken(result.token_type + " " + result.access_token);
+        this.setRefreshToken(result.refresh_token);
+      }
+    }
   }
 
   setAccessToken(access_token: string): void {
     this.access_token = access_token;
     this.axios.interceptors.request.use(function (config) {
-      config.headers['Authorization'] = access_token;
+      config.headers["Authorization"] = access_token;
       return config;
     });
   }
@@ -115,17 +160,24 @@ export class Client {
     return this.access_token;
   }
 
+  setRefreshToken(refresh_token: string): void {
+    this.refresh_token = refresh_token;
+  }
+
+  getRefreshToken(): string {
+    return this.refresh_token;
+  }
+
   /**
    * Retourne les headers HTTP par défauts devant être présents dans toutes les requêtes Metarisc.
    */
-  private getDefaultHeaders() : RawAxiosRequestHeaders
-  {
-    const headers : RawAxiosRequestHeaders = {};
+  private getDefaultHeaders(): RawAxiosRequestHeaders {
+    const headers: RawAxiosRequestHeaders = {};
 
     // UA Headers
-    headers['User-Agent'] = 'MetariscJs/dev'; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
-    headers['Metarisc-User-Agent'] = JSON.stringify({
-      'lang': 'js'
+    headers["User-Agent"] = "MetariscJs/dev"; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
+    headers["Metarisc-User-Agent"] = JSON.stringify({
+      lang: "js",
     });
 
     return headers;

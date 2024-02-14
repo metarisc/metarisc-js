@@ -46,25 +46,30 @@ export class Core {
     this.client = client ?? new Client(config);
   }
 
-    async request<T>(config : RequestConfig) : Promise<AxiosResponse<T>>
-    {
-        return this.client.request<T>(config);
-    }
+  async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
+    return this.client.request<T>(config);
+  }
 
-    collect<T>(config : RequestConfig) : Collection<T>
-    {
-        return new Collection<T>(this, {
-            endpoint: config.endpoint || '/',
-            params: config.params,
-            headers: config.headers
-        });
-    }
+  collect<T>(config: RequestConfig): Collection<T> {
+    return new Collection<T>(this, {
+      endpoint: config.endpoint || "/",
+      params: config.params,
+      headers: config.headers,
+    });
+  }
 
-    async authenticate(auth_method: AuthMethod, options: OAuth2Options): Promise<GrantResponse> {
-        return await this.client.authenticate(auth_method, options);
-    }
+  async authenticate(
+    auth_method: AuthMethod,
+    options: OAuth2Options
+  ): Promise<GrantResponse> {
+    return await this.client.authenticate(auth_method, options);
+  }
 
-    setAccessToken(access_token: string): void {
-        this.client.setAccessToken(access_token);
-    }
+  setAccessToken(access_token: string): void {
+    this.client.setAccessToken(access_token);
+  }
+
+  getClient(): Client {
+    return this.client;
+  }
 }
