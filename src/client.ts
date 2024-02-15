@@ -32,7 +32,11 @@ export class Client {
   private access_token: string;
   private refresh_token: string;
 
-  constructor(config: MetariscConfig) {
+  constructor(config : MetariscConfig) {
+    // Identification du client HTTP
+    this.client_id = config.client_id;
+    this.client_secret = config.client_secret;
+
     this.axios = axios.create({
       baseURL: config.metarisc_url ?? "https://api.metarisc.fr/",
       headers: {
@@ -64,7 +68,7 @@ export class Client {
         console.log("refresh token expired");
         await this.refreshToken();
       }
-      config.headers.Authorization = `Bearer`;
+      config.headers.Authorization = this.access_token;
       return config;
     });
   }
@@ -111,21 +115,21 @@ export class Client {
     const fn = oauth.authorizationCode(
       axios.create(),
       OAuth2.ACCESS_TOKEN_URL,
-      options.client_id ?? "",
-      options.client_secret ?? "",
+      this.client_id,
+      this.client_secret ?? "",
       options.redirect_uri ?? "",
       options.code ?? "",
       options.scope ?? ""
-    );
-    return await fn(options.code ?? "", options.scope ?? "");
+    )
+    return await fn(options.code ?? "", options.scope ?? "")
   }
 
   async getClientCredentials(options: OAuth2Options): Promise<GrantResponse> {
     const fn = oauth.clientCredentials(
       axios.create(),
       OAuth2.ACCESS_TOKEN_URL,
-      options.client_id ?? "",
-      options.client_secret ?? ""
+      this.client_id,
+      this.client_secret ?? ""
     );
     return await fn(options.scope ?? "");
   }
