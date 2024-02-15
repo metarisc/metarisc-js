@@ -74,9 +74,6 @@ export class Client {
 		auth_method: AuthMethod,
 		options: OAuth2Options
 	): Promise<GrantResponse> {
-		this.client_id = options.client_id ?? "";
-		this.client_secret = options.client_secret ?? "";
-
 		let result;
 		switch (auth_method) {
 			case AuthMethod.AUTHORIZATION_CODE:
