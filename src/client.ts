@@ -53,19 +53,25 @@ export class Client {
 		// See : https://github.com/arthurfiorette/axios-cache-interceptor/issues/449#issuecomment-1370327566
 		this.axios = setupCache(this.axios);
 
+		// Axios interceptor : Ajoute l'access token à la requête
+		// L'access token peut venir d'un premier authenticate, ou d'un refresh token obtenu au cours des interceptors
+		this.axios.interceptors.request.use(function (config) {
+			config.headers["Authorization"] = this.getAccessToken();
+			return config;
+		});
+
 		// Axios interceptor : Retry strategy
 		axiosRetry(this.axios, {
 			retries: 3,
 			retryDelay: axiosRetry.exponentialDelay,
 		});
 
-		// Initialisation de l'interceptor pour la gestion du refresh token
+		// Axios interceptor : Refresh Token (https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
 		this.axios.interceptors.request.use(async (config) => {
-			// Si l'access_token a expiré
+			// Si l'access_token a expiré on demande un échange avec le refresh token obtenu précedemment
 			if (Utils.tokenExpired(this.access_token)) {
 				await this.refreshToken();
 			}
-			config.headers.Authorization = this.access_token;
 			return config;
 		});
 	}
@@ -95,7 +101,6 @@ export class Client {
 	}
 
 	async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
-		config.headers["Authorization"] = this.getAccessToken();
 		return this.axios.request<T>({
 			method: config.method || "GET",
 			url: config.endpoint || "/",
@@ -147,10 +152,6 @@ export class Client {
 
 	setAccessToken(access_token: string): void {
 		this.access_token = access_token;
-		this.axios.interceptors.request.use(function (config) {
-			config.headers["Authorization"] = access_token;
-			return config;
-		});
 	}
 
 	getAccessToken(): string {
