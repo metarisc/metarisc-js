@@ -1,17 +1,28 @@
 export { Metarisc } from "./metarisc";
-export { OAuth2 } from "./oauth2";
+export { OAuth2 } from "./auth/oauth2";
 export { Core } from "./core";
+export { Collection, PaginationData } from "./collection";
+export { PaginationResults } from "./collection"
+export { AuthMethod } from "./client";
+export { Client } from "./client";
+export { Tus } from "./tus";
 
-export { DossiersAPI } from "./api/DossiersAPI";
+export { DossiersAPI } from './api/DossiersAPI';
 
-export { NotificationsAPI } from "./api/NotificationsAPI";
+export { EvenementsAPI } from './api/EvenementsAPI';
 
-export { OrganisationAPI } from "./api/OrganisationAPI";
+export { FeedAPI } from './api/FeedAPI';
 
-export { POIAPI } from "./api/POIAPI";
+export { MoiAPI } from './api/MoiAPI';
 
-export { PingAPI } from "./api/PingAPI";
+export { NotificationsAPI } from './api/NotificationsAPI';
 
-export { SupportAPI } from "./api/SupportAPI";
+export { OrganisationsAPI } from './api/OrganisationsAPI';
 
-export { UtilisateursAPI } from "./api/UtilisateursAPI";
+export { PEIAPI } from './api/PEIAPI';
+
+export { PingAPI } from './api/PingAPI';
+
+export { SupportAPI } from './api/SupportAPI';
+
+export { UtilisateursAPI } from './api/UtilisateursAPI';

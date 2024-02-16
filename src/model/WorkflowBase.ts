@@ -1,13 +1,14 @@
 export type WorkflowBase = {
     'id'?: string;
     'titre'?: string;
-    'dateDeCreation'?: Date;
-    'dateDeFin'?: Date;
-    'workflowAutomatise'?: boolean;
+    'date_de_creation'?: Date;
+    'date_de_fin'?: Date;
+    'workflow_automatise'?: boolean;
     'etat'?: string;
-    'groupeDeTravail'?: string;
+    'groupe_de_travail'?: string;
     'observations'?: string;
-    'estComplet'?: boolean;
-    'listePoi'?: string;
+    'est_complet'?: boolean;
+    'liste_poi'?: string;
     'documents'?: string;
+    'type'?: string;
 };

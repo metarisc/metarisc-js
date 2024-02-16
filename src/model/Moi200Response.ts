@@ -1,4 +1,4 @@
-export type Utilisateur = {
+export type Moi200Response = {
     'id'?: string;
     'first_name'?: string;
     'last_name'?: string;

@@ -2,10 +2,10 @@ export type Ticket = {
     'id': number;
     'subject': string;
     'description': string;
-    'descriptionHtml'?: string;
+    'description_html'?: string;
     'status': StatusEnum;
-    'createdAt'?: Date;
-    'updatedAt'?: Date;
+    'created_at'?: Date;
+    'updated_at'?: Date;
 };
 
 export enum StatusEnum {

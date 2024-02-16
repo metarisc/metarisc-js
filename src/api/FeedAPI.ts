@@ -1,23 +1,23 @@
 import { Core, MetariscConfig } from "../core";
 import Utils from "../utils";
-import type { AxiosResponse } from "axios";
 import { Client } from "../client";
-import { Ping200Response } from '../model/Ping200Response';
+import { Collection } from "../collection";
+import { FeedMessage } from '../model/FeedMessage';
 
-export class PingAPI extends Core {
+export class FeedAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
     
     /**
-     * Permet de s'assurer que le service Metarisc est en ligne. Ping ... Pong !
+     * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
      */
-    async ping(): Promise<AxiosResponse<Ping200Response>>
+    getFeedMessages(): Collection<FeedMessage>
     {
         const pathVariable = {  };
-        return this.request({
+        return this.collect<FeedMessage>({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/ping'),
+            endpoint: Utils.constructPath(pathVariable, '/feed'),
             headers: {  },
             params: {  },
             body: {}

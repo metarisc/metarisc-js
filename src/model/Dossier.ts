@@ -7,8 +7,13 @@ export type Dossier = {
     'id'?: string;
     'type'?: Type;
     'description'?: string;
-    'dateDeCreation'?: Date;
+    'date_de_creation'?: Date;
     'createur'?: string;
-    'applicationUtilisee'?: string;
-    'statut'?: string;
+    'application_utilisee'?: string;
+    'statut'?: StatutEnum;
 };
+
+export enum StatutEnum {
+    Ouvert = 'OUVERT',
+    Clos = 'CLOS'
+}

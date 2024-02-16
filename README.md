@@ -13,7 +13,7 @@ npm i @metarisc/metarisc-js
 Pour utiliser la librairie, il suffit de l'importer comme ceci :
 
 ```php
-import { Metarisc } from '@metarisc/metarisc-js';';
+import { Metarisc } from '@metarisc/metarisc-js';
 ```
 
 ## Utilisation
@@ -57,13 +57,7 @@ Pour récupérer des résultats paginés Metarisc (voir la [documentation](http:
 Exemple :
 
 ```ts
-m.dossiers.paginateDossier(2, 10);
+const m = new Metarisc(config);
+m.NotificationsAPI.getNotification('123456');
+m.NotificationsAPI.paginateNotifications();
 ```
-
-Le type de retour d'une requête paginée est :
-
-```ts
-AsyncGenerator<T>;
-```
-
-(voir la documentation suivante [AsyncGenerator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGenerator))

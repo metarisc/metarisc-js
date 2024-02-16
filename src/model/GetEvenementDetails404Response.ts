@@ -1,4 +1,4 @@
-export type GetNotification404Response = {
+export type GetEvenementDetails404Response = {
     'status_code'?: number;
     'type'?: string;
     'title'?: string;

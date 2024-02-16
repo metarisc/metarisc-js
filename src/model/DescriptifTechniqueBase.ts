@@ -1,5 +1,5 @@
 export type DescriptifTechniqueBase = {
     'libelle'?: string;
-    'observationsGenerales'?: string;
+    'observations_generales'?: string;
     'date'?: Date;
 };

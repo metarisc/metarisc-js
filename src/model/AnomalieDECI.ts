@@ -1,7 +1,7 @@
 export type AnomalieDECI = {
     'code'?: string;
     'texte'?: string;
-    'indiceDeGravite'?: IndiceDeGraviteEnum;
+    'indice_de_gravite'?: IndiceDeGraviteEnum;
 };
 
 export enum IndiceDeGraviteEnum {

@@ -2,22 +2,22 @@ import { Core, MetariscConfig } from "../core";
 import Utils from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
-import { Ping200Response } from '../model/Ping200Response';
+import { Moi200Response } from '../model/Moi200Response';
 
-export class PingAPI extends Core {
+export class MoiAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
     
     /**
-     * Permet de s'assurer que le service Metarisc est en ligne. Ping ... Pong !
+     * Récupérer les détails de l'utilisateur connecté.
      */
-    async ping(): Promise<AxiosResponse<Ping200Response>>
+    async moi(): Promise<AxiosResponse<Moi200Response>>
     {
         const pathVariable = {  };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/ping'),
+            endpoint: Utils.constructPath(pathVariable, '/@moi'),
             headers: {  },
             params: {  },
             body: {}

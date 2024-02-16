@@ -5,14 +5,14 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Organisation } from '../model/Organisation';
 
-export class OrganisationAPI extends Core {
+export class OrganisationsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
     
     /**
      * Récupération des détails d'une organisation.
-     * @param orgId ID de l'organisation
+     * @param orgId Identifiant unique de l'Organisation
      */
     async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
     {
@@ -36,9 +36,9 @@ export class OrganisationAPI extends Core {
         const pathVariable = {  };
         return this.collect<Organisation>({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/organisations/'),
+            endpoint: Utils.constructPath(pathVariable, '/organisations'),
             headers: {  },
-            params: { 'page': page.toString(), 'per_page': perPage.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
