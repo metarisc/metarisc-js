@@ -69,7 +69,7 @@ export class Core {
         this.client.setAccessToken(access_token);
     }
 
-    getClient(): Client {
-        return this.client;
+    setRefreshToken(refresh_token: string): void {
+        this.client.setRefreshToken(refresh_token);
     }
 }
