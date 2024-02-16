@@ -1,137 +1,154 @@
-import axios, { AxiosInstance, AxiosResponse, RawAxiosRequestHeaders } from "axios";
+import axios, {
+	AxiosInstance,
+	AxiosResponse,
+	RawAxiosRequestHeaders,
+} from "axios";
 import axiosRetry from "axios-retry";
-import oauth from "axios-oauth-client";
-import { GrantResponse, MetariscConfig, OAuth2Options } from './core';
+import { MetariscConfig, OAuth2Options } from "./core";
 import { OAuth2 } from "./auth/oauth2";
-import { setupCache } from 'axios-cache-interceptor';
+import { setupCache } from "axios-cache-interceptor";
+import Utils from "./utils";
 
 interface RequestConfig {
-  body?: any;
-  headers?: { [name: string]: string | string[] };
-  params?: { [param: string]: string | string[] };
-  endpoint?: string;
-  method?: string;
+	body?: any;
+	headers?: { [name: string]: string | string[] };
+	params?: { [param: string]: string | string[] };
+	endpoint?: string;
+	method?: string;
 }
 
 export enum AuthMethod {
-  CLIENT_CREDENTIALS,
-  AUTHORIZATION_CODE
+	CLIENT_CREDENTIALS,
+	AUTHORIZATION_CODE,
 }
 
 export class Client {
-  private client_id : string;
-  private client_secret ?: string;
-  private axios : AxiosInstance;
-  private access_token: string;
+	private axios: AxiosInstance;
 
-  constructor(config : MetariscConfig) {
-    // Identification du client HTTP
-    this.client_id = config.client_id;
-    this.client_secret = config.client_secret;
+	private oauth2: OAuth2;
+	private access_token?: string;
+	private refresh_token?: string;
 
-    this.axios = axios.create({
-      baseURL: config.metarisc_url ?? 'https://api.metarisc.fr/',
-      'headers': {
-        'common': this.getDefaultHeaders()
-      }
-    });
+	constructor(config : MetariscConfig) {
+		// Paramétrage OAuth2
+		this.oauth2 = new OAuth2({
+			client_id: config.client_id,
+			client_secret: config.client_secret,
+		});
 
-    // Axios Interceptors
-    // Request interceptors are FILO (First In Last Out)
-    // Response interceptors are FIFO (First In First Out)
+		// Initialisation du client HTTP
+		this.axios = axios.create({
+			baseURL: config.metarisc_url ?? "https://api.metarisc.fr/",
+			headers: {
+				common: this.getDefaultHeaders(),
+			},
+		});
 
-    // Axios interceptor : Enable HTTP Caching
-    // When combining axios-cache-interceptors with other interceptors, you may encounter some inconsistences.
-    // See : https://github.com/arthurfiorette/axios-cache-interceptor/issues/449#issuecomment-1370327566
-    this.axios = setupCache(this.axios);
+		// Axios Interceptors
+		// Request interceptors are FILO (First In Last Out)
+		// Response interceptors are FIFO (First In First Out)
 
-    // Axios interceptor : Retry strategy
-    axiosRetry(this.axios, {
-        retries: 3,
-        retryDelay: axiosRetry.exponentialDelay
-    });
-  }
+		// Axios interceptor : Enable HTTP Caching
+		// When combining axios-cache-interceptors with other interceptors, you may encounter some inconsistences.
+		// See : https://github.com/arthurfiorette/axios-cache-interceptor/issues/449#issuecomment-1370327566
+		this.axios = setupCache(this.axios);
 
-  async authenticate(auth_method: AuthMethod, options: OAuth2Options): Promise<GrantResponse> {
-    let result;
-    switch (auth_method) {
-      case AuthMethod.AUTHORIZATION_CODE:
-        result = await this.getAuthorizationCode(options);
-        break;
-      case AuthMethod.CLIENT_CREDENTIALS:
-        result = await this.getClientCredentials(options);
-        break;
-      default:
-        return;
-    }
+		// Axios interceptor : Ajoute l'access token à la requête
+		// L'access token peut venir d'un premier authenticate, ou d'un refresh token obtenu au cours des interceptors
+		this.axios.interceptors.request.use((config) => {
+			config.headers["Authorization"] = this.getAccessToken();
+			return config;
+		});
 
-    if (result) {
-      const token = result.token_type + ' ' + result.access_token;
-      this.setAccessToken(token);
-    }
+		// Axios interceptor : Retry strategy
+		axiosRetry(this.axios, {
+			retries: 3,
+			retryDelay: axiosRetry.exponentialDelay,
+		});
 
-    return result;
-  }
+		// Axios interceptor : Refresh Token (https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
+		this.axios.interceptors.request.use(async (config) => {
+			// Si l'access_token a expiré on demande un échange avec le refresh token obtenu précedemment
+			if (this.getAccessToken() !== undefined && this.getRefreshToken() !== undefined && Utils.tokenExpired(this.getAccessToken())) {
+				const result = await this.oauth2.refreshToken(this.getRefreshToken());
+				this.setAccessToken(result.token_type + ' ' + result.access_token);
+				this.setRefreshToken(result.refresh_token);
+			}
+			return config;
+		});
+	}
 
-  async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
-    config.headers['Authorization'] = this.getAccessToken();
-    return this.axios.request<T>({
-      method: config.method || 'GET',
-      url: config.endpoint || '/',
-      params: config.params,
-      data: config.body,
-      headers: config.headers
-    });
-  }
+	async authenticate(
+		auth_method: AuthMethod,
+		options: OAuth2Options
+	): Promise<void> {
+		if(auth_method === AuthMethod.AUTHORIZATION_CODE) {
+			const response = await this.oauth2.getAuthorizationCode(options);
+			this.setAccessToken(response.token_type + " " + response.access_token);
+			this.setRefreshToken(response.refresh_token);
+		}
+		else if(auth_method === AuthMethod.CLIENT_CREDENTIALS) {
+			const response = await this.oauth2.getClientCredentials(options);
+			this.setAccessToken(response.token_type + " " + response.access_token);
+		}
+		else {
+			throw new Error("auth_method inconnue");		
+		}
+	}
 
-  async getAuthorizationCode(options: OAuth2Options): Promise<GrantResponse> {
-    const fn = oauth.authorizationCode(
-      axios.create(),
-      OAuth2.ACCESS_TOKEN_URL,
-      this.client_id,
-      this.client_secret ?? '',
-      options.redirect_uri ?? '',
-      options.code ?? '',
-      options.scope ?? ''
-    )
-    return await fn(options.code ?? '', options.scope ?? '')
-  }
+	/**
+	 * Lance une requête (authentifiée si possible) sur l'API Metarisc.
+	 */
+	async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
+		return this.axios.request<T>({
+			method: config.method || "GET",
+			url: config.endpoint || "/",
+			params: config.params,
+			data: config.body,
+			headers: config.headers,
+		});
+	}
 
-  async getClientCredentials(options: OAuth2Options): Promise<GrantResponse> {
-    const fn = oauth.clientCredentials(
-      axios.create(),
-      OAuth2.ACCESS_TOKEN_URL,
-      this.client_id,
-      this.client_secret ?? ''
-    )
-    return await fn(options.scope ?? '');
-  }
+	/**
+	 * Définition de l'Access Token
+	 */
+	setAccessToken(access_token: string): void {
+		this.access_token = access_token;
+	}
 
-  setAccessToken(access_token: string): void {
-    this.access_token = access_token;
-    this.axios.interceptors.request.use(function (config) {
-      config.headers['Authorization'] = access_token;
-      return config;
-    });
-  }
+	/**
+	 * Récupération de l'Access Token
+	 */
+	getAccessToken(): string|undefined {
+		return this.access_token;
+	}
 
-  getAccessToken(): string {
-    return this.access_token;
-  }
+	/**
+	 * Définition du Refresh Token
+	 */
+	setRefreshToken(refresh_token: string): void {
+		this.refresh_token = refresh_token;
+	}
 
-  /**
-   * Retourne les headers HTTP par défauts devant être présents dans toutes les requêtes Metarisc.
-   */
-  private getDefaultHeaders() : RawAxiosRequestHeaders
-  {
-    const headers : RawAxiosRequestHeaders = {};
+	/**
+	 * Récupération du Refresh Token
+	 */
+	getRefreshToken(): string|undefined {
+		return this.refresh_token;
+	}
 
-    // UA Headers
-    headers['User-Agent'] = 'MetariscJs/dev'; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
-    headers['Metarisc-User-Agent'] = JSON.stringify({
-      'lang': 'js'
-    });
+	/**
+	 * Retourne les headers HTTP par défauts devant être présents dans toutes les requêtes Metarisc.
+	 */
+	private getDefaultHeaders(): RawAxiosRequestHeaders {
+		const headers: RawAxiosRequestHeaders = {};
 
-    return headers;
-  }
+		// UA Headers
+		headers["User-Agent"] = "MetariscJs/dev"; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
+		headers["Metarisc-User-Agent"] = JSON.stringify({
+			lang: "js",
+		});
+
+		return headers;
+	}
 }
