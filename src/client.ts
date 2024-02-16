@@ -4,8 +4,7 @@ import axios, {
 	RawAxiosRequestHeaders,
 } from "axios";
 import axiosRetry from "axios-retry";
-import oauth from "axios-oauth-client";
-import { GrantResponse, MetariscConfig, OAuth2Options } from "./core";
+import { MetariscConfig, OAuth2Options } from "./core";
 import { OAuth2 } from "./auth/oauth2";
 import { setupCache } from "axios-cache-interceptor";
 import Utils from "./utils";
@@ -26,17 +25,18 @@ export enum AuthMethod {
 export class Client {
 	private axios: AxiosInstance;
 
-	private client_id: string;
-	private client_secret: string;
-
-	private access_token: string;
-	private refresh_token: string;
+	private oauth2: OAuth2;
+	private access_token?: string;
+	private refresh_token?: string;
 
 	constructor(config : MetariscConfig) {
-		// Identification du client HTTP
-		this.client_id = config.client_id;
-		this.client_secret = config.client_secret;
+		// Paramétrage OAuth2
+		this.oauth2 = new OAuth2({
+			client_id: config.client_id,
+			client_secret: config.client_secret,
+		});
 
+		// Initialisation du client HTTP
 		this.axios = axios.create({
 			baseURL: config.metarisc_url ?? "https://api.metarisc.fr/",
 			headers: {
@@ -55,7 +55,7 @@ export class Client {
 
 		// Axios interceptor : Ajoute l'access token à la requête
 		// L'access token peut venir d'un premier authenticate, ou d'un refresh token obtenu au cours des interceptors
-		this.axios.interceptors.request.use(function (config) {
+		this.axios.interceptors.request.use((config) => {
 			config.headers["Authorization"] = this.getAccessToken();
 			return config;
 		});
@@ -69,8 +69,10 @@ export class Client {
 		// Axios interceptor : Refresh Token (https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
 		this.axios.interceptors.request.use(async (config) => {
 			// Si l'access_token a expiré on demande un échange avec le refresh token obtenu précedemment
-			if (Utils.tokenExpired(this.access_token)) {
-				await this.refreshToken();
+			if (this.getAccessToken() !== undefined && this.getRefreshToken() !== undefined && Utils.tokenExpired(this.getAccessToken())) {
+				const result = await this.oauth2.refreshToken(this.getRefreshToken());
+				this.setAccessToken(result.token_type + ' ' + result.access_token);
+				this.setRefreshToken(result.refresh_token);
 			}
 			return config;
 		});
@@ -79,27 +81,24 @@ export class Client {
 	async authenticate(
 		auth_method: AuthMethod,
 		options: OAuth2Options
-	): Promise<GrantResponse> {
-		let result;
-		switch (auth_method) {
-			case AuthMethod.AUTHORIZATION_CODE:
-				result = await this.getAuthorizationCode(options);
-				break;
-			case AuthMethod.CLIENT_CREDENTIALS:
-				result = await this.getClientCredentials(options);
-				break;
-			default:
-				return;
+	): Promise<void> {
+		if(auth_method === AuthMethod.AUTHORIZATION_CODE) {
+			const response = await this.oauth2.getAuthorizationCode(options);
+			this.setAccessToken(response.token_type + " " + response.access_token);
+			this.setRefreshToken(response.refresh_token);
 		}
-
-		if (result) {
-			this.setAccessToken(result.token_type + " " + result.access_token);
-			this.setRefreshToken(result.refresh_token);
+		else if(auth_method === AuthMethod.CLIENT_CREDENTIALS) {
+			const response = await this.oauth2.getClientCredentials(options);
+			this.setAccessToken(response.token_type + " " + response.access_token);
 		}
-
-		return result;
+		else {
+			throw new Error("auth_method inconnue");		
+		}
 	}
 
+	/**
+	 * Lance une requête (authentifiée si possible) sur l'API Metarisc.
+	 */
 	async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
 		return this.axios.request<T>({
 			method: config.method || "GET",
@@ -110,59 +109,31 @@ export class Client {
 		});
 	}
 
-	async getAuthorizationCode(options: OAuth2Options): Promise<GrantResponse> {
-		const fn = oauth.authorizationCode(
-			axios.create(),
-			OAuth2.ACCESS_TOKEN_URL,
-			this.client_id,
-			this.client_secret ?? "",
-			options.redirect_uri ?? "",
-			options.code ?? "",
-			options.scope ?? ""
-		);
-		return await fn(options.code ?? "", options.scope ?? "")
-	}
-
-	async getClientCredentials(options: OAuth2Options): Promise<GrantResponse> {
-		const fn = oauth.clientCredentials(
-			axios.create(),
-			OAuth2.ACCESS_TOKEN_URL,
-			this.client_id,
-			this.client_secret ?? ""
-		);
-		return await fn(options.scope ?? "");
-	}
-
-	async refreshToken(): Promise<void> {
-		if (this.refresh_token) {
-			const fn = oauth.refreshToken(
-				axios.create(),
-				OAuth2.ACCESS_TOKEN_URL,
-				this.client_id,
-				this.client_secret
-			);
-			const result = await fn(this.getRefreshToken());
-
-			if (result) {
-				this.setAccessToken(result.token_type + " " + result.access_token);
-				this.setRefreshToken(result.refresh_token);
-			}
-		}
-	}
-
+	/**
+	 * Définition de l'Access Token
+	 */
 	setAccessToken(access_token: string): void {
 		this.access_token = access_token;
 	}
 
-	getAccessToken(): string {
+	/**
+	 * Récupération de l'Access Token
+	 */
+	getAccessToken(): string|undefined {
 		return this.access_token;
 	}
 
+	/**
+	 * Définition du Refresh Token
+	 */
 	setRefreshToken(refresh_token: string): void {
 		this.refresh_token = refresh_token;
 	}
 
-	getRefreshToken(): string {
+	/**
+	 * Récupération du Refresh Token
+	 */
+	getRefreshToken(): string|undefined {
 		return this.refresh_token;
 	}
 

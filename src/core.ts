@@ -25,18 +25,6 @@ export interface OAuth2Options {
     [name: string]: string;
 }
 
-export interface GrantResponse {
-    access_token?: string;
-    expires_in?: number;
-    id_token?: string;
-    refresh_token?: string;
-    refresh_expires_in?: number;
-    session_state?: string;
-    token_type?: string;
-    error?: string;
-    error_description?: string;
-}
-
 export class Core {
     protected client: Client;
     protected config: MetariscConfig;
@@ -61,8 +49,8 @@ export class Core {
     async authenticate(
         auth_method: AuthMethod,
         options: OAuth2Options
-    ): Promise<GrantResponse> {
-        return await this.client.authenticate(auth_method, options);
+    ): Promise<void> {
+        await this.client.authenticate(auth_method, options);
     }
 
     setAccessToken(access_token: string): void {
