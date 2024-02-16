@@ -2,8 +2,8 @@ import { OAuth2Options } from "../core";
 
 export class OAuth2
 {
-    public static AUTHORIZATION_URL = 'https://lemur-17.cloud-iam.com/auth/realms/metariscoidc/protocol/openid-connect/auth';
-    public static ACCESS_TOKEN_URL  = 'https://lemur-17.cloud-iam.com/auth/realms/metariscoidc/protocol/openid-connect/token';
+    public static AUTHORIZATION_URL = 'https://id.metarisc.fr/auth/realms/production/protocol/openid-connect/auth';
+    public static ACCESS_TOKEN_URL  = 'https://id.metarisc.fr/auth/realms/production/protocol/openid-connect/token';
  
     /**
      * Utilisation d'OAuth2 pour récupérer un access token utilisable dans Metarisc.
