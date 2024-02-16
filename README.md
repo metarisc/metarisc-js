@@ -12,7 +12,7 @@ npm i @metarisc/metarisc-js
 
 Pour utiliser la librairie, il suffit de l'importer comme ceci :
 
-```php
+```ts
 import { Metarisc } from '@metarisc/metarisc-js';
 ```
 
@@ -24,17 +24,19 @@ Pour effectuer une requête sur Metarisc, il faut tout d'adord initialisé le cl
 
 ```ts
 const m = new Metarisc({
-  metarisc_url: "https://testlp7ijwog-mock.functions.fnc.fr-par.scw.cloud/", // url de l'api
+  metarisc_url: "https://api.metarisc.fr",
+  client_id: "CLIENT_ID",
+  client_secret: "CLIENT_SECRET"
 });
+
 m.dossiers.getDossier("123456");
-m.dossiers.paginateDossier(2, 10);
 ```
 
 Ensuite vous pouvez faire vos requêtes.
 
 #### Requêtes simple
 
-Pour faire l'appel API après initialisation du client, vous pouvez utiliser l'accès rapide à l'API souhaitée.
+Pour faire un appel API après initialisation du client, vous pouvez utiliser l'accès rapide à l'API souhaitée.
 
 Exemple :
 
@@ -58,6 +60,13 @@ Exemple :
 
 ```ts
 const m = new Metarisc(config);
-m.NotificationsAPI.getNotification('123456');
 m.NotificationsAPI.paginateNotifications();
 ```
+
+Le type de retour d'une requête paginée est :
+
+```ts
+AsyncGenerator<T>;
+```
+
+(voir la documentation suivante [AsyncGenerator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGenerator))
