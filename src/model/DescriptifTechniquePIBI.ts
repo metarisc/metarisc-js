@@ -1,5 +1,3 @@
-import { DescriptifTechniquePIBIAllOfPesees } from '../../src/model/DescriptifTechniquePIBIAllOfPesees';
-
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePIBI = DescriptifTechniqueDECIBase & { 
@@ -9,14 +7,30 @@ export type DescriptifTechniquePIBI = DescriptifTechniqueDECIBase & {
     */
     'surpression'?: number;
     'nature'?: NatureEnum;
-    'caracteristiques_particulieres'?: CaracteristiquesParticulieresEnum;
-    'pesees'?: DescriptifTechniquePIBIAllOfPesees;
+    'debit_1bar'?: number;
+    'pression'?: number;
+    'pression_statique'?: number;
+    'debit_gueule_bee'?: number;
 };
+
+export enum TypeEnum {
+    Pibi = 'PIBI',
+    Pena = 'PENA'
+}
 
 export enum DomanialiteEnum {
     Privee = 'privee',
     Publique = 'publique',
     PriveeConventionnee = 'privee_conventionnee'
+}
+
+export enum StatutEnum {
+    RepriseDeDonnees = 'reprise_de_donnees',
+    DeclarationEnCours = 'declaration_en_cours',
+    ReconnaissanceOperationnelleInitiale = 'reconnaissance_operationnelle_initiale',
+    Actif = 'actif',
+    Projet = 'projet',
+    Reforme = 'reforme'
 }
 
 export enum NatureEnum {
@@ -28,9 +42,4 @@ export enum NatureEnum {
     Bi1x80 = 'BI1x80',
     Bi1x100 = 'BI1x100',
     Bi2x100 = 'BI2x100'
-}
-
-export enum CaracteristiquesParticulieresEnum {
-    Renversable = 'RENVERSABLE',
-    PreMelange = 'PRE_MELANGE'
 }
