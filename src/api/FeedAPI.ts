@@ -12,7 +12,7 @@ export class FeedAPI extends Core {
     /**
      * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
      */
-    getFeedMessages(): Collection<FeedMessage>
+    paginateFeedMessages(): Collection<FeedMessage>
     {
         const pathVariable = {  };
         return this.collect<FeedMessage>({

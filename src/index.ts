@@ -1,10 +1,8 @@
 export { Metarisc } from "./metarisc";
 export { OAuth2 } from "./auth/oauth2";
 export { Core } from "./core";
-export { Collection, PaginationData } from "./collection";
-export { PaginationResults } from "./collection"
-export { AuthMethod } from "./client";
-export { Client } from "./client";
+export { Collection, PaginationData, PaginationResults } from "./collection";
+export { AuthMethod, Client } from "./client";
 export { Tus } from "./tus";
 
 export { DossiersAPI } from './api/DossiersAPI';
