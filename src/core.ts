@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { AuthMethod, Client } from "./client";
 import { Collection } from "./collection";
+import { GrantResponse } from "./auth/oauth2";
 
 interface RequestConfig {
     body?: any;
@@ -49,8 +50,8 @@ export class Core {
     async authenticate(
         auth_method: AuthMethod,
         options: OAuth2Options
-    ): Promise<void> {
-        await this.client.authenticate(auth_method, options);
+    ): Promise<GrantResponse> {
+        return await this.client.authenticate(auth_method, options);
     }
 
     setAccessToken(access_token: string): void {

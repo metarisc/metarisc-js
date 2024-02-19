@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 import axiosRetry from "axios-retry";
 import { MetariscConfig, OAuth2Options } from "./core";
-import { OAuth2 } from "./auth/oauth2";
+import { GrantResponse, OAuth2 } from "./auth/oauth2";
 import { setupCache } from "axios-cache-interceptor";
 import Utils from "./utils";
 
@@ -87,15 +87,17 @@ export class Client {
 	async authenticate(
 		auth_method: AuthMethod,
 		options: OAuth2Options
-	): Promise<void> {
+	): Promise<GrantResponse> {
 		if(auth_method === AuthMethod.AUTHORIZATION_CODE) {
 			const response = await this.oauth2.getAuthorizationCode(options);
 			this.setAccessToken(response.token_type + " " + response.access_token);
 			this.setRefreshToken(response.refresh_token);
+			return response;
 		}
 		else if(auth_method === AuthMethod.CLIENT_CREDENTIALS) {
 			const response = await this.oauth2.getClientCredentials(options);
 			this.setAccessToken(response.token_type + " " + response.access_token);
+			return response;
 		}
 		else {
 			throw new Error("auth_method inconnue");		
