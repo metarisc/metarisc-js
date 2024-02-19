@@ -5,7 +5,7 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { PEI } from '../model/PEI';
 import { Contact } from '../model/Contact';
-import { DescriptifTechnique } from '../model/DescriptifTechnique';
+import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 import { PieceJointe } from '../model/PieceJointe';
 
 export class PEIAPI extends Core {
@@ -70,10 +70,10 @@ export class PEIAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginatePeiHistorique(peiId: string, page?: number, perPage?: number): Collection<DescriptifTechnique>
+    paginatePeiHistorique(peiId: string, page?: number, perPage?: number): Collection<DescriptifTechniqueDECI>
     {
         const pathVariable = { 'pei_id': peiId };
-        return this.collect<DescriptifTechnique>({
+        return this.collect<DescriptifTechniqueDECI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
             headers: {  },
