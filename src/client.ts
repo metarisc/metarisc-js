@@ -147,12 +147,16 @@ export class Client {
 	 * Retourne les headers HTTP par défauts devant être présents dans toutes les requêtes Metarisc.
 	 */
 	private getDefaultHeaders(): RawAxiosRequestHeaders {
+		const hasBrowserEnv = typeof window !== 'undefined' && typeof document !== 'undefined'; // https://github.com/axios/axios/blob/v1.x/lib/platform/common/utils.js#L1
 		const headers: RawAxiosRequestHeaders = {};
 
-		// UA Headers
-		headers["User-Agent"] = "MetariscJs/dev"; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
+		// UA Headers (surcharge le UA uniquement sur un env Server car le navigateur considéra cela comme unsafe)
+		if(!hasBrowserEnv) {
+			headers["User-Agent"] = "MetariscJs/dev"; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
+		}
 		headers["Metarisc-User-Agent"] = JSON.stringify({
 			lang: "js",
+			version: 'dev'
 		});
 
 		return headers;
