@@ -69,10 +69,16 @@ export class Client {
 		// Axios interceptor : Refresh Token (https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
 		this.axios.interceptors.request.use(async (config) => {
 			// Si l'access_token a expiré on demande un échange avec le refresh token obtenu précedemment
+			// Si le refresh ne fonctionne pas, on ne fait rien
 			if (this.getAccessToken() !== undefined && this.getRefreshToken() !== undefined && Utils.tokenExpired(this.getAccessToken())) {
-				const result = await this.oauth2.refreshToken(this.getRefreshToken());
-				this.setAccessToken(result.token_type + ' ' + result.access_token);
-				this.setRefreshToken(result.refresh_token);
+				try {
+					const result = await this.oauth2.refreshToken(this.getRefreshToken());
+					this.setAccessToken(result.token_type + ' ' + result.access_token);
+					this.setRefreshToken(result.refresh_token);
+				}
+				catch(e) {
+					//
+				}
 			}
 			return config;
 		});
