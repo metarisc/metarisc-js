@@ -1,15 +1,14 @@
-import { DescriptifTechniquePENAAllOfRealimentation } from '../../src/model/DescriptifTechniquePENAAllOfRealimentation';
-import { DescriptifTechniquePENAAllOfVolumes } from '../../src/model/DescriptifTechniquePENAAllOfVolumes';
-
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePENA = DescriptifTechniqueDECIBase & { 
-    'essais_engin_utilise'?: EssaisEnginUtiliseEnum;
-    'equipements'?: EquipementsEnum;
     'nature'?: NatureEnum;
-    'volumes'?: DescriptifTechniquePENAAllOfVolumes;
-    'realimentation'?: Array<DescriptifTechniquePENAAllOfRealimentation>;
+    'volume'?: number;
 };
+
+export enum TypeEnum {
+    Pibi = 'PIBI',
+    Pena = 'PENA'
+}
 
 export enum DomanialiteEnum {
     Privee = 'privee',
@@ -17,20 +16,13 @@ export enum DomanialiteEnum {
     PriveeConventionnee = 'privee_conventionnee'
 }
 
-export enum EssaisEnginUtiliseEnum {
-    Aucun = 'AUCUN',
-    Fpt = 'FPT',
-    Mpr = 'MPR',
-    Ccf = 'CCF'
-}
-
-export enum EquipementsEnum {
-    Guichet = 'GUICHET',
-    CanneAspiration = 'CANNE_ASPIRATION',
-    Puit = 'PUIT',
-    TrouHomme = 'TROU_HOMME',
-    RaccordTournant = 'RACCORD_TOURNANT',
-    PriseDirecte = 'PRISE_DIRECTE'
+export enum StatutEnum {
+    RepriseDeDonnees = 'reprise_de_donnees',
+    DeclarationEnCours = 'declaration_en_cours',
+    ReconnaissanceOperationnelleInitiale = 'reconnaissance_operationnelle_initiale',
+    Actif = 'actif',
+    Projet = 'projet',
+    Reforme = 'reforme'
 }
 
 export enum NatureEnum {
