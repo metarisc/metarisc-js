@@ -50,8 +50,8 @@ export class Collection<T>
      */
     async * autoPagingIterator() : AsyncGenerator<T, void, unknown>
     {
-        let current_page : number = this.config.params && 'page' in this.config.params ? parseInt(this.config.params['page'].toString()) : 1;
-        const per_page : number = this.config.params && 'per_page' in  this.config.params ? parseInt(this.config.params['per_page'].toString()) : 100;
+        let current_page : number = this.config.params && 'page' in this.config.params && this.config.params['page'] !== undefined ? parseInt(this.config.params['page'].toString()) : 1;
+        const per_page : number = this.config.params && 'per_page' in  this.config.params && this.config.params['per_page'] !== undefined ? parseInt(this.config.params['per_page'].toString()) : 100;
 
         while (true) {
             const response = <AxiosResponse<PaginationResults<T>>> await this.fetchPage(current_page, per_page);
@@ -71,13 +71,24 @@ export class Collection<T>
     /**
      * Generates an array with all results set.
      */
-    async autoPagingIteratorToArray() : Promise<Array<T>>
+    async autoPagingIteratorToArray(limit?: number) : Promise<Array<T>>
     {
         const generator = this.autoPagingIterator();
         const results = [];
+        
+        limit = limit ?? 10000;
+
+        if (limit > 10000) {
+            throw Error(
+                'You cannot specify a limit of more than 10,000 items to fetch in `autoPagingIteratorToArray`; use `autoPagingIterator` to iterate through longer lists.'
+            );
+        }
 
         for await (const item of generator) {
             results.push(item);
+            if (results.length >= limit) {
+                break;
+            }
         }
 
         return results;
