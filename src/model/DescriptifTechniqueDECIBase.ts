@@ -7,7 +7,13 @@ export type DescriptifTechniqueDECIBase = {
     'est_reglementaire'?: boolean;
     'domanialite'?: DomanialiteEnum;
     'est_conforme_rddeci'?: boolean;
+    /**
+    * - Performance nulle = 0 - Performance restreinte = 1 - Performance bonne = 2 - Performance inconnue = -1
+    */
     'performance_theorique'?: number;
+    /**
+    * - Performance nulle = 0 - Performance restreinte = 1 - Performance bonne = 2 - Performance inconnue = -1
+    */
     'performance_reelle'?: number;
     'observations_generales'?: string;
     'date'?: Date;

@@ -12,27 +12,10 @@ export type PEI = {
     'genre'?: GenreEnum;
     'numero'?: string;
     'numero_compteur'?: string;
+    'numero_serie_appareil'?: string;
 };
 
 export enum GenreEnum {
-    Pi1x65 = 'PI1x65',
-    Pi1x65Pi2x45 = 'PI1x65+PI2x45',
-    Pi1x100 = 'PI1x100',
-    Pi2x100 = 'PI2x100',
-    Bi1x65 = 'BI1x65',
-    Bi1x80 = 'BI1x80',
-    Bi1x100 = 'BI1x100',
-    Bi2x100 = 'BI2x100',
-    PointAspiration = 'POINT_ASPIRATION',
-    CiterneAerienne = 'CITERNE_AERIENNE',
-    CiterneEnterree = 'CITERNE_ENTERREE',
-    CiterneSemiEnterree = 'CITERNE_SEMI_ENTERREE',
-    CiterneSouple = 'CITERNE_SOUPLE',
-    ReserveAerienne = 'RESERVE_AERIENNE',
-    PoteauRelais = 'POTEAU_RELAIS',
-    PuisardAspiration = 'PUISARD_ASPIRATION',
-    PriseDeportee = 'PRISE_DEPORTEE',
-    PoteauAspiration1x100 = 'POTEAU_ASPIRATION_1x100',
-    PoteauAspiration2x100 = 'POTEAU_ASPIRATION_2x100',
-    BoucheAspiration1x100 = 'BOUCHE_ASPIRATION_1x100'
+    Pibi = 'PIBI',
+    Pena = 'PENA'
 }
