@@ -7,4 +7,6 @@ export type AdressePostale = {
     'voie'?: string;
     'code_insee'?: string;
     'arrondissement'?: string;
+    'latitude'?: number;
+    'longitude'?: number;
 };

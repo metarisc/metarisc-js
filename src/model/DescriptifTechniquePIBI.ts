@@ -1,7 +1,6 @@
 import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePIBI = DescriptifTechniqueDECIBase & { 
-    'numero_serie_appareil'?: string;
     /**
     * Surpression mesurée en bar
     */

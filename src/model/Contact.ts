@@ -3,7 +3,9 @@ export type Contact = {
     'nom'?: string;
     'prenom'?: string;
     'fonction'?: string;
-    'telephone'?: string;
+    'telephone_fixe'?: string;
+    'telephone_portable'?: string;
+    'telephone_fax'?: string;
     'adresse'?: string;
     'site_web_url'?: string;
     'civilite'?: string;
