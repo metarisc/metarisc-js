@@ -9,4 +9,6 @@ export type AdressePostale = {
     'arrondissement'?: string;
     'latitude'?: number;
     'longitude'?: number;
+    'localisation_operationnelle'?: string;
+    'complement'?: string;
 };
