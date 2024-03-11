@@ -7,7 +7,7 @@ import axiosRetry from "axios-retry";
 import { MetariscConfig, OAuth2Options } from "./core";
 import { GrantResponse, OAuth2, RefreshResponse } from "./auth/oauth2";
 import { setupCache } from "axios-cache-interceptor";
-import Utils from "./utils";
+import { Utils } from "./utils";
 import { SessionExpiredError } from "./error/SessionExpiredError";
 
 interface RequestConfig {

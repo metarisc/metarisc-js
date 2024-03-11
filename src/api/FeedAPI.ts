@@ -1,5 +1,5 @@
 import { Core, MetariscConfig } from "../core";
-import Utils from "../utils";
+import { Utils } from "../utils";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { FeedMessage } from '../model/FeedMessage';

@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 
-export default class Utils {
+export class Utils {
     /**
      * Build URL with query params templates
      */
