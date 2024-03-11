@@ -2,7 +2,6 @@ import { AxiosResponse } from "axios";
 import { AuthMethod, Client } from "./client";
 import { Collection } from "./collection";
 import { GrantResponse, RefreshResponse } from "./auth/oauth2";
-import Utils from "./utils";
 
 interface RequestConfig {
     body?: any;
@@ -55,23 +54,15 @@ export class Core {
         return await this.client.authenticate(auth_method, options);
     }
 
-    async refreshToken(): Promise<RefreshResponse> {
-        return await this.client.refreshToken();
+    refreshToken(): Promise<RefreshResponse> {
+        return this.client.refreshToken();
     }
 
     setAccessToken(access_token: string): void {
         this.client.setAccessToken(access_token);
     }
 
-    isAccessTokenValid(): boolean {
-        return !Utils.tokenExpired(this.client.getAccessToken());
-    }
-
     setRefreshToken(refresh_token: string): void {
         this.client.setRefreshToken(refresh_token);
-    }
-
-    isRefreshTokenValid(): boolean {
-        return !Utils.tokenExpired(this.client.getRefreshToken());
     }
 }
