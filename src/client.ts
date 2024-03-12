@@ -5,9 +5,10 @@ import axios, {
 } from "axios";
 import axiosRetry from "axios-retry";
 import { MetariscConfig, OAuth2Options } from "./core";
-import { GrantResponse, OAuth2 } from "./auth/oauth2";
+import { GrantResponse, OAuth2, RefreshResponse } from "./auth/oauth2";
 import { setupCache } from "axios-cache-interceptor";
-import Utils from "./utils";
+import { Utils } from "./utils";
+import { SessionExpiredError } from "./error/SessionExpiredError";
 
 interface RequestConfig {
 	body?: any;
@@ -70,14 +71,12 @@ export class Client {
 		this.axios.interceptors.request.use(async (config) => {
 			// Si l'access_token a expiré on demande un échange avec le refresh token obtenu précedemment
 			// Si le refresh ne fonctionne pas, on ne fait rien
-			if (this.getAccessToken() !== undefined && this.getRefreshToken() !== undefined && Utils.tokenExpired(this.getAccessToken())) {
+			if (this.getAccessToken() !== undefined && Utils.tokenExpired(this.getAccessToken())) {
 				try {
-					const result = await this.oauth2.refreshToken(this.getRefreshToken());
-					this.setAccessToken(result.token_type + ' ' + result.access_token);
-					this.setRefreshToken(result.refresh_token);
+					await this.refreshToken();
 				}
 				catch(e) {
-					//
+					throw new SessionExpiredError('La session utilisateur a expirée')
 				}
 			}
 			return config;
@@ -88,20 +87,33 @@ export class Client {
 		auth_method: AuthMethod,
 		options: OAuth2Options
 	): Promise<GrantResponse> {
-		if(auth_method === AuthMethod.AUTHORIZATION_CODE) {
+		if (auth_method === AuthMethod.AUTHORIZATION_CODE) {
 			const response = await this.oauth2.getAuthorizationCode(options);
 			this.setAccessToken(response.token_type + " " + response.access_token);
 			this.setRefreshToken(response.refresh_token);
 			return response;
-		}
-		else if(auth_method === AuthMethod.CLIENT_CREDENTIALS) {
+		} else if (auth_method === AuthMethod.CLIENT_CREDENTIALS) {
 			const response = await this.oauth2.getClientCredentials(options);
 			this.setAccessToken(response.token_type + " " + response.access_token);
 			return response;
+		} else {
+			throw new Error("auth_method inconnue");
 		}
-		else {
-			throw new Error("auth_method inconnue");		
+	}
+
+	async refreshToken(): Promise<RefreshResponse> {
+		if (this.refresh_token === undefined) {
+			throw new Error('Impossible de refresh sans refresh token');
 		}
+		try {
+			const refreshResponse = await this.oauth2.refreshToken(this.refresh_token);
+			this.setAccessToken(refreshResponse.token_type + " " + refreshResponse.access_token);
+			this.setRefreshToken(refreshResponse.refresh_token);
+			return refreshResponse;
+		} catch (e) {
+			throw new Error('Erreur pendant la tentative de refresh du token: ' + e.message);
+		}
+		
 	}
 
 	/**

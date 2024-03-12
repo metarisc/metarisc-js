@@ -1,4 +1,6 @@
-export default class Utils {
+import { jwtDecode } from 'jwt-decode';
+
+export class Utils {
     /**
      * Build URL with query params templates
      */
@@ -21,10 +23,13 @@ export default class Utils {
 
     static tokenExpired(token: string): boolean {
         try {
-            const expiry = JSON.parse(atob(token.split(".")[1])).exp;
-            return Math.floor(new Date().getTime() / 1000) >= expiry;
+            const decoded_token = jwtDecode(token);
+            if (Date.now() >= decoded_token.exp * 1000) {
+                return true;
+            }
         } catch (e) {
-            return false;
+            return true;
         }
+        return false;
     }
 }
