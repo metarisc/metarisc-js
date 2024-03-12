@@ -102,10 +102,15 @@ export class Client {
 	}
 
 	async refreshToken(): Promise<RefreshResponse> {
-		const refreshResponse = await this.oauth2.refreshToken(this.refresh_token);
-		this.setAccessToken(refreshResponse.token_type + " " + refreshResponse.access_token);
-		this.setRefreshToken(refreshResponse.refresh_token);
-		return refreshResponse;
+		try {
+			const refreshResponse = await this.oauth2.refreshToken(this.refresh_token);
+			this.setAccessToken(refreshResponse.token_type + " " + refreshResponse.access_token);
+			this.setRefreshToken(refreshResponse.refresh_token);
+			return refreshResponse;
+		} catch (e) {
+			throw new Error('Error refreshing token: ' + e.message);
+		}
+		
 	}
 
 	/**
