@@ -4,6 +4,8 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Organisation } from '../model/Organisation';
+import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
+import { OrganisationMembre } from '../model/OrganisationMembre';
 
 export class OrganisationsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -20,6 +22,38 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
+    }
+    
+    /**
+     * Récupération de la liste des géo-services d'une organisation.
+     * @param orgId Identifiant unique de l'Organisation
+     */
+    paginateOrganisationGeoservices(orgId: string): Collection<OrganisationGeoservice>
+    {
+        const pathVariable = { 'org_id': orgId };
+        return this.collect<OrganisationGeoservice>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
+    }
+    
+    /**
+     * Récupération de la liste des membres d'une organisation.
+     * @param orgId Identifiant unique de l'Organisation
+     */
+    paginateOrganisationMembres(orgId: string): Collection<OrganisationMembre>
+    {
+        const pathVariable = { 'org_id': orgId };
+        return this.collect<OrganisationMembre>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
             headers: {  },
             params: {  },
             body: {}

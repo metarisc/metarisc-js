@@ -7,7 +7,7 @@ import { Dossier } from '../model/Dossier';
 import { PostDossierRequest } from '../model/PostDossierRequest';
 import { Workflow } from '../model/Workflow';
 import { Tag } from '../model/Tag';
-import { Document } from '../model/Document';
+import { PieceJointe } from '../model/PieceJointe';
 
 export class DossiersAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -72,10 +72,10 @@ export class DossiersAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    paginateDossierWorkflowDocuments(dossierId: string, workflowId: string, page?: number, perPage?: number): Collection<Document>
+    paginateDossierWorkflowDocuments(dossierId: string, workflowId: string, page?: number, perPage?: number): Collection<PieceJointe>
     {
         const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
-        return this.collect<Document>({
+        return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}/documents'),
             headers: {  },

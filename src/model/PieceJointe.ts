@@ -3,5 +3,12 @@ export type PieceJointe = {
     'url'?: string;
     'nom'?: string;
     'description'?: string;
-    'type'?: string;
+    'type'?: TypeEnum;
 };
+
+export enum TypeEnum {
+    Photo = 'photo',
+    Plan = 'plan',
+    Annexe = 'annexe',
+    Divers = 'divers'
+}

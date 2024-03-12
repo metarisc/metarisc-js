@@ -2,6 +2,10 @@ import { Core, MetariscConfig } from "./core";
 import { Tus } from "./tus";
 import { Client } from "./client";
 
+import { AnomaliesAPI } from './api/AnomaliesAPI';
+
+import { CommissionsAPI } from './api/CommissionsAPI';
+
 import { DossiersAPI } from './api/DossiersAPI';
 
 import { EvenementsAPI } from './api/EvenementsAPI';
@@ -18,7 +22,11 @@ import { PEIAPI } from './api/PEIAPI';
 
 import { PingAPI } from './api/PingAPI';
 
+import { PrescriptionsAPI } from './api/PrescriptionsAPI';
+
 import { SupportAPI } from './api/SupportAPI';
+
+import { TournesDECIAPI } from './api/TournesDECIAPI';
 
 import { UtilisateursAPI } from './api/UtilisateursAPI';
 
@@ -27,19 +35,27 @@ export class Metarisc extends Core
     
     public utilisateurs?: UtilisateursAPI;
     
-    public feed?: FeedAPI;
-    
     public dossiers?: DossiersAPI;
-    
-    public organisations?: OrganisationsAPI;
-    
-    public pei?: PEIAPI;
     
     public moi?: MoiAPI;
     
     public ping?: PingAPI;
     
+    public anomalies?: AnomaliesAPI;
+    
+    public feed?: FeedAPI;
+    
+    public tournees_deci?: TournesDECIAPI;
+    
+    public organisations?: OrganisationsAPI;
+    
+    public pei?: PEIAPI;
+    
+    public commissions?: CommissionsAPI;
+    
     public evenements?: EvenementsAPI;
+    
+    public prescriptions?: PrescriptionsAPI;
     
     public support?: SupportAPI;
     
@@ -59,17 +75,8 @@ export class Metarisc extends Core
                     case 'utilisateurs':
                         return new UtilisateursAPI(config, tmpClient);
                     
-                    case 'feed':
-                        return new FeedAPI(config, tmpClient);
-                    
                     case 'dossiers':
                         return new DossiersAPI(config, tmpClient);
-                    
-                    case 'organisations':
-                        return new OrganisationsAPI(config, tmpClient);
-                    
-                    case 'pei':
-                        return new PEIAPI(config, tmpClient);
                     
                     case 'moi':
                         return new MoiAPI(config, tmpClient);
@@ -77,8 +84,29 @@ export class Metarisc extends Core
                     case 'ping':
                         return new PingAPI(config, tmpClient);
                     
+                    case 'anomalies':
+                        return new AnomaliesAPI(config, tmpClient);
+                    
+                    case 'feed':
+                        return new FeedAPI(config, tmpClient);
+                    
+                    case 'tournees_deci':
+                        return new TournesDECIAPI(config, tmpClient);
+                    
+                    case 'organisations':
+                        return new OrganisationsAPI(config, tmpClient);
+                    
+                    case 'pei':
+                        return new PEIAPI(config, tmpClient);
+                    
+                    case 'commissions':
+                        return new CommissionsAPI(config, tmpClient);
+                    
                     case 'evenements':
                         return new EvenementsAPI(config, tmpClient);
+                    
+                    case 'prescriptions':
+                        return new PrescriptionsAPI(config, tmpClient);
                     
                     case 'support':
                         return new SupportAPI(config, tmpClient);
