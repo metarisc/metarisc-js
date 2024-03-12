@@ -13,7 +13,7 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Retourne un utilisateur Metarisc.
-     * @param utilisateurId 
+     * @param utilisateurId Identifiant unique de l'utilisateur
      */
     async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
     {
@@ -61,7 +61,7 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Retourne une liste des adresses mail publiques d'un utilisateur.
-     * @param utilisateurId 
+     * @param utilisateurId Identifiant unique de l'utilisateur
      */
     paginateUtilisateurEmails(utilisateurId: string): Collection<Email>
     {
