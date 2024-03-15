@@ -76,7 +76,7 @@ export class Client {
 					await this.refreshToken();
 				}
 				catch(e) {
-					throw new SessionExpiredError('La session utilisateur a expirée')
+					throw new SessionExpiredError('La session utilisateur a expirée. ' + e.message);
 				}
 			}
 			return config;
