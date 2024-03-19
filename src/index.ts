@@ -13,6 +13,8 @@ export { CommissionsAPI } from './api/CommissionsAPI';
 
 export { DossiersAPI } from './api/DossiersAPI';
 
+export { ERPAPI } from './api/ERPAPI';
+
 export { EvenementsAPI } from './api/EvenementsAPI';
 
 export { FeedAPI } from './api/FeedAPI';

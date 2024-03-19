@@ -5,6 +5,7 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Utilisateur } from '../model/Utilisateur';
 import { Email } from '../model/Email';
+import { OrganisationMembre } from '../model/OrganisationMembre';
 
 export class UtilisateursAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -62,15 +63,35 @@ export class UtilisateursAPI extends Core {
     /**
      * Retourne une liste des adresses mail publiques d'un utilisateur.
      * @param utilisateurId Identifiant unique de l'utilisateur
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
      */
-    paginateUtilisateurEmails(utilisateurId: string): Collection<Email>
+    paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number): Collection<Email>
     {
         const pathVariable = { 'utilisateur_id': utilisateurId };
         return this.collect<Email>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: {}
+        });
+    }
+    
+    /**
+     * Retourne une liste d'organisations dont l'utilisateur est membre.
+     * @param utilisateurId Identifiant unique de l'utilisateur
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
+     */
+    paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
+    {
+        const pathVariable = { 'utilisateur_id': utilisateurId };
+        return this.collect<OrganisationMembre>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
