@@ -1,8 +1,8 @@
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
-import type { AxiosResponse } from "axios";
 import { Client } from "../client";
-import { PaginateErp200Response } from '../model/PaginateErp200Response';
+import { Collection } from "../collection";
+import { ERP } from '../model/ERP';
 
 export class ERPAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -14,10 +14,10 @@ export class ERPAPI extends Core {
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
      */
-    async paginateErp(page?: number, perPage?: number): Promise<AxiosResponse<PaginateErp200Response>>
+    paginateErp(page?: number, perPage?: number): Collection<ERP>
     {
         const pathVariable = {  };
-        return this.request({
+        return this.collect<ERP>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
             headers: {  },
