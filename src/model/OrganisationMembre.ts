@@ -1,6 +1,9 @@
+import { Organisation } from '../../src/model/Organisation';
+import { Utilisateur } from '../../src/model/Utilisateur';
+
 export type OrganisationMembre = {
-    'organisation_id'?: string;
-    'utilisateur_id'?: string;
+    'organisation'?: Organisation;
+    'utilisateur'?: Utilisateur;
     'date_integration'?: Date;
     'role'?: RoleEnum;
 };

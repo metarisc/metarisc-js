@@ -31,15 +31,17 @@ export class OrganisationsAPI extends Core {
     /**
      * Récupération de la liste des géo-services d'une organisation.
      * @param orgId Identifiant unique de l'Organisation
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
      */
-    paginateOrganisationGeoservices(orgId: string): Collection<OrganisationGeoservice>
+    paginateOrganisationGeoservices(orgId: string, page?: number, perPage?: number): Collection<OrganisationGeoservice>
     {
         const pathVariable = { 'org_id': orgId };
         return this.collect<OrganisationGeoservice>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
@@ -47,15 +49,17 @@ export class OrganisationsAPI extends Core {
     /**
      * Récupération de la liste des membres d'une organisation.
      * @param orgId Identifiant unique de l'Organisation
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
      */
-    paginateOrganisationMembres(orgId: string): Collection<OrganisationMembre>
+    paginateOrganisationMembres(orgId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
     {
         const pathVariable = { 'org_id': orgId };
         return this.collect<OrganisationMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }

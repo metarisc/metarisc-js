@@ -11,15 +11,17 @@ export class FeedAPI extends Core {
     
     /**
      * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
      */
-    paginateFeedMessages(): Collection<FeedMessage>
+    paginateFeedMessages(page?: number, perPage?: number): Collection<FeedMessage>
     {
         const pathVariable = {  };
         return this.collect<FeedMessage>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }

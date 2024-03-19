@@ -47,30 +47,34 @@ export class TournesDECIAPI extends Core {
     /**
      * Récupération de la liste des contrôles PEI liés à la tournée DECI.
      * @param tourneeDeciId Identifiant de la tournée DECI
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
      */
-    paginateTourneeDeciPei(tourneeDeciId: string): Collection<TourneeDeciPei>
+    paginateTourneeDeciPei(tourneeDeciId: string, page?: number, perPage?: number): Collection<TourneeDeciPei>
     {
         const pathVariable = { 'tournee_deci_id': tourneeDeciId };
         return this.collect<TourneeDeciPei>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
     
     /**
      * Liste des tournées DECI.
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
      */
-    paginateTourneesDeci(): Collection<TourneeDeci>
+    paginateTourneesDeci(page?: number, perPage?: number): Collection<TourneeDeci>
     {
         const pathVariable = {  };
         return this.collect<TourneeDeci>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }

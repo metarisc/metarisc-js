@@ -1,6 +1,8 @@
+import { Organisation } from '../../src/model/Organisation';
+
 export type OrganisationGeoservice = {
     'id'?: string;
-    'organisation_id'?: string;
+    'organisation'?: Organisation;
     'nom'?: string;
     'type'?: TypeEnum;
     'url'?: string;

@@ -11,15 +11,17 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Liste des prescriptions.
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
      */
-    paginatePrescriptions(): Collection<Prescription>
+    paginatePrescriptions(page?: number, perPage?: number): Collection<Prescription>
     {
         const pathVariable = {  };
         return this.collect<Prescription>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
         });
     }
