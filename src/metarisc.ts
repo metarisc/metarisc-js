@@ -8,6 +8,8 @@ import { CommissionsAPI } from './api/CommissionsAPI';
 
 import { DossiersAPI } from './api/DossiersAPI';
 
+import { ERPAPI } from './api/ERPAPI';
+
 import { EvenementsAPI } from './api/EvenementsAPI';
 
 import { FeedAPI } from './api/FeedAPI';
@@ -34,6 +36,8 @@ export class Metarisc extends Core
 {
     
     public utilisateurs?: UtilisateursAPI;
+    
+    public erp?: ERPAPI;
     
     public dossiers?: DossiersAPI;
     
@@ -74,6 +78,9 @@ export class Metarisc extends Core
                     
                     case 'utilisateurs':
                         return new UtilisateursAPI(config, tmpClient);
+                    
+                    case 'erp':
+                        return new ERPAPI(config, tmpClient);
                     
                     case 'dossiers':
                         return new DossiersAPI(config, tmpClient);
