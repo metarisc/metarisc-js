@@ -23,6 +23,8 @@ export enum AuthMethod {
 	AUTHORIZATION_CODE,
 }
 
+export type RefreshTokenCallbackFn = (response: RefreshResponse) => void;
+
 export class Client {
 	private axios: AxiosInstance;
 
@@ -30,12 +32,17 @@ export class Client {
 	private access_token?: string;
 	private refresh_token?: string;
 
+	refreshTokenCallback?: RefreshTokenCallbackFn;
+
 	constructor(config : MetariscConfig) {
 		// Paramétrage OAuth2
 		this.oauth2 = new OAuth2({
 			client_id: config.client_id,
 			client_secret: config.client_secret,
 		});
+
+		// Recupération de la fonction refresh token callback
+		this.refreshTokenCallback = config.onRefreshToken;
 
 		// Initialisation du client HTTP
 		this.axios = axios.create({
@@ -109,6 +116,9 @@ export class Client {
 			const refreshResponse = await this.oauth2.refreshToken(this.refresh_token);
 			this.setAccessToken(refreshResponse.token_type + " " + refreshResponse.access_token);
 			this.setRefreshToken(refreshResponse.refresh_token);
+			if (this.refreshTokenCallback) {
+				this.refreshTokenCallback(refreshResponse);
+			}
 			return refreshResponse;
 		} catch (e) {
 			throw new Error('Erreur pendant la tentative de refresh du token: ' + e.message);

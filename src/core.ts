@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { AuthMethod, Client } from "./client";
+import { AuthMethod, Client, RefreshTokenCallbackFn } from "./client";
 import { Collection } from "./collection";
 import { GrantResponse, RefreshResponse } from "./auth/oauth2";
 
@@ -15,6 +15,7 @@ export interface MetariscConfig {
     metarisc_url?: string;
     client_id: string;
     client_secret?: string;
+    onRefreshToken?: RefreshTokenCallbackFn,
 }
 
 export interface OAuth2Options {
