@@ -1,6 +1,8 @@
-import { Core, MetariscConfig } from "./core";
-import { Upload } from 'tus-js-client';
-import { Client } from "./client";
+import { Core, MetariscConfig } from './core';
+import { HttpRequest, Upload } from 'tus-js-client';
+import { Client } from './client';
+import { Utils } from './utils';
+import { SessionExpiredError } from './error/SessionExpiredError';
 
 export class Tus extends Core
 {
@@ -17,8 +19,26 @@ export class Tus extends Core
         fileName: file.name,
         filetype: file.type,
       },
-      headers: { 
-        Authorization: this.client.getAccessToken() ?? '',
+      onBeforeRequest: async (request: HttpRequest) => {
+        const access_token = this.client.getAccessToken();
+        if (access_token && Utils.tokenExpired(access_token)) {
+          try {
+            await this.refreshToken();
+            request.setHeader(
+              "Authorization",
+              this.client.getAccessToken() ?? ""
+            );
+          } catch (e) {
+            throw new SessionExpiredError(
+              "La session utilisateur a expirée. " + e.message
+            );
+          }
+        } else {
+          request.setHeader(
+            "Authorization",
+            this.client.getAccessToken() ?? ""
+          );
+        }
       },
       onError: (error) => {
         errorFn(error);
