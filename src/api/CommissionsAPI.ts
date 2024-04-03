@@ -34,10 +34,10 @@ export class CommissionsAPI extends Core {
      * Récupération des détails de la commission.
      * @param commissionId Identifiant unique de la commission
      */
-    getCommission(commissionId: string): Collection<Commission>
+    async getCommission(commissionId: string): Promise<AxiosResponse<Commission>>
     {
         const pathVariable = { 'commission_id': commissionId };
-        return this.collect<Commission>({
+        return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
             headers: {  },
