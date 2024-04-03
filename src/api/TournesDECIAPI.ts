@@ -3,6 +3,7 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
+import { PostTourneeDeciRequest } from '../model/PostTourneeDeciRequest';
 import { TourneeDeci } from '../model/TourneeDeci';
 import { TourneeDeciPei } from '../model/TourneeDeciPei';
 
@@ -76,6 +77,22 @@ export class TournesDECIAPI extends Core {
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
+        });
+    }
+    
+    /**
+     * Ajout d'une nouvelle tournée DECI.
+     * @param postTourneeDeciRequest 
+     */
+    async postTourneeDeci(postTourneeDeciRequest?: PostTourneeDeciRequest): Promise<AxiosResponse<TourneeDeci>>
+    {
+        const pathVariable = {  };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
+            headers: {  },
+            params: {  },
+            body:  { 'libelle': postTourneeDeciRequest?.libelle, 'description': postTourneeDeciRequest?.description } 
         });
     }
     

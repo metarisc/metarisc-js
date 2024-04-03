@@ -4,6 +4,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { PEI } from '../model/PEI';
+import { PostPeiRequest } from '../model/PostPeiRequest';
 import { Contact } from '../model/Contact';
 import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 import { PieceJointe } from '../model/PieceJointe';
@@ -97,6 +98,22 @@ export class PEIAPI extends Core {
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
+        });
+    }
+    
+    /**
+     * Ajout d'un PEI.
+     * @param postPeiRequest 
+     */
+    async postPei(postPeiRequest?: PostPeiRequest): Promise<AxiosResponse<PEI>>
+    {
+        const pathVariable = {  };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/pei'),
+            headers: {  },
+            params: {  },
+            body:  { 'implantation': postPeiRequest?.implantation, 'numero': postPeiRequest?.numero, 'numero_compteur': postPeiRequest?.numero_compteur, 'numero_serie_appareil': postPeiRequest?.numero_serie_appareil } 
         });
     }
     
