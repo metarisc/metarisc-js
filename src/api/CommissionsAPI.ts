@@ -6,10 +6,28 @@ import { Collection } from "../collection";
 import { Commission } from '../model/Commission';
 import { PassageCommission } from '../model/PassageCommission';
 import { PassageCommissionDossier } from '../model/PassageCommissionDossier';
+import { PostCommissionDateDossierRequest } from '../model/PostCommissionDateDossierRequest';
+import { PostCommissionRequest } from '../model/PostCommissionRequest';
 
 export class CommissionsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
+    }
+    
+    /**
+     * Suppression d'une commission.
+     * @param commissionId Identifiant unique de la commission
+     */
+    async deleteCommission(commissionId: string): Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'commission_id': commissionId };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
     }
     
     /**
@@ -96,6 +114,40 @@ export class CommissionsAPI extends Core {
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
+        });
+    }
+    
+    /**
+     * Ajoute une commission.
+     * @param postCommissionRequest 
+     */
+    async postCommission(postCommissionRequest?: PostCommissionRequest): Promise<AxiosResponse<Commission>>
+    {
+        const pathVariable = {  };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/commissions'),
+            headers: {  },
+            params: {  },
+            body:  { 'type': postCommissionRequest?.type, 'libelle': postCommissionRequest?.libelle } 
+        });
+    }
+    
+    /**
+     * Ajout d'un dossier à l'ordre du jour d'un passage en commission.
+     * @param commissionId Identifiant unique de la commission
+     * @param dateId Identifiant unique du passage en commission
+     * @param postCommissionDateDossierRequest 
+     */
+    async postCommissionDateDossier(commissionId: string, dateId: string, postCommissionDateDossierRequest?: PostCommissionDateDossierRequest): Promise<AxiosResponse<PassageCommissionDossier>>
+    {
+        const pathVariable = { 'commission_id': commissionId, 'date_id': dateId };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}/ordre_du_jour'),
+            headers: {  },
+            params: {  },
+            body:  { 'dossier_id': postCommissionDateDossierRequest?.dossier_id } 
         });
     }
     

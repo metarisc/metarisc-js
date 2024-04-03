@@ -47,6 +47,8 @@ export class Metarisc extends Core
     
     public anomalies?: AnomaliesAPI;
     
+    public supports_reglementaires?: PrescriptionsAPI;
+    
     public feed?: FeedAPI;
     
     public tournees_deci?: TournesDECIAPI;
@@ -93,6 +95,9 @@ export class Metarisc extends Core
                     
                     case 'anomalies':
                         return new AnomaliesAPI(config, tmpClient);
+                    
+                    case 'supports_reglementaires':
+                        return new PrescriptionsAPI(config, tmpClient);
                     
                     case 'feed':
                         return new FeedAPI(config, tmpClient);
