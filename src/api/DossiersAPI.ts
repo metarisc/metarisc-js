@@ -48,6 +48,42 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Récupération de la liste des contacts d'un dossier.
+     * @param dossierId Identifiant unique du Dossier
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
+     */
+    paginateDossierContacts(dossierId: string, page?: number, perPage?: number): Collection<Workflow>
+    {
+        const pathVariable = { 'dossier_id': dossierId };
+        return this.collect<Workflow>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: {}
+        });
+    }
+    
+    /**
+     * Récupération de la liste des documents d'un dossier.
+     * @param dossierId Identifiant unique du Dossier
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
+     */
+    paginateDossierDocuments(dossierId: string, page?: number, perPage?: number): Collection<Workflow>
+    {
+        const pathVariable = { 'dossier_id': dossierId };
+        return this.collect<Workflow>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: {}
+        });
+    }
+    
+    /**
      * Récupération de la liste des tags d'un dossier.
      * @param dossierId Identifiant unique du Dossier
      * @param page Numéro de page
@@ -132,7 +168,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
             headers: {  },
             params: {  },
-            body:  { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': dossier?.date_de_creation, 'createur': dossier?.createur, 'application_utilisee': dossier?.application_utilisee, 'statut': dossier?.statut } 
+            body:  { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': dossier?.date_de_creation, 'createur': dossier?.createur, 'application_utilisee_nom': dossier?.application_utilisee_nom, 'statut': dossier?.statut, 'objet': dossier?.objet, 'pei': dossier?.pei, 'erp': dossier?.erp, 'workflow_actif': dossier?.workflow_actif } 
         });
     }
     

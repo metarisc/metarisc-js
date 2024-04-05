@@ -113,7 +113,7 @@ export class PEIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/pei'),
             headers: {  },
             params: {  },
-            body:  { 'implantation': postPeiRequest?.implantation, 'numero': postPeiRequest?.numero, 'numero_compteur': postPeiRequest?.numero_compteur, 'numero_serie_appareil': postPeiRequest?.numero_serie_appareil } 
+            body:  { 'implantation': postPeiRequest?.implantation, 'numero': postPeiRequest?.numero, 'numero_compteur': postPeiRequest?.numero_compteur, 'numero_serie_appareil': postPeiRequest?.numero_serie_appareil, 'descriptif_technique': postPeiRequest?.descriptif_technique } 
         });
     }
     

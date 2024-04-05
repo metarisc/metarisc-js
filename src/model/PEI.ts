@@ -1,5 +1,5 @@
 import { AdressePostale } from '../../src/model/AdressePostale';
-import { DescriptifTechniqueDECIBase } from '../../src/model/DescriptifTechniqueDECIBase';
+import { DescriptifTechniqueDECI } from '../../src/model/DescriptifTechniqueDECI';
 import { PEIReferencesExterieuresInner } from '../../src/model/PEIReferencesExterieuresInner';
 
 export type PEI = {
@@ -7,7 +7,7 @@ export type PEI = {
     'date_de_realisation'?: Date;
     'date_de_derniere_mise_a_jour'?: Date;
     'references_exterieures'?: Array<PEIReferencesExterieuresInner>;
-    'descriptif_technique'?: DescriptifTechniqueDECIBase;
+    'descriptif_technique'?: DescriptifTechniqueDECI;
     'implantation'?: AdressePostale;
     'genre'?: GenreEnum;
     'numero'?: string;

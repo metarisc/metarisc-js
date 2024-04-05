@@ -1,8 +1,10 @@
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
+import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { FeedMessage } from '../model/FeedMessage';
+import { PostMessageRequest } from '../model/PostMessageRequest';
 
 export class FeedAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -23,6 +25,22 @@ export class FeedAPI extends Core {
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}
+        });
+    }
+    
+    /**
+     * Ajoute un message dans le feed général.
+     * @param postMessageRequest 
+     */
+    async postMessage(postMessageRequest?: PostMessageRequest): Promise<AxiosResponse<FeedMessage>>
+    {
+        const pathVariable = {  };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/feed'),
+            headers: {  },
+            params: {  },
+            body:  { 'type': postMessageRequest?.type, 'titre': postMessageRequest?.titre, 'texte': postMessageRequest?.texte } 
         });
     }
     
