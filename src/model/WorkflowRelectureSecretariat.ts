@@ -1,9 +1,7 @@
-import { Dossier } from '../../src/model/Dossier';
-
 import { WorkflowBase } from '../model/WorkflowBase';
 
-export type WorkflowDossiersLies = WorkflowBase & { 
-    'dossier_lie'?: Array<Dossier>;
+export type WorkflowRelectureSecretariat = WorkflowBase & { 
+    'est_relu'?: boolean;
 };
 
 export enum EtatEnum {

@@ -1,17 +1,27 @@
-import { Type } from '../../src/model/Type';
+import { ERP } from '../../src/model/ERP';
+import { PEI } from '../../src/model/PEI';
+import { Utilisateur } from '../../src/model/Utilisateur';
+import { Workflow } from '../../src/model/Workflow';
 
-/**
-* Un dossier représente la vie d\'un POI
-*/
 export type Dossier = {
     'id'?: string;
-    'type'?: Type;
+    'type'?: TypeEnum;
     'description'?: string;
     'date_de_creation'?: Date;
-    'createur'?: string;
-    'application_utilisee'?: string;
+    'createur'?: Utilisateur;
+    'application_utilisee_nom'?: string;
     'statut'?: StatutEnum;
+    'objet'?: string;
+    'pei'?: PEI;
+    'erp'?: ERP;
+    'workflow_actif'?: Workflow;
 };
+
+export enum TypeEnum {
+    DecideclarationPei = 'deci:declaration_pei',
+    ErpautorisationDeTravaux = 'erp:autorisation_de_travaux',
+    ErpvisitePeriodique = 'erp:visite_periodique'
+}
 
 export enum StatutEnum {
     Ouvert = 'OUVERT',

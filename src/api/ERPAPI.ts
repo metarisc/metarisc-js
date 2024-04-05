@@ -4,6 +4,8 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { ERP } from '../model/ERP';
+import { Contact } from '../model/Contact';
+import { PieceJointe } from '../model/PieceJointe';
 
 export class ERPAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -37,6 +39,42 @@ export class ERPAPI extends Core {
         return this.collect<ERP>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: {}
+        });
+    }
+    
+    /**
+     * Récupération de la liste des contacts d'un ERP.
+     * @param erpId Identifiant unique de l'ERP
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
+     */
+    paginateErpContacts(erpId: string, page?: number, perPage?: number): Collection<Contact>
+    {
+        const pathVariable = { 'erp_id': erpId };
+        return this.collect<Contact>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: {}
+        });
+    }
+    
+    /**
+     * Récupération de la liste des documents d'un ERP.
+     * @param erpId Identifiant unique de l'ERP
+     * @param page Numéro de page
+     * @param perPage Nombre de résultats demandé
+     */
+    paginateErpDocuments(erpId: string, page?: number, perPage?: number): Collection<PieceJointe>
+    {
+        const pathVariable = { 'erp_id': erpId };
+        return this.collect<PieceJointe>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: {}

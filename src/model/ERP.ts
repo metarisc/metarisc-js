@@ -1,4 +1,5 @@
 import { AdressePostale } from '../../src/model/AdressePostale';
+import { DescriptifTechniqueERP } from '../../src/model/DescriptifTechniqueERP';
 import { PEIReferencesExterieuresInner } from '../../src/model/PEIReferencesExterieuresInner';
 
 /**
@@ -10,4 +11,5 @@ export type ERP = {
     'date_de_derniere_mise_a_jour'?: Date;
     'references_exterieures'?: Array<PEIReferencesExterieuresInner>;
     'implantation'?: AdressePostale;
+    'descriptif_technique'?: DescriptifTechniqueERP;
 };
