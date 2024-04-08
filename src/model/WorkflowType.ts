@@ -1,7 +1,6 @@
-import { WorkflowTypeWorkflow } from '../../src/model/WorkflowTypeWorkflow';
+import { WorkflowStep } from '../../src/model/WorkflowStep';
 
 export type WorkflowType = {
-    'name'?: string;
-    'workflow'?: WorkflowTypeWorkflow;
-    'needs'?: Array<string>;
+    'dossier_type'?: string;
+    'steps'?: Array<WorkflowStep>;
 };

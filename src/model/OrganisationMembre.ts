@@ -9,5 +9,7 @@ export type OrganisationMembre = {
 };
 
 export enum RoleEnum {
-    Membre = 'membre'
+    Membre = 'membre',
+    Invite = 'invite',
+    InvitationEnCours = 'invitation_en_cours'
 }
