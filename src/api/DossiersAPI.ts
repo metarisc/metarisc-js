@@ -5,6 +5,7 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Dossier } from '../model/Dossier';
 import { PostDossierRequest } from '../model/PostDossierRequest';
+import { UpdateDossierWorkflowsDetailsRequest } from '../model/UpdateDossierWorkflowsDetailsRequest';
 import { Workflow } from '../model/Workflow';
 import { Tag } from '../model/Tag';
 import { PieceJointe } from '../model/PieceJointe';
@@ -185,6 +186,24 @@ export class DossiersAPI extends Core {
             headers: {  },
             params: {  },
             body:  { 'titre': postDossierRequest?.titre, 'description': postDossierRequest?.description, 'type': postDossierRequest?.type } 
+        });
+    }
+    
+    /**
+     * Mise à jour d'un workflow.
+     * @param dossierId Identifiant unique du Dossier
+     * @param workflowId Identifiant unique du Workflow
+     * @param updateDossierWorkflowsDetailsRequest 
+     */
+    async updateDossierWorkflowsDetails(dossierId: string, workflowId: string, updateDossierWorkflowsDetailsRequest?: UpdateDossierWorkflowsDetailsRequest): Promise<AxiosResponse<Workflow>>
+    {
+        const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}'),
+            headers: {  },
+            params: {  },
+            body:  { 'est_valide': updateDossierWorkflowsDetailsRequest?.est_valide, 'passage_commission_id': updateDossierWorkflowsDetailsRequest?.passage_commission_id, 'avis_favorable': updateDossierWorkflowsDetailsRequest?.avis_favorable, 'commission_id': updateDossierWorkflowsDetailsRequest?.commission_id, 'date_arrivee_secretariat': updateDossierWorkflowsDetailsRequest?.date_arrivee_secretariat, 'analyse_de_risque': updateDossierWorkflowsDetailsRequest?.analyse_de_risque, 'avis_rapporteur': updateDossierWorkflowsDetailsRequest?.avis_rapporteur, 'descriptif_effectifs': updateDossierWorkflowsDetailsRequest?.descriptif_effectifs, 'facteur_dangerosite': updateDossierWorkflowsDetailsRequest?.facteur_dangerosite, 'derogations': updateDossierWorkflowsDetailsRequest?.derogations, 'prescriptions': updateDossierWorkflowsDetailsRequest?.prescriptions, 'mesures_compensatoires': updateDossierWorkflowsDetailsRequest?.mesures_compensatoires, 'mesures_complementaires': updateDossierWorkflowsDetailsRequest?.mesures_complementaires, 'observations': updateDossierWorkflowsDetailsRequest?.observations, 'termine': updateDossierWorkflowsDetailsRequest?.termine } 
         });
     }
     
