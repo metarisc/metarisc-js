@@ -173,7 +173,7 @@ export class DossiersAPI extends Core {
     }
     
     /**
-     * TODO : Création d'un nouveau dossier.
+     * Création d'un nouveau dossier.
      * @param postDossierRequest 
      */
     async postDossier(postDossierRequest?: PostDossierRequest): Promise<AxiosResponse<Dossier>>
@@ -184,7 +184,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
             headers: {  },
             params: {  },
-            body:  { 'titre': postDossierRequest?.titre, 'description': postDossierRequest?.description, 'workflows': postDossierRequest?.workflows } 
+            body:  { 'titre': postDossierRequest?.titre, 'description': postDossierRequest?.description, 'type': postDossierRequest?.type } 
         });
     }
     

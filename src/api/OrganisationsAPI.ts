@@ -4,6 +4,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Organisation } from '../model/Organisation';
+import { WorkflowType } from '../model/WorkflowType';
 import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
 import { OrganisationMembre } from '../model/OrganisationMembre';
 
@@ -22,6 +23,22 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
+    }
+    
+    /**
+     * Retourne le référentiel du paramétrage des workflows pour l'organisation.
+     * @param orgId Identifiant unique de l'Organisation
+     */
+    paginateOrganisationDossiersWorkflowsSuites(orgId: string): Collection<WorkflowType>
+    {
+        const pathVariable = { 'org_id': orgId };
+        return this.collect<WorkflowType>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
             headers: {  },
             params: {  },
             body: {}
