@@ -7,6 +7,7 @@ import { Commission } from '../model/Commission';
 import { PassageCommission } from '../model/PassageCommission';
 import { PassageCommissionDossier } from '../model/PassageCommissionDossier';
 import { PostCommissionDateDossierRequest } from '../model/PostCommissionDateDossierRequest';
+import { PostCommissionDateRequest } from '../model/PostCommissionDateRequest';
 import { PostCommissionRequest } from '../model/PostCommissionRequest';
 
 export class CommissionsAPI extends Core {
@@ -130,6 +131,24 @@ export class CommissionsAPI extends Core {
             headers: {  },
             params: {  },
             body:  { 'type': postCommissionRequest?.type, 'libelle': postCommissionRequest?.libelle } 
+        });
+    }
+    
+    /**
+     * Ajout d'une date de passage en commission.
+     * @param commissionId Identifiant unique de la commission
+     * @param dateId Identifiant unique du passage en commission
+     * @param postCommissionDateRequest 
+     */
+    async postCommissionDate(commissionId: string, dateId: string, postCommissionDateRequest?: PostCommissionDateRequest): Promise<AxiosResponse<PassageCommission>>
+    {
+        const pathVariable = { 'commission_id': commissionId, 'date_id': dateId };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}'),
+            headers: {  },
+            params: {  },
+            body:  { 'libelle': postCommissionDateRequest?.libelle, 'type': postCommissionDateRequest?.type, 'date_de_debut': postCommissionDateRequest?.date_de_debut, 'date_de_fin': postCommissionDateRequest?.date_de_fin } 
         });
     }
     
