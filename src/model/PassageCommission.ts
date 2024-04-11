@@ -3,6 +3,7 @@ export type PassageCommission = {
     'date_debut'?: Date;
     'date_fin'?: Date;
     'type'?: TypeEnum;
+    'libelle'?: string;
 };
 
 export enum TypeEnum {

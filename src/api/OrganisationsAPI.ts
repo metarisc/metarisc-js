@@ -3,6 +3,7 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
+import { GetOrganisationReglesDeci200Response } from '../model/GetOrganisationReglesDeci200Response';
 import { Organisation } from '../model/Organisation';
 import { WorkflowType } from '../model/WorkflowType';
 import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
@@ -23,6 +24,22 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
+    }
+    
+    /**
+     * Ensemble de règles utilisées pour le calcul de la conformité et de la performance DECI.
+     * @param orgId Identifiant unique de l'Organisation
+     */
+    async getOrganisationReglesDeci(orgId: string): Promise<AxiosResponse<GetOrganisationReglesDeci200Response>>
+    {
+        const pathVariable = { 'org_id': orgId };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
             headers: {  },
             params: {  },
             body: {}
