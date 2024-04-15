@@ -8,6 +8,7 @@ export type TourneeDeciPei = {
     'essais_engin_utilise'?: EssaisEnginUtiliseEnum;
     'pei'?: PEI;
     'est_controle'?: boolean;
+    'ordre'?: number;
 };
 
 export enum EssaisEnginUtiliseEnum {
