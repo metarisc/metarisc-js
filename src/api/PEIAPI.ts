@@ -34,15 +34,16 @@ export class PEIAPI extends Core {
      * Récupération de la liste des Points d'Eau Incendie (PEI) selon des critères de recherche.
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
+     * @param geojson Filtre sur la position des PEI
      */
-    paginatePei(page?: number, perPage?: number): Collection<PEI>
+    paginatePei(page?: number, perPage?: number, geojson?: string): Collection<PEI>
     {
         const pathVariable = {  };
         return this.collect<PEI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
             headers: {  },
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'geojson': geojson },
             body: {}
         });
     }

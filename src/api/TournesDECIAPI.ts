@@ -48,6 +48,22 @@ export class TournesDECIAPI extends Core {
     }
     
     /**
+     * Génération d'un livret de tournée pour une tournée DECI.
+     * @param tourneeDeciId Identifiant de la tournée DECI
+     */
+    async getTourneeDeciLivretDeTournee(tourneeDeciId: string): Promise<AxiosResponse<any>>
+    {
+        const pathVariable = { 'tournee_deci_id': tourneeDeciId };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/livret_de_tournee'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
+    }
+    
+    /**
      * Récupération des détails liés au contrôle d'un PEI d'une tournée.
      * @param tourneeDeciId Identifiant de la tournée DECI
      * @param peiId Identifiant du PEI lié au contrôle
@@ -130,7 +146,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei'),
             headers: {  },
             params: {  },
-            body:  { 'pei_id': postTourneeDeciPeiRequest?.pei_id } 
+            body:  { 'pei_id': postTourneeDeciPeiRequest?.pei_id, 'ordre': postTourneeDeciPeiRequest?.ordre } 
         });
     }
     
@@ -148,7 +164,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei/{pei_id}'),
             headers: {  },
             params: {  },
-            body:  { 'liste_anomalies': updateTourneeDeciPeiRequest?.liste_anomalies, 'engin_utilisé': updateTourneeDeciPeiRequest?.engin_utilisé } 
+            body:  { 'liste_anomalies': updateTourneeDeciPeiRequest?.liste_anomalies, 'engin_utilisé': updateTourneeDeciPeiRequest?.engin_utilisé, 'ordre': updateTourneeDeciPeiRequest?.ordre, 'date_du_controle': updateTourneeDeciPeiRequest?.date_du_controle } 
         });
     }
     
