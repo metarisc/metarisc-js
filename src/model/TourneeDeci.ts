@@ -5,4 +5,6 @@ export type TourneeDeci = {
     'date_creation'?: Date;
     'pourcentage'?: number;
     'est_terminee'?: boolean;
+    'date_de_debut'?: Date;
+    'date_de_fin'?: Date;
 };
