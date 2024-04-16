@@ -46,15 +46,16 @@ export class AnomaliesAPI extends Core {
      * Liste des anomalies.
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
+     * @param texte Filtre sur le texte
      */
-    paginateAnomalies(page?: number, perPage?: number): Collection<AnomalieDECI>
+    paginateAnomalies(page?: number, perPage?: number, texte?: string): Collection<AnomalieDECI>
     {
         const pathVariable = {  };
         return this.collect<AnomalieDECI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
             headers: {  },
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'texte': texte },
             body: {}
         });
     }
