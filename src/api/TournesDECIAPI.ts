@@ -15,6 +15,23 @@ export class TournesDECIAPI extends Core {
     }
     
     /**
+     * Suppression du contrôle PEI de la tournée DECI.
+     * @param tourneeDeciId Identifiant de la tournée DECI
+     * @param peiId Identifiant du PEI lié au contrôle
+     */
+    async deleteTourneeDeciPei(tourneeDeciId: string, peiId: string): Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'tournee_deci_id': tourneeDeciId, 'pei_id': peiId };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei/{pei_id}'),
+            headers: {  },
+            params: {  },
+            body: {}
+        });
+    }
+    
+    /**
      * Récupération des détails de la tournée DECI.
      * @param tourneeDeciId Identifiant de la tournée DECI
      */
@@ -69,15 +86,17 @@ export class TournesDECIAPI extends Core {
      * Liste des tournées DECI.
      * @param page Numéro de page
      * @param perPage Nombre de résultats demandé
+     * @param libelle Filtre sur le libellé
+     * @param periode Filtre sur les dates
      */
-    paginateTourneesDeci(page?: number, perPage?: number): Collection<TourneeDeci>
+    paginateTourneesDeci(page?: number, perPage?: number, libelle?: string, periode?: string): Collection<TourneeDeci>
     {
         const pathVariable = {  };
         return this.collect<TourneeDeci>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
             headers: {  },
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'libelle': libelle, 'periode': periode },
             body: {}
         });
     }
