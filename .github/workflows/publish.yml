@@ -18,9 +18,9 @@ jobs:
 
       - name: Bump package version
         run: |
-          npm version prerelease --preid alpha
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
+          npm version prerelease --preid alpha
           git push origin main --follow-tags --force
       
       - run: npm publish --access=public
