@@ -16,6 +16,10 @@ jobs:
         with:
           registry-url: 'https://registry.npmjs.org'
 
+      - run: npm install
+
+      - run: npm run compile
+
       - name: Bump package version
         run: |
           git config --global user.name github-actions
