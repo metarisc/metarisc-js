@@ -1,0 +1,28 @@
+name: "NPM Publish"
+
+on: workflow_dispatch
+
+jobs:
+
+  build:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Bump package version
+        run: |
+          npm version prerelease --preid alpha
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git push origin main --follow-tags --force
+      
+      - run: npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

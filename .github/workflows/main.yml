@@ -23,12 +23,3 @@ jobs:
       - run: npm run compile
 
       - run: npx eslint . --ext .ts
-
-      - name: Bump package version
-        run: |
-          npm version prerelease --preid alpha
-          git push origin main --follow-tags --force
-      
-      - run: npm publish --access=public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
