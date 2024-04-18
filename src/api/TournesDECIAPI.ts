@@ -151,6 +151,23 @@ export class TournesDECIAPI extends Core {
     }
     
     /**
+     * Mise à jour de la tournée DECI.
+     * @param tourneeDeciId Identifiant de la tournée DECI
+     * @param postTourneeDeciRequest 
+     */
+    async updateTourneeDeci(tourneeDeciId: string, postTourneeDeciRequest?: PostTourneeDeciRequest): Promise<AxiosResponse<TourneeDeci>>
+    {
+        const pathVariable = { 'tournee_deci_id': tourneeDeciId };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}'),
+            headers: {  },
+            params: {  },
+            body:  { 'libelle': postTourneeDeciRequest?.libelle, 'description': postTourneeDeciRequest?.description, 'date_de_debut': postTourneeDeciRequest?.date_de_debut, 'date_de_fin': postTourneeDeciRequest?.date_de_fin } 
+        });
+    }
+    
+    /**
      * Mise à jour du PEI contrôlé dans une tournée DECI.
      * @param tourneeDeciId Identifiant de la tournée DECI
      * @param peiId Identifiant du PEI lié au contrôle
