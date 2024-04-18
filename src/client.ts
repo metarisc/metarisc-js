@@ -52,7 +52,9 @@ export class Client {
 		// Axios interceptor : Enable HTTP Caching
 		// When combining axios-cache-interceptors with other interceptors, you may encounter some inconsistences.
 		// See : https://github.com/arthurfiorette/axios-cache-interceptor/issues/449#issuecomment-1370327566
-		this.axios = setupCache(this.axios);
+		this.axios = setupCache(this.axios, {
+			override: true
+		});
 
 		// Axios interceptor : Ajoute l'access token à la requête
 		// L'access token peut venir d'un premier authenticate, ou d'un refresh token obtenu au cours des interceptors
