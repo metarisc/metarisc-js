@@ -21,7 +21,7 @@ export class DossiersAPI extends Core {
      */
     async getDossier(dossierId: string): Promise<AxiosResponse<Dossier>>
     {
-        const pathVariable = { 'dossier_id': dossierId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
@@ -38,7 +38,7 @@ export class DossiersAPI extends Core {
      */
     async getDossierWorkflowsDetails(dossierId: string, workflowId: string): Promise<AxiosResponse<Workflow>>
     {
-        const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString(), 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}'),
@@ -56,7 +56,7 @@ export class DossiersAPI extends Core {
      */
     paginateDossierContacts(dossierId: string, page?: number, perPage?: number): Collection<Workflow>
     {
-        const pathVariable = { 'dossier_id': dossierId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect<Workflow>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
@@ -74,7 +74,7 @@ export class DossiersAPI extends Core {
      */
     paginateDossierDocuments(dossierId: string, page?: number, perPage?: number): Collection<Workflow>
     {
-        const pathVariable = { 'dossier_id': dossierId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect<Workflow>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
@@ -92,7 +92,7 @@ export class DossiersAPI extends Core {
      */
     paginateDossierTags(dossierId: string, page?: number, perPage?: number): Collection<Tag>
     {
-        const pathVariable = { 'dossier_id': dossierId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect<Tag>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
@@ -111,7 +111,7 @@ export class DossiersAPI extends Core {
      */
     paginateDossierWorkflowDocuments(dossierId: string, workflowId: string, page?: number, perPage?: number): Collection<PieceJointe>
     {
-        const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString(), 'workflow_id': (new String(workflowId)).toString() };
         return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}/documents'),
@@ -129,7 +129,7 @@ export class DossiersAPI extends Core {
      */
     paginateDossierWorkflows(dossierId: string, page?: number, perPage?: number): Collection<Workflow>
     {
-        const pathVariable = { 'dossier_id': dossierId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect<Workflow>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
@@ -163,7 +163,7 @@ export class DossiersAPI extends Core {
      */
     async patchDossier(dossierId: string, dossier?: Dossier): Promise<AxiosResponse<Dossier>>
     {
-        const pathVariable = { 'dossier_id': dossierId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
@@ -197,7 +197,7 @@ export class DossiersAPI extends Core {
      */
     async updateDossierWorkflowsDetails(dossierId: string, workflowId: string, updateDossierWorkflowsDetailsRequest?: UpdateDossierWorkflowsDetailsRequest): Promise<AxiosResponse<Workflow>>
     {
-        const pathVariable = { 'dossier_id': dossierId, 'workflow_id': workflowId };
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString(), 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}'),

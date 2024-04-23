@@ -14,9 +14,9 @@ export class AnomaliesAPI extends Core {
      * Suppression d'une anomalie.
      * @param anomalieId Identifiant unique de l'anomalie
      */
-    async deleteAnomalie(anomalieId: string): Promise<AxiosResponse<void>>
+    async deleteAnomalie(anomalieId: number): Promise<AxiosResponse<void>>
     {
-        const pathVariable = { 'anomalie_id': anomalieId };
+        const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),
@@ -30,9 +30,9 @@ export class AnomaliesAPI extends Core {
      * Détails d'une anomalie.
      * @param anomalieId Identifiant unique de l'anomalie
      */
-    async getAnomalie(anomalieId: string): Promise<AxiosResponse<AnomalieDECI>>
+    async getAnomalie(anomalieId: number): Promise<AxiosResponse<AnomalieDECI>>
     {
-        const pathVariable = { 'anomalie_id': anomalieId };
+        const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),

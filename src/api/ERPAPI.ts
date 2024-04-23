@@ -18,7 +18,7 @@ export class ERPAPI extends Core {
      */
     async getErp(erpId: string): Promise<AxiosResponse<ERP>>
     {
-        const pathVariable = { 'erp_id': erpId };
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
@@ -53,7 +53,7 @@ export class ERPAPI extends Core {
      */
     paginateErpContacts(erpId: string, page?: number, perPage?: number): Collection<Contact>
     {
-        const pathVariable = { 'erp_id': erpId };
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
@@ -71,7 +71,7 @@ export class ERPAPI extends Core {
      */
     paginateErpDocuments(erpId: string, page?: number, perPage?: number): Collection<PieceJointe>
     {
-        const pathVariable = { 'erp_id': erpId };
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),

@@ -3,15 +3,33 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
+import { AddOrganisationMembresRequest } from '../model/AddOrganisationMembresRequest';
 import { GetOrganisationReglesDeci200Response } from '../model/GetOrganisationReglesDeci200Response';
 import { Organisation } from '../model/Organisation';
+import { OrganisationMembre } from '../model/OrganisationMembre';
 import { WorkflowType } from '../model/WorkflowType';
 import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
-import { OrganisationMembre } from '../model/OrganisationMembre';
 
 export class OrganisationsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
+    }
+    
+    /**
+     * Ajout d'un utilisateur comme membre dans une organisation.
+     * @param orgId Identifiant unique de l'Organisation
+     * @param addOrganisationMembresRequest 
+     */
+    async addOrganisationMembres(orgId: string, addOrganisationMembresRequest?: AddOrganisationMembresRequest): Promise<AxiosResponse<OrganisationMembre>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
+            headers: {  },
+            params: {  },
+            body:  { 'utilisateur_id': addOrganisationMembresRequest?.utilisateur_id } 
+        });
     }
     
     /**
@@ -20,7 +38,7 @@ export class OrganisationsAPI extends Core {
      */
     async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
@@ -36,7 +54,7 @@ export class OrganisationsAPI extends Core {
      */
     async getOrganisationReglesDeci(orgId: string): Promise<AxiosResponse<GetOrganisationReglesDeci200Response>>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
@@ -52,7 +70,7 @@ export class OrganisationsAPI extends Core {
      */
     paginateOrganisationDossiersWorkflowsSuites(orgId: string): Collection<WorkflowType>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect<WorkflowType>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
@@ -70,7 +88,7 @@ export class OrganisationsAPI extends Core {
      */
     paginateOrganisationGeoservices(orgId: string, page?: number, perPage?: number): Collection<OrganisationGeoservice>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect<OrganisationGeoservice>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
@@ -88,7 +106,7 @@ export class OrganisationsAPI extends Core {
      */
     paginateOrganisationMembres(orgId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect<OrganisationMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
