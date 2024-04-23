@@ -8,6 +8,7 @@ import { PostTourneeDeciRequest } from '../model/PostTourneeDeciRequest';
 import { TourneeDeci } from '../model/TourneeDeci';
 import { TourneeDeciPei } from '../model/TourneeDeciPei';
 import { UpdateTourneeDeciPeiRequest } from '../model/UpdateTourneeDeciPeiRequest';
+import { UpdateTourneeDeciRequest } from '../model/UpdateTourneeDeciRequest';
 
 export class TournesDECIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -129,7 +130,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
             headers: {  },
             params: {  },
-            body:  { 'libelle': postTourneeDeciRequest?.libelle, 'description': postTourneeDeciRequest?.description, 'date_de_debut': postTourneeDeciRequest?.date_de_debut, 'date_de_fin': postTourneeDeciRequest?.date_de_fin } 
+            body:  { 'libelle': postTourneeDeciRequest?.libelle, 'description': postTourneeDeciRequest?.description, 'date_de_debut': postTourneeDeciRequest?.date_de_debut, 'date_de_fin': postTourneeDeciRequest?.date_de_fin, 'mois_debut': postTourneeDeciRequest?.mois_debut, 'mois_fin': postTourneeDeciRequest?.mois_fin, 'modele_id': postTourneeDeciRequest?.modele_id, 'type': postTourneeDeciRequest?.type } 
         });
     }
     
@@ -153,9 +154,9 @@ export class TournesDECIAPI extends Core {
     /**
      * Mise à jour de la tournée DECI.
      * @param tourneeDeciId Identifiant de la tournée DECI
-     * @param postTourneeDeciRequest 
+     * @param updateTourneeDeciRequest 
      */
-    async updateTourneeDeci(tourneeDeciId: string, postTourneeDeciRequest?: PostTourneeDeciRequest): Promise<AxiosResponse<TourneeDeci>>
+    async updateTourneeDeci(tourneeDeciId: string, updateTourneeDeciRequest?: UpdateTourneeDeciRequest): Promise<AxiosResponse<TourneeDeci>>
     {
         const pathVariable = { 'tournee_deci_id': tourneeDeciId };
         return this.request({
@@ -163,7 +164,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}'),
             headers: {  },
             params: {  },
-            body:  { 'libelle': postTourneeDeciRequest?.libelle, 'description': postTourneeDeciRequest?.description, 'date_de_debut': postTourneeDeciRequest?.date_de_debut, 'date_de_fin': postTourneeDeciRequest?.date_de_fin } 
+            body:  { 'libelle': updateTourneeDeciRequest?.libelle, 'description': updateTourneeDeciRequest?.description, 'date_de_debut': updateTourneeDeciRequest?.date_de_debut, 'date_de_fin': updateTourneeDeciRequest?.date_de_fin, 'mois_debut': updateTourneeDeciRequest?.mois_debut, 'mois_fin': updateTourneeDeciRequest?.mois_fin } 
         });
     }
     
