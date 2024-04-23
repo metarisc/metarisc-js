@@ -32,4 +32,18 @@ export class Utils {
         }
         return false;
     }
+
+    /**
+     * Format date ISO 8601.
+     */
+    static formatDate(date: Date): string {
+        return (
+            date.getUTCFullYear() + '-' +
+            new String(date.getUTCMonth() + 1).padStart(2, '0') + '-' +
+            new String(date.getUTCDate()).padStart(2, '0') + 'T' +
+            new String(date.getUTCHours()).padStart(2, '0') + ':' +
+            new String(date.getUTCMinutes()).padStart(2, '0') + ':' +
+            new String(date.getUTCSeconds()).padStart(2, '0') + 'Z'
+        );
+    }
 }
