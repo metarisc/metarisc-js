@@ -18,7 +18,7 @@ export class UtilisateursAPI extends Core {
      */
     async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
     {
-        const pathVariable = { 'utilisateur_id': utilisateurId };
+        const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
@@ -68,7 +68,7 @@ export class UtilisateursAPI extends Core {
      */
     paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number): Collection<Email>
     {
-        const pathVariable = { 'utilisateur_id': utilisateurId };
+        const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect<Email>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
@@ -86,7 +86,7 @@ export class UtilisateursAPI extends Core {
      */
     paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
     {
-        const pathVariable = { 'utilisateur_id': utilisateurId };
+        const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect<OrganisationMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),

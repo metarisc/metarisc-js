@@ -21,7 +21,7 @@ export class CommissionsAPI extends Core {
      */
     async deleteCommission(commissionId: string): Promise<AxiosResponse<void>>
     {
-        const pathVariable = { 'commission_id': commissionId };
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
@@ -37,7 +37,7 @@ export class CommissionsAPI extends Core {
      */
     async getCommission(commissionId: string): Promise<AxiosResponse<Commission>>
     {
-        const pathVariable = { 'commission_id': commissionId };
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
@@ -54,7 +54,7 @@ export class CommissionsAPI extends Core {
      */
     async getCommissionDate(commissionId: string, dateId: string): Promise<AxiosResponse<PassageCommission>>
     {
-        const pathVariable = { 'commission_id': commissionId, 'date_id': dateId };
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString(), 'date_id': (new String(dateId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}'),
@@ -73,7 +73,7 @@ export class CommissionsAPI extends Core {
      */
     paginateCommissionDateDossiers(commissionId: string, dateId: string, page?: number, perPage?: number): Collection<PassageCommissionDossier>
     {
-        const pathVariable = { 'commission_id': commissionId, 'date_id': dateId };
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString(), 'date_id': (new String(dateId)).toString() };
         return this.collect<PassageCommissionDossier>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}/ordre_du_jour'),
@@ -91,7 +91,7 @@ export class CommissionsAPI extends Core {
      */
     paginateCommissionDates(commissionId: string, page?: number, perPage?: number): Collection<PassageCommission>
     {
-        const pathVariable = { 'commission_id': commissionId };
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.collect<PassageCommission>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
@@ -141,7 +141,7 @@ export class CommissionsAPI extends Core {
      */
     async postCommissionDate(commissionId: string, postCommissionDateRequest?: PostCommissionDateRequest): Promise<AxiosResponse<PassageCommission>>
     {
-        const pathVariable = { 'commission_id': commissionId };
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
@@ -159,7 +159,7 @@ export class CommissionsAPI extends Core {
      */
     async postCommissionDateDossier(commissionId: string, dateId: string, postCommissionDateDossierRequest?: PostCommissionDateDossierRequest): Promise<AxiosResponse<PassageCommissionDossier>>
     {
-        const pathVariable = { 'commission_id': commissionId, 'date_id': dateId };
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString(), 'date_id': (new String(dateId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}/ordre_du_jour'),
