@@ -22,7 +22,7 @@ export class TournesDECIAPI extends Core {
      */
     async deleteTourneeDeciPei(tourneeDeciId: string, peiId: string): Promise<AxiosResponse<void>>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId, 'pei_id': peiId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString(), 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei/{pei_id}'),
@@ -38,7 +38,7 @@ export class TournesDECIAPI extends Core {
      */
     async getTourneeDeci(tourneeDeciId: string): Promise<AxiosResponse<TourneeDeci>>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}'),
@@ -54,7 +54,7 @@ export class TournesDECIAPI extends Core {
      */
     async getTourneeDeciLivretDeTournee(tourneeDeciId: string): Promise<AxiosResponse<any>>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/livret_de_tournee'),
@@ -71,7 +71,7 @@ export class TournesDECIAPI extends Core {
      */
     async getTourneeDeciPei(tourneeDeciId: string, peiId: string): Promise<AxiosResponse<TourneeDeciPei>>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId, 'pei_id': peiId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString(), 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei/{pei_id}'),
@@ -89,7 +89,7 @@ export class TournesDECIAPI extends Core {
      */
     paginateTourneeDeciPei(tourneeDeciId: string, page?: number, perPage?: number): Collection<TourneeDeciPei>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.collect<TourneeDeciPei>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei'),
@@ -141,7 +141,7 @@ export class TournesDECIAPI extends Core {
      */
     async postTourneeDeciPei(tourneeDeciId: string, postTourneeDeciPeiRequest?: PostTourneeDeciPeiRequest): Promise<AxiosResponse<TourneeDeciPei>>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei'),
@@ -158,7 +158,7 @@ export class TournesDECIAPI extends Core {
      */
     async updateTourneeDeci(tourneeDeciId: string, updateTourneeDeciRequest?: UpdateTourneeDeciRequest): Promise<AxiosResponse<TourneeDeci>>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}'),
@@ -176,7 +176,7 @@ export class TournesDECIAPI extends Core {
      */
     async updateTourneeDeciPei(tourneeDeciId: string, peiId: string, updateTourneeDeciPeiRequest?: UpdateTourneeDeciPeiRequest): Promise<AxiosResponse<void>>
     {
-        const pathVariable = { 'tournee_deci_id': tourneeDeciId, 'pei_id': peiId };
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString(), 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei/{pei_id}'),

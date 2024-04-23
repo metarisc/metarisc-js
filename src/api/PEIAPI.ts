@@ -20,7 +20,7 @@ export class PEIAPI extends Core {
      */
     async getPei(peiId: string): Promise<AxiosResponse<PEI>>
     {
-        const pathVariable = { 'pei_id': peiId };
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
@@ -56,7 +56,7 @@ export class PEIAPI extends Core {
      */
     paginatePeiContacts(peiId: string, page?: number, perPage?: number): Collection<Contact>
     {
-        const pathVariable = { 'pei_id': peiId };
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
@@ -74,7 +74,7 @@ export class PEIAPI extends Core {
      */
     paginatePeiHistorique(peiId: string, page?: number, perPage?: number): Collection<DescriptifTechniqueDECI>
     {
-        const pathVariable = { 'pei_id': peiId };
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect<DescriptifTechniqueDECI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
@@ -92,7 +92,7 @@ export class PEIAPI extends Core {
      */
     paginatePeiPiecesJointes(peiId: string, page?: number, perPage?: number): Collection<PieceJointe>
     {
-        const pathVariable = { 'pei_id': peiId };
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/pieces_jointes'),

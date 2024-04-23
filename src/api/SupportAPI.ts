@@ -17,7 +17,7 @@ export class SupportAPI extends Core {
      */
     async getTicket(ticketId: string): Promise<AxiosResponse<Ticket>>
     {
-        const pathVariable = { 'ticket_id': ticketId };
+        const pathVariable = { 'ticket_id': (new String(ticketId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/support/{ticket_id}'),

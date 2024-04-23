@@ -20,7 +20,7 @@ export class OrganisationsAPI extends Core {
      */
     async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
@@ -36,7 +36,7 @@ export class OrganisationsAPI extends Core {
      */
     async getOrganisationReglesDeci(orgId: string): Promise<AxiosResponse<GetOrganisationReglesDeci200Response>>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
@@ -52,7 +52,7 @@ export class OrganisationsAPI extends Core {
      */
     paginateOrganisationDossiersWorkflowsSuites(orgId: string): Collection<WorkflowType>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect<WorkflowType>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
@@ -70,7 +70,7 @@ export class OrganisationsAPI extends Core {
      */
     paginateOrganisationGeoservices(orgId: string, page?: number, perPage?: number): Collection<OrganisationGeoservice>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect<OrganisationGeoservice>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
@@ -88,7 +88,7 @@ export class OrganisationsAPI extends Core {
      */
     paginateOrganisationMembres(orgId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
     {
-        const pathVariable = { 'org_id': orgId };
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect<OrganisationMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),

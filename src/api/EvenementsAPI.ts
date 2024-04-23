@@ -18,7 +18,7 @@ export class EvenementsAPI extends Core {
      */
     async deleteEvenement(evenementId: string): Promise<AxiosResponse<void>>
     {
-        const pathVariable = { 'evenement_id': evenementId };
+        const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
@@ -35,7 +35,7 @@ export class EvenementsAPI extends Core {
      */
     async getEvenementDetails(evenementId: string, evenement?: Evenement): Promise<AxiosResponse<Evenement>>
     {
-        const pathVariable = { 'evenement_id': evenementId };
+        const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
@@ -53,7 +53,7 @@ export class EvenementsAPI extends Core {
      */
     paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number): Collection<Utilisateur>
     {
-        const pathVariable = { 'evenement_id': evenementId };
+        const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.collect<Utilisateur>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
