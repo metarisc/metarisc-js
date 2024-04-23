@@ -1,18 +1,13 @@
 import { TourneeDeciModele } from '../../src/model/TourneeDeciModele';
 
-export type TourneeDeci = {
-    'id'?: string;
-    'libelle'?: string;
-    'description'?: string;
-    'date_creation'?: Date;
-    'type'?: TypeEnum;
+import { TourneeDeciBase } from '../model/TourneeDeciBase';
+
+export type TourneeDeciSimple = TourneeDeciBase & { 
     'pourcentage'?: number;
     'est_terminee'?: boolean;
     'date_de_debut'?: Date;
     'date_de_fin'?: Date;
     'modele'?: TourneeDeciModele;
-    'mois_debut'?: string;
-    'mois_fin'?: string;
 };
 
 export enum TypeEnum {
