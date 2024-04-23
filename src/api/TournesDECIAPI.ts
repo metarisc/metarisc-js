@@ -182,7 +182,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei/{pei_id}'),
             headers: {  },
             params: {  },
-            body:  { 'liste_anomalies': updateTourneeDeciPeiRequest?.liste_anomalies, 'engin_utilisé': updateTourneeDeciPeiRequest?.engin_utilisé, 'ordre': updateTourneeDeciPeiRequest?.ordre, 'date_du_controle': updateTourneeDeciPeiRequest?.date_du_controle } 
+            body:  { 'engin_utilise': updateTourneeDeciPeiRequest?.engin_utilise, 'ordre': updateTourneeDeciPeiRequest?.ordre, 'date_du_controle': updateTourneeDeciPeiRequest?.date_du_controle, 'liste_anomalies': updateTourneeDeciPeiRequest?.liste_anomalies } 
         });
     }
     

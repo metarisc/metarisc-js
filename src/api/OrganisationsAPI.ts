@@ -3,15 +3,33 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
+import { AddOrganisationMembresRequest } from '../model/AddOrganisationMembresRequest';
 import { GetOrganisationReglesDeci200Response } from '../model/GetOrganisationReglesDeci200Response';
 import { Organisation } from '../model/Organisation';
+import { OrganisationMembre } from '../model/OrganisationMembre';
 import { WorkflowType } from '../model/WorkflowType';
 import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
-import { OrganisationMembre } from '../model/OrganisationMembre';
 
 export class OrganisationsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
+    }
+    
+    /**
+     * Ajout d'un utilisateur comme membre dans une organisation.
+     * @param orgId Identifiant unique de l'Organisation
+     * @param addOrganisationMembresRequest 
+     */
+    async addOrganisationMembres(orgId: string, addOrganisationMembresRequest?: AddOrganisationMembresRequest): Promise<AxiosResponse<OrganisationMembre>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
+            headers: {  },
+            params: {  },
+            body:  { 'utilisateur_id': addOrganisationMembresRequest?.utilisateur_id } 
+        });
     }
     
     /**
