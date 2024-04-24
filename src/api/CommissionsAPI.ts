@@ -147,7 +147,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             headers: {  },
             params: {  },
-            body:  { 'libelle': postCommissionDateRequest?.libelle, 'type': postCommissionDateRequest?.type, 'date_de_debut': postCommissionDateRequest?.date_de_debut, 'date_de_fin': postCommissionDateRequest?.date_de_fin } 
+            body:  { 'libelle': postCommissionDateRequest?.libelle, 'type': postCommissionDateRequest?.type, 'date_de_debut': Utils.formatDate(postCommissionDateRequest?.date_de_debut), 'date_de_fin': Utils.formatDate(postCommissionDateRequest?.date_de_fin) } 
         });
     }
     

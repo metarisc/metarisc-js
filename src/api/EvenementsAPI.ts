@@ -41,7 +41,7 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
             headers: {  },
             params: {  },
-            body:  { 'id': evenement?.id, 'title': evenement?.title, 'type': evenement?.type, 'description': evenement?.description, 'date_debut': evenement?.date_debut, 'date_fin': evenement?.date_fin } 
+            body:  { 'id': evenement?.id, 'title': evenement?.title, 'type': evenement?.type, 'description': evenement?.description, 'date_debut': Utils.formatDate(evenement?.date_debut), 'date_fin': Utils.formatDate(evenement?.date_fin) } 
         });
     }
     
@@ -94,7 +94,7 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
             headers: {  },
             params: {  },
-            body:  { 'title': postEvenementRequest?.title, 'type': postEvenementRequest?.type, 'description': postEvenementRequest?.description, 'date_debut': postEvenementRequest?.date_debut, 'date_fin': postEvenementRequest?.date_fin } 
+            body:  { 'title': postEvenementRequest?.title, 'type': postEvenementRequest?.type, 'description': postEvenementRequest?.description, 'date_debut': Utils.formatDate(postEvenementRequest?.date_debut), 'date_fin': Utils.formatDate(postEvenementRequest?.date_fin) } 
         });
     }
     
