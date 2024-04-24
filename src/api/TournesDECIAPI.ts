@@ -130,7 +130,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
             headers: {  },
             params: {  },
-            body:  { 'libelle': postTourneeDeciRequest?.libelle, 'description': postTourneeDeciRequest?.description, 'date_de_debut': postTourneeDeciRequest?.date_de_debut, 'date_de_fin': postTourneeDeciRequest?.date_de_fin, 'mois_debut': postTourneeDeciRequest?.mois_debut, 'mois_fin': postTourneeDeciRequest?.mois_fin, 'modele_id': postTourneeDeciRequest?.modele_id, 'type': postTourneeDeciRequest?.type } 
+            body:  { 'libelle': postTourneeDeciRequest?.libelle, 'description': postTourneeDeciRequest?.description, 'date_de_debut': Utils.formatDate(postTourneeDeciRequest?.date_de_debut), 'date_de_fin': Utils.formatDate(postTourneeDeciRequest?.date_de_fin), 'mois_debut': postTourneeDeciRequest?.mois_debut, 'mois_fin': postTourneeDeciRequest?.mois_fin, 'modele_id': postTourneeDeciRequest?.modele_id, 'type': postTourneeDeciRequest?.type } 
         });
     }
     
@@ -164,7 +164,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}'),
             headers: {  },
             params: {  },
-            body:  { 'libelle': updateTourneeDeciRequest?.libelle, 'description': updateTourneeDeciRequest?.description, 'date_de_debut': updateTourneeDeciRequest?.date_de_debut, 'date_de_fin': updateTourneeDeciRequest?.date_de_fin, 'mois_debut': updateTourneeDeciRequest?.mois_debut, 'mois_fin': updateTourneeDeciRequest?.mois_fin } 
+            body:  { 'libelle': updateTourneeDeciRequest?.libelle, 'description': updateTourneeDeciRequest?.description, 'date_de_debut': Utils.formatDate(updateTourneeDeciRequest?.date_de_debut), 'date_de_fin': Utils.formatDate(updateTourneeDeciRequest?.date_de_fin), 'mois_debut': updateTourneeDeciRequest?.mois_debut, 'mois_fin': updateTourneeDeciRequest?.mois_fin } 
         });
     }
     
@@ -174,7 +174,7 @@ export class TournesDECIAPI extends Core {
      * @param peiId Identifiant du PEI lié au contrôle
      * @param updateTourneeDeciPeiRequest 
      */
-    async updateTourneeDeciPei(tourneeDeciId: string, peiId: string, updateTourneeDeciPeiRequest?: UpdateTourneeDeciPeiRequest): Promise<AxiosResponse<void>>
+    async updateTourneeDeciPei(tourneeDeciId: string, peiId: string, updateTourneeDeciPeiRequest?: UpdateTourneeDeciPeiRequest): Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString(), 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -182,7 +182,7 @@ export class TournesDECIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei/{pei_id}'),
             headers: {  },
             params: {  },
-            body:  { 'engin_utilise': updateTourneeDeciPeiRequest?.engin_utilise, 'ordre': updateTourneeDeciPeiRequest?.ordre, 'date_du_controle': updateTourneeDeciPeiRequest?.date_du_controle, 'liste_anomalies': updateTourneeDeciPeiRequest?.liste_anomalies } 
+            body:  { 'engin_utilise': updateTourneeDeciPeiRequest?.engin_utilise, 'ordre': updateTourneeDeciPeiRequest?.ordre, 'date_du_controle': Utils.formatDate(updateTourneeDeciPeiRequest?.date_du_controle), 'liste_anomalies': updateTourneeDeciPeiRequest?.liste_anomalies } 
         });
     }
     
