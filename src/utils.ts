@@ -46,4 +46,20 @@ export class Utils {
             new String(date.getUTCSeconds()).padStart(2, '0') + 'Z'
         );
     }
+
+    /**
+     * Filtre un objet pour enlever tous les champs "undefined"
+     */
+    static payloadFilter(payload : any) : object {
+        const filtered : any = {};
+        Object.keys(payload).forEach((key) => {
+            if (payload[key] === Object(payload[key])) {
+                filtered[key] = Utils.payloadFilter(payload[key]);
+            }
+            else if (payload[key] !== undefined) {
+                filtered[key] = payload[key];
+            }
+        });
+        return filtered;
+    }
 }
