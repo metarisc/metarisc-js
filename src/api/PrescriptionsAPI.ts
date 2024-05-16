@@ -3,8 +3,6 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
-import { PostPrescriptionRequest } from '../model/PostPrescriptionRequest';
-import { PostSupportReglementaireRequest } from '../model/PostSupportReglementaireRequest';
 import { Prescription } from '../model/Prescription';
 import { PrescriptionSupportReglementaire } from '../model/PrescriptionSupportReglementaire';
 
@@ -25,7 +23,7 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -41,7 +39,7 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -57,7 +55,7 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -73,7 +71,7 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -90,7 +88,7 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -105,15 +103,15 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajout d'une nouvelle prescription type dans la bibliothèque.
-     * @param postPrescriptionRequest 
+     * @param prescription 
      */
-    async postPrescription(postPrescriptionRequest?: PostPrescriptionRequest): Promise<AxiosResponse<Prescription>>
+    async postPrescription(prescription?: Prescription): Promise<AxiosResponse<Prescription>>
     {
         const pathVariable = {  };
         return this.request({
@@ -121,15 +119,15 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
             headers: {  },
             params: {  },
-            body:  { 'contenu': postPrescriptionRequest?.contenu, 'type': postPrescriptionRequest?.type, 'supports_reglementaires': postPrescriptionRequest?.supports_reglementaires } 
+            body: Utils.payloadFilter( { 'id': prescription?.id, 'contenu': prescription?.contenu, 'type': prescription?.type, 'supports_reglementaires': prescription?.supports_reglementaires, 'supports_reglementaires_id': prescription?.supports_reglementaires_id } )
         });
     }
     
     /**
      * Ajouter un support réglementaire.
-     * @param postSupportReglementaireRequest 
+     * @param prescriptionSupportReglementaire 
      */
-    async postSupportReglementaire(postSupportReglementaireRequest?: PostSupportReglementaireRequest): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    async postSupportReglementaire(prescriptionSupportReglementaire?: PrescriptionSupportReglementaire): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
         const pathVariable = {  };
         return this.request({
@@ -137,7 +135,7 @@ export class PrescriptionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
             headers: {  },
             params: {  },
-            body:  { 'nature': postSupportReglementaireRequest?.nature, 'legifrance_cid': postSupportReglementaireRequest?.legifrance_cid, 'contenu': postSupportReglementaireRequest?.contenu, 'titre': postSupportReglementaireRequest?.titre, 'etat': postSupportReglementaireRequest?.etat, 'reference': postSupportReglementaireRequest?.reference } 
+            body: Utils.payloadFilter( { 'id': prescriptionSupportReglementaire?.id, 'nature': prescriptionSupportReglementaire?.nature, 'legifrance_cid': prescriptionSupportReglementaire?.legifrance_cid, 'contenu': prescriptionSupportReglementaire?.contenu, 'titre': prescriptionSupportReglementaire?.titre, 'etat': prescriptionSupportReglementaire?.etat, 'reference': prescriptionSupportReglementaire?.reference } )
         });
     }
     

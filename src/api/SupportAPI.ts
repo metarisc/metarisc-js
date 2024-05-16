@@ -23,7 +23,7 @@ export class SupportAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/support/{ticket_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -40,7 +40,7 @@ export class SupportAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/support/'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -56,7 +56,7 @@ export class SupportAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/support/'),
             headers: {  },
             params: {  },
-            body:  { 'subject': postTicketRequest?.subject, 'description': postTicketRequest?.description } 
+            body: Utils.payloadFilter( { 'subject': postTicketRequest?.subject, 'description': postTicketRequest?.description } )
         });
     }
     

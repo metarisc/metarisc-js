@@ -22,7 +22,7 @@ export class AnomaliesAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -38,7 +38,7 @@ export class AnomaliesAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -56,7 +56,7 @@ export class AnomaliesAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'texte': texte },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -72,7 +72,7 @@ export class AnomaliesAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
             headers: {  },
             params: {  },
-            body:  { 'code': anomalieDECI?.code, 'texte': anomalieDECI?.texte, 'indice_de_gravite': anomalieDECI?.indice_de_gravite } 
+            body: Utils.payloadFilter( { 'code': anomalieDECI?.code, 'texte': anomalieDECI?.texte, 'indice_de_gravite': anomalieDECI?.indice_de_gravite } )
         });
     }
     

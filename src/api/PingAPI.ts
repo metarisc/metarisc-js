@@ -20,7 +20,7 @@ export class PingAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/ping'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     

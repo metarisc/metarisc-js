@@ -4,7 +4,6 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Notification } from '../model/Notification';
-import { PostNotificationRequest } from '../model/PostNotificationRequest';
 
 export class NotificationsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -23,7 +22,7 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -39,7 +38,7 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -56,15 +55,15 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Création d'une notification.
-     * @param postNotificationRequest 
+     * @param notification 
      */
-    async postNotification(postNotificationRequest?: PostNotificationRequest): Promise<AxiosResponse<Notification>>
+    async postNotification(notification?: Notification): Promise<AxiosResponse<Notification>>
     {
         const pathVariable = {  };
         return this.request({
@@ -72,7 +71,7 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
             headers: {  },
             params: {  },
-            body:  { 'title': postNotificationRequest?.title, 'message': postNotificationRequest?.message, 'contexte': postNotificationRequest?.contexte, 'utilisateur_id': postNotificationRequest?.utilisateur_id } 
+            body: Utils.payloadFilter( { 'id': notification?.id, 'title': notification?.title, 'message': notification?.message, 'contexte': notification?.contexte, 'date_creation': notification?.date_creation ? Utils.formatDate(notification?.date_creation) : undefined, 'date_de_lecture': notification?.date_de_lecture ? Utils.formatDate(notification?.date_de_lecture) : undefined, 'utilisateur_id': notification?.utilisateur_id, 'utilisateur': notification?.utilisateur } )
         });
     }
     

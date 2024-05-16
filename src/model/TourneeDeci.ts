@@ -11,6 +11,7 @@ export type TourneeDeci = {
     'date_de_debut'?: Date;
     'date_de_fin'?: Date;
     'modele'?: TourneeDeciModele;
+    'modele_id'?: string;
     'mois_debut'?: string;
     'mois_fin'?: string;
 };

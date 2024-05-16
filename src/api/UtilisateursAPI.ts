@@ -24,7 +24,7 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -39,7 +39,7 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -56,7 +56,7 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -74,7 +74,7 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -92,7 +92,7 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
