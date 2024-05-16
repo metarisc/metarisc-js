@@ -1,7 +1,6 @@
 import { ERP } from '../../src/model/ERP';
 import { PEI } from '../../src/model/PEI';
 import { Utilisateur } from '../../src/model/Utilisateur';
-import { Workflow } from '../../src/model/Workflow';
 
 export type Dossier = {
     'id'?: string;
@@ -14,7 +13,6 @@ export type Dossier = {
     'objet'?: string;
     'pei'?: PEI;
     'erp'?: ERP;
-    'workflow_actif'?: Workflow;
 };
 
 export enum TypeEnum {

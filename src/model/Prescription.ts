@@ -5,6 +5,7 @@ export type Prescription = {
     'contenu'?: string;
     'type'?: TypeEnum;
     'supports_reglementaires'?: Array<PrescriptionSupportReglementaire>;
+    'supports_reglementaires_id'?: Array<string>;
 };
 
 export enum TypeEnum {

@@ -20,7 +20,7 @@ export class MoiAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/@moi'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     

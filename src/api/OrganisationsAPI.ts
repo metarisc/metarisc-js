@@ -28,7 +28,7 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
             headers: {  },
             params: {  },
-            body:  { 'utilisateur_id': addOrganisationMembresRequest?.utilisateur_id } 
+            body: Utils.payloadFilter( { 'utilisateur_id': addOrganisationMembresRequest?.utilisateur_id } )
         });
     }
     
@@ -44,7 +44,7 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -60,7 +60,7 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -76,7 +76,7 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -94,7 +94,7 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -112,7 +112,7 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -129,7 +129,7 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     

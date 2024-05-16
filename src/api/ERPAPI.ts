@@ -24,7 +24,7 @@ export class ERPAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -41,7 +41,7 @@ export class ERPAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/erp'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -59,7 +59,7 @@ export class ERPAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -77,7 +77,7 @@ export class ERPAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     

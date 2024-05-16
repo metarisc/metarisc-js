@@ -4,7 +4,6 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Evenement } from '../model/Evenement';
-import { PostEvenementRequest } from '../model/PostEvenementRequest';
 import { Utilisateur } from '../model/Utilisateur';
 
 export class EvenementsAPI extends Core {
@@ -24,7 +23,7 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -41,7 +40,7 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
             headers: {  },
             params: {  },
-            body:  { 'id': evenement?.id, 'title': evenement?.title, 'type': evenement?.type, 'description': evenement?.description, 'date_debut': Utils.formatDate(evenement?.date_debut), 'date_fin': Utils.formatDate(evenement?.date_fin) } 
+            body: Utils.payloadFilter( { 'id': evenement?.id, 'title': evenement?.title, 'type': evenement?.type, 'description': evenement?.description, 'date_debut': evenement?.date_debut ? Utils.formatDate(evenement?.date_debut) : undefined, 'date_fin': evenement?.date_fin ? Utils.formatDate(evenement?.date_fin) : undefined } )
         });
     }
     
@@ -59,7 +58,7 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -78,15 +77,15 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'type': type, 'period': period },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * TODO : Création d'un événement.
-     * @param postEvenementRequest 
+     * @param evenement 
      */
-    async postEvenement(postEvenementRequest?: PostEvenementRequest): Promise<AxiosResponse<Evenement>>
+    async postEvenement(evenement?: Evenement): Promise<AxiosResponse<Evenement>>
     {
         const pathVariable = {  };
         return this.request({
@@ -94,7 +93,7 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
             headers: {  },
             params: {  },
-            body:  { 'title': postEvenementRequest?.title, 'type': postEvenementRequest?.type, 'description': postEvenementRequest?.description, 'date_debut': Utils.formatDate(postEvenementRequest?.date_debut), 'date_fin': Utils.formatDate(postEvenementRequest?.date_fin) } 
+            body: Utils.payloadFilter( { 'id': evenement?.id, 'title': evenement?.title, 'type': evenement?.type, 'description': evenement?.description, 'date_debut': evenement?.date_debut ? Utils.formatDate(evenement?.date_debut) : undefined, 'date_fin': evenement?.date_fin ? Utils.formatDate(evenement?.date_fin) : undefined } )
         });
     }
     

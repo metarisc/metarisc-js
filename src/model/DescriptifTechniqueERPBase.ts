@@ -5,7 +5,6 @@ export type DescriptifTechniqueERPBase = {
     'id'?: string;
     'date'?: Date;
     'statut_erp'?: StatutErpEnum;
-    'est_disponible'?: boolean;
     'genre'?: GenreEnum;
     'avis_exploitation'?: Avis;
     'categorie'?: number;

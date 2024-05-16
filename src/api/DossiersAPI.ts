@@ -4,8 +4,6 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Dossier } from '../model/Dossier';
-import { PostDossierRequest } from '../model/PostDossierRequest';
-import { UpdateDossierWorkflowsDetailsRequest } from '../model/UpdateDossierWorkflowsDetailsRequest';
 import { Workflow } from '../model/Workflow';
 import { Tag } from '../model/Tag';
 import { PieceJointe } from '../model/PieceJointe';
@@ -27,7 +25,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -44,7 +42,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -62,7 +60,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -80,7 +78,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -98,7 +96,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -117,7 +115,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}/documents'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -135,7 +133,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -152,7 +150,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -169,15 +167,15 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
             headers: {  },
             params: {  },
-            body:  { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': Utils.formatDate(dossier?.date_de_creation), 'createur': dossier?.createur, 'application_utilisee_nom': dossier?.application_utilisee_nom, 'statut': dossier?.statut, 'objet': dossier?.objet, 'pei': dossier?.pei, 'erp': dossier?.erp, 'workflow_actif': dossier?.workflow_actif } 
+            body: Utils.payloadFilter( { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': dossier?.date_de_creation ? Utils.formatDate(dossier?.date_de_creation) : undefined, 'createur': dossier?.createur, 'application_utilisee_nom': dossier?.application_utilisee_nom, 'statut': dossier?.statut, 'objet': dossier?.objet, 'pei': dossier?.pei, 'erp': dossier?.erp } )
         });
     }
     
     /**
      * Création d'un nouveau dossier.
-     * @param postDossierRequest 
+     * @param dossier 
      */
-    async postDossier(postDossierRequest?: PostDossierRequest): Promise<AxiosResponse<Dossier>>
+    async postDossier(dossier?: Dossier): Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = {  };
         return this.request({
@@ -185,7 +183,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
             headers: {  },
             params: {  },
-            body:  { 'titre': postDossierRequest?.titre, 'description': postDossierRequest?.description, 'type': postDossierRequest?.type } 
+            body: Utils.payloadFilter( { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': dossier?.date_de_creation ? Utils.formatDate(dossier?.date_de_creation) : undefined, 'createur': dossier?.createur, 'application_utilisee_nom': dossier?.application_utilisee_nom, 'statut': dossier?.statut, 'objet': dossier?.objet, 'pei': dossier?.pei, 'erp': dossier?.erp } )
         });
     }
     
@@ -193,9 +191,9 @@ export class DossiersAPI extends Core {
      * Mise à jour d'un workflow.
      * @param dossierId Identifiant unique du Dossier
      * @param workflowId Identifiant unique du Workflow
-     * @param updateDossierWorkflowsDetailsRequest 
+     * @param workflow 
      */
-    async updateDossierWorkflowsDetails(dossierId: string, workflowId: string, updateDossierWorkflowsDetailsRequest?: UpdateDossierWorkflowsDetailsRequest): Promise<AxiosResponse<Workflow>>
+    async updateDossierWorkflowsDetails(dossierId: string, workflowId: string, workflow?: Workflow): Promise<AxiosResponse<Workflow>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString(), 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
@@ -203,7 +201,7 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}'),
             headers: {  },
             params: {  },
-            body:  { 'est_valide': updateDossierWorkflowsDetailsRequest?.est_valide, 'passage_commission_id': updateDossierWorkflowsDetailsRequest?.passage_commission_id, 'avis_favorable': updateDossierWorkflowsDetailsRequest?.avis_favorable, 'commission_id': updateDossierWorkflowsDetailsRequest?.commission_id, 'date_arrivee_secretariat': Utils.formatDate(updateDossierWorkflowsDetailsRequest?.date_arrivee_secretariat), 'analyse_de_risque': updateDossierWorkflowsDetailsRequest?.analyse_de_risque, 'avis_rapporteur': updateDossierWorkflowsDetailsRequest?.avis_rapporteur, 'descriptif_effectifs': updateDossierWorkflowsDetailsRequest?.descriptif_effectifs, 'facteur_dangerosite': updateDossierWorkflowsDetailsRequest?.facteur_dangerosite, 'derogations': updateDossierWorkflowsDetailsRequest?.derogations, 'prescriptions': updateDossierWorkflowsDetailsRequest?.prescriptions, 'mesures_compensatoires': updateDossierWorkflowsDetailsRequest?.mesures_compensatoires, 'mesures_complementaires': updateDossierWorkflowsDetailsRequest?.mesures_complementaires, 'observations': updateDossierWorkflowsDetailsRequest?.observations, 'termine': updateDossierWorkflowsDetailsRequest?.termine } 
+            body: Utils.payloadFilter(workflow)
         });
     }
     

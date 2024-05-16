@@ -4,7 +4,6 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { PEI } from '../model/PEI';
-import { PostPeiRequest } from '../model/PostPeiRequest';
 import { Contact } from '../model/Contact';
 import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 import { PieceJointe } from '../model/PieceJointe';
@@ -26,7 +25,7 @@ export class PEIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -44,7 +43,7 @@ export class PEIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/pei'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'geojson': geojson },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -62,7 +61,7 @@ export class PEIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -80,7 +79,7 @@ export class PEIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -98,15 +97,15 @@ export class PEIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/pieces_jointes'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajout d'un PEI.
-     * @param postPeiRequest 
+     * @param PEI 
      */
-    async postPei(postPeiRequest?: PostPeiRequest): Promise<AxiosResponse<PEI>>
+    async postPei(PEI?: PEI): Promise<AxiosResponse<PEI>>
     {
         const pathVariable = {  };
         return this.request({
@@ -114,7 +113,7 @@ export class PEIAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/pei'),
             headers: {  },
             params: {  },
-            body:  { 'implantation': postPeiRequest?.implantation, 'numero': postPeiRequest?.numero, 'numero_compteur': postPeiRequest?.numero_compteur, 'numero_serie_appareil': postPeiRequest?.numero_serie_appareil, 'descriptif_technique': postPeiRequest?.descriptif_technique } 
+            body: Utils.payloadFilter( { 'id': PEI?.id, 'date_de_realisation': PEI?.date_de_realisation ? Utils.formatDate(PEI?.date_de_realisation) : undefined, 'date_de_derniere_mise_a_jour': PEI?.date_de_derniere_mise_a_jour ? Utils.formatDate(PEI?.date_de_derniere_mise_a_jour) : undefined, 'references_exterieures': PEI?.references_exterieures, 'descriptif_technique': PEI?.descriptif_technique, 'implantation': PEI?.implantation, 'genre': PEI?.genre, 'numero': PEI?.numero, 'numero_compteur': PEI?.numero_compteur, 'numero_serie_appareil': PEI?.numero_serie_appareil } )
         });
     }
     

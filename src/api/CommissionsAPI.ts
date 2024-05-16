@@ -7,8 +7,6 @@ import { Commission } from '../model/Commission';
 import { PassageCommission } from '../model/PassageCommission';
 import { PassageCommissionDossier } from '../model/PassageCommissionDossier';
 import { PostCommissionDateDossierRequest } from '../model/PostCommissionDateDossierRequest';
-import { PostCommissionDateRequest } from '../model/PostCommissionDateRequest';
-import { PostCommissionRequest } from '../model/PostCommissionRequest';
 
 export class CommissionsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -27,7 +25,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -43,7 +41,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -60,7 +58,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}'),
             headers: {  },
             params: {  },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -79,7 +77,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}/ordre_du_jour'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -97,7 +95,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
@@ -114,15 +112,15 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: {}
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajoute une commission.
-     * @param postCommissionRequest 
+     * @param commission 
      */
-    async postCommission(postCommissionRequest?: PostCommissionRequest): Promise<AxiosResponse<Commission>>
+    async postCommission(commission?: Commission): Promise<AxiosResponse<Commission>>
     {
         const pathVariable = {  };
         return this.request({
@@ -130,16 +128,16 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
             headers: {  },
             params: {  },
-            body:  { 'type': postCommissionRequest?.type, 'libelle': postCommissionRequest?.libelle } 
+            body: Utils.payloadFilter( { 'id': commission?.id, 'type': commission?.type, 'libelle': commission?.libelle } )
         });
     }
     
     /**
      * Ajout d'une date de passage en commission.
      * @param commissionId Identifiant unique de la commission
-     * @param postCommissionDateRequest 
+     * @param passageCommission 
      */
-    async postCommissionDate(commissionId: string, postCommissionDateRequest?: PostCommissionDateRequest): Promise<AxiosResponse<PassageCommission>>
+    async postCommissionDate(commissionId: string, passageCommission?: PassageCommission): Promise<AxiosResponse<PassageCommission>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
@@ -147,7 +145,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             headers: {  },
             params: {  },
-            body:  { 'libelle': postCommissionDateRequest?.libelle, 'type': postCommissionDateRequest?.type, 'date_de_debut': Utils.formatDate(postCommissionDateRequest?.date_de_debut), 'date_de_fin': Utils.formatDate(postCommissionDateRequest?.date_de_fin) } 
+            body: Utils.payloadFilter( { 'id': passageCommission?.id, 'date_debut': passageCommission?.date_debut ? Utils.formatDate(passageCommission?.date_debut) : undefined, 'date_fin': passageCommission?.date_fin ? Utils.formatDate(passageCommission?.date_fin) : undefined, 'type': passageCommission?.type, 'libelle': passageCommission?.libelle } )
         });
     }
     
@@ -165,7 +163,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}/ordre_du_jour'),
             headers: {  },
             params: {  },
-            body:  { 'dossier_id': postCommissionDateDossierRequest?.dossier_id } 
+            body: Utils.payloadFilter( { 'dossier_id': postCommissionDateDossierRequest?.dossier_id } )
         });
     }
     
