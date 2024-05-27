@@ -3,8 +3,7 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
-import { AddOrganisationMembresRequest } from '../model/AddOrganisationMembresRequest';
-import { GetOrganisationReglesDeci200Response } from '../model/GetOrganisationReglesDeci200Response';
+import { GetReglesDeciOrgOrganisations200Response } from '../model/GetReglesDeciOrgOrganisations200Response';
 import { Organisation } from '../model/Organisation';
 import { OrganisationMembre } from '../model/OrganisationMembre';
 import { WorkflowType } from '../model/WorkflowType';
@@ -16,25 +15,8 @@ export class OrganisationsAPI extends Core {
     }
     
     /**
-     * Ajout d'un utilisateur comme membre dans une organisation.
-     * @param orgId Identifiant unique de l'Organisation
-     * @param addOrganisationMembresRequest 
-     */
-    async addOrganisationMembres(orgId: string, addOrganisationMembresRequest?: AddOrganisationMembresRequest): Promise<AxiosResponse<OrganisationMembre>>
-    {
-        const pathVariable = { 'org_id': (new String(orgId)).toString() };
-        return this.request({
-            method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
-            headers: {  },
-            params: {  },
-            body: Utils.payloadFilter( { 'utilisateur_id': addOrganisationMembresRequest?.utilisateur_id } )
-        });
-    }
-    
-    /**
      * Récupération des détails d'une organisation.
-     * @param orgId Identifiant unique de l'Organisation
+     * @param orgId 
      */
     async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
     {
@@ -50,9 +32,9 @@ export class OrganisationsAPI extends Core {
     
     /**
      * Ensemble de règles utilisées pour le calcul de la conformité et de la performance DECI.
-     * @param orgId Identifiant unique de l'Organisation
+     * @param orgId 
      */
-    async getOrganisationReglesDeci(orgId: string): Promise<AxiosResponse<GetOrganisationReglesDeci200Response>>
+    async getOrganisationReglesDeci(orgId: string): Promise<AxiosResponse<GetReglesDeciOrgOrganisations200Response>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -66,7 +48,7 @@ export class OrganisationsAPI extends Core {
     
     /**
      * Retourne le référentiel du paramétrage des workflows pour l'organisation.
-     * @param orgId Identifiant unique de l'Organisation
+     * @param orgId 
      */
     paginateOrganisationDossiersWorkflowsSuites(orgId: string): Collection<WorkflowType>
     {
@@ -82,9 +64,9 @@ export class OrganisationsAPI extends Core {
     
     /**
      * Récupération de la liste des géo-services d'une organisation.
-     * @param orgId Identifiant unique de l'Organisation
+     * @param orgId 
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateOrganisationGeoservices(orgId: string, page?: number, perPage?: number): Collection<OrganisationGeoservice>
     {
@@ -100,9 +82,9 @@ export class OrganisationsAPI extends Core {
     
     /**
      * Récupération de la liste des membres d'une organisation.
-     * @param orgId Identifiant unique de l'Organisation
+     * @param orgId 
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateOrganisationMembres(orgId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
     {
@@ -119,7 +101,7 @@ export class OrganisationsAPI extends Core {
     /**
      * Liste paginée des organisations.
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateOrganisations(page?: number, perPage?: number): Collection<Organisation>
     {
@@ -130,6 +112,23 @@ export class OrganisationsAPI extends Core {
             headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Ajout d'un utilisateur comme membre dans une organisation.
+     * @param orgId 
+     * @param organisationMembre 
+     */
+    async addOrganisationMembres(orgId: string, organisationMembre?: OrganisationMembre): Promise<AxiosResponse<OrganisationMembre>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
+            headers: {  },
+            params: {  },
+            body: Utils.payloadFilter( { 'organisation': organisationMembre?.organisation, 'utilisateur_id': organisationMembre?.utilisateur_id, 'utilisateur': organisationMembre?.utilisateur, 'date_integration': organisationMembre?.date_integration ? Utils.formatDate(organisationMembre?.date_integration) : undefined, 'role': organisationMembre?.role } )
         });
     }
     

@@ -8,13 +8,12 @@ export type DescriptifTechniqueERPBase = {
     'genre'?: GenreEnum;
     'avis_exploitation'?: Avis;
     'categorie'?: number;
-    'types_activites'?: Array<ActiviteErp>;
+    'type_activite'?: ActiviteErp;
+    'types_activites_secondaires'?: Array<ActiviteErp>;
     'periodicite'?: number;
     'libelle'?: string;
-    'effectifs'?: string;
     'presence_locaux_sommeil'?: boolean;
-    'descriptif_general'?: string;
-    'descriptif_technique'?: string;
+    'observations_generales'?: string;
 };
 
 export enum StatutErpEnum {

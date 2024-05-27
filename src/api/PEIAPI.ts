@@ -3,10 +3,11 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
-import { PEI } from '../model/PEI';
 import { Contact } from '../model/Contact';
-import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
+import { Dossier } from '../model/Dossier';
+import { PEI } from '../model/PEI';
 import { PieceJointe } from '../model/PieceJointe';
+import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 
 export class PEIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -15,7 +16,7 @@ export class PEIAPI extends Core {
     
     /**
      * Récupération de l'ensemble des données d'un PEI.
-     * @param peiId Identifiant unique du PEI
+     * @param peiId 
      */
     async getPei(peiId: string): Promise<AxiosResponse<PEI>>
     {
@@ -30,9 +31,81 @@ export class PEIAPI extends Core {
     }
     
     /**
+     * Récupération de la liste des contacts.
+     * @param peiId 
+     * @param page Numéro de page
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
+     */
+    paginatePeiContacts(peiId: string, page?: number, perPage?: number): Collection<Contact>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.collect<Contact>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération de la liste des documents.
+     * @param peiId 
+     * @param page Numéro de page
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
+     */
+    paginatePeiDocuments(peiId: string, page?: number, perPage?: number): Collection<PieceJointe>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.collect<PieceJointe>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération de la liste des dossiers.
+     * @param peiId 
+     * @param page Numéro de page
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
+     */
+    paginatePeiDossiers(peiId: string, page?: number, perPage?: number): Collection<Dossier>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.collect<Dossier>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération de l'historique d'un POI.
+     * @param peiId Identifiant unique du PEI
+     * @param page Numéro de page
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
+     */
+    paginatePeiHistorique(peiId: string, page?: number, perPage?: number): Collection<DescriptifTechniqueDECI>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.collect<DescriptifTechniqueDECI>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
+            headers: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
      * Récupération de la liste des Points d'Eau Incendie (PEI) selon des critères de recherche.
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      * @param geojson Filtre sur la position des PEI
      */
     paginatePei(page?: number, perPage?: number, geojson?: string): Collection<PEI>
@@ -48,56 +121,53 @@ export class PEIAPI extends Core {
     }
     
     /**
-     * Récupération de la liste des contacts d'un Point d'Eau Incendie.
-     * @param peiId Identifiant unique du PEI
-     * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * Ajout d'un contact.
+     * @param peiId 
+     * @param contact 
      */
-    paginatePeiContacts(peiId: string, page?: number, perPage?: number): Collection<Contact>
+    async postContactsPei(peiId: string, contact?: Contact): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
-        return this.collect<Contact>({
-            method: 'GET',
+        return this.request({
+            method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
             headers: {  },
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: {  },
+            body: Utils.payloadFilter( { 'id': contact?.id, 'nom': contact?.nom, 'prenom': contact?.prenom, 'fonction': contact?.fonction, 'telephone_fixe': contact?.telephone_fixe, 'telephone_portable': contact?.telephone_portable, 'telephone_fax': contact?.telephone_fax, 'adresse': contact?.adresse, 'site_web_url': contact?.site_web_url, 'civilite': contact?.civilite, 'societe': contact?.societe, 'email': contact?.email, 'observations': contact?.observations } )
         });
     }
     
     /**
-     * Récupération de l'historique d'un POI.
-     * @param peiId Identifiant unique du PEI
-     * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * Ajout d'un document.
+     * @param peiId 
+     * @param pieceJointe 
      */
-    paginatePeiHistorique(peiId: string, page?: number, perPage?: number): Collection<DescriptifTechniqueDECI>
+    async postDocumentsPei(peiId: string, pieceJointe?: PieceJointe): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
-        return this.collect<DescriptifTechniqueDECI>({
-            method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
             headers: {  },
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: {  },
+            body: Utils.payloadFilter( { 'id': pieceJointe?.id, 'url': pieceJointe?.url, 'nom': pieceJointe?.nom, 'description': pieceJointe?.description, 'type': pieceJointe?.type } )
         });
     }
     
     /**
-     * Récupération de la liste des pièces jointes d'un Point d'Eau Incendie.
-     * @param peiId Identifiant unique du PEI
-     * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * Ajout d'un dossier.
+     * @param peiId 
+     * @param dossier 
      */
-    paginatePeiPiecesJointes(peiId: string, page?: number, perPage?: number): Collection<PieceJointe>
+    async postDossiersPei(peiId: string, dossier?: Dossier): Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
-        return this.collect<PieceJointe>({
-            method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/pieces_jointes'),
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
             headers: {  },
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: {  },
+            body: Utils.payloadFilter( { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': dossier?.date_de_creation ? Utils.formatDate(dossier?.date_de_creation) : undefined, 'createur': dossier?.createur, 'application_utilisee_nom': dossier?.application_utilisee_nom, 'statut': dossier?.statut, 'objet': dossier?.objet, 'pei_id': dossier?.pei_id, 'pei': dossier?.pei, 'erp_id': dossier?.erp_id, 'erp': dossier?.erp } )
         });
     }
     

@@ -13,7 +13,7 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Suppression d'une prescription type de la bibliothèque.
-     * @param prescriptionId Identifiant unique de la prescription
+     * @param prescriptionId 
      */
     async deletePrescription(prescriptionId: string): Promise<AxiosResponse<void>>
     {
@@ -29,7 +29,7 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Suppression d'un support réglementaire.
-     * @param supportReglementaireId Identifiant unique du support réglementaire
+     * @param supportReglementaireId 
      */
     async deleteSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<void>>
     {
@@ -45,7 +45,7 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Récupération des détails d'une prescription dans la bibliothèque.
-     * @param prescriptionId Identifiant unique de la prescription
+     * @param prescriptionId 
      */
     async getPrescription(prescriptionId: string): Promise<AxiosResponse<Prescription>>
     {
@@ -61,7 +61,7 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Récupération des détails d'un support réglementaire.
-     * @param supportReglementaireId Identifiant unique du support réglementaire
+     * @param supportReglementaireId 
      */
     async getSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
@@ -78,7 +78,7 @@ export class PrescriptionsAPI extends Core {
     /**
      * Liste des prescriptions.
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginatePrescriptions(page?: number, perPage?: number): Collection<Prescription>
     {
@@ -94,15 +94,17 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Liste des supports réglementaires.
+     * @param page Numéro de page
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginateSupportsReglementaires(): Collection<PrescriptionSupportReglementaire>
+    paginateSupportsReglementaires(page?: number, perPage?: number): Collection<PrescriptionSupportReglementaire>
     {
         const pathVariable = {  };
         return this.collect<PrescriptionSupportReglementaire>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
             headers: {  },
-            params: {  },
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
     }

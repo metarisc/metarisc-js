@@ -13,22 +13,6 @@ export class UtilisateursAPI extends Core {
     }
     
     /**
-     * Retourne un utilisateur Metarisc.
-     * @param utilisateurId Identifiant unique de l'utilisateur
-     */
-    async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
-    {
-        const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
-        return this.request({
-            method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
-            headers: {  },
-            params: {  },
-            body: Utils.payloadFilter({})
-        });
-    }
-    
-    /**
      * L'utilisateur connecté retourné par ce point de terminaison utilise le token d'accès généré par le service OpenID Connect afin de le lier à une identité connue de Metarisc. Si l'utilisateur est inconnu une erreur est retournée.
      */
     async getUtilisateursMoi(): Promise<AxiosResponse<Utilisateur>>
@@ -44,9 +28,25 @@ export class UtilisateursAPI extends Core {
     }
     
     /**
+     * Retourne un utilisateur Metarisc.
+     * @param utilisateurId 
+     */
+    async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
+    {
+        const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
+            headers: {  },
+            params: {  },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
      * Liste toutes les adresses mail de l'utilisateur connecté, y compris les adresses non publiquement accessibles.
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateMoiEmails(page?: number, perPage?: number): Collection<Email>
     {
@@ -62,9 +62,9 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Retourne une liste des adresses mail publiques d'un utilisateur.
-     * @param utilisateurId Identifiant unique de l'utilisateur
+     * @param utilisateurId 
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number): Collection<Email>
     {
@@ -80,9 +80,9 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Retourne une liste d'organisations dont l'utilisateur est membre.
-     * @param utilisateurId Identifiant unique de l'utilisateur
+     * @param utilisateurId 
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
     {

@@ -11,6 +11,8 @@ export { AnomaliesAPI } from './api/AnomaliesAPI';
 
 export { CommissionsAPI } from './api/CommissionsAPI';
 
+export { ContactsAPI } from './api/ContactsAPI';
+
 export { DossiersAPI } from './api/DossiersAPI';
 
 export { ERPAPI } from './api/ERPAPI';

@@ -11,7 +11,9 @@ export type Dossier = {
     'application_utilisee_nom'?: string;
     'statut'?: StatutEnum;
     'objet'?: string;
+    'pei_id'?: string;
     'pei'?: PEI;
+    'erp_id'?: string;
     'erp'?: ERP;
 };
 
