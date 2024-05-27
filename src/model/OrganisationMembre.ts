@@ -3,6 +3,7 @@ import { Utilisateur } from '../../src/model/Utilisateur';
 
 export type OrganisationMembre = {
     'organisation'?: Organisation;
+    'utilisateur_id'?: string;
     'utilisateur'?: Utilisateur;
     'date_integration'?: Date;
     'role'?: RoleEnum;

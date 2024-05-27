@@ -11,10 +11,10 @@ export class AnomaliesAPI extends Core {
     }
     
     /**
-     * Suppression d'une anomalie.
-     * @param anomalieId Identifiant unique de l'anomalie
+     * Suppression d'une anomalie DECI type.
+     * @param anomalieId 
      */
-    async deleteAnomalie(anomalieId: number): Promise<AxiosResponse<void>>
+    async deleteAnomalie(anomalieId: string): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
         return this.request({
@@ -27,10 +27,10 @@ export class AnomaliesAPI extends Core {
     }
     
     /**
-     * Détails d'une anomalie.
-     * @param anomalieId Identifiant unique de l'anomalie
+     * Détails d'une anomalie type DECI.
+     * @param anomalieId 
      */
-    async getAnomalie(anomalieId: number): Promise<AxiosResponse<AnomalieDECI>>
+    async getAnomalie(anomalieId: string): Promise<AxiosResponse<AnomalieDECI>>
     {
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
         return this.request({
@@ -45,8 +45,8 @@ export class AnomaliesAPI extends Core {
     /**
      * Liste des anomalies.
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
-     * @param texte Filtre sur le texte
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
+     * @param texte Filtre sur le texte de l'anomalie
      */
     paginateAnomalies(page?: number, perPage?: number, texte?: string): Collection<AnomalieDECI>
     {
@@ -61,7 +61,7 @@ export class AnomaliesAPI extends Core {
     }
     
     /**
-     * Ajout d'une nouvelle anomalie.
+     * Ajout d'une nouvelle anomalie DECI type pour une organisation.
      * @param anomalieDECI 
      */
     async postAnomalie(anomalieDECI?: AnomalieDECI): Promise<AxiosResponse<AnomalieDECI>>

@@ -13,7 +13,7 @@ export class FeedAPI extends Core {
     /**
      * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateFeedMessages(page?: number, perPage?: number): Collection<FeedMessage>
     {

@@ -6,6 +6,7 @@ export type TourneeDeciPei = {
     'date_du_controle'?: Date;
     'liste_anomalies'?: Array<TourneeDeciPeiListeAnomaliesInner>;
     'essais_engin_utilise'?: EssaisEnginUtiliseEnum;
+    'pei_id'?: string;
     'pei'?: PEI;
     'est_controle'?: boolean;
     'ordre'?: number;

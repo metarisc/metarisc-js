@@ -12,7 +12,7 @@ export class NotificationsAPI extends Core {
     
     /**
      * Suppression d'une notification correspondante à l'id donné.
-     * @param notificationId Identifiant unique de la Notification
+     * @param notificationId 
      */
     async deleteNotification(notificationId: string): Promise<AxiosResponse<void>>
     {
@@ -28,7 +28,7 @@ export class NotificationsAPI extends Core {
     
     /**
      * Récupération des détails d'une notification correspondante à l'id donné.
-     * @param notificationId Identifiant unique de la Notification
+     * @param notificationId 
      */
     async getNotification(notificationId: string): Promise<AxiosResponse<Notification>>
     {
@@ -45,7 +45,7 @@ export class NotificationsAPI extends Core {
     /**
      * Récupération des détails de toutes les notifications existantes pour l'utilisateur connecté.
      * @param page Numéro de page
-     * @param perPage Nombre de résultats demandé
+     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
     paginateNotifications(page?: number, perPage?: number): Collection<Notification>
     {

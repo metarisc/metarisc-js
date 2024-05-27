@@ -6,6 +6,8 @@ import { AnomaliesAPI } from './api/AnomaliesAPI';
 
 import { CommissionsAPI } from './api/CommissionsAPI';
 
+import { ContactsAPI } from './api/ContactsAPI';
+
 import { DossiersAPI } from './api/DossiersAPI';
 
 import { ERPAPI } from './api/ERPAPI';
@@ -65,6 +67,8 @@ export class Metarisc extends Core
     
     public support?: SupportAPI;
     
+    public contacts?: ContactsAPI;
+    
     public notifications?: NotificationsAPI;
     
     public tus?: Tus;
@@ -122,6 +126,9 @@ export class Metarisc extends Core
                     
                     case 'support':
                         return new SupportAPI(config, tmpClient);
+                    
+                    case 'contacts':
+                        return new ContactsAPI(config, tmpClient);
                     
                     case 'notifications':
                         return new NotificationsAPI(config, tmpClient);
