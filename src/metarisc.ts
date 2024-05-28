@@ -8,6 +8,8 @@ import { CommissionsAPI } from './api/CommissionsAPI';
 
 import { ContactsAPI } from './api/ContactsAPI';
 
+import { DocumentsAPI } from './api/DocumentsAPI';
+
 import { DossiersAPI } from './api/DossiersAPI';
 
 import { ERPAPI } from './api/ERPAPI';
@@ -42,6 +44,8 @@ export class Metarisc extends Core
     public erp?: ERPAPI;
     
     public dossiers?: DossiersAPI;
+    
+    public documents?: DocumentsAPI;
     
     public moi?: MoiAPI;
     
@@ -90,6 +94,9 @@ export class Metarisc extends Core
                     
                     case 'dossiers':
                         return new DossiersAPI(config, tmpClient);
+                    
+                    case 'documents':
+                        return new DocumentsAPI(config, tmpClient);
                     
                     case 'moi':
                         return new MoiAPI(config, tmpClient);
