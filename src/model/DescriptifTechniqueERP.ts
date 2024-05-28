@@ -10,5 +10,7 @@ export enum StatutErpEnum {
 }
 
 export enum GenreEnum {
-    Etablissement = 'etablissement'
+    Etablissement = 'etablissement',
+    Site = 'site',
+    Cellule = 'cellule'
 }

@@ -12,6 +12,22 @@ export class EvenementsAPI extends Core {
     }
     
     /**
+     * Suppression d'un événement.
+     * @param evenementId 
+     */
+    async deleteEvenement(evenementId: string): Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
+            headers: {  },
+            params: {  },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
      * Récupération des détails d'un événement correspondant à l'id donné.
      * @param evenementId 
      * @param evenement 
