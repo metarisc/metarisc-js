@@ -241,6 +241,23 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Terminer un workflow d'un dossier. Cela met à jour l'ensemble de son traitement.
+     * @param dossierId 
+     * @param workflowId 
+     */
+    async postTerminerWorkflowWorkflowsDossier(dossierId: string, workflowId: string): Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString(), 'workflow_id': (new String(workflowId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows/{workflow_id}/terminer'),
+            headers: {  },
+            params: {  },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
      * Mise à jour d'un workflow.
      * @param dossierId Identifiant unique du Dossier
      * @param workflowId Identifiant unique du Workflow
