@@ -5,7 +5,6 @@ export type WorkflowBase = {
     'date_de_debut'?: Date;
     'date_de_fin'?: Date;
     'workflow_automatise'?: boolean;
-    'termine'?: boolean;
     'etat'?: EtatEnum;
     'observations'?: string;
     'type'?: string;

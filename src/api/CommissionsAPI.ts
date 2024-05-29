@@ -81,25 +81,6 @@ export class CommissionsAPI extends Core {
     }
     
     /**
-     * Mise à jour des détails d'un dossier lié à une date de passage en commission
-     * @param commissionId 
-     * @param dateId 
-     * @param dossierId 
-     * @param passageCommissionDossier 
-     */
-    updateCommissionDateDossier(commissionId: string, dateId: string, dossierId: string, passageCommissionDossier?: PassageCommissionDossier): Collection<PassageCommissionDossier>
-    {
-        const pathVariable = { 'commission_id': (new String(commissionId)).toString(), 'date_id': (new String(dateId)).toString(), 'dossier_id': (new String(dossierId)).toString() };
-        return this.collect<PassageCommissionDossier>({
-            method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}/ordre_du_jour/{dossier_id}'),
-            headers: {  },
-            params: {  },
-            body: Utils.payloadFilter( { 'id': passageCommissionDossier?.id, 'dossier': passageCommissionDossier?.dossier, 'dossier_id': passageCommissionDossier?.dossier_id, 'avis': passageCommissionDossier?.avis, 'statut': passageCommissionDossier?.statut } )
-        });
-    }
-    
-    /**
      * Récupération d'une liste de dossiers à l'ordre du jour liés à une date de passage en commission.
      * @param commissionId 
      * @param dateId 
@@ -148,6 +129,25 @@ export class CommissionsAPI extends Core {
             headers: {  },
             params: {  },
             body: Utils.payloadFilter( { 'id': passageCommission?.id, 'date_debut': passageCommission?.date_debut ? Utils.formatDate(passageCommission?.date_debut) : undefined, 'date_fin': passageCommission?.date_fin ? Utils.formatDate(passageCommission?.date_fin) : undefined, 'type': passageCommission?.type, 'libelle': passageCommission?.libelle } )
+        });
+    }
+    
+    /**
+     * Mise à jour des détails d'un dossier lié à une date de passage en commission
+     * @param commissionId 
+     * @param dateId 
+     * @param dossierId 
+     * @param passageCommissionDossier 
+     */
+    async updateCommissionDateDossier(commissionId: string, dateId: string, dossierId: string, passageCommissionDossier?: PassageCommissionDossier): Promise<AxiosResponse<PassageCommissionDossier>>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString(), 'date_id': (new String(dateId)).toString(), 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{date_id}/ordre_du_jour/{dossier_id}'),
+            headers: {  },
+            params: {  },
+            body: Utils.payloadFilter( { 'id': passageCommissionDossier?.id, 'dossier': passageCommissionDossier?.dossier, 'dossier_id': passageCommissionDossier?.dossier_id, 'avis': passageCommissionDossier?.avis, 'statut': passageCommissionDossier?.statut } )
         });
     }
     

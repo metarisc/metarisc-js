@@ -166,7 +166,7 @@ export class ERPAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
             headers: {  },
             params: {  },
-            body: Utils.payloadFilter( { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': dossier?.date_de_creation ? Utils.formatDate(dossier?.date_de_creation) : undefined, 'createur': dossier?.createur, 'application_utilisee_nom': dossier?.application_utilisee_nom, 'statut': dossier?.statut, 'objet': dossier?.objet, 'pei_id': dossier?.pei_id, 'pei': dossier?.pei, 'erp_id': dossier?.erp_id, 'erp': dossier?.erp } )
+            body: Utils.payloadFilter( { 'id': dossier?.id, 'type': dossier?.type, 'description': dossier?.description, 'date_de_creation': dossier?.date_de_creation ? Utils.formatDate(dossier?.date_de_creation) : undefined, 'createur': dossier?.createur, 'application_utilisee_nom': dossier?.application_utilisee_nom, 'statut': dossier?.statut, 'objet': dossier?.objet, 'pei': dossier?.pei, 'erp': dossier?.erp } )
         });
     }
     
