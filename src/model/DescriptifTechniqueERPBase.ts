@@ -7,7 +7,7 @@ export type DescriptifTechniqueERPBase = {
     'statut_erp'?: StatutErpEnum;
     'genre'?: GenreEnum;
     'avis_exploitation'?: Avis;
-    'categorie'?: number;
+    'categorie'?: CategorieEnum;
     'type_activite'?: ActiviteErp;
     'types_activites_secondaires'?: Array<ActiviteErp>;
     'periodicite'?: number;
@@ -27,4 +27,12 @@ export enum GenreEnum {
     Etablissement = 'etablissement',
     Site = 'site',
     Cellule = 'cellule'
+}
+
+export enum CategorieEnum {
+    NUMBER_1 = 1,
+    NUMBER_2 = 2,
+    NUMBER_3 = 3,
+    NUMBER_4 = 4,
+    NUMBER_5 = 5
 }
