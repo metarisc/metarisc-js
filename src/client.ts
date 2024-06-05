@@ -30,6 +30,8 @@ export class Client {
 	private access_token?: string;
 	private refresh_token?: string;
 
+	private orgId ?: string;
+
 	constructor(config : MetariscConfig) {
 		// Paramétrage OAuth2
 		this.oauth2 = new OAuth2({
@@ -80,6 +82,15 @@ export class Client {
 				catch(e) {
 					throw new SessionExpiredError('La session utilisateur a expirée. ' + e.message);
 				}
+			}
+			return config;
+		});
+		
+		// Si la requête doit être réalisée en tant que membre d'une organisation Metarisc, on injecte son identifiant dans les headers
+		// de la requête.
+		this.axios.interceptors.request.use((config) => {
+			if(this.orgId) {
+				config.headers["Metarisc-Org-Id"] = this.orgId;
 			}
 			return config;
 		});
@@ -157,6 +168,13 @@ export class Client {
 	 */
 	getRefreshToken(): string|undefined {
 		return this.refresh_token;
+	}
+
+	/**
+	 * Réaliser des appels en tant que membre d'une organisation Metarisc.
+	 */
+	setActiveOrganisation(orgId: string): void {
+		this.orgId = orgId;
 	}
 
 	/**

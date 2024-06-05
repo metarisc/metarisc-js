@@ -65,4 +65,8 @@ export class Core {
     setRefreshToken(refresh_token: string): void {
         this.client.setRefreshToken(refresh_token);
     }
+
+    setActiveOrganisation(orgId: string): void {
+        this.client.setActiveOrganisation(orgId);
+    }
 }
