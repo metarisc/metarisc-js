@@ -41,7 +41,7 @@ export class Collection<T>
             params: {...this.config.params, ...{
                 page: page.toString(),
                 per_page: per_page.toString()
-            }},  
+            }}  
         });
     }
 

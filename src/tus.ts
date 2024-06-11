@@ -17,7 +17,7 @@ export class Tus extends Core
       chunkSize: 1024 * 512,
       metadata: {
         fileName: file.name,
-        filetype: file.type,
+        filetype: file.type
       },
       onBeforeRequest: async (request: HttpRequest) => {
         const access_token = this.client.getAccessToken();
@@ -50,7 +50,7 @@ export class Tus extends Core
       },
       onSuccess: () => {
         successFn();
-      },
+      }
     });
     upload.start();
   }

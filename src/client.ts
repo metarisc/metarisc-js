@@ -1,7 +1,7 @@
 import axios, {
 	AxiosInstance,
 	AxiosResponse,
-	RawAxiosRequestHeaders,
+	RawAxiosRequestHeaders
 } from "axios";
 import axiosRetry from "axios-retry";
 import { MetariscConfig, OAuth2Options } from "./core";
@@ -36,15 +36,15 @@ export class Client {
 		// Paramétrage OAuth2
 		this.oauth2 = new OAuth2({
 			client_id: config.client_id,
-			client_secret: config.client_secret,
+			client_secret: config.client_secret
 		});
 
 		// Initialisation du client HTTP
 		this.axios = axios.create({
 			baseURL: config.metarisc_url ?? "https://api.metarisc.fr/",
 			headers: {
-				common: this.getDefaultHeaders(),
-			},
+				common: this.getDefaultHeaders()
+			}
 		});
 
 		// Axios Interceptors
@@ -68,7 +68,7 @@ export class Client {
 		// Axios interceptor : Retry strategy
 		axiosRetry(this.axios, {
 			retries: 3,
-			retryDelay: axiosRetry.exponentialDelay,
+			retryDelay: axiosRetry.exponentialDelay
 		});
 
 		// Axios interceptor : Refresh Token (https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
@@ -138,7 +138,7 @@ export class Client {
 			url: config.endpoint || "/",
 			params: config.params,
 			data: config.body,
-			headers: config.headers,
+			headers: config.headers
 		});
 	}
 

@@ -43,7 +43,7 @@ export class Core {
         return new Collection<T>(this, {
             endpoint: config.endpoint || "/",
             params: config.params,
-            headers: config.headers,
+            headers: config.headers
         });
     }
 
