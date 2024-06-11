@@ -1,20 +1,46 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "unused-imports", "import"],
+  "plugins": [
+    "@typescript-eslint",
+    "unused-imports",
+    "import"
+  ],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "@typescript-eslint/no-explicit-any": ["off"],
-    "no-multiple-empty-lines": [1, { "max": 1, "maxEOF": 0, "maxBOF": 0 }],
-    "unused-imports/no-unused-imports": "error",
-    "import/no-duplicates": [
-      "error",
-      { "considerQueryString": true, "prefer-inline": true }
+    "@typescript-eslint/no-explicit-any": [
+      "off"
     ],
-    "comma-dangle": "error"
+    "@typescript-eslint/ban-types": [
+      "error", {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "warn", {
+        "max": 1,
+        "maxEOF": 0,
+        "maxBOF": 0
+      }
+    ],
+    "unused-imports/no-unused-imports": [
+      "error"
+    ],
+    "import/no-duplicates": [
+      "error", {
+        "considerQueryString": true,
+        "prefer-inline": true
+      }
+    ],
+    "comma-dangle": [
+      "error"
+    ]
   }
 }
