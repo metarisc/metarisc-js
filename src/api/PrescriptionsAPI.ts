@@ -13,15 +13,13 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Suppression d'une prescription type de la bibliothèque.
-     * @param prescriptionId 
      */
-    async deletePrescription(prescriptionId: string): Promise<AxiosResponse<void>>
+    async deletePrescription(prescriptionId: string ): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -29,15 +27,13 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Suppression d'un support réglementaire.
-     * @param supportReglementaireId 
      */
-    async deleteSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<void>>
+    async deleteSupportReglementaire(supportReglementaireId: string ): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -45,15 +41,13 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Récupération des détails d'une prescription dans la bibliothèque.
-     * @param prescriptionId 
      */
-    async getPrescription(prescriptionId: string): Promise<AxiosResponse<Prescription>>
+    async getPrescription(prescriptionId: string ): Promise<AxiosResponse<Prescription>>
     {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -61,15 +55,13 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Récupération des détails d'un support réglementaire.
-     * @param supportReglementaireId 
      */
-    async getSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    async getSupportReglementaire(supportReglementaireId: string ): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -77,16 +69,13 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Liste des prescriptions.
-     * @param page Numéro de page
-     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginatePrescriptions(page?: number, perPage?: number): Collection<Prescription>
+    paginatePrescriptions(page?: number, perPage?: number ): Collection<Prescription>
     {
         const pathVariable = {  };
         return this.collect<Prescription>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
@@ -94,16 +83,13 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Liste des supports réglementaires.
-     * @param page Numéro de page
-     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginateSupportsReglementaires(page?: number, perPage?: number): Collection<PrescriptionSupportReglementaire>
+    paginateSupportsReglementaires(page?: number, perPage?: number ): Collection<PrescriptionSupportReglementaire>
     {
         const pathVariable = {  };
         return this.collect<PrescriptionSupportReglementaire>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
@@ -111,7 +97,6 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Ajout d'une nouvelle prescription type dans la bibliothèque.
-     * @param prescription 
      */
     async postPrescription(prescription?: Prescription): Promise<AxiosResponse<Prescription>>
     {
@@ -119,7 +104,6 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter( { 'id': prescription?.id, 'contenu': prescription?.contenu, 'type': prescription?.type, 'supports_reglementaires': prescription?.supports_reglementaires, 'supports_reglementaires_id': prescription?.supports_reglementaires_id } )
         });
@@ -127,7 +111,6 @@ export class PrescriptionsAPI extends Core {
     
     /**
      * Ajouter un support réglementaire.
-     * @param prescriptionSupportReglementaire 
      */
     async postSupportReglementaire(prescriptionSupportReglementaire?: PrescriptionSupportReglementaire): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
@@ -135,7 +118,6 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter( { 'id': prescriptionSupportReglementaire?.id, 'nature': prescriptionSupportReglementaire?.nature, 'legifrance_cid': prescriptionSupportReglementaire?.legifrance_cid, 'contenu': prescriptionSupportReglementaire?.contenu, 'titre': prescriptionSupportReglementaire?.titre, 'etat': prescriptionSupportReglementaire?.etat, 'reference': prescriptionSupportReglementaire?.reference } )
         });

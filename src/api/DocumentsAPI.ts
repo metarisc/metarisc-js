@@ -12,15 +12,13 @@ export class DocumentsAPI extends Core {
     
     /**
      * Suppression d'un document existant.
-     * @param documentId 
      */
-    async deleteDocument(documentId: string): Promise<AxiosResponse<void>>
+    async deleteDocument(documentId: string ): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/documents/{document_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -28,15 +26,13 @@ export class DocumentsAPI extends Core {
     
     /**
      * Récupération d'un document.
-     * @param documentId 
      */
-    async getDocument(documentId: string): Promise<AxiosResponse<PieceJointe>>
+    async getDocument(documentId: string ): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/documents/{document_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -44,16 +40,13 @@ export class DocumentsAPI extends Core {
     
     /**
      * Récupération de la liste des documents.
-     * @param page Numéro de page
-     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginate(page?: number, perPage?: number): Collection<PieceJointe>
+    paginate(page?: number, perPage?: number ): Collection<PieceJointe>
     {
         const pathVariable = {  };
         return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/documents'),
-            headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
@@ -61,8 +54,6 @@ export class DocumentsAPI extends Core {
     
     /**
      * Mise à jour d'un document existant.
-     * @param documentId 
-     * @param pieceJointe 
      */
     async postDocument(documentId: string, pieceJointe?: PieceJointe): Promise<AxiosResponse<PieceJointe>>
     {
@@ -70,7 +61,6 @@ export class DocumentsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/documents/{document_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter( { 'id': pieceJointe?.id, 'url': pieceJointe?.url, 'nom': pieceJointe?.nom, 'description': pieceJointe?.description, 'type': pieceJointe?.type } )
         });

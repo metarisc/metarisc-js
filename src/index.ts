@@ -35,8 +35,6 @@ export { PingAPI } from './api/PingAPI';
 
 export { PrescriptionsAPI } from './api/PrescriptionsAPI';
 
-export { SupportAPI } from './api/SupportAPI';
-
 export { TournesDECIAPI } from './api/TournesDECIAPI';
 
 export { UtilisateursAPI } from './api/UtilisateursAPI';

@@ -1,8 +1,8 @@
 import { TourneeDeciBase } from '../model/TourneeDeciBase';
 
 export type TourneeDeciModele = TourneeDeciBase & { 
-    'mois_debut'?: string;
-    'mois_fin'?: string;
+    'mois_debut'?: number;
+    'mois_fin'?: number;
 };
 
 export enum TypeEnum {
