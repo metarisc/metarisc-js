@@ -30,8 +30,6 @@ import { PingAPI } from './api/PingAPI';
 
 import { PrescriptionsAPI } from './api/PrescriptionsAPI';
 
-import { SupportAPI } from './api/SupportAPI';
-
 import { TournesDECIAPI } from './api/TournesDECIAPI';
 
 import { UtilisateursAPI } from './api/UtilisateursAPI';
@@ -68,8 +66,6 @@ export class Metarisc extends Core
     public evenements?: EvenementsAPI;
     
     public prescriptions?: PrescriptionsAPI;
-    
-    public support?: SupportAPI;
     
     public contacts?: ContactsAPI;
     
@@ -130,9 +126,6 @@ export class Metarisc extends Core
                     
                     case 'prescriptions':
                         return new PrescriptionsAPI(config, tmpClient);
-                    
-                    case 'support':
-                        return new SupportAPI(config, tmpClient);
                     
                     case 'contacts':
                         return new ContactsAPI(config, tmpClient);

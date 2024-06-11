@@ -21,7 +21,6 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -29,15 +28,13 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Retourne un utilisateur Metarisc.
-     * @param utilisateurId 
      */
-    async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
+    async getUtilisateurDetails(utilisateurId: string ): Promise<AxiosResponse<Utilisateur>>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
-            headers: {  },
             params: {  },
             body: Utils.payloadFilter({})
         });
@@ -45,16 +42,13 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Liste toutes les adresses mail de l'utilisateur connecté, y compris les adresses non publiquement accessibles.
-     * @param page Numéro de page
-     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginateMoiEmails(page?: number, perPage?: number): Collection<Email>
+    paginateMoiEmails(page?: number, perPage?: number ): Collection<Email>
     {
         const pathVariable = {  };
         return this.collect<Email>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
-            headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
@@ -62,17 +56,13 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Retourne une liste des adresses mail publiques d'un utilisateur.
-     * @param utilisateurId 
-     * @param page Numéro de page
-     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number): Collection<Email>
+    paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number ): Collection<Email>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect<Email>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
-            headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
@@ -80,17 +70,13 @@ export class UtilisateursAPI extends Core {
     
     /**
      * Retourne une liste d'organisations dont l'utilisateur est membre.
-     * @param utilisateurId 
-     * @param page Numéro de page
-     * @param perPage Limite le nombre d'objets retournés. La limite est comprise entre 1 et 100, la valeur par défaut étant de 10.
      */
-    paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
+    paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number ): Collection<OrganisationMembre>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect<OrganisationMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
-            headers: {  },
             params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
