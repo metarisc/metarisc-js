@@ -26,20 +26,6 @@ export class TournesDECIAPI extends Core {
     }
     
     /**
-     * Génération d'un livret de tournée pour une tournée DECI.
-     */
-    async getTourneeDeciLivretDeTournee(tourneeDeciId: string ): Promise<AxiosResponse<HttpFile>>
-    {
-        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
-        return this.request({
-            method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/livret_de_tournee'),
-            params: {  },
-            body: Utils.payloadFilter({})
-        });
-    }
-    
-    /**
      * Récupération des détails liés au contrôle d'un PEI d'une tournée.
      */
     async getTourneeDeciPei(tourneeDeciId: string, peiId: string ): Promise<AxiosResponse<TourneeDeciPei>>
