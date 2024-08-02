@@ -8,6 +8,10 @@ import { CommissionsAPI } from './api/CommissionsAPI';
 
 import { ContactsAPI } from './api/ContactsAPI';
 
+import { ControlesPeiAPI } from './api/ControlesPeiAPI';
+
+import { DatesPassageCommissionAPI } from './api/DatesPassageCommissionAPI';
+
 import { DocumentsAPI } from './api/DocumentsAPI';
 
 import { DossiersAPI } from './api/DossiersAPI';
@@ -22,6 +26,8 @@ import { MoiAPI } from './api/MoiAPI';
 
 import { NotificationsAPI } from './api/NotificationsAPI';
 
+import { OrdresDuJourAPI } from './api/OrdresDuJourAPI';
+
 import { OrganisationsAPI } from './api/OrganisationsAPI';
 
 import { PEIAPI } from './api/PEIAPI';
@@ -34,10 +40,14 @@ import { TournesDECIAPI } from './api/TournesDECIAPI';
 
 import { UtilisateursAPI } from './api/UtilisateursAPI';
 
+import { WorkflowsAPI } from './api/WorkflowsAPI';
+
 export class Metarisc extends Core
 {
     
     public utilisateurs?: UtilisateursAPI;
+    
+    public dates_passage_commission?: DatesPassageCommissionAPI;
     
     public erp?: ERPAPI;
     
@@ -48,6 +58,8 @@ export class Metarisc extends Core
     public moi?: MoiAPI;
     
     public ping?: PingAPI;
+    
+    public workflows?: WorkflowsAPI;
     
     public anomalies?: AnomaliesAPI;
     
@@ -63,7 +75,11 @@ export class Metarisc extends Core
     
     public commissions?: CommissionsAPI;
     
+    public controles_pei?: ControlesPeiAPI;
+    
     public evenements?: EvenementsAPI;
+    
+    public ordres_du_jour?: OrdresDuJourAPI;
     
     public prescriptions?: PrescriptionsAPI;
     
@@ -80,10 +96,13 @@ export class Metarisc extends Core
 
         return new Proxy(this, {
             get: function(metarisc, name, receiver) {
-                switch(name) {
+                switch (name) {
                     
                     case 'utilisateurs':
                         return new UtilisateursAPI(config, tmpClient);
+                    
+                    case 'dates_passage_commission':
+                        return new DatesPassageCommissionAPI(config, tmpClient);
                     
                     case 'erp':
                         return new ERPAPI(config, tmpClient);
@@ -99,6 +118,9 @@ export class Metarisc extends Core
                     
                     case 'ping':
                         return new PingAPI(config, tmpClient);
+                    
+                    case 'workflows':
+                        return new WorkflowsAPI(config, tmpClient);
                     
                     case 'anomalies':
                         return new AnomaliesAPI(config, tmpClient);
@@ -121,8 +143,14 @@ export class Metarisc extends Core
                     case 'commissions':
                         return new CommissionsAPI(config, tmpClient);
                     
+                    case 'controles_pei':
+                        return new ControlesPeiAPI(config, tmpClient);
+                    
                     case 'evenements':
                         return new EvenementsAPI(config, tmpClient);
+                    
+                    case 'ordres_du_jour':
+                        return new OrdresDuJourAPI(config, tmpClient);
                     
                     case 'prescriptions':
                         return new PrescriptionsAPI(config, tmpClient);
