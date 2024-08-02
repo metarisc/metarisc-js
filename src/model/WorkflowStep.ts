@@ -1,4 +1,4 @@
-import { WorkflowStepWorkflow } from '../../src/model/WorkflowStepWorkflow';
+import { WorkflowStepWorkflow } from './WorkflowStepWorkflow';
 
 export type WorkflowStep = {
     'name'?: string;

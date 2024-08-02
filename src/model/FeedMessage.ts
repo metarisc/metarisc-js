@@ -1,4 +1,4 @@
-import { FeedMessageTexte } from '../../src/model/FeedMessageTexte';
+import { FeedMessageTexte } from './FeedMessageTexte';
 
 export type FeedMessage = FeedMessageTexte;
 

@@ -1,18 +1,12 @@
-import { DescriptifTechniqueERPBase } from '../../src/model/DescriptifTechniqueERPBase';
+import { DescriptifTechniqueERPBase } from './DescriptifTechniqueERPBase';
 
 export type DescriptifTechniqueERP = DescriptifTechniqueERPBase;
 
-export enum StatutErpEnum {
+export enum StatutEnum {
     RepriseDeDonnees = 'reprise_de_donnees',
     Ouvert = 'ouvert',
     Projet = 'projet',
     Ferme = 'ferme'
-}
-
-export enum GenreEnum {
-    Etablissement = 'etablissement',
-    Site = 'site',
-    Cellule = 'cellule'
 }
 
 export enum CategorieEnum {

@@ -1,6 +1,7 @@
-import { WorkflowBase } from '../model/WorkflowBase';
+import { WorkflowBase } from './WorkflowBase';
 
 export type WorkflowRelectureSecretariat = WorkflowBase & { 
+
     'est_relu'?: boolean;
 };
 

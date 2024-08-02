@@ -1,10 +1,12 @@
-import { Avis } from '../../src/model/Avis';
-import { PassageCommission } from '../../src/model/PassageCommission';
+import { Avis } from './Avis';
+import { PassageCommission } from './PassageCommission';
 
-import { WorkflowBase } from '../model/WorkflowBase';
+import { WorkflowBase } from './WorkflowBase';
 
 export type WorkflowPassageCommissionSecurite = WorkflowBase & { 
+
     'commission_date'?: PassageCommission;
+
     'avis_de_commission'?: Avis;
 };
 

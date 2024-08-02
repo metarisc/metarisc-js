@@ -1,6 +1,7 @@
-import { FeedMessageBase } from '../model/FeedMessageBase';
+import { FeedMessageBase } from './FeedMessageBase';
 
 export type FeedMessageTexte = FeedMessageBase & { 
+
     'texte'?: string;
 };
 

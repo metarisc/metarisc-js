@@ -1,8 +1,9 @@
-import { Commission } from '../../src/model/Commission';
+import { Commission } from './Commission';
 
-import { WorkflowBase } from '../model/WorkflowBase';
+import { WorkflowBase } from './WorkflowBase';
 
 export type WorkflowConsultationSis = WorkflowBase & { 
+
     'commission'?: Commission;
 };
 

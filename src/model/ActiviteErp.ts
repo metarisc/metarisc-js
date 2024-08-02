@@ -18,20 +18,12 @@ export enum TypeEnum {
     W = 'W',
     X = 'X',
     Y = 'Y',
-    Pe = 'PE',
-    Po = 'PO',
-    Pu = 'PU',
-    Px = 'PX',
     Pa = 'PA',
     Cts = 'CTS',
     Sg = 'SG',
-    Oa = 'OA',
-    Ref = 'REF',
     Ps = 'PS',
     Ga = 'GA',
+    Oa = 'OA',
     Ef = 'EF',
-    Geem = 'GEEM',
-    Ep = 'EP',
-    R14315 = 'R. 143-15',
-    Eirp = 'EIRP'
+    Ref = 'REF'
 }

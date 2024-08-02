@@ -1,4 +1,4 @@
-import { WorkflowStep } from '../../src/model/WorkflowStep';
+import { WorkflowStep } from './WorkflowStep';
 
 export type WorkflowType = {
     'dossier_type'?: string;

@@ -1,12 +1,12 @@
-import { WorkflowAnalyseDeRisque } from '../../src/model/WorkflowAnalyseDeRisque';
-import { WorkflowArriveeSecretariat } from '../../src/model/WorkflowArriveeSecretariat';
-import { WorkflowConsultationSis } from '../../src/model/WorkflowConsultationSis';
-import { WorkflowDossiersLies } from '../../src/model/WorkflowDossiersLies';
-import { WorkflowPassageCommissionSecurite } from '../../src/model/WorkflowPassageCommissionSecurite';
-import { WorkflowRelectureSecretariat } from '../../src/model/WorkflowRelectureSecretariat';
-import { WorkflowRemiseEnServicePEI } from '../../src/model/WorkflowRemiseEnServicePEI';
-import { WorkflowValidation } from '../../src/model/WorkflowValidation';
-import { WorkflowVisite } from '../../src/model/WorkflowVisite';
+import { WorkflowAnalyseDeRisque } from './WorkflowAnalyseDeRisque';
+import { WorkflowArriveeSecretariat } from './WorkflowArriveeSecretariat';
+import { WorkflowConsultationSis } from './WorkflowConsultationSis';
+import { WorkflowDossiersLies } from './WorkflowDossiersLies';
+import { WorkflowPassageCommissionSecurite } from './WorkflowPassageCommissionSecurite';
+import { WorkflowRelectureSecretariat } from './WorkflowRelectureSecretariat';
+import { WorkflowRemiseEnServicePEI } from './WorkflowRemiseEnServicePEI';
+import { WorkflowValidation } from './WorkflowValidation';
+import { WorkflowVisite } from './WorkflowVisite';
 
 export type Workflow = WorkflowDossiersLies | WorkflowRemiseEnServicePEI | WorkflowPassageCommissionSecurite | WorkflowAnalyseDeRisque | WorkflowArriveeSecretariat | WorkflowConsultationSis | WorkflowValidation | WorkflowVisite | WorkflowRelectureSecretariat;
 
