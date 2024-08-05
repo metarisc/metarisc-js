@@ -79,7 +79,7 @@ export class Client {
 				try {
 					await this.refreshToken();
 				}
-				catch(e) {
+				catch (e) {
 					throw new SessionExpiredError('La session utilisateur a expirée. ' + e.message);
 				}
 			}
@@ -89,7 +89,7 @@ export class Client {
 		// Si la requête doit être réalisée en tant que membre d'une organisation Metarisc, on injecte son identifiant dans les headers
 		// de la requête.
 		this.axios.interceptors.request.use((config) => {
-			if(this.orgId) {
+			if (this.orgId) {
 				config.headers["Metarisc-Org-Id"] = this.orgId;
 			}
 			return config;
@@ -185,7 +185,7 @@ export class Client {
 		const headers: RawAxiosRequestHeaders = {};
 
 		// UA Headers (surcharge le UA uniquement sur un env Server car le navigateur considéra cela comme unsafe)
-		if(!hasBrowserEnv) {
+		if (!hasBrowserEnv) {
 			headers["User-Agent"] = "MetariscJs/dev"; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
 		}
 		headers["Metarisc-User-Agent"] = JSON.stringify({

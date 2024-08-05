@@ -13,7 +13,7 @@ export class ERPAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
-    
+
     /**
      * Récupération des détails de l'ERP.
      */
@@ -27,7 +27,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération de la liste des contacts.
      */
@@ -41,7 +41,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération de la liste des documents.
      */
@@ -55,7 +55,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération de la liste des dossiers.
      */
@@ -69,7 +69,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération de la liste des ERP.
      */
@@ -83,7 +83,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération de l'historique d'un ERP.
      */
@@ -97,7 +97,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Ajout d'un contact.
      */
@@ -111,7 +111,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
     /**
      * Ajout d'un document.
      */
@@ -125,7 +125,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
     /**
      * Ajout d'un dossier.
      */
@@ -139,11 +139,11 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
     /**
      * Création d'un nouveau ERP.
      */
-    async postErp(params : { implantation : { }, referencesExterieures? : { }, }): Promise<AxiosResponse<ERP>>
+    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }}): Promise<AxiosResponse<ERP>>
     {
         const pathVariable = { };
         return this.request({
@@ -153,5 +153,5 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
 }

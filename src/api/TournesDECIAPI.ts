@@ -11,7 +11,7 @@ export class TournesDECIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
-    
+
     /**
      * Génération d'un livret de tournée pour une tournée DECI.
      */
@@ -25,7 +25,7 @@ export class TournesDECIAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération des détails de la tournée DECI.
      */
@@ -39,7 +39,7 @@ export class TournesDECIAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération de la liste des contrôles PEI liés à la tournée DECI.
      */
@@ -53,7 +53,7 @@ export class TournesDECIAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Liste des tournées DECI.
      */
@@ -67,11 +67,11 @@ export class TournesDECIAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Ajout d'un PEI sur la tournée DECI.
      */
-    async postTourneeDeciPei(tourneeDeciId: string, params : { peiId : string, dateDuControle? : Date, listeAnomalies? : { }, essaisEnginUtilise? : string, ordre? : number }): Promise<AxiosResponse<TourneeDeciPei>>
+    async postTourneeDeciPei(tourneeDeciId: string, params : { peiId : string, dateDuControle? : Date, listeAnomalies? : { code? : number, a_lever? : boolean }, essaisEnginUtilise? : string, ordre? : number }): Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
@@ -81,11 +81,11 @@ export class TournesDECIAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
     /**
      * Mise à jour de la tournée DECI.
      */
-    async updateTourneeDeci(tourneeDeciId: string,UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE | null, params : { }): Promise<AxiosResponse<TourneeDeci>>
+    async updateTourneeDeci(tourneeDeciId: string, params : { }): Promise<AxiosResponse<TourneeDeci>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
@@ -95,7 +95,7 @@ export class TournesDECIAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
     /**
      * Ajout d'une nouvelle tournée DECI.
      */
@@ -109,5 +109,5 @@ export class TournesDECIAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
 }

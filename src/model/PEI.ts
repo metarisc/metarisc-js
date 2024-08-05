@@ -1,12 +1,12 @@
 import { AdressePostale } from './AdressePostale';
 import { DescriptifTechniqueDECI } from './DescriptifTechniqueDECI';
-import { ObjetERPReferencesExterieuresInner } from './ObjetERPReferencesExterieuresInner';
+import { ReferenceExterieure } from './ReferenceExterieure';
 
 export type PEI = {
     'id'?: string;
     'date_de_realisation'?: Date;
     'date_de_derniere_mise_a_jour'?: Date;
-    'references_exterieures'?: Array<ObjetERPReferencesExterieuresInner>;
+    'references_exterieures'?: Array<ReferenceExterieure>;
     'descriptif_technique'?: DescriptifTechniqueDECI;
     'implantation'?: AdressePostale;
     'numero'?: string;

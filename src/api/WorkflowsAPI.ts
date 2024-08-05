@@ -11,7 +11,7 @@ export class WorkflowsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
-    
+
     /**
      * Récupération des détails d'un workflow.
      */
@@ -25,7 +25,7 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Récupération de la liste des documents.
      */
@@ -39,7 +39,7 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Ajout d'un document.
      */
@@ -53,7 +53,7 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
     /**
      * Terminer un workflow. Cela met à jour l'ensemble de son traitement.
      */
@@ -67,11 +67,11 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-    
+
     /**
      * Mise à jour d'un workflow.
      */
-    async updateWorkflowsDetails(workflowId: string,UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE | null, params : { }): Promise<AxiosResponse<Workflow>>
+    async updateWorkflowsDetails(workflowId: string, params : { }): Promise<AxiosResponse<Workflow>>
     {
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
@@ -81,5 +81,5 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-    
+
 }

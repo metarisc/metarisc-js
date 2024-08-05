@@ -3,10 +3,9 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
-import { Dossier } from '../model/Dossier';
-import { ObjetContact } from '../model/ObjetContact';
-import { PieceJointe } from '../model/PieceJointe';
 import { Contact } from '../model/Contact';
+import { Dossier } from '../model/Dossier';
+import { PieceJointe } from '../model/PieceJointe';
 import { Tag } from '../model/Tag';
 import { Workflow } from '../model/Workflow';
 
@@ -102,7 +101,7 @@ export class DossiersAPI extends Core {
     /**
      * Ajout d'un contact.
      */
-    async postContactsDossier(dossierId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<ObjetContact>>
+    async postContactsDossier(dossierId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({

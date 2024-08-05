@@ -9,7 +9,7 @@ export class Utils {
         let s = "";
         let idx = 0;
 
-        for (let a; (a = r.exec(url)) !== null; ) {
+        for (let a; (a = r.exec(url)) !== null;) {
             s += url.substring(idx, r.lastIndex - a[0].length) + data[a[1]];
             idx = r.lastIndex;
         }

@@ -3,11 +3,10 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
+import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
-import { ObjetContact } from '../model/ObjetContact';
 import { PEI } from '../model/PEI';
 import { PieceJointe } from '../model/PieceJointe';
-import { Contact } from '../model/Contact';
 import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 
 export class PEIAPI extends Core {
@@ -102,7 +101,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un contact.
      */
-    async postContactsPei(peiId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<ObjetContact>>
+    async postContactsPei(peiId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -144,7 +143,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un PEI.
      */
-    async postPei(params : { implantation : { }, referencesExterieures? : { }, numero? : string, numeroCompteur? : string, numeroSerieAppareil? : string }): Promise<AxiosResponse<PEI>>
+    async postPei(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }, numero? : string, numeroCompteur? : string, numeroSerieAppareil? : string }): Promise<AxiosResponse<PEI>>
     {
         const pathVariable = { };
         return this.request({

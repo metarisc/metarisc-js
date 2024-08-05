@@ -9,7 +9,7 @@ export class AnomaliesAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
-
+    
     /**
      * Suppression d'une anomalie DECI type dans la bibliothèque DECI.
      */
@@ -23,7 +23,7 @@ export class AnomaliesAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Détails d'une anomalie type DECI présente dans la bibliothèque DECI.
      */
@@ -37,7 +37,7 @@ export class AnomaliesAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Retourne une liste des anomalies types dans la bibliothèque DECI.
      */
@@ -51,11 +51,11 @@ export class AnomaliesAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Ajout d'une nouvelle anomalie DECI type dans la bibliothèque DECI.
      */
-    async postAnomalie(params : { code : number, texte : string, indiceDeGravite : number}): Promise<AxiosResponse<AnomalieDECI>>
+    async postAnomalie(params : { code : number, texte : string, indiceDeGravite : number, }): Promise<AxiosResponse<AnomalieDECI>>
     {
         const pathVariable = { };
         return this.request({
@@ -65,5 +65,5 @@ export class AnomaliesAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-
+    
 }
