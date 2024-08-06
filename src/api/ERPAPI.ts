@@ -19,7 +19,6 @@ export class ERPAPI extends Core {
      */
     async getErp(erpId: string): Promise<AxiosResponse<ERP>>
     {
-
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
@@ -104,7 +103,6 @@ export class ERPAPI extends Core {
      */
     async postContactsErp(erpId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
     {
-
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'POST',
@@ -119,7 +117,6 @@ export class ERPAPI extends Core {
      */
     async postDocumentsErp(erpId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
     {
-
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'POST',
@@ -134,7 +131,6 @@ export class ERPAPI extends Core {
      */
     async postDossiersErp(erpId: string, params : { type : string, objet? : string }): Promise<AxiosResponse<Dossier>>
     {
-
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'POST',
@@ -149,7 +145,6 @@ export class ERPAPI extends Core {
      */
     async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }, }): Promise<AxiosResponse<ERP>>
     {
-
         const pathVariable = { };
         return this.request({
             method: 'POST',

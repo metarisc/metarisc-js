@@ -1,7 +1,16 @@
-import { WorkflowArriveeSecretariatAllOfPassageCommission } from './WorkflowArriveeSecretariatAllOfPassageCommission';
+import { PassageCommission } from './PassageCommission';
 
-export type WorkflowArriveeSecretariat = {
-    'observations'?: string;
+import { WorkflowBase } from './WorkflowBase';
+
+export type WorkflowArriveeSecretariat = WorkflowBase & { 
+
     'date_arrivee_secretariat'?: Date;
-    'passage_commission'?: WorkflowArriveeSecretariatAllOfPassageCommission;
+
+    'passage_commission'?: PassageCommission;
 };
+
+export enum EtatEnum {
+    Valide = 'VALIDE',
+    EnCours = 'EN_COURS',
+    Attente = 'ATTENTE'
+}

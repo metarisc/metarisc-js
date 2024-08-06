@@ -29,7 +29,6 @@ export class FeedAPI extends Core {
      */
     async postMessage(params : { titre : string, type : string, texte : string, }): Promise<AxiosResponse<FeedMessage>>
     {
-
         const pathVariable = { };
         return this.request({
             method: 'POST',

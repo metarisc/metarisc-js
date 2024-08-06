@@ -16,7 +16,6 @@ export class EvenementsAPI extends Core {
      */
     async deleteEvenement(evenementId: string): Promise<AxiosResponse<void>>
     {
-
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -31,7 +30,6 @@ export class EvenementsAPI extends Core {
      */
     async getEvenementDetails(evenementId: string): Promise<AxiosResponse<Evenement>>
     {
-
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'GET',
@@ -74,7 +72,6 @@ export class EvenementsAPI extends Core {
      */
     async postEvenement(params : { title : string, type : string, dateDebut : Date, dateFin : Date, description? : string, }): Promise<AxiosResponse<Evenement>>
     {
-
         const pathVariable = { };
         return this.request({
             method: 'POST',

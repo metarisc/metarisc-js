@@ -17,7 +17,6 @@ export class UtilisateursAPI extends Core {
      */
     async getUtilisateursMoi(): Promise<AxiosResponse<Utilisateur>>
     {
-
         const pathVariable = { };
         return this.request({
             method: 'GET',
@@ -32,7 +31,6 @@ export class UtilisateursAPI extends Core {
      */
     async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
     {
-
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.request({
             method: 'GET',

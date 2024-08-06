@@ -14,7 +14,6 @@ export class ControlesPeiAPI extends Core {
      */
     async deleteControle(peiId: string): Promise<AxiosResponse<void>>
     {
-
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -29,7 +28,6 @@ export class ControlesPeiAPI extends Core {
      */
     async getControle(peiId: string): Promise<AxiosResponse<TourneeDeciPei>>
     {
-
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
@@ -44,7 +42,6 @@ export class ControlesPeiAPI extends Core {
      */
     async updateControle(peiId: string, params : { dateDuControle? : Date, listeAnomalies? : { code? : number, a_lever? : boolean }, essaisEnginUtilise? : string, ordre? : number }): Promise<AxiosResponse<TourneeDeciPei>>
     {
-
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'POST',

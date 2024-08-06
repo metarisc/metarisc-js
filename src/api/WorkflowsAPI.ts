@@ -16,7 +16,6 @@ export class WorkflowsAPI extends Core {
      */
     async getWorkflowsDetails(workflowId: string): Promise<AxiosResponse<Workflow>>
     {
-
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'GET',
@@ -45,7 +44,6 @@ export class WorkflowsAPI extends Core {
      */
     async postDocumentsWorkflow(workflowId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
     {
-
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'POST',
@@ -60,7 +58,6 @@ export class WorkflowsAPI extends Core {
      */
     async postTerminerWorkflow(workflowId: string): Promise<AxiosResponse<void>>
     {
-
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'POST',
@@ -69,13 +66,12 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Mise à jour d'un workflow.
      */
     async updateWorkflowsDetails(workflowId: string, params : { observations? : string, dossierLie? : { objet? : string }, peiLie? : string, anomaliesLevees? : { }, commissionDate? : { } , avisDeCommission? : any, analyseDeRisque? : string, avisRapporteur? : { } , descriptifEffectifs? : string, facteurDangerosite? : number, derogations? : string, prescriptions? : { contenu? : string, type? : string, supports_reglementaires_id? : { } }, mesuresCompensatoires? : string, mesuresComplementaires? : string, dateArriveeSecretariat? : Date, passageCommission? : { id? : string, date_debut? : Date, date_fin? : Date, type? : string, libelle? : string } , commission? : { id? : string, type? : string, libelle? : string } , estValide? : boolean, estRelu? : boolean }): Promise<AxiosResponse<Workflow>>
     {
-
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'POST',

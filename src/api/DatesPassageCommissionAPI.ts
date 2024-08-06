@@ -16,7 +16,6 @@ export class DatesPassageCommissionAPI extends Core {
      */
     async getCommissionDate(dateId: string): Promise<AxiosResponse<PassageCommission>>
     {
-
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.request({
             method: 'GET',
@@ -45,7 +44,6 @@ export class DatesPassageCommissionAPI extends Core {
      */
     async postCommissionDateDossier(dateId: string, params : { dossierId : string, }): Promise<AxiosResponse<PassageCommissionDossier>>
     {
-
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.request({
             method: 'POST',

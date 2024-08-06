@@ -16,7 +16,6 @@ export class CommissionsAPI extends Core {
      */
     async getCommission(commissionId: string): Promise<AxiosResponse<Commission>>
     {
-
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'GET',
@@ -59,7 +58,6 @@ export class CommissionsAPI extends Core {
      */
     async postCommission(params : { type : string, libelle : string, }): Promise<AxiosResponse<Commission>>
     {
-
         const pathVariable = { };
         return this.request({
             method: 'POST',
@@ -74,7 +72,6 @@ export class CommissionsAPI extends Core {
      */
     async postCommissionDate(commissionId: string, params : { dateDebut : Date, dateFin : Date, type : string, libelle : string, }): Promise<AxiosResponse<PassageCommission>>
     {
-
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'POST',

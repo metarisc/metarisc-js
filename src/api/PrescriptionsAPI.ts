@@ -16,7 +16,6 @@ export class PrescriptionsAPI extends Core {
      */
     async deletePrescription(prescriptionId: string): Promise<AxiosResponse<void>>
     {
-
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -31,7 +30,6 @@ export class PrescriptionsAPI extends Core {
      */
     async deleteSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<void>>
     {
-
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -46,7 +44,6 @@ export class PrescriptionsAPI extends Core {
      */
     async getPrescription(prescriptionId: string): Promise<AxiosResponse<Prescription>>
     {
-
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'GET',
@@ -61,7 +58,6 @@ export class PrescriptionsAPI extends Core {
      */
     async getSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
-
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'GET',
@@ -104,7 +100,6 @@ export class PrescriptionsAPI extends Core {
      */
     async postPrescription(params : { contenu : string, type : string, supportsReglementairesId? : { } }): Promise<AxiosResponse<Prescription>>
     {
-
         const pathVariable = { };
         return this.request({
             method: 'POST',
@@ -119,7 +114,6 @@ export class PrescriptionsAPI extends Core {
      */
     async postSupportReglementaire(params : { nature : string, contenu : string, titre : string, etat : string, reference : string, legifranceCid? : string, }): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
-
         const pathVariable = { };
         return this.request({
             method: 'POST',

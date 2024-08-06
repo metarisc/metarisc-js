@@ -19,7 +19,6 @@ export class OrganisationsAPI extends Core {
      */
     async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
     {
-
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
@@ -34,7 +33,6 @@ export class OrganisationsAPI extends Core {
      */
     async getOrganisationReglesDeci(orgId: string): Promise<AxiosResponse<ReglesDeci>>
     {
-
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
@@ -105,7 +103,6 @@ export class OrganisationsAPI extends Core {
      */
     async postOrganisationGeoservices(orgId: string, params : { nom : string, type : string, url : string, }): Promise<AxiosResponse<OrganisationGeoservice>>
     {
-
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'POST',
@@ -120,7 +117,6 @@ export class OrganisationsAPI extends Core {
      */
     async addOrganisationMembres(orgId: string, params : { utilisateurId : string, role : string, }): Promise<AxiosResponse<OrganisationMembre>>
     {
-
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'POST',
@@ -135,7 +131,6 @@ export class OrganisationsAPI extends Core {
      */
     async postOrganisationReglesDeci(orgId: string, params : { pibiConformiteMatriceSeuilPesee1barParNature? : { [key: string]: number; }, pibiPerformanceNaturesPerformanceRestreinte? : { }, pibiPerformanceNaturesAReformer? : { }, pibiPerformanceSeuilPesee1bar? : number, pibiConformiteSeuilSurpression? : number, pibiConformiteMatriceSeuilPesee1barParDefaut? : number, penaConformiteSeuilVolumeCiterne? : number }): Promise<AxiosResponse<ReglesDeci>>
     {
-
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'POST',
