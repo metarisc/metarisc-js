@@ -15,6 +15,7 @@ export class AnomaliesAPI extends Core {
      */
     async deleteAnomalie(anomalieId: string): Promise<AxiosResponse<void>>
     {
+
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -29,6 +30,7 @@ export class AnomaliesAPI extends Core {
      */
     async getAnomalie(anomalieId: string): Promise<AxiosResponse<AnomalieDECI>>
     {
+
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
         return this.request({
             method: 'GET',
@@ -57,6 +59,7 @@ export class AnomaliesAPI extends Core {
      */
     async postAnomalie(params : { code : number, texte : string, indiceDeGravite : number, }): Promise<AxiosResponse<AnomalieDECI>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'POST',

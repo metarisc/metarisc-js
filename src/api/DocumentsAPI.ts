@@ -15,6 +15,7 @@ export class DocumentsAPI extends Core {
      */
     async deleteDocument(documentId: string): Promise<AxiosResponse<void>>
     {
+
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -29,6 +30,7 @@ export class DocumentsAPI extends Core {
      */
     async getDocument(documentId: string): Promise<AxiosResponse<PieceJointe>>
     {
+
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({
             method: 'GET',
@@ -57,6 +59,7 @@ export class DocumentsAPI extends Core {
      */
     async postDocument(documentId: string, params : { nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
     {
+
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({
             method: 'POST',

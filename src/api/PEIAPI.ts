@@ -19,6 +19,7 @@ export class PEIAPI extends Core {
      */
     async getPei(peiId: string): Promise<AxiosResponse<PEI>>
     {
+
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
@@ -103,6 +104,7 @@ export class PEIAPI extends Core {
      */
     async postContactsPei(peiId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
     {
+
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'POST',
@@ -117,6 +119,7 @@ export class PEIAPI extends Core {
      */
     async postDocumentsPei(peiId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
     {
+
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'POST',
@@ -131,6 +134,7 @@ export class PEIAPI extends Core {
      */
     async postDossiersPei(peiId: string, params : { type : string, objet? : string }): Promise<AxiosResponse<Dossier>>
     {
+
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'POST',
@@ -145,6 +149,7 @@ export class PEIAPI extends Core {
      */
     async postPei(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }, numero? : string, numeroCompteur? : string, numeroSerieAppareil? : string }): Promise<AxiosResponse<PEI>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'POST',

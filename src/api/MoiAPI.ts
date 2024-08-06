@@ -14,6 +14,7 @@ export class MoiAPI extends Core {
      */
     async moi(): Promise<AxiosResponse<Utilisateur>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'GET',

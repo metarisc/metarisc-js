@@ -4,7 +4,6 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { FeedMessage } from '../model/FeedMessage';
-import { UNKNOWN_BASE_TYPE } from '../model/UNKNOWN_BASE_TYPE';
 
 export class FeedAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -28,8 +27,9 @@ export class FeedAPI extends Core {
     /**
      * Ajoute un message dans le feed général.
      */
-    async postMessage(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE | null, params : { }): Promise<AxiosResponse<FeedMessage>>
+    async postMessage(params : { titre : string, type : string, texte : string, }): Promise<AxiosResponse<FeedMessage>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'POST',

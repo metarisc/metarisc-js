@@ -4,19 +4,19 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { PieceJointe } from '../model/PieceJointe';
-import { UNKNOWN_BASE_TYPE } from '../model/UNKNOWN_BASE_TYPE';
 import { Workflow } from '../model/Workflow';
 
 export class WorkflowsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
-
+    
     /**
      * Récupération des détails d'un workflow.
      */
     async getWorkflowsDetails(workflowId: string): Promise<AxiosResponse<Workflow>>
     {
+
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'GET',
@@ -25,7 +25,7 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Récupération de la liste des documents.
      */
@@ -39,12 +39,13 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Ajout d'un document.
      */
     async postDocumentsWorkflow(workflowId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
     {
+
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'POST',
@@ -53,12 +54,13 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-
+    
     /**
      * Terminer un workflow. Cela met à jour l'ensemble de son traitement.
      */
     async postTerminerWorkflow(workflowId: string): Promise<AxiosResponse<void>>
     {
+
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'POST',
@@ -71,8 +73,9 @@ export class WorkflowsAPI extends Core {
     /**
      * Mise à jour d'un workflow.
      */
-    async updateWorkflowsDetails(workflowId: string, params : { }): Promise<AxiosResponse<Workflow>>
+    async updateWorkflowsDetails(workflowId: string, params : { observations? : string, dossierLie? : { objet? : string }, peiLie? : string, anomaliesLevees? : { }, commissionDate? : { } , avisDeCommission? : any, analyseDeRisque? : string, avisRapporteur? : { } , descriptifEffectifs? : string, facteurDangerosite? : number, derogations? : string, prescriptions? : { contenu? : string, type? : string, supports_reglementaires_id? : { } }, mesuresCompensatoires? : string, mesuresComplementaires? : string, dateArriveeSecretariat? : Date, passageCommission? : { id? : string, date_debut? : Date, date_fin? : Date, type? : string, libelle? : string } , commission? : { id? : string, type? : string, libelle? : string } , estValide? : boolean, estRelu? : boolean }): Promise<AxiosResponse<Workflow>>
     {
+
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
             method: 'POST',
@@ -81,5 +84,5 @@ export class WorkflowsAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-
+    
 }

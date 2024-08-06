@@ -15,6 +15,7 @@ export class NotificationsAPI extends Core {
      */
     async deleteNotification(notificationId: string): Promise<AxiosResponse<void>>
     {
+
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -29,6 +30,7 @@ export class NotificationsAPI extends Core {
      */
     async getNotification(notificationId: string): Promise<AxiosResponse<Notification>>
     {
+
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'GET',
@@ -57,6 +59,7 @@ export class NotificationsAPI extends Core {
      */
     async postNotification(params : { title : string, message : string, type : string, utilisateurId : string, contexte? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'POST',

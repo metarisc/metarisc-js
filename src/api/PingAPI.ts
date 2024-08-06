@@ -14,6 +14,7 @@ export class PingAPI extends Core {
      */
     async ping(): Promise<AxiosResponse<GetPing200Response>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'GET',

@@ -13,12 +13,13 @@ export class ERPAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
-
+    
     /**
      * Récupération des détails de l'ERP.
      */
     async getErp(erpId: string): Promise<AxiosResponse<ERP>>
     {
+
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
@@ -27,7 +28,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Récupération de la liste des contacts.
      */
@@ -41,7 +42,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Récupération de la liste des documents.
      */
@@ -55,7 +56,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Récupération de la liste des dossiers.
      */
@@ -69,7 +70,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Récupération de la liste des ERP.
      */
@@ -83,7 +84,7 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Récupération de l'historique d'un ERP.
      */
@@ -97,12 +98,13 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter({})
         });
     }
-
+    
     /**
      * Ajout d'un contact.
      */
     async postContactsErp(erpId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
     {
+
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'POST',
@@ -111,12 +113,13 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-
+    
     /**
      * Ajout d'un document.
      */
     async postDocumentsErp(erpId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
     {
+
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'POST',
@@ -125,12 +128,13 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-
+    
     /**
      * Ajout d'un dossier.
      */
     async postDossiersErp(erpId: string, params : { type : string, objet? : string }): Promise<AxiosResponse<Dossier>>
     {
+
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'POST',
@@ -139,12 +143,13 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-
+    
     /**
      * Création d'un nouveau ERP.
      */
-    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }}): Promise<AxiosResponse<ERP>>
+    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }, }): Promise<AxiosResponse<ERP>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'POST',
@@ -153,5 +158,5 @@ export class ERPAPI extends Core {
             body: Utils.payloadFilter(params)
         });
     }
-
+    
 }

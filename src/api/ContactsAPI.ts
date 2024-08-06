@@ -15,6 +15,7 @@ export class ContactsAPI extends Core {
      */
     async deleteContact(contactId: string): Promise<AxiosResponse<void>>
     {
+
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({
             method: 'DELETE',
@@ -29,6 +30,7 @@ export class ContactsAPI extends Core {
      */
     async getContact(contactId: string): Promise<AxiosResponse<Contact>>
     {
+
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({
             method: 'GET',
@@ -57,6 +59,7 @@ export class ContactsAPI extends Core {
      */
     async updateContact(contactId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
     {
+
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({
             method: 'POST',

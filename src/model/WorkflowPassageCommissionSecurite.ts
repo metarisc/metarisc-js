@@ -1,17 +1,7 @@
-import { Avis } from './Avis';
 import { PassageCommission } from './PassageCommission';
 
-import { WorkflowBase } from './WorkflowBase';
-
-export type WorkflowPassageCommissionSecurite = WorkflowBase & { 
-
+export type WorkflowPassageCommissionSecurite = {
+    'observations'?: string;
     'commission_date'?: PassageCommission;
-
-    'avis_de_commission'?: Avis;
+    'avis_de_commission'?: any;
 };
-
-export enum EtatEnum {
-    Valide = 'VALIDE',
-    EnCours = 'EN_COURS',
-    Attente = 'ATTENTE'
-}

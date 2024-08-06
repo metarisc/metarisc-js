@@ -5,7 +5,6 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { TourneeDeci } from '../model/TourneeDeci';
 import { TourneeDeciPei } from '../model/TourneeDeciPei';
-import { UNKNOWN_BASE_TYPE } from '../model/UNKNOWN_BASE_TYPE';
 
 export class TournesDECIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -31,6 +30,7 @@ export class TournesDECIAPI extends Core {
      */
     async getTourneeDeci(tourneeDeciId: string): Promise<AxiosResponse<TourneeDeci>>
     {
+
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'GET',
@@ -73,6 +73,7 @@ export class TournesDECIAPI extends Core {
      */
     async postTourneeDeciPei(tourneeDeciId: string, params : { peiId : string, dateDuControle? : Date, listeAnomalies? : { code? : number, a_lever? : boolean }, essaisEnginUtilise? : string, ordre? : number }): Promise<AxiosResponse<TourneeDeciPei>>
     {
+
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'POST',
@@ -85,8 +86,9 @@ export class TournesDECIAPI extends Core {
     /**
      * Mise à jour de la tournée DECI.
      */
-    async updateTourneeDeci(tourneeDeciId: string, params : { }): Promise<AxiosResponse<TourneeDeci>>
+    async updateTourneeDeci(tourneeDeciId: string, params : { libelle? : string, description? : string, dateDeDebut? : Date, dateDeFin? : Date, moisDebut? : number, moisFin? : number }): Promise<AxiosResponse<TourneeDeci>>
     {
+
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'POST',
@@ -99,8 +101,9 @@ export class TournesDECIAPI extends Core {
     /**
      * Ajout d'une nouvelle tournée DECI.
      */
-    async postTourneeDeci(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE | null, params : { }): Promise<AxiosResponse<TourneeDeci>>
+    async postTourneeDeci(params : { libelle : string, type : string, dateDeDebut : Date, dateDeFin : Date, moisDebut : number, moisFin : number, description? : string, modeleId? : string, }): Promise<AxiosResponse<TourneeDeci>>
     {
+
         const pathVariable = { };
         return this.request({
             method: 'POST',

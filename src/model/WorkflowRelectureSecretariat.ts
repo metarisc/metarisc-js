@@ -1,12 +1,4 @@
-import { WorkflowBase } from './WorkflowBase';
-
-export type WorkflowRelectureSecretariat = WorkflowBase & { 
-
+export type WorkflowRelectureSecretariat = {
+    'observations'?: string;
     'est_relu'?: boolean;
 };
-
-export enum EtatEnum {
-    Valide = 'VALIDE',
-    EnCours = 'EN_COURS',
-    Attente = 'ATTENTE'
-}
