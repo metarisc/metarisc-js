@@ -31,7 +31,10 @@
       }
     ],
     "unused-imports/no-unused-imports": [
-      "error"
+      "error", {
+        "considerQueryString": true,
+        "prefer-inline": true
+      }
     ],
     "import/no-duplicates": [
       "error", {
@@ -40,7 +43,40 @@
       }
     ],
     "comma-dangle": [
-      "error"
+      "error", {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "space-in-parens": ["error", "never"],
+    "no-multi-spaces": "error",
+    "keyword-spacing": [
+      "error", {
+        "before": true,
+        "after": true
+      }
+    ],
+    "space-before-function-paren": [
+      "error", {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "never"
     ]
   }
 }
