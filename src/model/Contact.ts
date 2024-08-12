@@ -8,8 +8,14 @@ export type Contact = {
     'telephone_fax'?: string;
     'adresse'?: string;
     'site_web_url'?: string;
-    'civilite'?: string;
+    'civilite'?: CiviliteEnum;
     'societe'?: string;
     'email'?: string;
     'observations'?: string;
 };
+
+export enum CiviliteEnum {
+    M = 'M',
+    Mme = 'Mme',
+    Mx = 'Mx'
+}

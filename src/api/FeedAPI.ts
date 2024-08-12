@@ -13,9 +13,9 @@ export class FeedAPI extends Core {
     /**
      * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
      */
-    paginateFeedMessages(page?: number, perPage?: number ): Collection<FeedMessage>
+    paginateFeedMessages(page?: number, perPage?: number): Collection<FeedMessage>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.collect<FeedMessage>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
@@ -27,14 +27,14 @@ export class FeedAPI extends Core {
     /**
      * Ajoute un message dans le feed général.
      */
-    async postMessage(feedMessage?: FeedMessage): Promise<AxiosResponse<FeedMessage>>
+    async postMessage(params : { titre : string, type : string, texte : string, }): Promise<AxiosResponse<FeedMessage>>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
-            params: {  },
-            body: Utils.payloadFilter(feedMessage)
+            params: { },
+            body: Utils.payloadFilter(params)
         });
     }
     

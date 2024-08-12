@@ -1,19 +1,10 @@
-import { AnomaliePEI } from '../../src/model/AnomaliePEI';
-
 export type DescriptifTechniqueDECIBase = {
     'id'?: string;
     'type'?: TypeEnum;
-    'anomalies'?: Array<AnomaliePEI>;
     'est_reglementaire'?: boolean;
     'domanialite'?: DomanialiteEnum;
     'est_conforme_rddeci'?: boolean;
-    /**
-    * - Performance nulle = 0 - Performance restreinte = 1 - Performance bonne = 2 - Performance inconnue = -1
-    */
     'performance_theorique'?: number;
-    /**
-    * - Performance nulle = 0 - Performance restreinte = 1 - Performance bonne = 2 - Performance inconnue = -1
-    */
     'performance_reelle'?: number;
     'observations_generales'?: string;
     'date'?: Date;

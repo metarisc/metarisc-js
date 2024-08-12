@@ -1,8 +1,12 @@
-import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
+import { DescriptifTechniqueDECIBase } from './DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePENA = DescriptifTechniqueDECIBase & { 
+
     'nature'?: NatureEnum;
+
     'volume'?: number;
+
+    'est_citerne'?: boolean;
 };
 
 export enum TypeEnum {

@@ -1,8 +1,9 @@
-import { PassageCommission } from '../../src/model/PassageCommission';
+import { PassageCommission } from './PassageCommission';
 
-import { WorkflowBase } from '../model/WorkflowBase';
+import { WorkflowBase } from './WorkflowBase';
 
 export type WorkflowVisite = WorkflowBase & { 
+
     'passage_commission'?: PassageCommission;
 };
 

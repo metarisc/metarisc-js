@@ -1,4 +1,4 @@
-import { Organisation } from '../../src/model/Organisation';
+import { Organisation } from './Organisation';
 
 export type OrganisationGeoservice = {
     'id'?: string;

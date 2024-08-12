@@ -1,4 +1,4 @@
-import { TourneeDeciModele } from '../../src/model/TourneeDeciModele';
+import { TourneeDeciModele } from './TourneeDeciModele';
 
 export type TourneeDeci = {
     'id'?: string;
@@ -11,7 +11,6 @@ export type TourneeDeci = {
     'date_de_debut'?: Date;
     'date_de_fin'?: Date;
     'modele'?: TourneeDeciModele;
-    'modele_id'?: string;
     'mois_debut'?: number;
     'mois_fin'?: number;
 };

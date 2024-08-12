@@ -14,13 +14,13 @@ export class EvenementsAPI extends Core {
     /**
      * Suppression d'un événement.
      */
-    async deleteEvenement(evenementId: string ): Promise<AxiosResponse<void>>
+    async deleteEvenement(evenementId: string): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -28,23 +28,23 @@ export class EvenementsAPI extends Core {
     /**
      * Récupération des détails d'un événement correspondant à l'id donné.
      */
-    async getEvenementDetails(evenementId: string, evenement?: Evenement): Promise<AxiosResponse<Evenement>>
+    async getEvenementDetails(evenementId: string): Promise<AxiosResponse<Evenement>>
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            params: {  },
-            body: Utils.payloadFilter( { 'id': evenement?.id, 'title': evenement?.title, 'type': evenement?.type, 'description': evenement?.description, 'date_debut': evenement?.date_debut ? Utils.formatDate(evenement?.date_debut) : undefined, 'date_fin': evenement?.date_fin ? Utils.formatDate(evenement?.date_fin) : undefined } )
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération des détails de tous les événements calendaires existants.
      */
-    paginateEvenements(page?: number, perPage?: number, period?: string, type?: string ): Collection<Evenement>
+    paginateEvenements(page?: number, perPage?: number, period?: string, type?: string): Collection<Evenement>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.collect<Evenement>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
@@ -56,7 +56,7 @@ export class EvenementsAPI extends Core {
     /**
      * Récupération d'une liste paginée d'utilisateurs liés à un événement calendaire.
      */
-    paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number ): Collection<Utilisateur>
+    paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number): Collection<Utilisateur>
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.collect<Utilisateur>({
@@ -70,14 +70,14 @@ export class EvenementsAPI extends Core {
     /**
      * Création d'un événement.
      */
-    async postEvenement(evenement?: Evenement): Promise<AxiosResponse<Evenement>>
+    async postEvenement(params : { title : string, type : string, dateDebut : Date, dateFin : Date, description? : string, }): Promise<AxiosResponse<Evenement>>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: {  },
-            body: Utils.payloadFilter( { 'id': evenement?.id, 'title': evenement?.title, 'type': evenement?.type, 'description': evenement?.description, 'date_debut': evenement?.date_debut ? Utils.formatDate(evenement?.date_debut) : undefined, 'date_fin': evenement?.date_fin ? Utils.formatDate(evenement?.date_fin) : undefined } )
+            params: { },
+            body: Utils.payloadFilter(params)
         });
     }
     

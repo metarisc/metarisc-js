@@ -38,10 +38,10 @@ export class Collection<T>
             method: 'GET',
             endpoint: this.config.endpoint,
             headers: this.config.headers,
-            params: {...this.config.params, ...{
+            params: { ...this.config.params, ...{
                 page: page.toString(),
                 per_page: per_page.toString()
-            }}  
+            } }  
         });
     }
 
@@ -51,7 +51,7 @@ export class Collection<T>
     async * autoPagingIterator() : AsyncGenerator<T, void, unknown>
     {
         let current_page : number = this.config.params && 'page' in this.config.params && this.config.params['page'] !== undefined ? parseInt(this.config.params['page'].toString()) : 1;
-        const per_page : number = this.config.params && 'per_page' in  this.config.params && this.config.params['per_page'] !== undefined ? parseInt(this.config.params['per_page'].toString()) : 100;
+        const per_page : number = this.config.params && 'per_page' in this.config.params && this.config.params['per_page'] !== undefined ? parseInt(this.config.params['per_page'].toString()) : 100;
 
         while (true) {
             const response = <AxiosResponse<PaginationResults<T>>> await this.fetchPage(current_page, per_page);

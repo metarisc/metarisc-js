@@ -1,4 +1,4 @@
-import { AnomalieDECI } from '../../src/model/AnomalieDECI';
+import { AnomalieDECI } from './AnomalieDECI';
 
 export type AnomaliePEI = {
     'anomalie'?: AnomalieDECI;

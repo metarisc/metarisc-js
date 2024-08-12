@@ -1,14 +1,17 @@
-import { DescriptifTechniqueDECIBase } from '../model/DescriptifTechniqueDECIBase';
+import { DescriptifTechniqueDECIBase } from './DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePIBI = DescriptifTechniqueDECIBase & { 
-    /**
-    * Surpression mesurée en bar
-    */
+
     'surpression'?: number;
+
     'nature'?: NatureEnum;
+
     'debit_1bar'?: number;
+
     'pression'?: number;
+
     'pression_statique'?: number;
+
     'debit_gueule_bee'?: number;
 };
 

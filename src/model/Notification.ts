@@ -1,15 +1,16 @@
-import { Utilisateur } from '../../src/model/Utilisateur';
+import { Utilisateur } from './Utilisateur';
 
-/**
-* Une notification est un objet créé pour avertir ou informer un utilisateur pour un évévemenent spécifique.
-*/
 export type Notification = {
     'id'?: string;
     'title'?: string;
     'message'?: string;
-    'contexte'?: any;
+    'type'?: TypeEnum;
+    'contexte'?: { [key: string]: string; };
     'date_creation'?: Date;
     'date_de_lecture'?: Date;
-    'utilisateur_id'?: string;
     'utilisateur'?: Utilisateur;
 };
+
+export enum TypeEnum {
+    Info = 'info'
+}
