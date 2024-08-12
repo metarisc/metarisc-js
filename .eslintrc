@@ -31,10 +31,7 @@
       }
     ],
     "unused-imports/no-unused-imports": [
-      "error", {
-        "considerQueryString": true,
-        "prefer-inline": true
-      }
+      "error"
     ],
     "import/no-duplicates": [
       "error", {
@@ -51,13 +48,11 @@
         "functions": "never"
       }
     ],
-    "space-in-parens": ["error", "never"],
-    "no-multi-spaces": "error",
-    "keyword-spacing": [
-      "error", {
-        "before": true,
-        "after": true
-      }
+    "space-in-parens": [
+      "error", "never"
+    ],
+    "no-multi-spaces": [
+      "error"
     ],
     "space-before-function-paren": [
       "error", {
@@ -67,16 +62,13 @@
       }
     ],
     "space-before-blocks": [
-      "error",
-      "always"
+      "error", "always"
     ],
     "object-curly-spacing": [
-      "error",
-      "always"
+      "error", "always"
     ],
     "array-bracket-spacing": [
-      "error",
-      "never"
+      "error", "never"
     ]
   }
 }
