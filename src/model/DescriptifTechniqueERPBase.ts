@@ -1,12 +1,9 @@
-import { ActiviteErp } from '../../src/model/ActiviteErp';
-import { Avis } from '../../src/model/Avis';
+import { ActiviteErp } from './ActiviteErp';
 
 export type DescriptifTechniqueERPBase = {
     'id'?: string;
     'date'?: Date;
-    'statut_erp'?: StatutErpEnum;
-    'genre'?: GenreEnum;
-    'avis_exploitation'?: Avis;
+    'statut'?: StatutEnum;
     'categorie'?: CategorieEnum;
     'type_activite'?: ActiviteErp;
     'types_activites_secondaires'?: Array<ActiviteErp>;
@@ -16,17 +13,11 @@ export type DescriptifTechniqueERPBase = {
     'observations_generales'?: string;
 };
 
-export enum StatutErpEnum {
+export enum StatutEnum {
     RepriseDeDonnees = 'reprise_de_donnees',
     Ouvert = 'ouvert',
     Projet = 'projet',
     Ferme = 'ferme'
-}
-
-export enum GenreEnum {
-    Etablissement = 'etablissement',
-    Site = 'site',
-    Cellule = 'cellule'
 }
 
 export enum CategorieEnum {

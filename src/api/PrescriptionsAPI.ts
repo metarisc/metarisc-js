@@ -14,13 +14,13 @@ export class PrescriptionsAPI extends Core {
     /**
      * Suppression d'une prescription type de la bibliothèque.
      */
-    async deletePrescription(prescriptionId: string ): Promise<AxiosResponse<void>>
+    async deletePrescription(prescriptionId: string): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -28,13 +28,13 @@ export class PrescriptionsAPI extends Core {
     /**
      * Suppression d'un support réglementaire.
      */
-    async deleteSupportReglementaire(supportReglementaireId: string ): Promise<AxiosResponse<void>>
+    async deleteSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -42,13 +42,13 @@ export class PrescriptionsAPI extends Core {
     /**
      * Récupération des détails d'une prescription dans la bibliothèque.
      */
-    async getPrescription(prescriptionId: string ): Promise<AxiosResponse<Prescription>>
+    async getPrescription(prescriptionId: string): Promise<AxiosResponse<Prescription>>
     {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -56,13 +56,13 @@ export class PrescriptionsAPI extends Core {
     /**
      * Récupération des détails d'un support réglementaire.
      */
-    async getSupportReglementaire(supportReglementaireId: string ): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    async getSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -70,9 +70,9 @@ export class PrescriptionsAPI extends Core {
     /**
      * Liste des prescriptions.
      */
-    paginatePrescriptions(page?: number, perPage?: number ): Collection<Prescription>
+    paginatePrescriptions(page?: number, perPage?: number): Collection<Prescription>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.collect<Prescription>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
@@ -84,9 +84,9 @@ export class PrescriptionsAPI extends Core {
     /**
      * Liste des supports réglementaires.
      */
-    paginateSupportsReglementaires(page?: number, perPage?: number ): Collection<PrescriptionSupportReglementaire>
+    paginateSupportsReglementaires(page?: number, perPage?: number): Collection<PrescriptionSupportReglementaire>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.collect<PrescriptionSupportReglementaire>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
@@ -98,28 +98,28 @@ export class PrescriptionsAPI extends Core {
     /**
      * Ajout d'une nouvelle prescription type dans la bibliothèque.
      */
-    async postPrescription(prescription?: Prescription): Promise<AxiosResponse<Prescription>>
+    async postPrescription(params : { contenu : string, type : string, supportsReglementairesId? : { } }): Promise<AxiosResponse<Prescription>>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: {  },
-            body: Utils.payloadFilter( { 'id': prescription?.id, 'contenu': prescription?.contenu, 'type': prescription?.type, 'supports_reglementaires': prescription?.supports_reglementaires, 'supports_reglementaires_id': prescription?.supports_reglementaires_id } )
+            params: { },
+            body: Utils.payloadFilter(params)
         });
     }
     
     /**
      * Ajouter un support réglementaire.
      */
-    async postSupportReglementaire(prescriptionSupportReglementaire?: PrescriptionSupportReglementaire): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    async postSupportReglementaire(params : { nature : string, contenu : string, titre : string, etat : string, reference : string, legifranceCid? : string, }): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: {  },
-            body: Utils.payloadFilter( { 'id': prescriptionSupportReglementaire?.id, 'nature': prescriptionSupportReglementaire?.nature, 'legifrance_cid': prescriptionSupportReglementaire?.legifrance_cid, 'contenu': prescriptionSupportReglementaire?.contenu, 'titre': prescriptionSupportReglementaire?.titre, 'etat': prescriptionSupportReglementaire?.etat, 'reference': prescriptionSupportReglementaire?.reference } )
+            params: { },
+            body: Utils.payloadFilter(params)
         });
     }
     

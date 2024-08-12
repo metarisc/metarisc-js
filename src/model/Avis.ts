@@ -1,8 +1,8 @@
 export type Avis = {
-    'avis_exploitation'?: AvisExploitationEnum;
+    'type'?: TypeEnum;
 };
 
-export enum AvisExploitationEnum {
-    FavorableExploitation = 'favorable_exploitation',
-    DefavorableExploitation = 'defavorable_exploitation'
+export enum TypeEnum {
+    Favorable = 'favorable',
+    Defavorable = 'defavorable'
 }

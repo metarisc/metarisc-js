@@ -35,7 +35,7 @@ export interface RefreshResponse {
 export class OAuth2
 {
     public static AUTHORIZATION_URL = 'https://id.metarisc.fr/auth/realms/production/protocol/openid-connect/auth';
-    public static ACCESS_TOKEN_URL  = 'https://id.metarisc.fr/auth/realms/production/protocol/openid-connect/token';
+    public static ACCESS_TOKEN_URL = 'https://id.metarisc.fr/auth/realms/production/protocol/openid-connect/token';
 
     private options: OAuth2Options;
  
@@ -69,7 +69,7 @@ export class OAuth2
      * Initie le flow Authorization Code https://datatracker.ietf.org/doc/html/rfc6749#section-4.1
      */
     async getAuthorizationCode(custom?: OAuth2Options): Promise<GrantResponse> {
-        const options = {...this.options, ...custom};
+        const options = { ...this.options, ...custom };
 		const fn = oauth.authorizationCode(
 			axios.create(),
 			OAuth2.ACCESS_TOKEN_URL,
@@ -86,7 +86,7 @@ export class OAuth2
      * Initie le flow Client Credentials https://datatracker.ietf.org/doc/html/rfc6749#section-4.4
      */
 	async getClientCredentials(custom?: OAuth2Options): Promise<GrantResponse> {
-        const options = {...this.options, ...custom};
+        const options = { ...this.options, ...custom };
 		const fn = oauth.clientCredentials(
 			axios.create(),
 			OAuth2.ACCESS_TOKEN_URL,
@@ -100,7 +100,7 @@ export class OAuth2
      * Refresh Token (https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
      */
 	async refreshToken(refresh_token : string, custom?: OAuth2Options): Promise<RefreshResponse> {
-        const options = {...this.options, ...custom};
+        const options = { ...this.options, ...custom };
 		const fn = oauth.refreshToken(
             axios.create(),
             OAuth2.ACCESS_TOKEN_URL,

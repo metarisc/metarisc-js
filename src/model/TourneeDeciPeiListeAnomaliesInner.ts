@@ -1,7 +1,6 @@
-import { AnomalieDECI } from '../../src/model/AnomalieDECI';
+import { AnomalieDECI } from './AnomalieDECI';
 
 export type TourneeDeciPeiListeAnomaliesInner = {
     'anomalie'?: AnomalieDECI;
-    'code'?: number;
     'a_lever'?: boolean;
 };

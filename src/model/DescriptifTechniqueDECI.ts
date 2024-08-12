@@ -1,5 +1,5 @@
-import { DescriptifTechniquePENA } from '../../src/model/DescriptifTechniquePENA';
-import { DescriptifTechniquePIBI } from '../../src/model/DescriptifTechniquePIBI';
+import { DescriptifTechniquePENA } from './DescriptifTechniquePENA';
+import { DescriptifTechniquePIBI } from './DescriptifTechniquePIBI';
 
 export type DescriptifTechniqueDECI = DescriptifTechniquePIBI | DescriptifTechniquePENA;
 

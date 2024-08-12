@@ -1,10 +1,9 @@
-import { Avis } from '../../src/model/Avis';
-import { Dossier } from '../../src/model/Dossier';
+import { Avis } from './Avis';
+import { Dossier } from './Dossier';
 
 export type PassageCommissionDossier = {
     'id'?: string;
     'dossier'?: Dossier;
-    'dossier_id'?: string;
     'avis'?: Avis;
     'statut'?: StatutEnum;
 };

@@ -17,11 +17,11 @@ export class UtilisateursAPI extends Core {
      */
     async getUtilisateursMoi(): Promise<AxiosResponse<Utilisateur>>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -29,13 +29,13 @@ export class UtilisateursAPI extends Core {
     /**
      * Retourne un utilisateur Metarisc.
      */
-    async getUtilisateurDetails(utilisateurId: string ): Promise<AxiosResponse<Utilisateur>>
+    async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -43,9 +43,9 @@ export class UtilisateursAPI extends Core {
     /**
      * Liste toutes les adresses mail de l'utilisateur connecté, y compris les adresses non publiquement accessibles.
      */
-    paginateMoiEmails(page?: number, perPage?: number ): Collection<Email>
+    paginateMoiEmails(page?: number, perPage?: number): Collection<Email>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.collect<Email>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
@@ -57,7 +57,7 @@ export class UtilisateursAPI extends Core {
     /**
      * Retourne une liste des adresses mail publiques d'un utilisateur.
      */
-    paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number ): Collection<Email>
+    paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number): Collection<Email>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect<Email>({
@@ -71,7 +71,7 @@ export class UtilisateursAPI extends Core {
     /**
      * Retourne une liste d'organisations dont l'utilisateur est membre.
      */
-    paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number ): Collection<OrganisationMembre>
+    paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect<OrganisationMembre>({

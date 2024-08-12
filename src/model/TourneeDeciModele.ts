@@ -1,7 +1,9 @@
-import { TourneeDeciBase } from '../model/TourneeDeciBase';
+import { TourneeDeciBase } from './TourneeDeciBase';
 
 export type TourneeDeciModele = TourneeDeciBase & { 
+
     'mois_debut'?: number;
+
     'mois_fin'?: number;
 };
 

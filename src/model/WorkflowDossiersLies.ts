@@ -1,8 +1,9 @@
-import { Dossier } from '../../src/model/Dossier';
+import { Dossier } from './Dossier';
 
-import { WorkflowBase } from '../model/WorkflowBase';
+import { WorkflowBase } from './WorkflowBase';
 
 export type WorkflowDossiersLies = WorkflowBase & { 
+
     'dossier_lie'?: Array<Dossier>;
 };
 

@@ -1,9 +1,11 @@
-import { PassageCommission } from '../../src/model/PassageCommission';
+import { PassageCommission } from './PassageCommission';
 
-import { WorkflowBase } from '../model/WorkflowBase';
+import { WorkflowBase } from './WorkflowBase';
 
 export type WorkflowArriveeSecretariat = WorkflowBase & { 
+
     'date_arrivee_secretariat'?: Date;
+
     'passage_commission'?: PassageCommission;
 };
 

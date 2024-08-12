@@ -13,13 +13,13 @@ export class ContactsAPI extends Core {
     /**
      * Suppression d'une fiche contact existante.
      */
-    async deleteContact(contactId: string ): Promise<AxiosResponse<void>>
+    async deleteContact(contactId: string): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/contacts/{contact_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -27,13 +27,13 @@ export class ContactsAPI extends Core {
     /**
      * Récupération d'une fiche contact.
      */
-    async getContact(contactId: string ): Promise<AxiosResponse<Contact>>
+    async getContact(contactId: string): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/contacts/{contact_id}'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }
@@ -41,9 +41,9 @@ export class ContactsAPI extends Core {
     /**
      * Récupération de la liste des contacts.
      */
-    paginateContacts(page?: number, perPage?: number ): Collection<Contact>
+    paginateContacts(page?: number, perPage?: number): Collection<Contact>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/contacts'),
@@ -55,14 +55,14 @@ export class ContactsAPI extends Core {
     /**
      * Mise à jour d'une fiche contact existante.
      */
-    async updateContact(contactId: string, contact?: Contact): Promise<AxiosResponse<Contact>>
+    async updateContact(contactId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/contacts/{contact_id}'),
-            params: {  },
-            body: Utils.payloadFilter( { 'id': contact?.id, 'nom': contact?.nom, 'prenom': contact?.prenom, 'fonction': contact?.fonction, 'telephone_fixe': contact?.telephone_fixe, 'telephone_portable': contact?.telephone_portable, 'telephone_fax': contact?.telephone_fax, 'adresse': contact?.adresse, 'site_web_url': contact?.site_web_url, 'civilite': contact?.civilite, 'societe': contact?.societe, 'email': contact?.email, 'observations': contact?.observations } )
+            params: { },
+            body: Utils.payloadFilter(params)
         });
     }
     

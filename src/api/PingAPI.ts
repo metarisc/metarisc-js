@@ -10,15 +10,15 @@ export class PingAPI extends Core {
     }
     
     /**
-     * Permet de s'assurer que le service Metarisc est en ligne. Ping ... Pong !
+     * Permet de s'assurer que le service Metarisc est en ligne. Ping ... Pong ! Cet endpoint peut être utilisé sans authentification.
      */
     async ping(): Promise<AxiosResponse<GetPing200Response>>
     {
-        const pathVariable = {  };
+        const pathVariable = { };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/ping'),
-            params: {  },
+            params: { },
             body: Utils.payloadFilter({})
         });
     }

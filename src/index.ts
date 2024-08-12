@@ -13,6 +13,10 @@ export { CommissionsAPI } from './api/CommissionsAPI';
 
 export { ContactsAPI } from './api/ContactsAPI';
 
+export { ControlesPeiAPI } from './api/ControlesPeiAPI';
+
+export { DatesPassageCommissionAPI } from './api/DatesPassageCommissionAPI';
+
 export { DocumentsAPI } from './api/DocumentsAPI';
 
 export { DossiersAPI } from './api/DossiersAPI';
@@ -27,6 +31,8 @@ export { MoiAPI } from './api/MoiAPI';
 
 export { NotificationsAPI } from './api/NotificationsAPI';
 
+export { OrdresDuJourAPI } from './api/OrdresDuJourAPI';
+
 export { OrganisationsAPI } from './api/OrganisationsAPI';
 
 export { PEIAPI } from './api/PEIAPI';
@@ -38,3 +44,5 @@ export { PrescriptionsAPI } from './api/PrescriptionsAPI';
 export { TournesDECIAPI } from './api/TournesDECIAPI';
 
 export { UtilisateursAPI } from './api/UtilisateursAPI';
+
+export { WorkflowsAPI } from './api/WorkflowsAPI';
