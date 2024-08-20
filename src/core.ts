@@ -29,6 +29,7 @@ export interface OAuth2Options {
 export class Core {
     protected client: Client;
     protected config: MetariscConfig;
+    protected requestEvent = new EventTarget();
 
     constructor(config: MetariscConfig, client?: Client) {
         this.config = config;
@@ -36,7 +37,14 @@ export class Core {
     }
 
     async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
+        this.requestEvent.dispatchEvent(
+            new CustomEvent("request", { detail: config })
+        );
         return this.client.request<T>(config);
+    }
+
+    onRequest(callback: (config: Event) => void) {
+        return this.requestEvent.addEventListener("request", callback);
     }
 
     collect<T>(config: RequestConfig): Collection<T> {
