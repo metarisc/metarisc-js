@@ -27,6 +27,8 @@ export { EvenementsAPI } from './api/EvenementsAPI';
 
 export { FeedAPI } from './api/FeedAPI';
 
+export { HealthcheckAPI } from './api/HealthcheckAPI';
+
 export { MoiAPI } from './api/MoiAPI';
 
 export { NotificationsAPI } from './api/NotificationsAPI';

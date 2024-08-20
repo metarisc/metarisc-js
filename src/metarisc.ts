@@ -22,6 +22,8 @@ import { EvenementsAPI } from './api/EvenementsAPI';
 
 import { FeedAPI } from './api/FeedAPI';
 
+import { HealthcheckAPI } from './api/HealthcheckAPI';
+
 import { MoiAPI } from './api/MoiAPI';
 
 import { NotificationsAPI } from './api/NotificationsAPI';
@@ -66,6 +68,8 @@ export class Metarisc extends Core
     public supports_reglementaires?: PrescriptionsAPI;
     
     public feed?: FeedAPI;
+    
+    public healthcheck?: HealthcheckAPI;
     
     public tournees_deci?: TournesDECIAPI;
     
@@ -130,6 +134,9 @@ export class Metarisc extends Core
                     
                     case 'feed':
                         return new FeedAPI(config, tmpClient);
+                    
+                    case 'healthcheck':
+                        return new HealthcheckAPI(config, tmpClient);
                     
                     case 'tournees_deci':
                         return new TournesDECIAPI(config, tmpClient);
