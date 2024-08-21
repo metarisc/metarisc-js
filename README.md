@@ -13,7 +13,7 @@ npm i @metarisc/metarisc-js
 Pour utiliser la librairie, il suffit de l'importer comme ceci :
 
 ```ts
-import { Metarisc } from '@metarisc/metarisc-js';
+import { Metarisc } from "@metarisc/metarisc-js";
 ```
 
 ## Utilisation
@@ -24,9 +24,9 @@ Pour effectuer une requête sur Metarisc, il faut tout d'adord initialisé le cl
 
 ```ts
 const m = new Metarisc({
-  metarisc_url: "https://api.metarisc.fr",
-  client_id: "CLIENT_ID",
-  client_secret: "CLIENT_SECRET"
+    metarisc_url: "https://api.metarisc.fr",
+    client_id: "CLIENT_ID",
+    client_secret: "CLIENT_SECRET"
 });
 
 m.dossiers.getDossier("123456");
@@ -70,3 +70,30 @@ AsyncGenerator<T>;
 ```
 
 (voir la documentation suivante [AsyncGenerator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AsyncGenerator))
+
+#### Écouteur d'événements pour les requêtes
+
+Il est possible d'ajouter un écouteur d'événements sur chaque requête effectuée par le client Metarisc. Pour ce faire, vous pouvez utiliser la méthode on() de l'objet core, en spécifiant le nom de l'événement on("request", function)
+
+```ts
+m.on("request", (config: Event): void => {
+    //Action à effectuer à chaque requête
+});
+```
+
+Cet écouteur est particulièrement utile pour effectuer des vérifications, comme la validation du token d'authentification avant l'envoi de chaque requête.
+
+La fonction de rappel (callback) reçoit en paramètre un objet Event. Cet objet contient une propriété detail, où sont stockées toutes les informations relatives à la requête entrante.
+
+```ts
+m.on("request", (config: Event): void => {
+    console.log(config.detail); // Retourne un objet de type RequestConfig
+    //{
+    //body?: any;
+    //headers?: { [name: string]: string | string[] };
+    //params?: { [param: string]: string | string[] };
+    //endpoint?: string;
+    //method?: string;
+    //}
+});
+```
