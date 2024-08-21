@@ -41,13 +41,13 @@ export class Core {
         return this.client.request<T>(config);
     }
 
-    protected emit(eventName: EventEnum, config: unknown) {
+    protected emit(eventName: EventEnum, payload: unknown) {
         this.requestEvent.dispatchEvent(
-            new CustomEvent(eventName, { detail: config })
+            new CustomEvent(eventName, { detail: payload })
         );
     }
 
-    on(eventName: EventEnum, callback: (config: Event) => void): void {
+    on(eventName: EventEnum, callback: (event: Event) => void): void {
         this.requestEvent.addEventListener(eventName, callback);
     }
 
@@ -55,7 +55,7 @@ export class Core {
         return new Collection<T>(this, {
             endpoint: config.endpoint || "/",
             params: config.params,
-            headers: config.headers,
+            headers: config.headers
         });
     }
 
@@ -82,7 +82,7 @@ export class Core {
         this.client.setActiveOrganisation(orgId);
     }
 }
+
 export enum EventEnum {
-    request = "request",
-    response = "response",
+    request = "request"
 }
