@@ -37,23 +37,25 @@ export class Core {
     }
 
     async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
-		this.emit(EventEnum.request, config);
-		return this.client.request<T>(config);
+        this.emit(EventEnum.request, config);
+        return this.client.request<T>(config);
     }
 
-	protected emit(eventName: EventEnum, config: unknown) {
-		this.requestEvent.dispatchEvent(new CustomEvent(eventName, { detail: config }));
-	}
-
-    on(eventName: EventEnum, callback: (config: Event) => void) {
-        return this.requestEvent.addEventListener(eventName, callback);
+    protected emit(eventName: EventEnum, config: unknown) {
+        this.requestEvent.dispatchEvent(
+            new CustomEvent(eventName, { detail: config })
+        );
     }
-	
+
+    on(eventName: EventEnum, callback: (config: Event) => void): void {
+        this.requestEvent.addEventListener(eventName, callback);
+    }
+
     collect<T>(config: RequestConfig): Collection<T> {
         return new Collection<T>(this, {
             endpoint: config.endpoint || "/",
             params: config.params,
-            headers: config.headers
+            headers: config.headers,
         });
     }
 
