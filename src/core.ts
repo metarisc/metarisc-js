@@ -37,16 +37,18 @@ export class Core {
     }
 
     async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
-        this.requestEvent.dispatchEvent(
-            new CustomEvent("request", { detail: config })
-        );
-        return this.client.request<T>(config);
+		this.emit(EventEnum.request, config);
+		return this.client.request<T>(config);
     }
 
-    onRequest(callback: (config: Event) => void) {
-        return this.requestEvent.addEventListener("request", callback);
-    }
+	protected emit(eventName: EventEnum, config: unknown) {
+		this.requestEvent.dispatchEvent(new CustomEvent(eventName, { detail: config }));
+	}
 
+    on(eventName: EventEnum, callback: (config: Event) => void) {
+        return this.requestEvent.addEventListener(eventName, callback);
+    }
+	
     collect<T>(config: RequestConfig): Collection<T> {
         return new Collection<T>(this, {
             endpoint: config.endpoint || "/",
@@ -77,4 +79,8 @@ export class Core {
     setActiveOrganisation(orgId: string): void {
         this.client.setActiveOrganisation(orgId);
     }
+}
+export enum EventEnum {
+    request = "request",
+    response = "response",
 }
