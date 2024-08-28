@@ -42,7 +42,7 @@ export class WorkflowsAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsWorkflow(workflowId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsWorkflow(workflowId: string, params : { url : string, nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({
@@ -70,7 +70,7 @@ export class WorkflowsAPI extends Core {
     /**
      * Mise à jour d'un workflow.
      */
-    async updateWorkflowsDetails(workflowId: string, params : { observations? : string, dossierLie? : { objet? : string }, peiLie? : string, anomaliesLevees? : { }, commissionDate? : { id? : string, date_debut? : Date, date_fin? : Date, type? : string, libelle? : string } , avisDeCommission? : any, analyseDeRisque? : string, avisRapporteur? : { type? : string } , descriptifEffectifs? : string, facteurDangerosite? : number, derogations? : string, prescriptions? : { contenu? : string, type? : string, supports_reglementaires_id? : { } }, mesuresCompensatoires? : string, mesuresComplementaires? : string, dateArriveeSecretariat? : Date, passageCommission? : { date_debut? : Date, date_fin? : Date, type? : string, libelle? : string } , commission? : { type? : string, libelle? : string } , estValide? : boolean, estRelu? : boolean }): Promise<AxiosResponse<Workflow>>
+    async updateWorkflowsDetails(workflowId: string, params : { observations ? : string, dossierLie ? : { objet? : string }[], peiLie ? : string, anomaliesLevees ? : { }[], commissionDate ? : { id? : string, date_debut? : Date, date_fin? : Date, type? : string, libelle? : string } , avisDeCommission ? : any, analyseDeRisque ? : string, avisRapporteur ? : { type? : string } , descriptifEffectifs ? : string, facteurDangerosite ? : number, derogations ? : string, prescriptions ? : { contenu? : string, type? : string, supports_reglementaires_id? : { } }[], mesuresCompensatoires ? : string, mesuresComplementaires ? : string, dateArriveeSecretariat ? : Date, passageCommission ? : { date_debut? : Date, date_fin? : Date, type? : string, libelle? : string } , commission ? : { type? : string, libelle? : string, presidence_id? : string } , estValide ? : boolean, estRelu ? : boolean }): Promise<AxiosResponse<Workflow>>
     {
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({

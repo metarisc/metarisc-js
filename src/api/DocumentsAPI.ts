@@ -55,7 +55,7 @@ export class DocumentsAPI extends Core {
     /**
      * Mise à jour d'un document existant.
      */
-    async postDocument(documentId: string, params : { nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocument(documentId: string, params : { nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({

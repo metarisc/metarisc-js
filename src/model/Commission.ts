@@ -1,7 +1,10 @@
+import { Organisation } from './Organisation';
+
 export type Commission = {
     'id'?: string;
     'type'?: TypeEnum;
     'libelle'?: string;
+    'presidence'?: Organisation;
 };
 
 export enum TypeEnum {

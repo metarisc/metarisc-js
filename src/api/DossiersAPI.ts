@@ -101,7 +101,7 @@ export class DossiersAPI extends Core {
     /**
      * Ajout d'un contact.
      */
-    async postContactsDossier(dossierId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
+    async postContactsDossier(dossierId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephoneFixe ? : string, telephonePortable ? : string, telephoneFax ? : string, adresse ? : string, siteWebUrl ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
@@ -115,7 +115,7 @@ export class DossiersAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsDossier(dossierId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsDossier(dossierId: string, params : { url : string, nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
@@ -129,7 +129,7 @@ export class DossiersAPI extends Core {
     /**
      * Modification d'un dossier existant
      */
-    async patchDossier(dossierId: string, params : { objet? : string }): Promise<AxiosResponse<Dossier>>
+    async patchDossier(dossierId: string, params : { objet ? : string }): Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({

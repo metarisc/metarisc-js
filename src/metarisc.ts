@@ -6,6 +6,8 @@ import { AnomaliesAPI } from './api/AnomaliesAPI';
 
 import { CommissionsAPI } from './api/CommissionsAPI';
 
+import { CommissionsMembresAPI } from './api/CommissionsMembresAPI';
+
 import { ContactsAPI } from './api/ContactsAPI';
 
 import { ControlesPeiAPI } from './api/ControlesPeiAPI';
@@ -85,6 +87,8 @@ export class Metarisc extends Core
     
     public ordres_du_jour?: OrdresDuJourAPI;
     
+    public commissions_membres?: CommissionsMembresAPI;
+    
     public prescriptions?: PrescriptionsAPI;
     
     public contacts?: ContactsAPI;
@@ -158,6 +162,9 @@ export class Metarisc extends Core
                     
                     case 'ordres_du_jour':
                         return new OrdresDuJourAPI(config, tmpClient);
+                    
+                    case 'commissions_membres':
+                        return new CommissionsMembresAPI(config, tmpClient);
                     
                     case 'prescriptions':
                         return new PrescriptionsAPI(config, tmpClient);

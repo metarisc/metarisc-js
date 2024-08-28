@@ -129,7 +129,7 @@ export class OrganisationsAPI extends Core {
     /**
      * Mise à jour de l'ensemble des règles utilisées pour le calcul de la conformité et de la performance DECI.
      */
-    async postOrganisationReglesDeci(orgId: string, params : { pibiConformiteMatriceSeuilPesee1barParNature? : { [key: string]: number; }, pibiPerformanceNaturesPerformanceRestreinte? : { }, pibiPerformanceNaturesAReformer? : { }, pibiPerformanceSeuilPesee1bar? : number, pibiConformiteSeuilSurpression? : number, pibiConformiteMatriceSeuilPesee1barParDefaut? : number, penaConformiteSeuilVolumeCiterne? : number }): Promise<AxiosResponse<ReglesDeci>>
+    async postOrganisationReglesDeci(orgId: string, params : { pibiConformiteMatriceSeuilPesee1barParNature ? : { [key: string]: number; }, pibiPerformanceNaturesPerformanceRestreinte ? : { }[], pibiPerformanceNaturesAReformer ? : { }[], pibiPerformanceSeuilPesee1bar ? : number, pibiConformiteSeuilSurpression ? : number, pibiConformiteMatriceSeuilPesee1barParDefaut ? : number, penaConformiteSeuilVolumeCiterne ? : number }): Promise<AxiosResponse<ReglesDeci>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
