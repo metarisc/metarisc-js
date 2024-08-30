@@ -70,7 +70,7 @@ export class EvenementsAPI extends Core {
     /**
      * Création d'un événement.
      */
-    async postEvenement(params : { title : string, type : string, dateDebut : Date, dateFin : Date, description? : string, }): Promise<AxiosResponse<Evenement>>
+    async postEvenement(params : { title : string, type : string, dateDebut : Date, dateFin : Date, description ? : string, }): Promise<AxiosResponse<Evenement>>
     {
         const pathVariable = { };
         return this.request({

@@ -55,7 +55,7 @@ export class NotificationsAPI extends Core {
     /**
      * Création d'une notification.
      */
-    async postNotification(params : { title : string, message : string, type : string, utilisateurId : string, contexte? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
+    async postNotification(params : { title : string, message : string, type : string, utilisateurId : string, contexte ? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
     {
         const pathVariable = { };
         return this.request({

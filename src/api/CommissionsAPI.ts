@@ -4,6 +4,8 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Commission } from '../model/Commission';
+import { CommissionMembre } from '../model/CommissionMembre';
+import { CommissionPreferences } from '../model/CommissionPreferences';
 import { PassageCommission } from '../model/PassageCommission';
 
 export class CommissionsAPI extends Core {
@@ -20,6 +22,20 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération des préférences de la commission.
+     */
+    async getCommissionPreferences(commissionId: string): Promise<AxiosResponse<CommissionPreferences>>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
             params: { },
             body: Utils.payloadFilter({})
         });
@@ -54,9 +70,23 @@ export class CommissionsAPI extends Core {
     }
     
     /**
+     * Récupération de la liste des membres de la commission.
+     */
+    paginateCommissionMembres(commissionId: string, page?: number, perPage?: number): Collection<CommissionMembre>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
+        return this.collect<CommissionMembre>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
      * Ajoute une commission.
      */
-    async postCommission(params : { type : string, libelle : string, }): Promise<AxiosResponse<Commission>>
+    async postCommission(params : { type : string, libelle : string, presidenceId ? : string }): Promise<AxiosResponse<Commission>>
     {
         const pathVariable = { };
         return this.request({
@@ -78,6 +108,34 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             params: { },
             body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajout d'un membre dans la commission.
+     */
+    async postMembresCommission(commissionId: string, params : { titre ? : string, presenceObligatoire ? : boolean }): Promise<AxiosResponse<CommissionMembre>>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
+            params: { },
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Mise à jour des préférences de la commission.
+     */
+    async postCommissionPreferences(commissionId: string): Promise<AxiosResponse<CommissionPreferences>>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     

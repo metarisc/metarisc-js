@@ -56,7 +56,7 @@ export class TournesDECIAPI extends Core {
     /**
      * Ajout d'un PEI sur la tournée DECI.
      */
-    async postTourneeDeciPei(tourneeDeciId: string, params : { peiId : string, dateDuControle? : Date, listeAnomalies? : { code? : number, a_lever? : boolean }, essaisEnginUtilise? : string, ordre? : number }): Promise<AxiosResponse<TourneeDeciPei>>
+    async postTourneeDeciPei(tourneeDeciId: string, params : { peiId : string, dateDuControle ? : Date, listeAnomalies ? : { code? : number, a_lever? : boolean }[], essaisEnginUtilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
@@ -70,7 +70,7 @@ export class TournesDECIAPI extends Core {
     /**
      * Mise à jour de la tournée DECI.
      */
-    async updateTourneeDeci(tourneeDeciId: string, params : { libelle? : string, description? : string, dateDeDebut? : Date, dateDeFin? : Date, moisDebut? : number, moisFin? : number }): Promise<AxiosResponse<TourneeDeci>>
+    async updateTourneeDeci(tourneeDeciId: string, params : { libelle ? : string, description ? : string, dateDeDebut ? : Date, dateDeFin ? : Date, moisDebut ? : number, moisFin ? : number }): Promise<AxiosResponse<TourneeDeci>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
@@ -84,7 +84,7 @@ export class TournesDECIAPI extends Core {
     /**
      * Ajout d'une nouvelle tournée DECI.
      */
-    async postTourneeDeci(params : { libelle : string, type : string, dateDeDebut : Date, dateDeFin : Date, moisDebut : number, moisFin : number, description? : string, modeleId? : string, }): Promise<AxiosResponse<TourneeDeci>>
+    async postTourneeDeci(params : { libelle : string, type : string, dateDeDebut : Date, dateDeFin : Date, moisDebut : number, moisFin : number, description ? : string, modeleId ? : string, }): Promise<AxiosResponse<TourneeDeci>>
     {
         const pathVariable = { };
         return this.request({
