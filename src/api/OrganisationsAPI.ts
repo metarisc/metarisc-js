@@ -6,6 +6,7 @@ import { Collection } from "../collection";
 import { Organisation } from '../model/Organisation';
 import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
 import { OrganisationMembre } from '../model/OrganisationMembre';
+import { OrganisationPreferences } from '../model/OrganisationPreferences';
 import { ReglesDeci } from '../model/ReglesDeci';
 import { WorkflowType } from '../model/WorkflowType';
 
@@ -23,6 +24,20 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Ensemble des paramétrages et des configurations liés aux règles métiers de l'organisation.
+     */
+    async getOrganisationPreferences(orgId: string): Promise<AxiosResponse<OrganisationPreferences>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/preferences'),
             params: { },
             body: Utils.payloadFilter({})
         });
