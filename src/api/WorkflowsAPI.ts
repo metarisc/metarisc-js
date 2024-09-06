@@ -42,7 +42,7 @@ export class WorkflowsAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsWorkflow(workflowId: string, params : { url : string, nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsWorkflow(workflowId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
         return this.request({

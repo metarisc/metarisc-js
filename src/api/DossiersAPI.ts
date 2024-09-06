@@ -115,7 +115,7 @@ export class DossiersAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsDossier(dossierId: string, params : { url : string, nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsDossier(dossierId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
