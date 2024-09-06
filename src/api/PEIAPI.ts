@@ -115,7 +115,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsPei(peiId: string, params : { url : string, nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsPei(peiId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -143,7 +143,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un PEI.
      */
-    async postPei(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures ? : { titre? : string, valeur? : string }[], numero ? : string, numeroCompteur ? : string, numeroSerieAppareil ? : string }): Promise<AxiosResponse<PEI>>
+    async postPei(params : { descriptifTechnique : { type : string, domanialite? : string, observations_generales? : string, statut : string, surpression? : number, nature : string, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number, volume? : number }, implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures ? : { titre? : string, valeur? : string }[], numero ? : string, numeroCompteur ? : string, numeroSerieAppareil ? : string }): Promise<AxiosResponse<PEI>>
     {
         const pathVariable = { };
         return this.request({

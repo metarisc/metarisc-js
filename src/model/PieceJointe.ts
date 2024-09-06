@@ -4,6 +4,7 @@ export type PieceJointe = {
     'nom'?: string;
     'description'?: string;
     'type'?: TypeEnum;
+    'est_sensible'?: boolean;
 };
 
 export enum TypeEnum {

@@ -115,7 +115,7 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsErp(erpId: string, params : { url : string, nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsErp(erpId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
