@@ -7,6 +7,7 @@ import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
 import { PEI } from '../model/PEI';
 import { PieceJointe } from '../model/PieceJointe';
+import { AnomaliePEI } from '../model/AnomaliePEI';
 import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 
 export class PEIAPI extends Core {
@@ -24,6 +25,20 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
             params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération de la liste des anomalies DECI détectées sur le PEI.
+     */
+    paginatePeiAnomalies(peiId: string, page?: number, perPage?: number): Collection<AnomaliePEI>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.collect<AnomaliePEI>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
     }
