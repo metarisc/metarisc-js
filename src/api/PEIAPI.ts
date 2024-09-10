@@ -7,6 +7,7 @@ import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
 import { PEI } from '../model/PEI';
 import { PieceJointe } from '../model/PieceJointe';
+import { AnomaliePEI } from '../model/AnomaliePEI';
 import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 
 export class PEIAPI extends Core {
@@ -24,6 +25,20 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
             params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération de la liste des anomalies DECI détectées sur le PEI.
+     */
+    paginatePeiAnomalies(peiId: string, page?: number, perPage?: number): Collection<AnomaliePEI>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.collect<AnomaliePEI>({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
             body: Utils.payloadFilter({})
         });
     }
@@ -101,7 +116,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un contact.
      */
-    async postContactsPei(peiId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
+    async postContactsPei(peiId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephoneFixe ? : string, telephonePortable ? : string, telephoneFax ? : string, adresse ? : string, siteWebUrl ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -115,7 +130,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsPei(peiId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsPei(peiId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -129,7 +144,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un dossier.
      */
-    async postDossiersPei(peiId: string, params : { type : string, objet? : string }): Promise<AxiosResponse<Dossier>>
+    async postDossiersPei(peiId: string, params : { type : string, objet ? : string }): Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -143,7 +158,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un PEI.
      */
-    async postPei(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }, numero? : string, numeroCompteur? : string, numeroSerieAppareil? : string }): Promise<AxiosResponse<PEI>>
+    async postPei(params : { descriptifTechnique : { type : string, domanialite? : string, observations_generales? : string, statut : string, surpression? : number, nature : string, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number, volume? : number }, implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures ? : { titre? : string, valeur? : string }[], numero ? : string, numeroCompteur ? : string, numeroSerieAppareil ? : string }): Promise<AxiosResponse<PEI>>
     {
         const pathVariable = { };
         return this.request({

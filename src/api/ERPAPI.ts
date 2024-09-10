@@ -101,7 +101,7 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un contact.
      */
-    async postContactsErp(erpId: string, params : { nom? : string, prenom? : string, fonction? : string, telephoneFixe? : string, telephonePortable? : string, telephoneFax? : string, adresse? : string, siteWebUrl? : string, civilite? : string, societe? : string, email? : string, observations? : string }): Promise<AxiosResponse<Contact>>
+    async postContactsErp(erpId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephoneFixe ? : string, telephonePortable ? : string, telephoneFax ? : string, adresse ? : string, siteWebUrl ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -115,7 +115,7 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsErp(erpId: string, params : { url : string, nom? : string, description? : string, type? : string }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsErp(erpId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -129,7 +129,7 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un dossier.
      */
-    async postDossiersErp(erpId: string, params : { type : string, objet? : string }): Promise<AxiosResponse<Dossier>>
+    async postDossiersErp(erpId: string, params : { type : string, objet ? : string }): Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -143,7 +143,7 @@ export class ERPAPI extends Core {
     /**
      * Création d'un nouveau ERP.
      */
-    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures? : { titre? : string, valeur? : string }, }): Promise<AxiosResponse<ERP>>
+    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures ? : { titre? : string, valeur? : string }[], }): Promise<AxiosResponse<ERP>>
     {
         const pathVariable = { };
         return this.request({

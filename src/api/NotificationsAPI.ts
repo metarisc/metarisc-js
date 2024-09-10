@@ -53,9 +53,23 @@ export class NotificationsAPI extends Core {
     }
     
     /**
+     * Permet de marquer la notification donnée comme lue par l'utilisateur.
+     */
+    async notificationMarquerCommeLue(notificationId: string): Promise<AxiosResponse<Notification>>
+    {
+        const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue'),
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
      * Création d'une notification.
      */
-    async postNotification(params : { title : string, message : string, type : string, utilisateurId : string, contexte? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
+    async postNotification(params : { title : string, message : string, type : string, utilisateurId : string, contexte ? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
     {
         const pathVariable = { };
         return this.request({

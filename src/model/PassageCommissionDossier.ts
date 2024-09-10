@@ -5,6 +5,7 @@ export type PassageCommissionDossier = {
     'id'?: string;
     'dossier'?: Dossier;
     'avis'?: Avis;
+    'date_de_passage'?: Date;
     'statut'?: StatutEnum;
 };
 

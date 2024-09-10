@@ -6,6 +6,8 @@ import { AnomaliesAPI } from './api/AnomaliesAPI';
 
 import { CommissionsAPI } from './api/CommissionsAPI';
 
+import { CommissionsMembresAPI } from './api/CommissionsMembresAPI';
+
 import { ContactsAPI } from './api/ContactsAPI';
 
 import { ControlesPeiAPI } from './api/ControlesPeiAPI';
@@ -21,6 +23,8 @@ import { ERPAPI } from './api/ERPAPI';
 import { EvenementsAPI } from './api/EvenementsAPI';
 
 import { FeedAPI } from './api/FeedAPI';
+
+import { HealthcheckAPI } from './api/HealthcheckAPI';
 
 import { MoiAPI } from './api/MoiAPI';
 
@@ -67,6 +71,8 @@ export class Metarisc extends Core
     
     public feed?: FeedAPI;
     
+    public healthcheck?: HealthcheckAPI;
+    
     public tournees_deci?: TournesDECIAPI;
     
     public organisations?: OrganisationsAPI;
@@ -80,6 +86,8 @@ export class Metarisc extends Core
     public evenements?: EvenementsAPI;
     
     public ordres_du_jour?: OrdresDuJourAPI;
+    
+    public commissions_membres?: CommissionsMembresAPI;
     
     public prescriptions?: PrescriptionsAPI;
     
@@ -131,6 +139,9 @@ export class Metarisc extends Core
                     case 'feed':
                         return new FeedAPI(config, tmpClient);
                     
+                    case 'healthcheck':
+                        return new HealthcheckAPI(config, tmpClient);
+                    
                     case 'tournees_deci':
                         return new TournesDECIAPI(config, tmpClient);
                     
@@ -151,6 +162,9 @@ export class Metarisc extends Core
                     
                     case 'ordres_du_jour':
                         return new OrdresDuJourAPI(config, tmpClient);
+                    
+                    case 'commissions_membres':
+                        return new CommissionsMembresAPI(config, tmpClient);
                     
                     case 'prescriptions':
                         return new PrescriptionsAPI(config, tmpClient);

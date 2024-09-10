@@ -42,7 +42,7 @@ export class DatesPassageCommissionAPI extends Core {
     /**
      * Ajout d'un dossier à l'ordre du jour d'un passage en commission.
      */
-    async postCommissionDateDossier(dateId: string, params : { dossierId : string, }): Promise<AxiosResponse<PassageCommissionDossier>>
+    async postCommissionDateDossier(dateId: string, params : { dossierId : string, dateDePassage ? : Date }): Promise<AxiosResponse<PassageCommissionDossier>>
     {
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.request({

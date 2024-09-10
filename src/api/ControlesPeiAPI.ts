@@ -40,7 +40,7 @@ export class ControlesPeiAPI extends Core {
     /**
      * Mise à jour du PEI contrôlé.
      */
-    async updateControle(peiId: string, params : { dateDuControle? : Date, listeAnomalies? : { code? : number, a_lever? : boolean }, essaisEnginUtilise? : string, ordre? : number }): Promise<AxiosResponse<TourneeDeciPei>>
+    async updateControle(peiId: string, params : { dateDuControle ? : Date, listeAnomalies ? : { code? : number, a_lever? : boolean }[], essaisEnginUtilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({

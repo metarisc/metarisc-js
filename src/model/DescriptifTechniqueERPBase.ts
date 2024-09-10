@@ -5,6 +5,7 @@ export type DescriptifTechniqueERPBase = {
     'date'?: Date;
     'statut'?: StatutEnum;
     'categorie'?: CategorieEnum;
+    'r143_20'?: boolean;
     'type_activite'?: ActiviteErp;
     'types_activites_secondaires'?: Array<ActiviteErp>;
     'periodicite'?: number;

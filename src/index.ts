@@ -11,6 +11,8 @@ export { AnomaliesAPI } from './api/AnomaliesAPI';
 
 export { CommissionsAPI } from './api/CommissionsAPI';
 
+export { CommissionsMembresAPI } from './api/CommissionsMembresAPI';
+
 export { ContactsAPI } from './api/ContactsAPI';
 
 export { ControlesPeiAPI } from './api/ControlesPeiAPI';
@@ -26,6 +28,8 @@ export { ERPAPI } from './api/ERPAPI';
 export { EvenementsAPI } from './api/EvenementsAPI';
 
 export { FeedAPI } from './api/FeedAPI';
+
+export { HealthcheckAPI } from './api/HealthcheckAPI';
 
 export { MoiAPI } from './api/MoiAPI';
 

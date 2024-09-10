@@ -98,7 +98,7 @@ export class PrescriptionsAPI extends Core {
     /**
      * Ajout d'une nouvelle prescription type dans la bibliothèque.
      */
-    async postPrescription(params : { contenu : string, type : string, supportsReglementairesId? : { } }): Promise<AxiosResponse<Prescription>>
+    async postPrescription(params : { contenu : string, type : string, supportsReglementairesId ? : { }[] }): Promise<AxiosResponse<Prescription>>
     {
         const pathVariable = { };
         return this.request({
@@ -112,7 +112,7 @@ export class PrescriptionsAPI extends Core {
     /**
      * Ajouter un support réglementaire.
      */
-    async postSupportReglementaire(params : { nature : string, contenu : string, titre : string, etat : string, reference : string, legifranceCid? : string, }): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    async postSupportReglementaire(params : { nature : string, contenu : string, titre : string, etat : string, reference : string, legifranceCid ? : string, }): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
         const pathVariable = { };
         return this.request({
