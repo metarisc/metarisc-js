@@ -114,7 +114,7 @@ export class CommissionsAPI extends Core {
     /**
      * Ajout d'un membre dans la commission.
      */
-    async postMembresCommission(commissionId: string, params : { titre ? : string, presenceObligatoire ? : boolean }): Promise<AxiosResponse<CommissionMembre>>
+    async postMembresCommission(commissionId: string, params : { titre : string, presenceObligatoire : boolean, }): Promise<AxiosResponse<CommissionMembre>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
