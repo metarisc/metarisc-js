@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { AuthMethod, Client } from "./client";
+import { AuthMethod, Client, EventEnum } from "./client";
 import { Collection } from "./collection";
 import { GrantResponse, RefreshResponse } from "./auth/oauth2";
 
@@ -29,7 +29,6 @@ export interface OAuth2Options {
 export class Core {
     protected client: Client;
     protected config: MetariscConfig;
-    protected requestEvent = new EventTarget();
 
     constructor(config: MetariscConfig, client?: Client) {
         this.config = config;
@@ -37,18 +36,11 @@ export class Core {
     }
 
     async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
-        this.emit(EventEnum.request, config);
         return this.client.request<T>(config);
     }
 
-    protected emit(eventName: EventEnum, payload: unknown) {
-        this.requestEvent.dispatchEvent(
-            new CustomEvent(eventName, { detail: payload })
-        );
-    }
-
     on(eventName: EventEnum, callback: (event: Event) => void): void {
-        this.requestEvent.addEventListener(eventName, callback);
+        this.client.getEventStream().addEventListener(eventName, callback);
     }
 
     collect<T>(config: RequestConfig): Collection<T> {
@@ -81,8 +73,4 @@ export class Core {
     setActiveOrganisation(orgId: string): void {
         this.client.setActiveOrganisation(orgId);
     }
-}
-
-export enum EventEnum {
-    request = "request"
 }

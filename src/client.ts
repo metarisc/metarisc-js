@@ -23,7 +23,13 @@ export enum AuthMethod {
 	AUTHORIZATION_CODE,
 }
 
+export enum EventEnum {
+    request = "request"
+}
+
 export class Client {
+	private eventStream = new EventTarget();
+
 	private axios: AxiosInstance;
 
 	private oauth2: OAuth2;
@@ -133,6 +139,7 @@ export class Client {
 	 * Lance une requête (authentifiée si possible) sur l'API Metarisc.
 	 */
 	async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
+		this.emit(EventEnum.request, config);
 		return this.axios.request<T>({
 			method: config.method || "GET",
 			url: config.endpoint || "/",
@@ -140,6 +147,16 @@ export class Client {
 			data: config.body,
 			headers: config.headers
 		});
+	}
+
+	protected emit(eventName: EventEnum, payload: unknown) {
+        this.eventStream.dispatchEvent(
+            new CustomEvent(eventName, { detail: payload })
+        );
+    }
+
+	public getEventStream(): EventTarget {
+		return this.eventStream;
 	}
 
 	/**
