@@ -47,15 +47,14 @@ export class AnomaliesAPI extends Core {
         return this.collect<AnomalieDECI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'sort': sort, 'texte': texte, 'code': code },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'sort': sort, 'texte': texte, 'code': code }
         });
     }
     
     /**
      * Ajout d'une nouvelle anomalie DECI type dans la bibliothèque DECI.
      */
-    async postAnomalie(params : { code : number, texte : string, indiceDeGravite : number, }): Promise<AxiosResponse<AnomalieDECI>>
+    async postAnomalie(params : { code : number, texte : string, indice_de_gravite : number, }): Promise<AxiosResponse<AnomalieDECI>>
     {
         const pathVariable = { };
         return this.request({

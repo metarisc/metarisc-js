@@ -66,8 +66,7 @@ export class OrganisationsAPI extends Core {
         return this.collect<WorkflowType>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
-            params: { },
-            body: Utils.payloadFilter({})
+            params: { }
         });
     }
     
@@ -80,8 +79,7 @@ export class OrganisationsAPI extends Core {
         return this.collect<OrganisationGeoservice>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -94,8 +92,7 @@ export class OrganisationsAPI extends Core {
         return this.collect<OrganisationMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -108,8 +105,7 @@ export class OrganisationsAPI extends Core {
         return this.collect<Organisation>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -130,7 +126,7 @@ export class OrganisationsAPI extends Core {
     /**
      * Ajout d'un utilisateur comme membre dans une organisation.
      */
-    async addOrganisationMembres(orgId: string, params : { utilisateurId : string, role : string, }): Promise<AxiosResponse<OrganisationMembre>>
+    async addOrganisationMembres(orgId: string, params : { utilisateur_id : string, role : string, }): Promise<AxiosResponse<OrganisationMembre>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -144,7 +140,7 @@ export class OrganisationsAPI extends Core {
     /**
      * Mise à jour de l'ensemble des règles utilisées pour le calcul de la conformité et de la performance DECI.
      */
-    async postOrganisationReglesDeci(orgId: string, params : { pibiConformiteMatriceSeuilPesee1barParNature ? : { [key: string]: number; }, pibiPerformanceNaturesPerformanceRestreinte ? : { }[], pibiPerformanceNaturesAReformer ? : { }[], pibiPerformanceSeuilPesee1bar ? : number, pibiConformiteSeuilSurpression ? : number, pibiConformiteMatriceSeuilPesee1barParDefaut ? : number, penaConformiteSeuilVolumeCiterne ? : number }): Promise<AxiosResponse<ReglesDeci>>
+    async postOrganisationReglesDeci(orgId: string, params : { pibi_conformite_matrice_seuil_pesee_1bar_par_nature ? : { [key: string]: number; }, pibi_performance_natures_performance_restreinte ? : { }[], pibi_performance_natures_a_reformer ? : { }[], pibi_performance_seuil_pesee_1bar ? : number, pibi_conformite_seuil_surpression ? : number, pibi_conformite_matrice_seuil_pesee_1bar_par_defaut ? : number, pena_conformite_seuil_volume_citerne ? : number }): Promise<AxiosResponse<ReglesDeci>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({

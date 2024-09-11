@@ -37,8 +37,7 @@ export class DossiersAPI extends Core {
         return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -51,8 +50,7 @@ export class DossiersAPI extends Core {
         return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -65,8 +63,7 @@ export class DossiersAPI extends Core {
         return this.collect<Dossier>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -79,8 +76,7 @@ export class DossiersAPI extends Core {
         return this.collect<Tag>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -93,15 +89,14 @@ export class DossiersAPI extends Core {
         return this.collect<Workflow>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Ajout d'un contact.
      */
-    async postContactsDossier(dossierId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephoneFixe ? : string, telephonePortable ? : string, telephoneFax ? : string, adresse ? : string, siteWebUrl ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
+    async postContactsDossier(dossierId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephone_fixe ? : string, telephone_portable ? : string, telephone_fax ? : string, adresse ? : string, site_web_url ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
@@ -115,7 +110,7 @@ export class DossiersAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsDossier(dossierId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsDossier(dossierId: string, params : { url : string, est_sensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({

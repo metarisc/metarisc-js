@@ -76,8 +76,7 @@ export class PrescriptionsAPI extends Core {
         return this.collect<Prescription>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -90,15 +89,14 @@ export class PrescriptionsAPI extends Core {
         return this.collect<PrescriptionSupportReglementaire>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Ajout d'une nouvelle prescription type dans la bibliothèque.
      */
-    async postPrescription(params : { contenu : string, type : string, supportsReglementairesId ? : { }[] }): Promise<AxiosResponse<Prescription>>
+    async postPrescription(params : { contenu : string, type : string, supports_reglementaires_id ? : { }[] }): Promise<AxiosResponse<Prescription>>
     {
         const pathVariable = { };
         return this.request({
@@ -112,7 +110,7 @@ export class PrescriptionsAPI extends Core {
     /**
      * Ajouter un support réglementaire.
      */
-    async postSupportReglementaire(params : { nature : string, contenu : string, titre : string, etat : string, reference : string, legifranceCid ? : string, }): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    async postSupportReglementaire(params : { nature : string, contenu : string, titre : string, etat : string, reference : string, legifrance_cid ? : string, }): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
         const pathVariable = { };
         return this.request({

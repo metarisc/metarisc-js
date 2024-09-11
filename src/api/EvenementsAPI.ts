@@ -48,8 +48,7 @@ export class EvenementsAPI extends Core {
         return this.collect<Evenement>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'period': period, 'type': type },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'period': period, 'type': type }
         });
     }
     
@@ -62,15 +61,14 @@ export class EvenementsAPI extends Core {
         return this.collect<Utilisateur>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Création d'un événement.
      */
-    async postEvenement(params : { title : string, type : string, dateDebut : Date, dateFin : Date, description ? : string, }): Promise<AxiosResponse<Evenement>>
+    async postEvenement(params : { title : string, type : string, date_debut : Date, date_fin : Date, description ? : string, }): Promise<AxiosResponse<Evenement>>
     {
         const pathVariable = { };
         return this.request({

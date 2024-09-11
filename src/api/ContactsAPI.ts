@@ -47,15 +47,14 @@ export class ContactsAPI extends Core {
         return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/contacts'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Mise à jour d'une fiche contact existante.
      */
-    async updateContact(contactId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephoneFixe ? : string, telephonePortable ? : string, telephoneFax ? : string, adresse ? : string, siteWebUrl ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
+    async updateContact(contactId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephone_fixe ? : string, telephone_portable ? : string, telephone_fax ? : string, adresse ? : string, site_web_url ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({

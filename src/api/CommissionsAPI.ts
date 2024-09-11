@@ -50,8 +50,7 @@ export class CommissionsAPI extends Core {
         return this.collect<Commission>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -64,8 +63,7 @@ export class CommissionsAPI extends Core {
         return this.collect<PassageCommission>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -78,15 +76,14 @@ export class CommissionsAPI extends Core {
         return this.collect<CommissionMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Ajoute une commission.
      */
-    async postCommission(params : { type : string, libelle : string, presidenceId ? : string }): Promise<AxiosResponse<Commission>>
+    async postCommission(params : { type : string, libelle : string, presidence_id ? : string }): Promise<AxiosResponse<Commission>>
     {
         const pathVariable = { };
         return this.request({
@@ -100,7 +97,7 @@ export class CommissionsAPI extends Core {
     /**
      * Ajout d'une date de passage en commission.
      */
-    async postCommissionDate(commissionId: string, params : { dateDebut : Date, dateFin : Date, type : string, libelle : string, }): Promise<AxiosResponse<PassageCommission>>
+    async postCommissionDate(commissionId: string, params : { date_debut : Date, date_fin : Date, type : string, libelle : string, }): Promise<AxiosResponse<PassageCommission>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
@@ -114,7 +111,7 @@ export class CommissionsAPI extends Core {
     /**
      * Ajout d'un membre dans la commission.
      */
-    async postMembresCommission(commissionId: string, params : { titre : string, presenceObligatoire : boolean, }): Promise<AxiosResponse<CommissionMembre>>
+    async postMembresCommission(commissionId: string, params : { titre : string, presence_obligatoire : boolean, }): Promise<AxiosResponse<CommissionMembre>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
