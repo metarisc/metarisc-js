@@ -19,8 +19,7 @@ export class FeedAPI extends Core {
         return this.collect<FeedMessage>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     

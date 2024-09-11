@@ -38,8 +38,7 @@ export class PEIAPI extends Core {
         return this.collect<AnomaliePEI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -52,8 +51,7 @@ export class PEIAPI extends Core {
         return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -66,8 +64,7 @@ export class PEIAPI extends Core {
         return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -80,8 +77,7 @@ export class PEIAPI extends Core {
         return this.collect<Dossier>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -94,8 +90,7 @@ export class PEIAPI extends Core {
         return this.collect<DescriptifTechniqueDECI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -108,15 +103,14 @@ export class PEIAPI extends Core {
         return this.collect<PEI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'geojson': geojson },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'geojson': geojson }
         });
     }
     
     /**
      * Ajout d'un contact.
      */
-    async postContactsPei(peiId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephoneFixe ? : string, telephonePortable ? : string, telephoneFax ? : string, adresse ? : string, siteWebUrl ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
+    async postContactsPei(peiId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephone_fixe ? : string, telephone_portable ? : string, telephone_fax ? : string, adresse ? : string, site_web_url ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -130,7 +124,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsPei(peiId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsPei(peiId: string, params : { url : string, est_sensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -158,7 +152,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un PEI.
      */
-    async postPei(params : { descriptifTechnique : { type : string, domanialite? : string, observations_generales? : string, statut : string, surpression? : number, nature : string, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number, volume? : number }, implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures ? : { titre? : string, valeur? : string }[], numero ? : string, numeroCompteur ? : string, numeroSerieAppareil ? : string }): Promise<AxiosResponse<PEI>>
+    async postPei(params : { descriptif_technique : { type : string, domanialite? : string, observations_generales? : string, statut : string, surpression? : number, nature : string, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number, volume? : number }, implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, references_exterieures ? : { titre? : string, valeur? : string }[], numero ? : string, numero_compteur ? : string, numero_serie_appareil ? : string }): Promise<AxiosResponse<PEI>>
     {
         const pathVariable = { };
         return this.request({

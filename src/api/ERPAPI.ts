@@ -37,8 +37,7 @@ export class ERPAPI extends Core {
         return this.collect<Contact>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -51,8 +50,7 @@ export class ERPAPI extends Core {
         return this.collect<PieceJointe>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -65,8 +63,7 @@ export class ERPAPI extends Core {
         return this.collect<Dossier>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -79,8 +76,7 @@ export class ERPAPI extends Core {
         return this.collect<ERP>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -93,15 +89,14 @@ export class ERPAPI extends Core {
         return this.collect<DescriptifTechniqueERP>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/historique'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Ajout d'un contact.
      */
-    async postContactsErp(erpId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephoneFixe ? : string, telephonePortable ? : string, telephoneFax ? : string, adresse ? : string, siteWebUrl ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
+    async postContactsErp(erpId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephone_fixe ? : string, telephone_portable ? : string, telephone_fax ? : string, adresse ? : string, site_web_url ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -115,7 +110,7 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsErp(erpId: string, params : { url : string, estSensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
+    async postDocumentsErp(erpId: string, params : { url : string, est_sensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -143,7 +138,7 @@ export class ERPAPI extends Core {
     /**
      * Création d'un nouveau ERP.
      */
-    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, referencesExterieures ? : { titre? : string, valeur? : string }[], }): Promise<AxiosResponse<ERP>>
+    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, references_exterieures ? : { titre? : string, valeur? : string }[], }): Promise<AxiosResponse<ERP>>
     {
         const pathVariable = { };
         return this.request({

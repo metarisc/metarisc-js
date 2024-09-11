@@ -34,15 +34,14 @@ export class DatesPassageCommissionAPI extends Core {
         return this.collect<PassageCommissionDossier>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Ajout d'un dossier à l'ordre du jour d'un passage en commission.
      */
-    async postCommissionDateDossier(dateId: string, params : { dossierId : string, dateDePassage ? : Date }): Promise<AxiosResponse<PassageCommissionDossier>>
+    async postCommissionDateDossier(dateId: string, params : { dossier_id : string, date_de_passage ? : Date }): Promise<AxiosResponse<PassageCommissionDossier>>
     {
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.request({

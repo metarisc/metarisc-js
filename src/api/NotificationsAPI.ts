@@ -47,8 +47,7 @@ export class NotificationsAPI extends Core {
         return this.collect<Notification>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -69,7 +68,7 @@ export class NotificationsAPI extends Core {
     /**
      * Création d'une notification.
      */
-    async postNotification(params : { title : string, message : string, type : string, utilisateurId : string, contexte ? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
+    async postNotification(params : { title : string, message : string, type : string, utilisateur_id : string, contexte ? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
     {
         const pathVariable = { };
         return this.request({

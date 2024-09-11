@@ -34,8 +34,7 @@ export class TournesDECIAPI extends Core {
         return this.collect<TourneeDeciPei>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
@@ -48,15 +47,14 @@ export class TournesDECIAPI extends Core {
         return this.collect<TourneeDeci>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'libelle': libelle, 'periode': periode },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'libelle': libelle, 'periode': periode }
         });
     }
     
     /**
      * Ajout d'un PEI sur la tournée DECI.
      */
-    async postTourneeDeciPei(tourneeDeciId: string, params : { peiId : string, dateDuControle ? : Date, listeAnomalies ? : { code? : number, a_lever? : boolean }[], essaisEnginUtilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
+    async postTourneeDeciPei(tourneeDeciId: string, params : { pei_id : string, date_du_controle ? : Date, liste_anomalies ? : { code? : number, a_lever? : boolean }[], essais_engin_utilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
@@ -70,7 +68,7 @@ export class TournesDECIAPI extends Core {
     /**
      * Mise à jour de la tournée DECI.
      */
-    async updateTourneeDeci(tourneeDeciId: string, params : { libelle ? : string, description ? : string, dateDeDebut ? : Date, dateDeFin ? : Date, moisDebut ? : number, moisFin ? : number }): Promise<AxiosResponse<TourneeDeci>>
+    async updateTourneeDeci(tourneeDeciId: string, params : { libelle ? : string, description ? : string, date_de_debut ? : Date, date_de_fin ? : Date, mois_debut ? : number, mois_fin ? : number }): Promise<AxiosResponse<TourneeDeci>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
@@ -84,7 +82,7 @@ export class TournesDECIAPI extends Core {
     /**
      * Ajout d'une nouvelle tournée DECI.
      */
-    async postTourneeDeci(params : { libelle : string, type : string, dateDeDebut : Date, dateDeFin : Date, moisDebut : number, moisFin : number, description ? : string, modeleId ? : string, }): Promise<AxiosResponse<TourneeDeci>>
+    async postTourneeDeci(params : { libelle : string, type : string, date_de_debut : Date, date_de_fin : Date, mois_debut : number, mois_fin : number, description ? : string, modele_id ? : string, }): Promise<AxiosResponse<TourneeDeci>>
     {
         const pathVariable = { };
         return this.request({

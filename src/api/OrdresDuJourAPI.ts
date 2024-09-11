@@ -12,7 +12,7 @@ export class OrdresDuJourAPI extends Core {
     /**
      * Mise à jour des détails d'un dossier lié à une date de passage en commission
      */
-    async updateCommissionDateDossier(dossierId: string, params : { avis ? : { type? : string } , dateDePassage ? : Date }): Promise<AxiosResponse<PassageCommissionDossier>>
+    async updateCommissionDateDossier(dossierId: string, params : { avis ? : { type? : string } , date_de_passage ? : Date }): Promise<AxiosResponse<PassageCommissionDossier>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({

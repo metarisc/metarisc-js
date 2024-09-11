@@ -47,15 +47,14 @@ export class CommissionsMembresAPI extends Core {
         return this.collect<CommissionMembre>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() },
-            body: Utils.payloadFilter({})
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
         });
     }
     
     /**
      * Mise à jour d'un membre de commission existant.
      */
-    async updateMembre(membreId: string, params : { titre ? : string, presenceObligatoire ? : boolean }): Promise<AxiosResponse<CommissionMembre>>
+    async updateMembre(membreId: string, params : { titre ? : string, presence_obligatoire ? : boolean }): Promise<AxiosResponse<CommissionMembre>>
     {
         const pathVariable = { 'membre_id': (new String(membreId)).toString() };
         return this.request({
