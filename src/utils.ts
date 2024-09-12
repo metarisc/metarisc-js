@@ -54,21 +54,22 @@ export class Utils {
      */
     static payloadFilter(payload : any) : object {
         const filtered : any = {};
-        // Filtre sur tous les champs "undefined"
+        
         Object.keys(payload).forEach((key) => {
+
             if (payload[key] === Object(payload[key])) {
                 filtered[key] = Utils.payloadFilter(payload[key]);
             }
-            else if (payload[key] !== undefined) {
+
+            if (payload[key] !== undefined) {
                 filtered[key] = payload[key];
             }
-        });
-        // Filtre sur la date
-        Object.keys(filtered).forEach((key) => {
-            if(filtered[key] instanceof Date) {
+
+            if(payload[key] instanceof Date) {
                 filtered[key] = this.formatDate(payload[key]);
             }
         });
+        
         return filtered;
     }
 }
