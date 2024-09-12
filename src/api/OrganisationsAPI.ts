@@ -138,6 +138,20 @@ export class OrganisationsAPI extends Core {
     }
     
     /**
+     * Mise à jour des préférences de l'organisation.
+     */
+    async updateOrganisationPreferences(orgId: string, params : { platau_id_acteur ? : string, platau_active ? : boolean, s3_global_endpoint ? : string }): Promise<AxiosResponse<OrganisationPreferences>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/preferences'),
+            params: { },
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Mise à jour de l'ensemble des règles utilisées pour le calcul de la conformité et de la performance DECI.
      */
     async postOrganisationReglesDeci(orgId: string, params : { pibi_conformite_matrice_seuil_pesee_1bar_par_nature ? : { [key: string]: number; }, pibi_performance_natures_performance_restreinte ? : { }[], pibi_performance_natures_a_reformer ? : { }[], pibi_performance_seuil_pesee_1bar ? : number, pibi_conformite_seuil_surpression ? : number, pibi_conformite_matrice_seuil_pesee_1bar_par_defaut ? : number, pena_conformite_seuil_volume_citerne ? : number }): Promise<AxiosResponse<ReglesDeci>>
