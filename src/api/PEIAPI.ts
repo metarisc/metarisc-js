@@ -5,6 +5,8 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
+import { GetReferencesExterieuresErpErp200Response } from '../model/GetReferencesExterieuresErpErp200Response';
+import { ObjetRFRenceExtRieure } from '../model/ObjetRFRenceExtRieure';
 import { PEI } from '../model/PEI';
 import { PieceJointe } from '../model/PieceJointe';
 import { AnomaliePEI } from '../model/AnomaliePEI';
@@ -24,6 +26,20 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération de toutes les références extérieures de l'objet.
+     */
+    async getReferencesExterieuresPei(peiId: string): Promise<AxiosResponse<GetReferencesExterieuresErpErp200Response>>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
             params: { },
             body: Utils.payloadFilter({})
         });
@@ -97,13 +113,27 @@ export class PEIAPI extends Core {
     /**
      * Récupération de la liste des Points d'Eau Incendie (PEI) selon des critères de recherche.
      */
-    paginatePei(page?: number, perPage?: number, geojson?: string): Collection<PEI>
+    paginatePei(page?: number, perPage?: number, sort?: string, numero?: string, type?: string, statut?: string, estDisponible?: boolean, domanialite?: string, geojson?: string): Collection<PEI>
     {
         const pathVariable = { };
         return this.collect<PEI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'geojson': geojson }
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'sort': sort, 'numero': numero, 'type': type, 'statut': statut, 'est_disponible': estDisponible, 'domanialite': domanialite, 'geojson': geojson }
+        });
+    }
+    
+    /**
+     * Créez ou mettez à jour des références extérieures. L'utilisation d'une valeur null pour une référence extérieure supprimera ou « annulera » la valeur de la propriété de la référence extérieure.
+     */
+    async patchReferencesExterieuresPei(peiId: string,objetRFRenceExtRieure?: Array<ObjetRFRenceExtRieure>, params : { titre ? : string, valeur ? : string }): Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'pei_id': (new String(peiId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
+            params: { },
+            body: Utils.payloadFilter(params)
         });
     }
     
@@ -138,7 +168,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un dossier.
      */
-    async postDossiersPei(peiId: string, params : { type : string, objet ? : string }): Promise<AxiosResponse<Dossier>>
+    async postDossiersPei(peiId: string, params : { type : string, objet ? : string, }): Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -152,7 +182,7 @@ export class PEIAPI extends Core {
     /**
      * Ajout d'un PEI.
      */
-    async postPei(params : { descriptif_technique : { type : string, domanialite? : string, observations_generales? : string, statut : string, surpression? : number, nature : string, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number, volume? : number }, implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, references_exterieures ? : { titre? : string, valeur? : string }[], numero ? : string, numero_compteur ? : string, numero_serie_appareil ? : string }): Promise<AxiosResponse<PEI>>
+    async postPei(params : { descriptif_technique : { type : string, domanialite? : string, observations_generales? : string, statut : string, surpression? : number, nature : string, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number, volume? : number }, implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, numero ? : string, numero_compteur ? : string, numero_serie_appareil ? : string }): Promise<AxiosResponse<PEI>>
     {
         const pathVariable = { };
         return this.request({

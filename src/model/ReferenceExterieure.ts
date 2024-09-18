@@ -1,4 +1,4 @@
 export type ReferenceExterieure = {
     'titre'?: string;
-    'valeur'?: string;
+    'valeur'?: string | null;
 };

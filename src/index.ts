@@ -15,7 +15,7 @@ export { CommissionsMembresAPI } from './api/CommissionsMembresAPI';
 
 export { ContactsAPI } from './api/ContactsAPI';
 
-export { ControlesPeiAPI } from './api/ControlesPeiAPI';
+export { ControlesPEIAPI } from './api/ControlesPEIAPI';
 
 export { DatesPassageCommissionAPI } from './api/DatesPassageCommissionAPI';
 

@@ -55,7 +55,7 @@ export class CommissionsAPI extends Core {
     }
     
     /**
-     * Récupération de la liste des dates de passage de la commission.
+     * Récupération de la liste des dates de passage de la commission. Cela peut représenter une visite périodique sur site de la commission, ou un passage en salle.
      */
     paginateCommissionDates(commissionId: string, page?: number, perPage?: number): Collection<PassageCommission>
     {
