@@ -42,7 +42,12 @@ export class Core {
     on(eventName: EventEnum, callback: (event: Event) => void): void {
         this.client.getEventStream().addEventListener(eventName, callback);
     }
-
+    getAccessToken(): string {
+        return this.client.getAccessToken();
+    }
+    getRefreshToken(): string {
+        return this.client.getRefreshToken();
+    }
     collect<T>(config: RequestConfig): Collection<T> {
         return new Collection<T>(this, {
             endpoint: config.endpoint || "/",
