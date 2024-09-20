@@ -24,7 +24,9 @@ export enum AuthMethod {
 }
 
 export enum EventEnum {
-    request = "request"
+    request = "request",
+    response = "response",
+    error = "error",
 }
 
 export class Client {
@@ -86,6 +88,7 @@ export class Client {
 					await this.refreshToken();
 				}
 				catch(e) {
+                    this.emit(EventEnum.error, e);
 					throw new SessionExpiredError('La session utilisateur a expirée. ' + e.message);
 				}
 			}
@@ -146,7 +149,10 @@ export class Client {
 			params: config.params,
 			data: config.body,
 			headers: config.headers
-		});
+		}).then((response) => {
+            this.emit(EventEnum.response, response);
+            return response;
+        });
 	}
 
 	protected emit(eventName: EventEnum, payload: unknown) {
