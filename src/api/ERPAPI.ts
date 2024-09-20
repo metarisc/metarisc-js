@@ -6,6 +6,8 @@ import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
 import { ERP } from '../model/ERP';
+import { GetReferencesExterieuresErpErp200Response } from '../model/GetReferencesExterieuresErpErp200Response';
+import { ObjetRFRenceExtRieure } from '../model/ObjetRFRenceExtRieure';
 import { PieceJointe } from '../model/PieceJointe';
 import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
 
@@ -23,6 +25,20 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Récupération de toutes les références extérieures de l'objet.
+     */
+    async getReferencesExterieuresErp(erpId: string): Promise<AxiosResponse<GetReferencesExterieuresErpErp200Response>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
             params: { },
             body: Utils.payloadFilter({})
         });
@@ -94,6 +110,20 @@ export class ERPAPI extends Core {
     }
     
     /**
+     * Créez ou mettez à jour des références extérieures. L'utilisation d'une valeur null pour une référence extérieure supprimera ou « annulera » la valeur de la propriété de la référence extérieure.
+     */
+    async patchReferencesExterieuresErp(erpId: string,objetRFRenceExtRieure?: Array<ObjetRFRenceExtRieure>, params : { titre ? : string, valeur ? : string }): Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
+            params: { },
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Ajout d'un contact.
      */
     async postContactsErp(erpId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephone_fixe ? : string, telephone_portable ? : string, telephone_fax ? : string, adresse ? : string, site_web_url ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
@@ -124,7 +154,7 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un dossier.
      */
-    async postDossiersErp(erpId: string, params : { type : string, objet ? : string }): Promise<AxiosResponse<Dossier>>
+    async postDossiersErp(erpId: string, params : { type : string, objet ? : string, }): Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -138,7 +168,7 @@ export class ERPAPI extends Core {
     /**
      * Création d'un nouveau ERP.
      */
-    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, references_exterieures ? : { titre? : string, valeur? : string }[], }): Promise<AxiosResponse<ERP>>
+    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, }): Promise<AxiosResponse<ERP>>
     {
         const pathVariable = { };
         return this.request({

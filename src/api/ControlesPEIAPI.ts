@@ -4,7 +4,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { TourneeDeciPei } from '../model/TourneeDeciPei';
 
-export class ControlesPeiAPI extends Core {
+export class ControlesPEIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
@@ -40,7 +40,7 @@ export class ControlesPeiAPI extends Core {
     /**
      * Mise à jour du PEI contrôlé.
      */
-    async updateControle(peiId: string, params : { date_du_controle ? : Date, liste_anomalies ? : { code? : number, a_lever? : boolean }[], essais_engin_utilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
+    async updateControle(peiId: string, params : { date_du_controle ? : Date, hydraulique ? : { volume? : number, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number } , liste_anomalies ? : { code? : number, a_lever? : boolean }[], essais_engin_utilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({

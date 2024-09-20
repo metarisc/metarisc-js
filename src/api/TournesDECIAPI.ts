@@ -5,6 +5,7 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { TourneeDeci } from '../model/TourneeDeci';
 import { TourneeDeciPei } from '../model/TourneeDeciPei';
+import { TourneeDeciSimple } from '../model/TourneeDeciSimple';
 
 export class TournesDECIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -52,9 +53,23 @@ export class TournesDECIAPI extends Core {
     }
     
     /**
+     * L'appel à ce endpoint permet de déclencher une nouvelle tournée DECI depuis un modèle donné. L'ID de la tournée DECI doit correspondre à une Tournée Modèle, sinon l'endpoint retournera une erreur.
+     */
+    async declencherTourneeDeci(tourneeDeciId: string): Promise<AxiosResponse<TourneeDeciSimple>>
+    {
+        const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/declencher'),
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
      * Ajout d'un PEI sur la tournée DECI.
      */
-    async postTourneeDeciPei(tourneeDeciId: string, params : { pei_id : string, date_du_controle ? : Date, liste_anomalies ? : { code? : number, a_lever? : boolean }[], essais_engin_utilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
+    async postTourneeDeciPei(tourneeDeciId: string, params : { pei_id : string, }): Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
@@ -82,7 +97,7 @@ export class TournesDECIAPI extends Core {
     /**
      * Ajout d'une nouvelle tournée DECI.
      */
-    async postTourneeDeci(params : { libelle : string, type : string, date_de_debut : Date, date_de_fin : Date, mois_debut : number, mois_fin : number, description ? : string, modele_id ? : string, }): Promise<AxiosResponse<TourneeDeci>>
+    async postTourneeDeci(params : { libelle : string, type : string, date_de_debut : Date, date_de_fin : Date, mois_debut : number, mois_fin : number, description ? : string, }): Promise<AxiosResponse<TourneeDeci>>
     {
         const pathVariable = { };
         return this.request({

@@ -10,7 +10,7 @@ import { CommissionsMembresAPI } from './api/CommissionsMembresAPI';
 
 import { ContactsAPI } from './api/ContactsAPI';
 
-import { ControlesPeiAPI } from './api/ControlesPeiAPI';
+import { ControlesPEIAPI } from './api/ControlesPEIAPI';
 
 import { DatesPassageCommissionAPI } from './api/DatesPassageCommissionAPI';
 
@@ -81,7 +81,7 @@ export class Metarisc extends Core
     
     public commissions?: CommissionsAPI;
     
-    public controles_pei?: ControlesPeiAPI;
+    public controles_pei?: ControlesPEIAPI;
     
     public evenements?: EvenementsAPI;
     
@@ -155,7 +155,7 @@ export class Metarisc extends Core
                         return new CommissionsAPI(config, tmpClient);
                     
                     case 'controles_pei':
-                        return new ControlesPeiAPI(config, tmpClient);
+                        return new ControlesPEIAPI(config, tmpClient);
                     
                     case 'evenements':
                         return new EvenementsAPI(config, tmpClient);

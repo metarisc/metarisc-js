@@ -1,9 +1,11 @@
+import { ObjetTournEDeciPEIHydraulique } from './ObjetTournEDeciPEIHydraulique';
 import { PEI } from './PEI';
 import { TourneeDeciPeiListeAnomaliesInner } from './TourneeDeciPeiListeAnomaliesInner';
 
 export type TourneeDeciPei = {
     'id'?: string;
     'date_du_controle'?: Date;
+    'hydraulique'?: ObjetTournEDeciPEIHydraulique;
     'liste_anomalies'?: Array<TourneeDeciPeiListeAnomaliesInner>;
     'essais_engin_utilise'?: EssaisEnginUtiliseEnum;
     'pei'?: PEI;
