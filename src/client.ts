@@ -88,8 +88,6 @@ export class Client {
 					await this.refreshToken();
 				}
 				catch(e) {
-                    console.log('Erreur pendant la tentative de refresh du token: ' + e.message);
-                    
                     this.emit(EventEnum.error, e);
 					throw new SessionExpiredError('La session utilisateur a expirée. ' + e.message);
 				}
@@ -154,7 +152,7 @@ export class Client {
 		}).then((response) => {
             this.emit(EventEnum.response, response);
             return response;
-        })
+        });
 	}
 
 	protected emit(eventName: EventEnum, payload: unknown) {
