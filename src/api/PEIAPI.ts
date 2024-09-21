@@ -5,10 +5,9 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
-import { GetReferencesExterieuresErpErp200Response } from '../model/GetReferencesExterieuresErpErp200Response';
-import { ObjetRFRenceExtRieure } from '../model/ObjetRFRenceExtRieure';
 import { PEI } from '../model/PEI';
 import { PieceJointe } from '../model/PieceJointe';
+import { ReferenceExterieure } from '../model/ReferenceExterieure';
 import { AnomaliePEI } from '../model/AnomaliePEI';
 import { DescriptifTechniqueDECI } from '../model/DescriptifTechniqueDECI';
 
@@ -34,14 +33,13 @@ export class PEIAPI extends Core {
     /**
      * Récupération de toutes les références extérieures de l'objet.
      */
-    async getReferencesExterieuresPei(peiId: string): Promise<AxiosResponse<GetReferencesExterieuresErpErp200Response>>
+    getReferencesExterieuresPei(peiId: string): Promise<AxiosResponse<{data: ReferenceExterieure[]}>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
-            params: { },
-            body: Utils.payloadFilter({})
+            params: { }
         });
     }
     
@@ -119,14 +117,14 @@ export class PEIAPI extends Core {
         return this.collect<PEI>({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'sort': sort, 'numero': numero, 'type': type, 'statut': statut, 'est_disponible': estDisponible, 'domanialite': domanialite, 'geojson': geojson }
+            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'sort': sort, 'numero': numero, 'type': type, 'statut': statut, 'est_disponible': estDisponible?.toString(), 'domanialite': domanialite, 'geojson': geojson }
         });
     }
     
     /**
      * Créez ou mettez à jour des références extérieures. L'utilisation d'une valeur null pour une référence extérieure supprimera ou « annulera » la valeur de la propriété de la référence extérieure.
      */
-    async patchReferencesExterieuresPei(peiId: string,objetRFRenceExtRieure?: Array<ObjetRFRenceExtRieure>, params : { titre ? : string, valeur ? : string }): Promise<AxiosResponse<void>>
+    async patchReferencesExterieuresPei(peiId: string, params : { titre ? : string, valeur ? : string }): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({

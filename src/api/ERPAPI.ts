@@ -6,9 +6,8 @@ import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
 import { ERP } from '../model/ERP';
-import { GetReferencesExterieuresErpErp200Response } from '../model/GetReferencesExterieuresErpErp200Response';
-import { ObjetRFRenceExtRieure } from '../model/ObjetRFRenceExtRieure';
 import { PieceJointe } from '../model/PieceJointe';
+import { ReferenceExterieure } from '../model/ReferenceExterieure';
 import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
 
 export class ERPAPI extends Core {
@@ -33,14 +32,13 @@ export class ERPAPI extends Core {
     /**
      * Récupération de toutes les références extérieures de l'objet.
      */
-    async getReferencesExterieuresErp(erpId: string): Promise<AxiosResponse<GetReferencesExterieuresErpErp200Response>>
+    getReferencesExterieuresErp(erpId: string): Promise<AxiosResponse<{data: ReferenceExterieure[]}>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
-            params: { },
-            body: Utils.payloadFilter({})
+            params: { }
         });
     }
     
@@ -112,7 +110,7 @@ export class ERPAPI extends Core {
     /**
      * Créez ou mettez à jour des références extérieures. L'utilisation d'une valeur null pour une référence extérieure supprimera ou « annulera » la valeur de la propriété de la référence extérieure.
      */
-    async patchReferencesExterieuresErp(erpId: string,objetRFRenceExtRieure?: Array<ObjetRFRenceExtRieure>, params : { titre ? : string, valeur ? : string }): Promise<AxiosResponse<void>>
+    async patchReferencesExterieuresErp(erpId: string, params : { titre ? : string, valeur ? : string }): Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
