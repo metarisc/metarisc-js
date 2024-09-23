@@ -166,7 +166,7 @@ export class ERPAPI extends Core {
     /**
      * Création d'un nouveau ERP.
      */
-    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, }): Promise<AxiosResponse<ERP>>
+    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, descriptif_technique : { statut : string, libelle : string, observations_generales? : string, analyse_risque? : ObjetDescriptifTechniqueERPBaseAnalyseRisque }, }): Promise<AxiosResponse<ERP>>
     {
         const pathVariable = { };
         return this.request({
