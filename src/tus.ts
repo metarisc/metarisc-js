@@ -55,10 +55,26 @@ export class Tus extends Core
     upload.start();
   }
 
-  download(fileId: string) {
+  /**
+	 * Récupération d'un fichier stocké sous forme de Blob.
+	 */
+  async download(url: string): Promise<Blob> {
     return this.request({
       method: "GET",
-      endpoint: "/resumable-file-uploads/files/" + fileId
+      endpoint: url
+    }).then((response) => {
+
+      //Récupérer le type de fichier
+      const fileType =
+      (response.headers["content-type"] as string) ||
+      "application/octet-stream";
+
+      // Créer un tableau de bytes à partir de la réponse
+      const encoder = new TextEncoder();
+      const byteArray = encoder.encode(response.data as string);
+    
+      // Créer et retourner un Blob à partir du tableau de bytes
+      return new Blob([byteArray], { type: fileType });
     });
   }
 }
