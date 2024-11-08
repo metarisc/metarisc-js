@@ -9,7 +9,7 @@ interface RequestConfig {
     params?: { [param: string]: string | string[] };
     endpoint?: string;
     method?: string;
-	responseType?:
+    responseType?:
 		| "arraybuffer"
 		| "blob"
 		| "document"
