@@ -64,17 +64,17 @@ export class Tus extends Core
       endpoint: url
     }).then((response) => {
 
-    //Récupérer le type de fichier
-    const fileType =
-    (response.headers["content-type"] as string) ||
-    "application/octet-stream";
+      //Récupérer le type de fichier
+      const fileType =
+      (response.headers["content-type"] as string) ||
+      "application/octet-stream";
 
-    // Créer un tableau de bytes à partir de la réponse
-    const encoder = new TextEncoder();
-    const byteArray = encoder.encode(response.data as string);
-  
-    // Créer et retourner un Blob à partir du tableau de bytes
-    return new Blob([byteArray], { type: fileType });
+      // Créer un tableau de bytes à partir de la réponse
+      const encoder = new TextEncoder();
+      const byteArray = encoder.encode(response.data as string);
+    
+      // Créer et retourner un Blob à partir du tableau de bytes
+      return new Blob([byteArray], { type: fileType });
     });
   }
 }
