@@ -61,20 +61,10 @@ export class Tus extends Core
   async download(url: string): Promise<Blob> {
     return this.request({
       method: "GET",
-      endpoint: url
+      endpoint: url,
+      responseType: "blob"
     }).then((response) => {
-
-      //Récupérer le type de fichier
-      const fileType =
-      (response.headers["content-type"] as string) ||
-      "application/octet-stream";
-
-      // Créer un tableau de bytes à partir de la réponse
-      const encoder = new TextEncoder();
-      const byteArray = encoder.encode(response.data as string);
-    
-      // Créer et retourner un Blob à partir du tableau de bytes
-      return new Blob([byteArray], { type: fileType });
+      return response.data as Blob;
     });
   }
 }
