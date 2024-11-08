@@ -9,6 +9,13 @@ interface RequestConfig {
     params?: { [param: string]: string | string[] };
     endpoint?: string;
     method?: string;
+	responseType?:
+		| "arraybuffer"
+		| "blob"
+		| "document"
+		| "json"
+		| "text"
+		| "stream";
 }
 
 export interface MetariscConfig {

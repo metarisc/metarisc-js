@@ -16,6 +16,13 @@ interface RequestConfig {
 	params?: { [param: string]: string | string[] };
 	endpoint?: string;
 	method?: string;
+	responseType?:
+		| "arraybuffer"
+		| "blob"
+		| "document"
+		| "json"
+		| "text"
+		| "stream";
 }
 
 export enum AuthMethod {
@@ -148,7 +155,8 @@ export class Client {
 			url: config.endpoint || "/",
 			params: config.params,
 			data: config.body,
-			headers: config.headers
+			headers: config.headers,
+			responseType: config.responseType
 		}).then((response) => {
             this.emit(EventEnum.response, response);
             return response;
