@@ -1,21 +1,23 @@
+// File generated from our OpenAPI spec
+
 export type Contact = {
-    'id'?: string;
-    'nom'?: string;
-    'prenom'?: string;
-    'fonction'?: string;
-    'telephone_fixe'?: string;
-    'telephone_portable'?: string;
-    'telephone_fax'?: string;
-    'adresse'?: string;
-    'site_web_url'?: string;
-    'civilite'?: CiviliteEnum;
-    'societe'?: string;
-    'email'?: string;
-    'observations'?: string;
+    'id': string;
+    'nom': string | null;
+    'prenom': string | null;
+    'fonction': string | null;
+    'telephone_fixe': string | null;
+    'telephone_portable': string | null;
+    'telephone_fax': string | null;
+    'adresse': string | null;
+    'site_web_url': string | null;
+    'civilite': CiviliteEnum | null;
+    'societe': string | null;
+    'email': string | null;
+    'observations': string | null;
 };
 
 export enum CiviliteEnum {
     M = 'M',
-    Mme = 'Mme',
-    Mx = 'Mx'
+    MME = 'Mme',
+    MX = 'Mx'
 }

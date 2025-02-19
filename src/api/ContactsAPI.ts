@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -13,10 +14,12 @@ export class ContactsAPI extends Core {
     /**
      * Suppression d'une fiche contact existante.
      */
-    async deleteContact(contactId: string): Promise<AxiosResponse<void>>
+    deleteContact(
+        contactId: string
+    ) : void
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/contacts/{contact_id}'),
             params: { },
@@ -27,7 +30,9 @@ export class ContactsAPI extends Core {
     /**
      * Récupération d'une fiche contact.
      */
-    async getContact(contactId: string): Promise<AxiosResponse<Contact>>
+    getContact(
+        contactId: string
+    ) : Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({
@@ -41,20 +46,25 @@ export class ContactsAPI extends Core {
     /**
      * Récupération de la liste des contacts.
      */
-    paginateContacts(page?: number, perPage?: number): Collection<Contact>
+    paginateContacts(
+    ) : Collection<Contact>
     {
         const pathVariable = { };
-        return this.collect<Contact>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/contacts'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
-     * Mise à jour d'une fiche contact existante.
+     * Mise à jour d'une fiche contact existante en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async updateContact(contactId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephone_fixe ? : string, telephone_portable ? : string, telephone_fax ? : string, adresse ? : string, site_web_url ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
+    updateContact(
+        contactId: string,
+        params : any
+    ) : Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
         return this.request({

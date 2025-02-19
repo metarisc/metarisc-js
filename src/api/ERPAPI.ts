@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -9,6 +10,7 @@ import { ERP } from '../model/ERP';
 import { PieceJointe } from '../model/PieceJointe';
 import { ReferenceExterieure } from '../model/ReferenceExterieure';
 import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
+import { PrescriptionSupportReglementaire } from '../model/PrescriptionSupportReglementaire';
 
 export class ERPAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -18,7 +20,9 @@ export class ERPAPI extends Core {
     /**
      * Récupération des détails de l'ERP.
      */
-    async getErp(erpId: string): Promise<AxiosResponse<ERP>>
+    getErp(
+        erpId: string
+    ) : Promise<AxiosResponse<ERP>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -32,85 +36,128 @@ export class ERPAPI extends Core {
     /**
      * Récupération de toutes les références extérieures de l'objet.
      */
-    getReferencesExterieuresErp(erpId: string): Promise<AxiosResponse<{data: ReferenceExterieure[]}>>
+    getReferencesExterieuresErp(
+        erpId: string
+    ) : Promise<AxiosResponse<{data: ReferenceExterieure[]}>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
-            params: { }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de la liste des contacts.
      */
-    paginateErpContacts(erpId: string, page?: number, perPage?: number): Collection<Contact>
+    paginateErpContacts(
+        erpId: string
+    ) : Collection<Contact>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
-        return this.collect<Contact>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de la liste des documents.
      */
-    paginateErpDocuments(erpId: string, page?: number, perPage?: number): Collection<PieceJointe>
+    paginateErpDocuments(
+        erpId: string
+    ) : Collection<PieceJointe>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
-        return this.collect<PieceJointe>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de la liste des dossiers.
      */
-    paginateErpDossiers(erpId: string, page?: number, perPage?: number): Collection<Dossier>
+    paginateErpDossiers(
+        erpId: string
+    ) : Collection<Dossier>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
-        return this.collect<Dossier>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
-     * Récupération de la liste des ERP.
+     * Récupération de la liste des Établissements Recevant du Public (ERP) selon des critères de recherche.
      */
-    paginateErp(page?: number, perPage?: number): Collection<ERP>
+    paginateErp(
+        sort? : 'libelle' | '-libelle',
+        libelle? : string,
+        geojson? : string,
+        referencesExterieures? : string | Array<string>,
+        presenceLocauxSommeil? : boolean,
+        typeActivite? : 'CTS - Châpiteaux' | 'CTS - Structures' | 'CTS - Tentes' | 'EF - Bateaux en stationnement sur les eaux intérieures' | 'EF - Bateaux stationnaires' | 'EF - Etablissements flottants' | 'GA - Gares' | 'GEEM - Grands établissements à exploitation multiple' | 'J - Etablissements d\'enseignement avec internat pour jeunes handicapés ou inadaptés' | 'J - Etablissements d\'hébergement pour adultes handicapés' | 'J - Etablissements médico-éducatifs avec internat pour jeunes handicapés ou inadaptés' | 'J - Structures d\'accueil pour personnes âgées' | 'J - Structures d\'accueil pour personnes handicapées' | 'L - Cabarets' | 'L - Salles d\'audition' | 'L - Salle de conférences' | 'L - Salles de pari' | 'L - Salles de projection' | 'L - Salles de quartier (ou assimilée)' | 'L - Salles de réunions' | 'L - Salles de spectacles' | 'L - Salles multimédia' | 'L - Salles polyvalentes à dominante sportive, dont la superficie unitaire est supérieure ou égale à 1 200 m2' | 'L - Salles polyvalentes non visée par le Type X (salle polyvalente qui n\'a pas une destination unique)' | 'L - Salles réservées aux associations' | 'M - Aires de vente' | 'M - Centres commerciaux' | 'M - Locaux de vente' | 'M - Magasin de vente' | 'N - Bars' | 'N - Brasseries' | 'N - Cafétaria' | 'N - Cafés' | 'N - Cantines' | 'N - Débits de boissons' | 'N - Restaurants' | 'O - Hôtels' | 'O - Pensions de famille' | 'OA - Hôtels-restaurants d\'altitude' | 'P - Salle de bals' | 'P - Dancing / discothèque' | 'P - Salles de jeux' | 'PA - Arènes' | 'PA - Hippodromes' | 'PA - Piscines' | 'PA - Pistes de patinage' | 'PA - Stades' | 'PA - Terrains de sport' | 'PA - Parc d\'attraction' | 'PE 2 §2 - Locaux à usage collectif d\'une surface unitaire supérieure à 50 mètres carrés des logements-foyers et de l\'habitat de loisirs à gestion collective' | 'PE 2 §2 - Bâtiments ou locaux à usage d\'hébergement qui ne relèvent d\'aucun type défini à l\'article GN 1 et qui permettent d\'accueillir plus de 15 et moins de 100 personnes n\'y élisant pas domicile' | 'PE 2 §2 - Hébergement de mineurs en dehors de leurs familles, le seuil de l\'effectif est fixé à 7 mineurs' | 'PE 2 §2 - Maisons d\'assistants maternels (MAM) dont les locaux accessibles au public sont strictement limités à un seul étage sur rez-de-chaussée et dont l\'effectif ne dépasse pas 16 enfants' | 'PS - Parcs de stationnement couverts' | 'PS - Parc de stationnement mixte' | 'PS - Parc de stationnement largement ventilé' | 'PS - Parc de stationnement à rangement automatisé' | 'R - Auberges de jeunesse (comprenant au moins un local collectif à sommeil)' | 'R - Auto-écoles' | 'R - Centres aérés' | 'R - Centres de loisirs (sans hébergement)' | 'R - Centres de vacances' | 'R - Colonies de vacances' | 'R - Crèches' | 'R - Ecoles maternelles' | 'R - Etablissements d\'enseignement' | 'R - Etablissements de formation' | 'R - Haltes-garderies' | 'R - Internats des établissements de l\'enseignement primaire et secondaire' | 'R - Jardins d\'enfant' | 'R - Lycee public' | 'R - Collège public' | 'R - Lycee privé' | 'R - Collège privé' | 'R - École élémentaire' | 'REF - Refuges de montagne' | 'S - Bibliothèques' | 'S - Centres de documentation et de consultation d\'archives' | 'SG - Structures gonflables' | 'T - Etablissements à vocation commerciale destinés à des expositions' | 'T - Foires-expositions' | 'T - Salles d\'expositions à caractère permanent n\'ayant pas une vocation de foire ou de salon' | 'T - Salles d\'expositions à caractère permanent de véhicules automobiles, bateaux, machines et autres volumineux biens d\'équipements assimilables' | 'T - Salons à caractère temporaire' | 'U - Etablissements de cure thermale ou de thalassothérapie' | 'U - Etablissements de santé publics ou privés dispensant des soins de courte durée en médecine, chirurgie, obstétrique' | 'U - Etablissements de santé publics ou privés dispensant des soins de psychiatrie, de suite ou de réadaptation, des soins de longue durée, à des personnes n\'ayant pas leur autonomie de vie dont l\'état nécessite une surveillance médicale constante' | 'U - Pouponnières (enfants de moins de 3 ans)' | 'V - Eglises' | 'V - Mosquées' | 'V - Synagogues' | 'V - Temples' | 'W - Administrations' | 'W - Banques' | 'W - Bureaux' | 'X - Manèges' | 'X - Patinoires' | 'X - Piscines couvertes, transformables et mixtes' | 'X - Salles d\'éducation physique et sportive' | 'X - Salles omnisports' | 'X - Salles polyvalentes à dominante sportive, dont l\'aire d\'activité est inférieure à 1200 m² et la hauteur sous plafond supérieure ou égale à 6,50 mètres' | 'X - Salles sportives spécialisées' | 'Y - Musées' | 'Y - Salles destinées à recevoir des expositions à vocation culturelle, scientifique, technique, artistique, etc. ayant un caractère temporaire',
+        avisExploitation? : 'favorable' | 'defavorable'
+    ) : Collection<ERP>
     {
         const pathVariable = { };
-        return this.collect<ERP>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString(), 'geojson': (new String(geojson)).toString(), 'references_exterieures': (new String(referencesExterieures)).toString(), 'presence_locaux_sommeil': (new String(presenceLocauxSommeil)).toString(), 'type_activite': (new String(typeActivite)).toString(), 'avis_exploitation': (new String(avisExploitation)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de l'historique d'un ERP.
      */
-    paginateErpHistorique(erpId: string, page?: number, perPage?: number): Collection<DescriptifTechniqueERP>
+    paginateErpHistorique(
+        erpId: string
+    ) : Collection<DescriptifTechniqueERP>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
-        return this.collect<DescriptifTechniqueERP>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/historique'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Retourne la liste des textes applicables d'un ERP en fonction de son type d'activité.
+     */
+    paginateTextesApplicables(
+        erpId: string
+    ) : Collection<PrescriptionSupportReglementaire>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/textes_applicables'),
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Créez ou mettez à jour des références extérieures. L'utilisation d'une valeur null pour une référence extérieure supprimera ou « annulera » la valeur de la propriété de la référence extérieure.
      */
-    async patchReferencesExterieuresErp(erpId: string, params : { titre ? : string, valeur ? : string }): Promise<AxiosResponse<void>>
+    patchReferencesExterieuresErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<{data: ReferenceExterieure[]}>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -124,7 +171,10 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un contact.
      */
-    async postContactsErp(erpId: string, params : { nom ? : string, prenom ? : string, fonction ? : string, telephone_fixe ? : string, telephone_portable ? : string, telephone_fax ? : string, adresse ? : string, site_web_url ? : string, civilite ? : string, societe ? : string, email ? : string, observations ? : string }): Promise<AxiosResponse<Contact>>
+    postContactsErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<Contact>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -138,7 +188,10 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un document.
      */
-    async postDocumentsErp(erpId: string, params : { url : string, est_sensible : boolean, nom ? : string, description ? : string, type ? : string, }): Promise<AxiosResponse<PieceJointe>>
+    postDocumentsErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -152,7 +205,10 @@ export class ERPAPI extends Core {
     /**
      * Ajout d'un dossier.
      */
-    async postDossiersErp(erpId: string, params : { type : string, objet ? : string, }): Promise<AxiosResponse<Dossier>>
+    postDossiersErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<Dossier>>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
@@ -166,12 +222,31 @@ export class ERPAPI extends Core {
     /**
      * Création d'un nouveau ERP.
      */
-    async postErp(params : { implantation : { code_postal? : string, commune? : string, voie? : string, code_insee? : string, arrondissement? : number, arrondissement_municipal? : string, latitude? : number, longitude? : number, localisation_operationnelle? : string, complement? : string }, }): Promise<AxiosResponse<ERP>>
+    postErp(
+        params : any
+    ) : Promise<AxiosResponse<ERP>>
     {
         const pathVariable = { };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
+            params: { },
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Mise à jour des détails d'un ERP en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    postErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<ERP>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
             params: { },
             body: Utils.payloadFilter(params)
         });

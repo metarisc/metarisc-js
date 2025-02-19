@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -13,20 +14,24 @@ export class FeedAPI extends Core {
     /**
      * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
      */
-    paginateFeedMessages(page?: number, perPage?: number): Collection<FeedMessage>
+    paginateFeedMessages(
+    ) : Collection<FeedMessage>
     {
         const pathVariable = { };
-        return this.collect<FeedMessage>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajoute un message dans le feed général.
      */
-    async postMessage(params : { titre : string, type : string, texte : string, }): Promise<AxiosResponse<FeedMessage>>
+    postMessage(
+        params : any
+    ) : Promise<AxiosResponse<FeedMessage>>
     {
         const pathVariable = { };
         return this.request({

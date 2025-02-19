@@ -1,47 +1,52 @@
+// File generated from our OpenAPI spec
+
 import { DescriptifTechniqueDECIBase } from './DescriptifTechniqueDECIBase';
 
 export type DescriptifTechniquePIBI = DescriptifTechniqueDECIBase & { 
 
-    'surpression'?: number;
+    'surpression': number | null;
 
-    'nature'?: NatureEnum;
+    'est_surpresse': boolean | null;
 
-    'debit_1bar'?: number;
+    'nature': NatureEnum;
 
-    'pression'?: number;
+    'debit_1bar': number | null;
 
-    'pression_statique'?: number;
+    'pression': number | null;
 
-    'debit_gueule_bee'?: number;
+    'pression_statique': number | null;
+
+    'debit_gueule_bee': number | null;
 };
 
 export enum TypeEnum {
-    Pibi = 'PIBI',
-    Pena = 'PENA'
+    PIBI = 'PIBI',
+    PENA = 'PENA'
 }
 
 export enum DomanialiteEnum {
-    Privee = 'privee',
-    Publique = 'publique',
-    PriveeConventionnee = 'privee_conventionnee'
+    PRIVEE = 'privee',
+    PUBLIQUE = 'publique',
+    PRIVEE_CONVENTIONNEE = 'privee_conventionnee'
 }
 
 export enum StatutEnum {
-    RepriseDeDonnees = 'reprise_de_donnees',
-    DeclarationEnCours = 'declaration_en_cours',
-    ReconnaissanceOperationnelleInitiale = 'reconnaissance_operationnelle_initiale',
-    Actif = 'actif',
-    Projet = 'projet',
-    Reforme = 'reforme'
+    REPRISE_DE_DONNEES = 'reprise_de_donnees',
+    DECLARATION_EN_COURS = 'declaration_en_cours',
+    RECONNAISSANCE_OPERATIONNELLE_INITIALE = 'reconnaissance_operationnelle_initiale',
+    ACTIF = 'actif',
+    PROJET = 'projet',
+    REFORME = 'reforme',
+    DECLARATION_ABANDONNEE = 'declaration_abandonnee'
 }
 
 export enum NatureEnum {
-    Pi1x65 = 'PI1x65',
-    Pi1x65Pi2x45 = 'PI1x65+PI2x45',
-    Pi1x100 = 'PI1x100',
-    Pi2x100 = 'PI2x100',
-    Bi1x65 = 'BI1x65',
-    Bi1x80 = 'BI1x80',
-    Bi1x100 = 'BI1x100',
-    Bi2x100 = 'BI2x100'
+    PI1X65 = 'PI1x65',
+    PI1X65_PI2X45 = 'PI1x65+PI2x45',
+    PI1X100 = 'PI1x100',
+    PI2X100 = 'PI2x100',
+    BI1X65 = 'BI1x65',
+    BI1X80 = 'BI1x80',
+    BI1X100 = 'BI1x100',
+    BI2X100 = 'BI2x100'
 }

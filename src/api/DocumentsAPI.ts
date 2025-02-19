@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -13,10 +14,12 @@ export class DocumentsAPI extends Core {
     /**
      * Suppression d'un document existant.
      */
-    async deleteDocument(documentId: string): Promise<AxiosResponse<void>>
+    deleteDocument(
+        documentId: string
+    ) : void
     {
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/documents/{document_id}'),
             params: { },
@@ -27,7 +30,9 @@ export class DocumentsAPI extends Core {
     /**
      * Récupération d'un document.
      */
-    async getDocument(documentId: string): Promise<AxiosResponse<PieceJointe>>
+    getDocument(
+        documentId: string
+    ) : Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({
@@ -41,20 +46,25 @@ export class DocumentsAPI extends Core {
     /**
      * Récupération de la liste des documents.
      */
-    paginate(page?: number, perPage?: number): Collection<PieceJointe>
+    paginate(
+    ) : Collection<PieceJointe>
     {
         const pathVariable = { };
-        return this.collect<PieceJointe>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/documents'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
-     * Mise à jour d'un document existant.
+     * Mise à jour d'un document existant en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async postDocument(documentId: string, params : { nom ? : string, description ? : string, type ? : string }): Promise<AxiosResponse<PieceJointe>>
+    postDocument(
+        documentId: string,
+        params : any
+    ) : Promise<AxiosResponse<PieceJointe>>
     {
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
         return this.request({

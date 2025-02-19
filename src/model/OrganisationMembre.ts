@@ -1,15 +1,16 @@
+// File generated from our OpenAPI spec
 import { Organisation } from './Organisation';
 import { Utilisateur } from './Utilisateur';
 
 export type OrganisationMembre = {
-    'organisation'?: Organisation;
-    'utilisateur'?: Utilisateur;
+    'organisation': Organisation;
+    'utilisateur': Utilisateur;
     'date_integration'?: Date;
-    'role'?: RoleEnum;
+    'role': RoleEnum;
 };
 
 export enum RoleEnum {
-    Membre = 'membre',
-    Invite = 'invite',
-    InvitationEnCours = 'invitation_en_cours'
+    MEMBRE = 'membre',
+    INVITE = 'invite',
+    INVITATION_EN_COURS = 'invitation_en_cours'
 }

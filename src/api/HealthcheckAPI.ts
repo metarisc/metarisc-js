@@ -1,6 +1,6 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
-import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 
 export class HealthcheckAPI extends Core {
@@ -11,10 +11,11 @@ export class HealthcheckAPI extends Core {
     /**
      * Assurez-vous que tous nos services sont opérationnels en effectuant des appels API vers le point de terminaison de contrôle d'intégrité. Ce point de terminaison exécute des contrôles d'intégrité et renvoie un état qui vous indique si le service Metarisc est fonctionnel ou non.
      */
-    async verify(): Promise<AxiosResponse<void>>
+    verify(
+    ) : void
     {
         const pathVariable = { };
-        return this.request({
+        this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/healthcheck'),
             params: { },

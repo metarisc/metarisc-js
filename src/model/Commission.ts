@@ -1,16 +1,18 @@
+// File generated from our OpenAPI spec
 import { Organisation } from './Organisation';
 
 export type Commission = {
-    'id'?: string;
-    'type'?: TypeEnum;
-    'libelle'?: string;
-    'presidence'?: Organisation;
+    'id': string;
+    'type': TypeEnum;
+    'libelle': string;
+    'presidence': Organisation;
+    'secretariat': Organisation;
 };
 
 export enum TypeEnum {
-    SousCommissionDpartementale = 'Sous-commission départementale',
-    CommissionCommunale = 'Commission communale',
-    CommissionIntercommunale = 'Commission intercommunale',
-    CommissionDarrondissement = 'Commission d\'arrondissement',
-    CoDerst = 'CoDERST'
+    SOUS_COMMISSION_DPARTEMENTALE = 'Sous-commission départementale',
+    COMMISSION_COMMUNALE = 'Commission communale',
+    COMMISSION_INTERCOMMUNALE = 'Commission intercommunale',
+    COMMISSION_DARRONDISSEMENT = 'Commission d\'arrondissement',
+    CO_DERST = 'CoDERST'
 }

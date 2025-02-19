@@ -1,8 +1,9 @@
+// File generated from our OpenAPI spec
 import { FeedMessageTexte } from './FeedMessageTexte';
 
 export type FeedMessage = FeedMessageTexte;
 
 export enum TypeEnum {
-    Texte = 'texte',
-    ListePei = 'liste_pei'
+    TEXTE = 'texte',
+    LISTE_PEI = 'liste_pei'
 }

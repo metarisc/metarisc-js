@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -14,7 +15,9 @@ export class DatesPassageCommissionAPI extends Core {
     /**
      * Récupération d'une date de passage en commission.
      */
-    async getCommissionDate(dateId: string): Promise<AxiosResponse<PassageCommission>>
+    getCommissionDate(
+        dateId: string
+    ) : Promise<AxiosResponse<PassageCommission>>
     {
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.request({
@@ -28,25 +31,48 @@ export class DatesPassageCommissionAPI extends Core {
     /**
      * Récupération d'une liste de dossiers à l'ordre du jour liés à une date de passage en commission.
      */
-    paginateCommissionDateDossiers(dateId: string, page?: number, perPage?: number): Collection<PassageCommissionDossier>
+    paginateCommissionDateDossiers(
+        dateId: string
+    ) : Collection<PassageCommissionDossier>
     {
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
-        return this.collect<PassageCommissionDossier>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajout d'un dossier à l'ordre du jour d'un passage en commission.
      */
-    async postCommissionDateDossier(dateId: string, params : { dossier_id : string, date_de_passage ? : Date }): Promise<AxiosResponse<PassageCommissionDossier>>
+    postCommissionDateDossier(
+        dateId: string,
+        params : any
+    ) : Promise<AxiosResponse<PassageCommissionDossier>>
     {
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
+            params: { },
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Reprogrammation d'une date de passage en commission. Cette opération permet de reprogrammer une date de passage en commission. La date de début et la date de fin du passage en commission programmée sont modifiées. Si des dossier sont déjà associés à cette date de passage en commission, alors ces dossiers devront être reprogrammés car l'ordre du jour sera réinitialisé.
+     */
+    postReprogrammerDate(
+        dateId: string,
+        params : any
+    ) : Promise<AxiosResponse<PassageCommission>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/reprogrammer'),
             params: { },
             body: Utils.payloadFilter(params)
         });

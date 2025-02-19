@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -14,10 +15,12 @@ export class PrescriptionsAPI extends Core {
     /**
      * Suppression d'une prescription type de la bibliothèque.
      */
-    async deletePrescription(prescriptionId: string): Promise<AxiosResponse<void>>
+    deletePrescription(
+        prescriptionId: string
+    ) : void
     {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
             params: { },
@@ -28,10 +31,12 @@ export class PrescriptionsAPI extends Core {
     /**
      * Suppression d'un support réglementaire.
      */
-    async deleteSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<void>>
+    deleteSupportReglementaire(
+        supportReglementaireId: string
+    ) : void
     {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
             params: { },
@@ -42,7 +47,9 @@ export class PrescriptionsAPI extends Core {
     /**
      * Récupération des détails d'une prescription dans la bibliothèque.
      */
-    async getPrescription(prescriptionId: string): Promise<AxiosResponse<Prescription>>
+    getPrescription(
+        prescriptionId: string
+    ) : Promise<AxiosResponse<Prescription>>
     {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
@@ -56,7 +63,9 @@ export class PrescriptionsAPI extends Core {
     /**
      * Récupération des détails d'un support réglementaire.
      */
-    async getSupportReglementaire(supportReglementaireId: string): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    getSupportReglementaire(
+        supportReglementaireId: string
+    ) : Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
@@ -70,33 +79,59 @@ export class PrescriptionsAPI extends Core {
     /**
      * Liste des prescriptions.
      */
-    paginatePrescriptions(page?: number, perPage?: number): Collection<Prescription>
+    paginatePrescriptions(
+        contenu? : string
+    ) : Collection<Prescription>
     {
         const pathVariable = { };
-        return this.collect<Prescription>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { 'contenu': (new String(contenu)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Liste des supports réglementaires.
      */
-    paginateSupportsReglementaires(page?: number, perPage?: number): Collection<PrescriptionSupportReglementaire>
+    paginateSupportsReglementaires(
+        contenu? : string,
+        reference? : string
+    ) : Collection<PrescriptionSupportReglementaire>
     {
         const pathVariable = { };
-        return this.collect<PrescriptionSupportReglementaire>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { 'contenu': (new String(contenu)).toString(), 'reference': (new String(reference)).toString() },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Modification d'une prescription existante en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    patchPrescription(
+        prescriptionId: string,
+        params : any
+    ) : Promise<AxiosResponse<Prescription>>
+    {
+        const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
+            params: { },
+            body: Utils.payloadFilter(params)
         });
     }
     
     /**
      * Ajout d'une nouvelle prescription type dans la bibliothèque.
      */
-    async postPrescription(params : { contenu : string, type : string, supports_reglementaires_id ? : { }[] }): Promise<AxiosResponse<Prescription>>
+    postPrescription(
+        params : any
+    ) : Promise<AxiosResponse<Prescription>>
     {
         const pathVariable = { };
         return this.request({
@@ -110,7 +145,9 @@ export class PrescriptionsAPI extends Core {
     /**
      * Ajouter un support réglementaire.
      */
-    async postSupportReglementaire(params : { nature : string, contenu : string, titre : string, etat : string, reference : string, legifrance_cid ? : string, }): Promise<AxiosResponse<PrescriptionSupportReglementaire>>
+    postSupportReglementaire(
+        params : any
+    ) : Promise<AxiosResponse<PrescriptionSupportReglementaire>>
     {
         const pathVariable = { };
         return this.request({

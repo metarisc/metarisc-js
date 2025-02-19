@@ -1,7 +1,9 @@
+// File generated from our OpenAPI spec
+
 export type AnomalieDECI = {
-    'code'?: number;
-    'texte'?: string;
-    'indice_de_gravite'?: IndiceDeGraviteEnum;
+    'code': number;
+    'texte': string;
+    'indice_de_gravite': IndiceDeGraviteEnum;
 };
 
 export enum IndiceDeGraviteEnum {

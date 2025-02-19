@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -18,7 +19,9 @@ export class OrganisationsAPI extends Core {
     /**
      * Récupération des détails d'une organisation.
      */
-    async getOrganisation(orgId: string): Promise<AxiosResponse<Organisation>>
+    getOrganisation(
+        orgId: string
+    ) : Promise<AxiosResponse<Organisation>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -32,7 +35,9 @@ export class OrganisationsAPI extends Core {
     /**
      * Ensemble des paramétrages et des configurations liés aux règles métiers de l'organisation.
      */
-    async getOrganisationPreferences(orgId: string): Promise<AxiosResponse<OrganisationPreferences>>
+    getOrganisationPreferences(
+        orgId: string
+    ) : Promise<AxiosResponse<OrganisationPreferences>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -46,7 +51,9 @@ export class OrganisationsAPI extends Core {
     /**
      * Ensemble de règles utilisées pour le calcul de la conformité et de la performance DECI.
      */
-    async getOrganisationReglesDeci(orgId: string): Promise<AxiosResponse<ReglesDeci>>
+    getOrganisationReglesDeci(
+        orgId: string
+    ) : Promise<AxiosResponse<ReglesDeci>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -60,59 +67,74 @@ export class OrganisationsAPI extends Core {
     /**
      * Retourne le référentiel du paramétrage des workflows pour l'organisation.
      */
-    paginateOrganisationDossiersWorkflowsSuites(orgId: string): Collection<WorkflowType>
+    paginateOrganisationDossiersWorkflowsSuites(
+        orgId: string
+    ) : Collection<WorkflowType>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
-        return this.collect<WorkflowType>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
-            params: { }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de la liste des géo-services d'une organisation.
      */
-    paginateOrganisationGeoservices(orgId: string, page?: number, perPage?: number): Collection<OrganisationGeoservice>
+    paginateOrganisationGeoservices(
+        orgId: string
+    ) : Collection<OrganisationGeoservice>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
-        return this.collect<OrganisationGeoservice>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de la liste des membres d'une organisation.
      */
-    paginateOrganisationMembres(orgId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
+    paginateOrganisationMembres(
+        orgId: string,
+        lastName? : string
+    ) : Collection<OrganisationMembre>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
-        return this.collect<OrganisationMembre>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { 'last_name': (new String(lastName)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Liste paginée des organisations.
      */
-    paginateOrganisations(page?: number, perPage?: number): Collection<Organisation>
+    paginateOrganisations(
+    ) : Collection<Organisation>
     {
         const pathVariable = { };
-        return this.collect<Organisation>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajout d'un un géo-service à une organisation.
      */
-    async postOrganisationGeoservices(orgId: string, params : { nom : string, type : string, url : string, }): Promise<AxiosResponse<OrganisationGeoservice>>
+    postOrganisationGeoservices(
+        orgId: string,
+        params : any
+    ) : Promise<AxiosResponse<OrganisationGeoservice>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -126,7 +148,10 @@ export class OrganisationsAPI extends Core {
     /**
      * Ajout d'un utilisateur comme membre dans une organisation.
      */
-    async addOrganisationMembres(orgId: string, params : { utilisateur_id : string, role : string, }): Promise<AxiosResponse<OrganisationMembre>>
+    addOrganisationMembres(
+        orgId: string,
+        params : any
+    ) : Promise<AxiosResponse<OrganisationMembre>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -138,9 +163,12 @@ export class OrganisationsAPI extends Core {
     }
     
     /**
-     * Mise à jour des préférences de l'organisation.
+     * Mise à jour des préférences de l'organisation en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async updateOrganisationPreferences(orgId: string, params : { platau_id_acteur ? : string, platau_active ? : boolean, s3_global_endpoint ? : string }): Promise<AxiosResponse<OrganisationPreferences>>
+    updateOrganisationPreferences(
+        orgId: string,
+        params : any
+    ) : Promise<AxiosResponse<OrganisationPreferences>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
@@ -152,9 +180,12 @@ export class OrganisationsAPI extends Core {
     }
     
     /**
-     * Mise à jour de l'ensemble des règles utilisées pour le calcul de la conformité et de la performance DECI.
+     * Mise à jour de l'ensemble des règles utilisées pour le calcul de la conformité et de la performance DECI en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async postOrganisationReglesDeci(orgId: string, params : { pibi_conformite_matrice_seuil_pesee_1bar_par_nature ? : { [key: string]: number; }, pibi_performance_natures_performance_restreinte ? : { }[], pibi_performance_natures_a_reformer ? : { }[], pibi_performance_seuil_pesee_1bar ? : number, pibi_conformite_seuil_surpression ? : number, pibi_conformite_matrice_seuil_pesee_1bar_par_defaut ? : number, pena_conformite_seuil_volume_citerne ? : number }): Promise<AxiosResponse<ReglesDeci>>
+    postOrganisationReglesDeci(
+        orgId: string,
+        params : any
+    ) : Promise<AxiosResponse<ReglesDeci>>
     {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({

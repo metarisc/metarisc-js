@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -12,7 +13,8 @@ export class PingAPI extends Core {
     /**
      * Permet de s'assurer que le service Metarisc est en ligne. Ping ... Pong ! Cet endpoint peut être utilisé sans authentification.
      */
-    async ping(): Promise<AxiosResponse<Ping>>
+    ping(
+    ) : Promise<AxiosResponse<Ping>>
     {
         const pathVariable = { };
         return this.request({

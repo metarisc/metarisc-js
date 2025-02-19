@@ -1,4 +1,6 @@
+// File generated from our OpenAPI spec
+
 export type ReferenceExterieure = {
-    'titre'?: string;
-    'valeur'?: string | null;
+    'titre': string;
+    'valeur': string;
 };
