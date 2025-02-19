@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -13,10 +14,12 @@ export class AnomaliesAPI extends Core {
     /**
      * Suppression d'une anomalie DECI type dans la bibliothèque DECI.
      */
-    async deleteAnomalie(anomalieId: string): Promise<AxiosResponse<void>>
+    deleteAnomalie(
+        anomalieId: string
+    ) : void
     {
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),
             params: { },
@@ -27,7 +30,9 @@ export class AnomaliesAPI extends Core {
     /**
      * Détails d'une anomalie type DECI présente dans la bibliothèque DECI.
      */
-    async getAnomalie(anomalieId: string): Promise<AxiosResponse<AnomalieDECI>>
+    getAnomalie(
+        anomalieId: string
+    ) : Promise<AxiosResponse<AnomalieDECI>>
     {
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
         return this.request({
@@ -41,20 +46,27 @@ export class AnomaliesAPI extends Core {
     /**
      * Retourne une liste des anomalies types dans la bibliothèque DECI.
      */
-    paginateAnomalies(page?: number, perPage?: number, sort?: string, texte?: string, code?: number): Collection<AnomalieDECI>
+    paginateAnomalies(
+        sort? : 'code' | '-code',
+        texte? : string,
+        code? : number
+    ) : Collection<AnomalieDECI>
     {
         const pathVariable = { };
-        return this.collect<AnomalieDECI>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'sort': sort, 'texte': texte, 'code': code?.toString() }
+            params: { 'sort': (new String(sort)).toString(), 'texte': (new String(texte)).toString(), 'code': (new String(code)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajout d'une nouvelle anomalie DECI type dans la bibliothèque DECI.
      */
-    async postAnomalie(params : { code : number, texte : string, indice_de_gravite : number, }): Promise<AxiosResponse<AnomalieDECI>>
+    postAnomalie(
+        params : any
+    ) : Promise<AxiosResponse<AnomalieDECI>>
     {
         const pathVariable = { };
         return this.request({

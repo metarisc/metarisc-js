@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -15,7 +16,8 @@ export class UtilisateursAPI extends Core {
     /**
      * L'utilisateur connecté retourné par ce point de terminaison utilise le token d'accès généré par le service OpenID Connect afin de le lier à une identité connue de Metarisc. Si l'utilisateur est inconnu une erreur est retournée.
      */
-    async getUtilisateursMoi(): Promise<AxiosResponse<Utilisateur>>
+    getUtilisateursMoi(
+    ) : Promise<AxiosResponse<Utilisateur>>
     {
         const pathVariable = { };
         return this.request({
@@ -29,7 +31,9 @@ export class UtilisateursAPI extends Core {
     /**
      * Retourne un utilisateur Metarisc.
      */
-    async getUtilisateurDetails(utilisateurId: string): Promise<AxiosResponse<Utilisateur>>
+    getUtilisateurDetails(
+        utilisateurId: string
+    ) : Promise<AxiosResponse<Utilisateur>>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.request({
@@ -43,39 +47,63 @@ export class UtilisateursAPI extends Core {
     /**
      * Liste toutes les adresses mail de l'utilisateur connecté, y compris les adresses non publiquement accessibles.
      */
-    paginateMoiEmails(page?: number, perPage?: number): Collection<Email>
+    paginateMoiEmails(
+    ) : Collection<Email>
     {
         const pathVariable = { };
-        return this.collect<Email>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Retourne une liste des adresses mail publiques d'un utilisateur.
      */
-    paginateUtilisateurEmails(utilisateurId: string, page?: number, perPage?: number): Collection<Email>
+    paginateUtilisateurEmails(
+        utilisateurId: string
+    ) : Collection<Email>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
-        return this.collect<Email>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Retourne une liste d'organisations dont l'utilisateur est membre.
      */
-    paginateUtilisateurOrganisations(utilisateurId: string, page?: number, perPage?: number): Collection<OrganisationMembre>
+    paginateUtilisateurOrganisations(
+        utilisateurId: string
+    ) : Collection<OrganisationMembre>
     {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
-        return this.collect<OrganisationMembre>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
+        });
+    }
+    
+    /**
+     * Liste des utilisateurs.
+     */
+    paginateUtilisateurs(
+        lastName? : string
+    ) : Collection<Utilisateur>
+    {
+        const pathVariable = { };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs'),
+            params: { 'last_name': (new String(lastName)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     

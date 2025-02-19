@@ -1,19 +1,25 @@
+// File generated from our OpenAPI spec
 import { PEI } from './PEI';
 
 import { DossierBase } from './DossierBase';
 
 export type DossierDeci = DossierBase & { 
 
-    'type'?: TypeEnum;
+    'type': TypeEnum;
 
-    'pei'?: PEI;
+    'pei': PEI;
 };
 
 export enum StatutEnum {
-    Ouvert = 'OUVERT',
-    Clos = 'CLOS'
+    OUVERT = 'OUVERT',
+    CLOS = 'CLOS'
+}
+
+export enum ModulesEnum {
+    ERP_ANALYSE_DE_RISQUE = 'erp:analyse_de_risque',
+    DECI_CONTROLE_TECHNIQUE_PEI = 'deci:controle_technique_pei'
 }
 
 export enum TypeEnum {
-    DecideclarationPei = 'deci:declaration_pei'
+    DECI_DECLARATION_PEI = 'deci:declaration_pei'
 }

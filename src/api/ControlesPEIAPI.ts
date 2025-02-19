@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -12,10 +13,12 @@ export class ControlesPEIAPI extends Core {
     /**
      * Suppression du contrôle PEI de la tournée DECI.
      */
-    async deleteControle(peiId: string): Promise<AxiosResponse<void>>
+    deleteControle(
+        peiId: string
+    ) : void
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/controles_pei/{pei_id}'),
             params: { },
@@ -26,7 +29,9 @@ export class ControlesPEIAPI extends Core {
     /**
      * Récupération des détails liés au contrôle d'un PEI d'une tournée.
      */
-    async getControle(peiId: string): Promise<AxiosResponse<TourneeDeciPei>>
+    getControle(
+        peiId: string
+    ) : Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
@@ -38,9 +43,12 @@ export class ControlesPEIAPI extends Core {
     }
     
     /**
-     * Mise à jour du PEI contrôlé.
+     * Mise à jour du PEI contrôlé en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async updateControle(peiId: string, params : { date_du_controle ? : Date, hydraulique ? : { volume? : number, debit_1bar? : number, pression? : number, pression_statique? : number, debit_gueule_bee? : number } , liste_anomalies ? : { code? : number, a_lever? : boolean }[], essais_engin_utilise ? : string, ordre ? : number }): Promise<AxiosResponse<TourneeDeciPei>>
+    updateControle(
+        peiId: string,
+        params : any
+    ) : Promise<AxiosResponse<TourneeDeciPei>>
     {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({

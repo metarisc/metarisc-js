@@ -1,21 +1,23 @@
+// File generated from our OpenAPI spec
 import { TourneeDeciModele } from './TourneeDeciModele';
 
 import { TourneeDeciBase } from './TourneeDeciBase';
 
 export type TourneeDeciSimple = TourneeDeciBase & { 
 
-    'pourcentage'?: number;
+    'type': TypeEnum;
 
-    'est_terminee'?: boolean;
+    'pourcentage': number | null;
 
-    'date_de_debut'?: Date;
+    'est_terminee': boolean | null;
 
-    'date_de_fin'?: Date;
+    'date_de_debut': Date;
 
-    'modele'?: TourneeDeciModele;
+    'date_de_fin': Date;
+
+    'modele': TourneeDeciModele | null;
 };
 
 export enum TypeEnum {
-    Deci = 'tournee_deci',
-    DeciModele = 'tournee_deci_modele'
+    TOURNEE_DECI = 'tournee_deci'
 }

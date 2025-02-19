@@ -1,15 +1,17 @@
+// File generated from our OpenAPI spec
+
 export type PieceJointe = {
-    'id'?: string;
-    'url'?: string;
-    'nom'?: string;
-    'description'?: string;
-    'type'?: TypeEnum;
-    'est_sensible'?: boolean;
+    'id': string;
+    'url': string;
+    'nom': string;
+    'description': string | null;
+    'type': TypeEnum;
+    'est_sensible': boolean;
 };
 
 export enum TypeEnum {
-    Photo = 'photo',
-    Plan = 'plan',
-    Annexe = 'annexe',
-    Divers = 'divers'
+    PHOTO = 'photo',
+    PLAN = 'plan',
+    ANNEXE = 'annexe',
+    DIVERS = 'divers'
 }

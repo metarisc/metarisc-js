@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -13,10 +14,12 @@ export class CommissionsMembresAPI extends Core {
     /**
      * Suppression d'un membre de commission existant.
      */
-    async deleteMembre(membreId: string): Promise<AxiosResponse<void>>
+    deleteMembre(
+        membreId: string
+    ) : void
     {
         const pathVariable = { 'membre_id': (new String(membreId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
             params: { },
@@ -27,7 +30,9 @@ export class CommissionsMembresAPI extends Core {
     /**
      * Récupération d'une fiche d'un membre d'une commission.
      */
-    async getMembre(membreId: string): Promise<AxiosResponse<CommissionMembre>>
+    getMembre(
+        membreId: string
+    ) : Promise<AxiosResponse<CommissionMembre>>
     {
         const pathVariable = { 'membre_id': (new String(membreId)).toString() };
         return this.request({
@@ -41,20 +46,25 @@ export class CommissionsMembresAPI extends Core {
     /**
      * Récupération de la liste membres des commissions.
      */
-    paginateMembres(page?: number, perPage?: number): Collection<CommissionMembre>
+    paginateMembres(
+    ) : Collection<CommissionMembre>
     {
         const pathVariable = { };
-        return this.collect<CommissionMembre>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
-     * Mise à jour d'un membre de commission existant.
+     * Mise à jour d'un membre de commission existant en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async updateMembre(membreId: string, params : { titre ? : string, presence_obligatoire ? : boolean }): Promise<AxiosResponse<CommissionMembre>>
+    updateMembre(
+        membreId: string,
+        params : any
+    ) : Promise<AxiosResponse<CommissionMembre>>
     {
         const pathVariable = { 'membre_id': (new String(membreId)).toString() };
         return this.request({

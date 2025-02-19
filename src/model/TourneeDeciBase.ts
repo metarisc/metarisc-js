@@ -1,12 +1,8 @@
-export type TourneeDeciBase = {
-    'id'?: string;
-    'libelle'?: string;
-    'description'?: string;
-    'date_de_creation'?: Date;
-    'type'?: TypeEnum;
-};
+// File generated from our OpenAPI spec
 
-export enum TypeEnum {
-    Deci = 'tournee_deci',
-    DeciModele = 'tournee_deci_modele'
-}
+export type TourneeDeciBase = {
+    'id': string;
+    'libelle': string;
+    'description': string | null;
+    'date_de_creation': Date;
+};

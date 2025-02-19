@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -10,9 +11,12 @@ export class OrdresDuJourAPI extends Core {
     }
     
     /**
-     * Mise à jour des détails d'un dossier lié à une date de passage en commission
+     * Mise à jour des détails d'un dossier lié à une date de passage en commission en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async updateCommissionDateDossier(dossierId: string, params : { avis ? : { type? : string } , date_de_passage ? : Date }): Promise<AxiosResponse<PassageCommissionDossier>>
+    updateCommissionDateDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<PassageCommissionDossier>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({

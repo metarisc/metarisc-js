@@ -1,13 +1,16 @@
+// File generated from our OpenAPI spec
+
 import { TourneeDeciBase } from './TourneeDeciBase';
 
 export type TourneeDeciModele = TourneeDeciBase & { 
 
-    'mois_debut'?: number;
+    'type': TypeEnum;
 
-    'mois_fin'?: number;
+    'mois_debut': number;
+
+    'mois_fin': number;
 };
 
 export enum TypeEnum {
-    Deci = 'tournee_deci',
-    DeciModele = 'tournee_deci_modele'
+    TOURNEE_DECI_MODELE = 'tournee_deci_modele'
 }

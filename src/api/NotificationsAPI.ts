@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -13,10 +14,12 @@ export class NotificationsAPI extends Core {
     /**
      * Suppression d'une notification correspondante à l'id donné.
      */
-    async deleteNotification(notificationId: string): Promise<AxiosResponse<void>>
+    deleteNotification(
+        notificationId: string
+    ) : void
     {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             params: { },
@@ -27,7 +30,9 @@ export class NotificationsAPI extends Core {
     /**
      * Récupération des détails d'une notification correspondante à l'id donné.
      */
-    async getNotification(notificationId: string): Promise<AxiosResponse<Notification>>
+    getNotification(
+        notificationId: string
+    ) : Promise<AxiosResponse<Notification>>
     {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
@@ -41,20 +46,24 @@ export class NotificationsAPI extends Core {
     /**
      * Récupération des détails de toutes les notifications existantes pour l'utilisateur connecté.
      */
-    paginateNotifications(page?: number, perPage?: number): Collection<Notification>
+    paginateNotifications(
+    ) : Collection<Notification>
     {
         const pathVariable = { };
-        return this.collect<Notification>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Permet de marquer la notification donnée comme lue par l'utilisateur.
      */
-    async notificationMarquerCommeLue(notificationId: string): Promise<AxiosResponse<Notification>>
+    notificationMarquerCommeLue(
+        notificationId: string
+    ) : Promise<AxiosResponse<Notification>>
     {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
@@ -68,7 +77,9 @@ export class NotificationsAPI extends Core {
     /**
      * Création d'une notification.
      */
-    async postNotification(params : { title : string, message : string, type : string, utilisateur_id : string, contexte ? : { [key: string]: string; }, }): Promise<AxiosResponse<Notification>>
+    postNotification(
+        params : any
+    ) : Promise<AxiosResponse<Notification>>
     {
         const pathVariable = { };
         return this.request({

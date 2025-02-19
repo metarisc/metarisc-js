@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -14,10 +15,12 @@ export class EvenementsAPI extends Core {
     /**
      * Suppression d'un événement.
      */
-    async deleteEvenement(evenementId: string): Promise<AxiosResponse<void>>
+    deleteEvenement(
+        evenementId: string
+    ) : void
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
-        return this.request({
+        this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
             params: { },
@@ -28,7 +31,9 @@ export class EvenementsAPI extends Core {
     /**
      * Récupération des détails d'un événement correspondant à l'id donné.
      */
-    async getEvenementDetails(evenementId: string): Promise<AxiosResponse<Evenement>>
+    getEvenementDetails(
+        evenementId: string
+    ) : Promise<AxiosResponse<Evenement>>
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
@@ -42,33 +47,42 @@ export class EvenementsAPI extends Core {
     /**
      * Récupération des détails de tous les événements calendaires existants.
      */
-    paginateEvenements(page?: number, perPage?: number, period?: string, type?: string): Collection<Evenement>
+    paginateEvenements(
+        period? : string,
+        type? : 'DEFAUT' | 'RECONNAISSANCE_OPERATIONNELLE_ANNUELLE' | 'VISITE_PERIODIQUE' | 'COMMISSION_SECURITE'
+    ) : Collection<Evenement>
     {
         const pathVariable = { };
-        return this.collect<Evenement>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString(), 'period': period, 'type': type }
+            params: { 'period': (new String(period)).toString(), 'type': (new String(type)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération d'une liste paginée d'utilisateurs liés à un événement calendaire.
      */
-    paginateEvenementUtilisateurs(evenementId: string, page?: number, perPage?: number): Collection<Utilisateur>
+    paginateEvenementUtilisateurs(
+        evenementId: string
+    ) : Collection<Utilisateur>
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
-        return this.collect<Utilisateur>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Création d'un événement.
      */
-    async postEvenement(params : { title : string, type : string, date_debut : Date, date_fin : Date, description ? : string, }): Promise<AxiosResponse<Evenement>>
+    postEvenement(
+        params : any
+    ) : Promise<AxiosResponse<Evenement>>
     {
         const pathVariable = { };
         return this.request({

@@ -1,15 +1,17 @@
+// File generated from our OpenAPI spec
+
 export type Evenement = {
-    'id'?: string;
-    'title'?: string;
-    'type'?: TypeEnum;
-    'description'?: string;
-    'date_debut'?: Date;
-    'date_fin'?: Date;
+    'id': string;
+    'title': string;
+    'type': TypeEnum;
+    'description': string | null;
+    'date_debut': Date;
+    'date_fin': Date;
 };
 
 export enum TypeEnum {
-    Defaut = 'DEFAUT',
-    ReconnaissanceOperationnelleAnnuelle = 'RECONNAISSANCE_OPERATIONNELLE_ANNUELLE',
-    VisitePeriodique = 'VISITE_PERIODIQUE',
-    CommissionSecurite = 'COMMISSION_SECURITE'
+    DEFAUT = 'DEFAUT',
+    RECONNAISSANCE_OPERATIONNELLE_ANNUELLE = 'RECONNAISSANCE_OPERATIONNELLE_ANNUELLE',
+    VISITE_PERIODIQUE = 'VISITE_PERIODIQUE',
+    COMMISSION_SECURITE = 'COMMISSION_SECURITE'
 }

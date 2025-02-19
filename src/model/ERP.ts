@@ -1,12 +1,23 @@
+// File generated from our OpenAPI spec
 import { AdressePostale } from './AdressePostale';
-import { Avis } from './Avis';
 import { DescriptifTechniqueERP } from './DescriptifTechniqueERP';
+import { ReferenceExterieure } from './ReferenceExterieure';
 
 export type ERP = {
-    'id'?: string;
-    'date_de_realisation'?: Date;
-    'date_de_derniere_mise_a_jour'?: Date;
-    'implantation'?: AdressePostale;
+    'id': string;
+    'date_de_realisation': Date;
+    'date_de_derniere_mise_a_jour': Date | null;
+    'implantation': AdressePostale;
     'descriptif_technique'?: DescriptifTechniqueERP;
-    'avis_exploitation'?: Avis;
+    'avis_exploitation': AvisExploitationEnum | null;
+    'date_pc_initial': Date | null;
+    'date_ouverture': Date | null;
+    'date_derniere_visite': Date | null;
+    'notes_internes': string | null;
+    'references_exterieures': Array<ReferenceExterieure>;
 };
+
+export enum AvisExploitationEnum {
+    FAVORABLE = 'favorable',
+    DEFAVORABLE = 'defavorable'
+}

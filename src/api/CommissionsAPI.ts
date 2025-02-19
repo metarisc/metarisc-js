@@ -1,3 +1,4 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
@@ -16,7 +17,9 @@ export class CommissionsAPI extends Core {
     /**
      * Récupération des détails de la commission.
      */
-    async getCommission(commissionId: string): Promise<AxiosResponse<Commission>>
+    getCommission(
+        commissionId: string
+    ) : Promise<AxiosResponse<Commission>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
@@ -30,7 +33,9 @@ export class CommissionsAPI extends Core {
     /**
      * Récupération des préférences de la commission.
      */
-    async getCommissionPreferences(commissionId: string): Promise<AxiosResponse<CommissionPreferences>>
+    getCommissionPreferences(
+        commissionId: string
+    ) : Promise<AxiosResponse<CommissionPreferences>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
@@ -44,46 +49,59 @@ export class CommissionsAPI extends Core {
     /**
      * Liste des commissions.
      */
-    paginateCommissions(page?: number, perPage?: number): Collection<Commission>
+    paginateCommissions(
+        libelle? : string,
+        type? : 'Sous-commission départementale' | 'Commission communale' | 'Commission intercommunale' | 'Commission d\'arrondissement' | 'CoDERST'
+    ) : Collection<Commission>
     {
         const pathVariable = { };
-        return this.collect<Commission>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { 'libelle': (new String(libelle)).toString(), 'type': (new String(type)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de la liste des dates de passage de la commission. Cela peut représenter une visite périodique sur site de la commission, ou un passage en salle.
      */
-    paginateCommissionDates(commissionId: string, page?: number, perPage?: number): Collection<PassageCommission>
+    paginateCommissionDates(
+        commissionId: string
+    ) : Collection<PassageCommission>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
-        return this.collect<PassageCommission>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Récupération de la liste des membres de la commission.
      */
-    paginateCommissionMembres(commissionId: string, page?: number, perPage?: number): Collection<CommissionMembre>
+    paginateCommissionMembres(
+        commissionId: string,
+        commission? : string
+    ) : Collection<CommissionMembre>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
-        return this.collect<CommissionMembre>({
+        return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
-            params: { 'page': page?.toString(), 'per_page': perPage?.toString() }
+            params: { 'commission': (new String(commission)).toString() },
+            body: Utils.payloadFilter({})
         });
     }
     
     /**
      * Ajoute une commission.
      */
-    async postCommission(params : { type : string, libelle : string, presidence_id ? : string }): Promise<AxiosResponse<Commission>>
+    postCommission(
+        params : any
+    ) : Promise<AxiosResponse<Commission>>
     {
         const pathVariable = { };
         return this.request({
@@ -97,7 +115,10 @@ export class CommissionsAPI extends Core {
     /**
      * Ajout d'une date de passage en commission.
      */
-    async postCommissionDate(commissionId: string, params : { date_debut : Date, date_fin : Date, type : string, libelle : string, }): Promise<AxiosResponse<PassageCommission>>
+    postCommissionDate(
+        commissionId: string,
+        params : any
+    ) : Promise<AxiosResponse<PassageCommission>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
@@ -111,7 +132,10 @@ export class CommissionsAPI extends Core {
     /**
      * Ajout d'un membre dans la commission.
      */
-    async postMembresCommission(commissionId: string, params : { titre : string, presence_obligatoire : boolean, }): Promise<AxiosResponse<CommissionMembre>>
+    postMembresCommission(
+        commissionId: string,
+        params : any
+    ) : Promise<AxiosResponse<CommissionMembre>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
@@ -123,16 +147,19 @@ export class CommissionsAPI extends Core {
     }
     
     /**
-     * Mise à jour des préférences de la commission.
+     * Mise à jour des préférences de la commission en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
-    async postCommissionPreferences(commissionId: string): Promise<AxiosResponse<CommissionPreferences>>
+    postCommissionPreferences(
+        commissionId: string,
+        params : any
+    ) : Promise<AxiosResponse<CommissionPreferences>>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
             params: { },
-            body: Utils.payloadFilter({})
+            body: Utils.payloadFilter(params)
         });
     }
     
