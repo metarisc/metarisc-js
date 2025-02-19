@@ -222,7 +222,7 @@ export class ERPAPI extends Core {
     /**
      * Création d'un nouveau ERP.
      */
-    postErp(
+    post(
         params : any
     ) : Promise<AxiosResponse<ERP>>
     {
