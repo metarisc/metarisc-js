@@ -7,6 +7,7 @@ export type PassageCommission = {
     'type': TypeEnum;
     'libelle': string;
     'raison_reprogrammation': string | null;
+    'nb_dossiers': number;
 };
 
 export enum TypeEnum {

@@ -27,23 +27,7 @@ export class WorkflowsAPI extends Core {
     }
     
     /**
-     * Terminer un workflow. Cela met à jour l'ensemble de son traitement.
-     */
-    postTerminerWorkflow(
-        workflowId: string
-    ) : void
-    {
-        const pathVariable = { 'workflow_id': (new String(workflowId)).toString() };
-        this.request({
-            method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/workflows/{workflow_id}/terminer'),
-            params: { },
-            body: Utils.payloadFilter({})
-        });
-    }
-    
-    /**
-     * Mise à jour d'un workflow.
+     * Mise à jour d'un workflow. La mise à jour d'un workflow peut concerner son champ observations. Il est possible de modifier son état ce qui peut déclencher des actions. La modification de l'état peut être antidatée en précisant une date de fin (par défaut la date du jour).
      */
     updateWorkflowsDetails(
         workflowId: string,

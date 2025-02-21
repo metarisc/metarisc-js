@@ -15,7 +15,9 @@ export type Workflow = {
 export enum EtatEnum {
     VALIDE = 'VALIDE',
     EN_COURS = 'EN_COURS',
-    ATTENTE = 'ATTENTE'
+    ATTENTE = 'ATTENTE',
+    PAUSE = 'PAUSE',
+    NON_CONCERNE = 'NON_CONCERNE'
 }
 
 export enum TypeEnum {
@@ -29,5 +31,6 @@ export enum TypeEnum {
     RELECTURE = 'relecture',
     VISITE = 'visite',
     ARRIVEE_SECRETARIAT = 'arrivee_secretariat',
-    WORKFLOW = 'workflow'
+    WORKFLOW = 'workflow',
+    RECEPTION_DE_TRAVAUX_EN_ATTENTE = 'reception_de_travaux_en_attente'
 }
