@@ -25,7 +25,7 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -41,7 +41,7 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -58,7 +58,7 @@ export class CommissionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
-            params: { 'libelle': (new String(libelle)).toString(), 'type': (new String(type)).toString() },
+            params: Utils.payloadFilter({ 'libelle': (new String(libelle)).toString(), 'type': (new String(type)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -74,7 +74,7 @@ export class CommissionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -91,7 +91,7 @@ export class CommissionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
-            params: { 'commission': (new String(commission)).toString() },
+            params: Utils.payloadFilter({ 'commission': (new String(commission)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -107,7 +107,7 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -124,7 +124,7 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -141,7 +141,7 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -158,7 +158,7 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

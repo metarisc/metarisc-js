@@ -28,7 +28,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -44,7 +44,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -60,7 +60,7 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -76,7 +76,7 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -92,7 +92,7 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -108,7 +108,7 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -124,7 +124,7 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -147,7 +147,7 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: { 'sort': (new String(sort)).toString(), 'numero': (new String(numero)).toString(), 'type': (new String(type)).toString(), 'statut': (new String(statut)).toString(), 'est_disponible': (new String(estDisponible)).toString(), 'domanialite': (new String(domanialite)).toString(), 'geojson': (new String(geojson)).toString(), 'references_exterieures': (new String(referencesExterieures)).toString() },
+            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'numero': (new String(numero)).toString(), 'type': (new String(type)).toString(), 'statut': (new String(statut)).toString(), 'est_disponible': (new String(estDisponible)).toString(), 'domanialite': (new String(domanialite)).toString(), 'geojson': (new String(geojson)).toString(), 'references_exterieures': (new String(referencesExterieures)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -164,7 +164,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -181,7 +181,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -198,7 +198,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -215,7 +215,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -232,7 +232,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -248,7 +248,7 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
