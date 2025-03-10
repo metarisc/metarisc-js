@@ -69,7 +69,7 @@ export class Utils {
         if(!(date instanceof Date)) {
             if(!date.includes('T')) {
                 return false;
-            };
+            }
             date = new Date(date);
         }
 
