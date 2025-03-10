@@ -23,7 +23,7 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -39,7 +39,7 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -54,7 +54,7 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -70,7 +70,7 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -86,7 +86,7 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -102,7 +102,7 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs'),
-            params: { 'last_name': (new String(lastName)).toString() },
+            params: Utils.payloadFilter({ 'last_name': (new String(lastName)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

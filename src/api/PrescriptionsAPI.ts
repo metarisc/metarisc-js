@@ -23,7 +23,7 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -39,7 +39,7 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -55,7 +55,7 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -71,7 +71,7 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -87,7 +87,7 @@ export class PrescriptionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: { 'contenu': (new String(contenu)).toString() },
+            params: Utils.payloadFilter({ 'contenu': (new String(contenu)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -104,7 +104,7 @@ export class PrescriptionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: { 'contenu': (new String(contenu)).toString(), 'reference': (new String(reference)).toString() },
+            params: Utils.payloadFilter({ 'contenu': (new String(contenu)).toString(), 'reference': (new String(reference)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -121,7 +121,7 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -137,7 +137,7 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -153,7 +153,7 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

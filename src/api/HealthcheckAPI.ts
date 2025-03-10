@@ -19,7 +19,7 @@ export class HealthcheckAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/healthcheck'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }

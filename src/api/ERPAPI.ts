@@ -28,7 +28,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -44,7 +44,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -60,7 +60,7 @@ export class ERPAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -76,7 +76,7 @@ export class ERPAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -92,7 +92,7 @@ export class ERPAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -116,7 +116,7 @@ export class ERPAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
-            params: { 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString(), 'geojson': (new String(geojson)).toString(), 'references_exterieures': (new String(referencesExterieures)).toString(), 'presence_locaux_sommeil': (new String(presenceLocauxSommeil)).toString(), 'type_activite': (new String(typeActivite)).toString(), 'avis_exploitation': (new String(avisExploitation)).toString(), 'a_visiter_en': (new String(aVisiterEn)).toString(), 'site_geographique': (new String(siteGeographique)).toString() },
+            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString(), 'geojson': (new String(geojson)).toString(), 'references_exterieures': (new String(referencesExterieures)).toString(), 'presence_locaux_sommeil': (new String(presenceLocauxSommeil)).toString(), 'type_activite': (new String(typeActivite)).toString(), 'avis_exploitation': (new String(avisExploitation)).toString(), 'a_visiter_en': (new String(aVisiterEn)).toString(), 'site_geographique': (new String(siteGeographique)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -132,7 +132,7 @@ export class ERPAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/historique'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -148,7 +148,7 @@ export class ERPAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/textes_applicables'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -165,7 +165,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -182,7 +182,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -199,7 +199,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -216,7 +216,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -232,7 +232,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -249,7 +249,7 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

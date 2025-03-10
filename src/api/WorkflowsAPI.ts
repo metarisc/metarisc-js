@@ -21,7 +21,7 @@ export class WorkflowsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/workflows/{workflow_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -38,7 +38,7 @@ export class WorkflowsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/workflows/{workflow_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

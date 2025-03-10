@@ -22,7 +22,7 @@ export class SitesGeographiquesAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -38,7 +38,7 @@ export class SitesGeographiquesAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -55,7 +55,7 @@ export class SitesGeographiquesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques'),
-            params: { 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString() },
+            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -72,7 +72,7 @@ export class SitesGeographiquesAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -88,7 +88,7 @@ export class SitesGeographiquesAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
