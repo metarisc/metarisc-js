@@ -16,13 +16,13 @@ export class AnomaliesAPI extends Core {
      */
     deleteAnomalie(
         anomalieId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -38,7 +38,7 @@ export class AnomaliesAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -56,7 +56,7 @@ export class AnomaliesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
-            params: { 'sort': (new String(sort)).toString(), 'texte': (new String(texte)).toString(), 'code': (new String(code)).toString() },
+            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'texte': (new String(texte)).toString(), 'code': (new String(code)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -72,7 +72,7 @@ export class AnomaliesAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

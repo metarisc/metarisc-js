@@ -42,6 +42,8 @@ export { PingAPI } from './api/PingAPI';
 
 export { PrescriptionsAPI } from './api/PrescriptionsAPI';
 
+export { SitesGeographiquesAPI } from './api/SitesGeographiquesAPI';
+
 export { TournesDECIAPI } from './api/TournesDECIAPI';
 
 export { UtilisateursAPI } from './api/UtilisateursAPI';

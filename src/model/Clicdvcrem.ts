@@ -5,7 +5,7 @@ import { Local } from './Local';
 
 export type Clicdvcrem = {
     'activite_principale': ActivitePrincipaleEnum | null;
-    'activites_secondaire': ActivitesSecondaireEnum | null;
+    'activites_secondaire': Array<ActivitesSecondaireEnum> | null;
     'categorie': CategorieEnum | null;
     'groupement_etablissement': GroupementEtablissementEnum | null;
     'tableau_des_effectifs': Array<EffectifsNiveau> | null;
@@ -48,7 +48,7 @@ export type Clicdvcrem = {
     'construction_structures_description': string | null;
     'construction_couverture_description': string | null;
     'construction_facades_description': string | null;
-    'type_cloisonnement': TypeCloisonnementEnum | null;
+    'type_cloisonnement': Array<TypeCloisonnementEnum> | null;
     'construction_distribution_interieure_informations_complementaires': string | null;
     'locaux': Array<Local> | null;
     'construction_conduits_et_gaines_description': string | null;
@@ -74,7 +74,7 @@ export type Clicdvcrem = {
     'electricite_eclairage_informations_complementaires': string | null;
     'puissance_chaufferie': PuissanceChaufferieEnum | null;
     'presence_gaz_chaufferie': boolean | null;
-    'type_de_chauffage': TypeDeChauffageEnum | null;
+    'type_de_chauffage': Array<TypeDeChauffageEnum> | null;
     'chauffage_ventilation_informations_complementaires': string | null;
     'puissance_cuisine': PuissanceCuisineEnum | null;
     'type_de_cuisine': TypeDeCuisineEnum | null;

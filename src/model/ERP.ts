@@ -2,6 +2,7 @@
 import { AdressePostale } from './AdressePostale';
 import { DescriptifTechniqueERP } from './DescriptifTechniqueERP';
 import { ReferenceExterieure } from './ReferenceExterieure';
+import { SiteGeographique } from './SiteGeographique';
 
 export type ERP = {
     'id': string;
@@ -15,6 +16,8 @@ export type ERP = {
     'date_derniere_visite': Date | null;
     'notes_internes': string | null;
     'references_exterieures': Array<ReferenceExterieure>;
+    'a_visiter_en': string | null;
+    'sites_geographiques': Array<SiteGeographique>;
 };
 
 export enum AvisExploitationEnum {

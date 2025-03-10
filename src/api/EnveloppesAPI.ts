@@ -16,13 +16,13 @@ export class EnveloppesAPI extends Core {
      */
     deleteEnveloppe(
         enveloppeId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'enveloppe_id': (new String(enveloppeId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -38,7 +38,7 @@ export class EnveloppesAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -55,7 +55,7 @@ export class EnveloppesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes'),
-            params: { 'sort': (new String(sort)).toString(), 'titre': (new String(titre)).toString() },
+            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'titre': (new String(titre)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -72,7 +72,7 @@ export class EnveloppesAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -88,7 +88,7 @@ export class EnveloppesAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

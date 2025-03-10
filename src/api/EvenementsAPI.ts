@@ -17,13 +17,13 @@ export class EvenementsAPI extends Core {
      */
     deleteEvenement(
         evenementId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -39,7 +39,7 @@ export class EvenementsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -56,7 +56,7 @@ export class EvenementsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: { 'period': (new String(period)).toString(), 'type': (new String(type)).toString() },
+            params: Utils.payloadFilter({ 'period': (new String(period)).toString(), 'type': (new String(type)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -72,7 +72,7 @@ export class EvenementsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter({})
         });
     }
@@ -88,7 +88,7 @@ export class EvenementsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: { },
+            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
