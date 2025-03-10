@@ -16,10 +16,10 @@ export class EnveloppesAPI extends Core {
      */
     deleteEnveloppe(
         enveloppeId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'enveloppe_id': (new String(enveloppeId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
             params: { },

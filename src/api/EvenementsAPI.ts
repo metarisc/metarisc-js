@@ -17,10 +17,10 @@ export class EvenementsAPI extends Core {
      */
     deleteEvenement(
         evenementId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
             params: { },

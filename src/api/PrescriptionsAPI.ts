@@ -17,10 +17,10 @@ export class PrescriptionsAPI extends Core {
      */
     deletePrescription(
         prescriptionId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
             params: { },
@@ -33,10 +33,10 @@ export class PrescriptionsAPI extends Core {
      */
     deleteSupportReglementaire(
         supportReglementaireId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
             params: { },

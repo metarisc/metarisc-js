@@ -15,10 +15,10 @@ export class DossiersAffectationsAPI extends Core {
      */
     deleteAffectation(
         affectationId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'affectation_id': (new String(affectationId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/dossiers_affectations/{affectation_id}'),
             params: { },

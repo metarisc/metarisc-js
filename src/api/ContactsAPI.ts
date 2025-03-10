@@ -16,10 +16,10 @@ export class ContactsAPI extends Core {
      */
     deleteContact(
         contactId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'contact_id': (new String(contactId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/contacts/{contact_id}'),
             params: { },

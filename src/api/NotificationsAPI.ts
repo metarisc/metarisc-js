@@ -16,10 +16,10 @@ export class NotificationsAPI extends Core {
      */
     deleteNotification(
         notificationId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             params: { },

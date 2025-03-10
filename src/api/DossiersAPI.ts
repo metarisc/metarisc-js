@@ -25,10 +25,10 @@ export class DossiersAPI extends Core {
      */
     deleteArchiverDossier(
         dossierId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
             params: { },
@@ -156,7 +156,7 @@ export class DossiersAPI extends Core {
         erp? : string,
         pei? : string,
         type? : string,
-        workflowActif? : 'analyse_de_risque' | 'validation' | 'arrivee_sis' | 'arrivee_sis_prev' | 'arrivee_secretariat_commission' | 'consultation_sis' | 'passage_commission' | 'relecture' | 'visite' | 'arrivee_secretariat' | 'workflow',
+        workflowActif? : 'analyse_de_risque' | 'validation' | 'arrivee_sis' | 'arrivee_sis_prev' | 'arrivee_secretariat_commission' | 'consultation_sis' | 'passage_commission' | 'relecture' | 'visite' | 'arrivee_secretariat' | 'workflow' | 'reception_de_travaux_en_attente',
         affecte? : string,
         enveloppe? : string
     ) : Collection<Dossier>
@@ -376,10 +376,10 @@ export class DossiersAPI extends Core {
      */
     putArchiverDossier(
         dossierId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        this.request({
+        return this.request({
             method: 'PUT',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
             params: { },

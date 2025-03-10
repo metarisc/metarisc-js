@@ -16,10 +16,10 @@ export class CommissionsMembresAPI extends Core {
      */
     deleteMembre(
         membreId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'membre_id': (new String(membreId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
             params: { },

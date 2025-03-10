@@ -16,10 +16,10 @@ export class DocumentsAPI extends Core {
      */
     deleteDocument(
         documentId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'document_id': (new String(documentId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/documents/{document_id}'),
             params: { },

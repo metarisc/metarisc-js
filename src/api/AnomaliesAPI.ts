@@ -16,10 +16,10 @@ export class AnomaliesAPI extends Core {
      */
     deleteAnomalie(
         anomalieId: string
-    ) : void
+    ) : Promise<AxiosResponse<void>>
     {
         const pathVariable = { 'anomalie_id': (new String(anomalieId)).toString() };
-        this.request({
+        return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/anomalies/{anomalie_id}'),
             params: { },
