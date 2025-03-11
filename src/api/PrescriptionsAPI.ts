@@ -22,9 +22,7 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}')
         });
     }
     
@@ -38,9 +36,7 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}')
         });
     }
     
@@ -54,9 +50,7 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}')
         });
     }
     
@@ -70,9 +64,7 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}')
         });
     }
     
@@ -87,8 +79,9 @@ export class PrescriptionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: Utils.payloadFilter({ 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'contenu': contenu === undefined ? undefined : (new String(contenu)).toString()
+            })
         });
     }
     
@@ -104,8 +97,10 @@ export class PrescriptionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: Utils.payloadFilter({ 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 'reference': reference === undefined ? undefined : (new String(reference)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
+                'reference': reference === undefined ? undefined : (new String(reference)).toString()
+            })
         });
     }
     
@@ -121,7 +116,6 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -137,7 +131,6 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -153,7 +146,6 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

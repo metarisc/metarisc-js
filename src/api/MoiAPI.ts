@@ -19,9 +19,7 @@ export class MoiAPI extends Core {
         const pathVariable = { };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/@moi'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/@moi')
         });
     }
     

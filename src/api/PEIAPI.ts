@@ -27,9 +27,7 @@ export class PEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}')
         });
     }
     
@@ -43,9 +41,7 @@ export class PEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures')
         });
     }
     
@@ -59,9 +55,7 @@ export class PEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies')
         });
     }
     
@@ -75,9 +69,7 @@ export class PEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts')
         });
     }
     
@@ -91,9 +83,7 @@ export class PEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents')
         });
     }
     
@@ -107,9 +97,7 @@ export class PEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers')
         });
     }
     
@@ -123,9 +111,7 @@ export class PEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique')
         });
     }
     
@@ -147,8 +133,16 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: Utils.payloadFilter({ 'sort': sort === undefined ? undefined : (new String(sort)).toString(), 'numero': numero === undefined ? undefined : (new String(numero)).toString(), 'type': type === undefined ? undefined : (new String(type)).toString(), 'statut': statut === undefined ? undefined : (new String(statut)).toString(), 'est_disponible': est_disponible === undefined ? undefined : (new String(estDisponible)).toString(), 'domanialite': domanialite === undefined ? undefined : (new String(domanialite)).toString(), 'geojson': geojson === undefined ? undefined : (new String(geojson)).toString(), 'references_exterieures': references_exterieures === undefined ? undefined : (new String(referencesExterieures)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'sort': sort === undefined ? undefined : (new String(sort)).toString(), 
+                'numero': numero === undefined ? undefined : (new String(numero)).toString(), 
+                'type': type === undefined ? undefined : (new String(type)).toString(), 
+                'statut': statut === undefined ? undefined : (new String(statut)).toString(), 
+                'est_disponible': estDisponible === undefined ? undefined : (new String(estDisponible)).toString(), 
+                'domanialite': domanialite === undefined ? undefined : (new String(domanialite)).toString(), 
+                'geojson': geojson === undefined ? undefined : (new String(geojson)).toString(), 
+                'references_exterieures': referencesExterieures === undefined ? undefined : (new String(referencesExterieures)).toString()
+            })
         });
     }
     
@@ -164,7 +158,6 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -181,7 +174,6 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -198,7 +190,6 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -215,7 +206,6 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -232,7 +222,6 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -248,7 +237,6 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

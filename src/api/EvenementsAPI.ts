@@ -22,9 +22,7 @@ export class EvenementsAPI extends Core {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}')
         });
     }
     
@@ -38,9 +36,7 @@ export class EvenementsAPI extends Core {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}')
         });
     }
     
@@ -56,8 +52,10 @@ export class EvenementsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: Utils.payloadFilter({ 'period': period === undefined ? undefined : (new String(period)).toString(), 'type': type === undefined ? undefined : (new String(type)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'period': period === undefined ? undefined : (new String(period)).toString(), 
+                'type': type === undefined ? undefined : (new String(type)).toString()
+            })
         });
     }
     
@@ -71,9 +69,7 @@ export class EvenementsAPI extends Core {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs')
         });
     }
     
@@ -88,7 +84,6 @@ export class EvenementsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

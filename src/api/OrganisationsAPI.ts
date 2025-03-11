@@ -26,9 +26,7 @@ export class OrganisationsAPI extends Core {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}')
         });
     }
     
@@ -42,9 +40,7 @@ export class OrganisationsAPI extends Core {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/preferences'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/preferences')
         });
     }
     
@@ -58,9 +54,7 @@ export class OrganisationsAPI extends Core {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci')
         });
     }
     
@@ -74,9 +68,7 @@ export class OrganisationsAPI extends Core {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites')
         });
     }
     
@@ -90,9 +82,7 @@ export class OrganisationsAPI extends Core {
         const pathVariable = { 'org_id': (new String(orgId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices')
         });
     }
     
@@ -108,8 +98,9 @@ export class OrganisationsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
-            params: Utils.payloadFilter({ 'last_name': last_name === undefined ? undefined : (new String(lastName)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'last_name': lastName === undefined ? undefined : (new String(lastName)).toString()
+            })
         });
     }
     
@@ -122,9 +113,7 @@ export class OrganisationsAPI extends Core {
         const pathVariable = { };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/organisations'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/organisations')
         });
     }
     
@@ -140,7 +129,6 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -157,7 +145,6 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -174,7 +161,6 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/preferences'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -191,7 +177,6 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

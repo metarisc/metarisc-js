@@ -20,9 +20,7 @@ export class FeedAPI extends Core {
         const pathVariable = { };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/feed'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/feed')
         });
     }
     
@@ -37,7 +35,6 @@ export class FeedAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
