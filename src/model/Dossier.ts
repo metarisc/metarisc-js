@@ -15,6 +15,11 @@ export enum ModulesEnum {
     DECI_CONTROLE_TECHNIQUE_PEI = 'deci:controle_technique_pei'
 }
 
+export enum AvisEnum {
+    FAVORABLE = 'favorable',
+    DEFAVORABLE = 'defavorable'
+}
+
 export enum WorkflowsActifsEnum {
     ANALYSE_DE_RISQUE = 'analyse_de_risque',
     VALIDATION = 'validation',
