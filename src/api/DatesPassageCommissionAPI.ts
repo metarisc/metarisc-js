@@ -22,9 +22,7 @@ export class DatesPassageCommissionAPI extends Core {
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}')
         });
     }
     
@@ -38,9 +36,7 @@ export class DatesPassageCommissionAPI extends Core {
         const pathVariable = { 'date_id': (new String(dateId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour')
         });
     }
     
@@ -56,7 +52,6 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -73,7 +68,6 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/reprogrammer'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

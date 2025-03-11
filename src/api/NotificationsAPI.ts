@@ -21,9 +21,7 @@ export class NotificationsAPI extends Core {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}')
         });
     }
     
@@ -37,9 +35,7 @@ export class NotificationsAPI extends Core {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}')
         });
     }
     
@@ -52,9 +48,7 @@ export class NotificationsAPI extends Core {
         const pathVariable = { };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/notifications'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/notifications')
         });
     }
     
@@ -68,9 +62,7 @@ export class NotificationsAPI extends Core {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue')
         });
     }
     
@@ -85,7 +77,6 @@ export class NotificationsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

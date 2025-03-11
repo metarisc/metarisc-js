@@ -82,7 +82,7 @@ export class Utils {
      * - filtrer les dates
      */
     static payloadFilter<T extends object>(payload : T) : T {
-        let filtered : T = {} as T;
+        const filtered : T = {} as T;
         
         Object.keys(payload).forEach((key) => {
 

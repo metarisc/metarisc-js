@@ -21,9 +21,7 @@ export class CommissionsMembresAPI extends Core {
         const pathVariable = { 'membre_id': (new String(membreId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}')
         });
     }
     
@@ -37,9 +35,7 @@ export class CommissionsMembresAPI extends Core {
         const pathVariable = { 'membre_id': (new String(membreId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}')
         });
     }
     
@@ -52,9 +48,7 @@ export class CommissionsMembresAPI extends Core {
         const pathVariable = { };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions_membres'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/commissions_membres')
         });
     }
     
@@ -70,7 +64,6 @@ export class CommissionsMembresAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

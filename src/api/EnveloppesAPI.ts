@@ -21,9 +21,7 @@ export class EnveloppesAPI extends Core {
         const pathVariable = { 'enveloppe_id': (new String(enveloppeId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}')
         });
     }
     
@@ -37,9 +35,7 @@ export class EnveloppesAPI extends Core {
         const pathVariable = { 'enveloppe_id': (new String(enveloppeId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}')
         });
     }
     
@@ -55,8 +51,10 @@ export class EnveloppesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes'),
-            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'titre': (new String(titre)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'sort': sort === undefined ? undefined : (new String(sort)).toString(), 
+                'titre': titre === undefined ? undefined : (new String(titre)).toString()
+            })
         });
     }
     
@@ -72,7 +70,6 @@ export class EnveloppesAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -88,7 +85,6 @@ export class EnveloppesAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

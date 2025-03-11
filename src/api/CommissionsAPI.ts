@@ -24,9 +24,7 @@ export class CommissionsAPI extends Core {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}')
         });
     }
     
@@ -40,9 +38,7 @@ export class CommissionsAPI extends Core {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences')
         });
     }
     
@@ -58,8 +54,10 @@ export class CommissionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
-            params: Utils.payloadFilter({ 'libelle': (new String(libelle)).toString(), 'type': (new String(type)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'libelle': libelle === undefined ? undefined : (new String(libelle)).toString(), 
+                'type': type === undefined ? undefined : (new String(type)).toString()
+            })
         });
     }
     
@@ -73,9 +71,7 @@ export class CommissionsAPI extends Core {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates')
         });
     }
     
@@ -91,8 +87,9 @@ export class CommissionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
-            params: Utils.payloadFilter({ 'commission': (new String(commission)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'commission': commission === undefined ? undefined : (new String(commission)).toString()
+            })
         });
     }
     
@@ -107,7 +104,6 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -124,7 +120,6 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -141,7 +136,6 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -158,7 +152,6 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

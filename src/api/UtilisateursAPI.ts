@@ -22,9 +22,7 @@ export class UtilisateursAPI extends Core {
         const pathVariable = { };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi')
         });
     }
     
@@ -38,9 +36,7 @@ export class UtilisateursAPI extends Core {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}')
         });
     }
     
@@ -53,9 +49,7 @@ export class UtilisateursAPI extends Core {
         const pathVariable = { };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails')
         });
     }
     
@@ -69,9 +63,7 @@ export class UtilisateursAPI extends Core {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails')
         });
     }
     
@@ -85,9 +77,7 @@ export class UtilisateursAPI extends Core {
         const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations')
         });
     }
     
@@ -102,8 +92,9 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs'),
-            params: Utils.payloadFilter({ 'last_name': (new String(lastName)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'last_name': lastName === undefined ? undefined : (new String(lastName)).toString()
+            })
         });
     }
     

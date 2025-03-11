@@ -30,9 +30,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver')
         });
     }
     
@@ -46,9 +44,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations')
         });
     }
     
@@ -62,9 +58,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}')
         });
     }
     
@@ -78,9 +72,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais')
         });
     }
     
@@ -94,9 +86,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions')
         });
     }
     
@@ -110,9 +100,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude')
         });
     }
     
@@ -126,9 +114,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts')
         });
     }
     
@@ -142,9 +128,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents')
         });
     }
     
@@ -165,8 +149,15 @@ export class DossiersAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
-            params: Utils.payloadFilter({ 'objet': (new String(objet)).toString(), 'erp': (new String(erp)).toString(), 'pei': (new String(pei)).toString(), 'type': (new String(type)).toString(), 'workflow_actif': (new String(workflowActif)).toString(), 'affecte': (new String(affecte)).toString(), 'enveloppe': (new String(enveloppe)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'objet': objet === undefined ? undefined : (new String(objet)).toString(), 
+                'erp': erp === undefined ? undefined : (new String(erp)).toString(), 
+                'pei': pei === undefined ? undefined : (new String(pei)).toString(), 
+                'type': type === undefined ? undefined : (new String(type)).toString(), 
+                'workflow_actif': workflowActif === undefined ? undefined : (new String(workflowActif)).toString(), 
+                'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 
+                'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString()
+            })
         });
     }
     
@@ -180,9 +171,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge')
         });
     }
     
@@ -196,9 +185,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags')
         });
     }
     
@@ -212,9 +199,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows')
         });
     }
     
@@ -230,7 +215,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -247,7 +231,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -264,7 +247,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -281,7 +263,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -298,7 +279,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/export'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -315,7 +295,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -332,7 +311,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -349,7 +327,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -366,7 +343,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions/reorganiser'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -381,9 +357,7 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'PUT',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver')
         });
     }
     
@@ -399,7 +373,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'PUT',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

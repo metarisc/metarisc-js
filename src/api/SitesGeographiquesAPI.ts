@@ -21,9 +21,7 @@ export class SitesGeographiquesAPI extends Core {
         const pathVariable = { 'site_geographique_id': (new String(siteGeographiqueId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}')
         });
     }
     
@@ -37,9 +35,7 @@ export class SitesGeographiquesAPI extends Core {
         const pathVariable = { 'site_geographique_id': (new String(siteGeographiqueId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}')
         });
     }
     
@@ -55,8 +51,10 @@ export class SitesGeographiquesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques'),
-            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'sort': sort === undefined ? undefined : (new String(sort)).toString(), 
+                'libelle': libelle === undefined ? undefined : (new String(libelle)).toString()
+            })
         });
     }
     
@@ -72,7 +70,6 @@ export class SitesGeographiquesAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -88,7 +85,6 @@ export class SitesGeographiquesAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
