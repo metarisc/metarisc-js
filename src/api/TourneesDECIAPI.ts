@@ -9,7 +9,7 @@ import { TourneeDeci } from '../model/TourneeDeci';
 import { TourneeDeciPei } from '../model/TourneeDeciPei';
 import { TourneeDeciSimple } from '../model/TourneeDeciSimple';
 
-export class TournesDECIAPI extends Core {
+export class TourneesDECIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
@@ -75,7 +75,7 @@ export class TournesDECIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
-            params: Utils.payloadFilter({ 'libelle': (new String(libelle)).toString(), 'periode': (new String(periode)).toString(), 'pei': (new String(pei)).toString() }),
+            params: Utils.payloadFilter({ 'libelle': libelle === undefined ? undefined : (new String(libelle)).toString(), 'periode': periode === undefined ? undefined : (new String(periode)).toString(), 'pei': pei === undefined ? undefined : (new String(pei)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

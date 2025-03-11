@@ -116,7 +116,7 @@ export class ERPAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
-            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString(), 'geojson': (new String(geojson)).toString(), 'references_exterieures': (new String(referencesExterieures)).toString(), 'presence_locaux_sommeil': (new String(presenceLocauxSommeil)).toString(), 'type_activite': (new String(typeActivite)).toString(), 'avis_exploitation': (new String(avisExploitation)).toString(), 'a_visiter_en': (new String(aVisiterEn)).toString(), 'site_geographique': (new String(siteGeographique)).toString() }),
+            params: Utils.payloadFilter({ 'sort': sort === undefined ? undefined : (new String(sort)).toString(), 'libelle': libelle === undefined ? undefined : (new String(libelle)).toString(), 'geojson': geojson === undefined ? undefined : (new String(geojson)).toString(), 'references_exterieures': references_exterieures === undefined ? undefined : (new String(referencesExterieures)).toString(), 'presence_locaux_sommeil': presence_locaux_sommeil === undefined ? undefined : (new String(presenceLocauxSommeil)).toString(), 'type_activite': type_activite === undefined ? undefined : (new String(typeActivite)).toString(), 'avis_exploitation': avis_exploitation === undefined ? undefined : (new String(avisExploitation)).toString(), 'a_visiter_en': a_visiter_en === undefined ? undefined : (new String(aVisiterEn)).toString(), 'site_geographique': site_geographique === undefined ? undefined : (new String(siteGeographique)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

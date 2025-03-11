@@ -55,7 +55,7 @@ export class EnveloppesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes'),
-            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'titre': (new String(titre)).toString() }),
+            params: Utils.payloadFilter({ 'sort': sort === undefined ? undefined : (new String(sort)).toString(), 'titre': titre === undefined ? undefined : (new String(titre)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

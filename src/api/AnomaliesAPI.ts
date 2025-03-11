@@ -56,7 +56,7 @@ export class AnomaliesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/anomalies'),
-            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'texte': (new String(texte)).toString(), 'code': (new String(code)).toString() }),
+            params: Utils.payloadFilter({ 'sort': sort === undefined ? undefined : (new String(sort)).toString(), 'texte': texte === undefined ? undefined : (new String(texte)).toString(), 'code': code === undefined ? undefined : (new String(code)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

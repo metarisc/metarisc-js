@@ -10,7 +10,7 @@ export type Commission = {
 };
 
 export enum TypeEnum {
-    SOUS_COMMISSION_DPARTEMENTALE = 'Sous-commission départementale',
+    SOUS_COMMISSION_DEPARTEMENTALE = 'Sous-commission départementale',
     COMMISSION_COMMUNALE = 'Commission communale',
     COMMISSION_INTERCOMMUNALE = 'Commission intercommunale',
     COMMISSION_DARRONDISSEMENT = 'Commission d\'arrondissement',

@@ -87,7 +87,7 @@ export class PrescriptionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
-            params: Utils.payloadFilter({ 'contenu': (new String(contenu)).toString() }),
+            params: Utils.payloadFilter({ 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -104,7 +104,7 @@ export class PrescriptionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
-            params: Utils.payloadFilter({ 'contenu': (new String(contenu)).toString(), 'reference': (new String(reference)).toString() }),
+            params: Utils.payloadFilter({ 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 'reference': reference === undefined ? undefined : (new String(reference)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

@@ -108,7 +108,7 @@ export class OrganisationsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
-            params: Utils.payloadFilter({ 'last_name': (new String(lastName)).toString() }),
+            params: Utils.payloadFilter({ 'last_name': last_name === undefined ? undefined : (new String(lastName)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

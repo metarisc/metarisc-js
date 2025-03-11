@@ -55,7 +55,7 @@ export class SitesGeographiquesAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques'),
-            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'libelle': (new String(libelle)).toString() }),
+            params: Utils.payloadFilter({ 'sort': sort === undefined ? undefined : (new String(sort)).toString(), 'libelle': libelle === undefined ? undefined : (new String(libelle)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

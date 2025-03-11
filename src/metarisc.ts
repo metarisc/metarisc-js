@@ -1,101 +1,38 @@
+// File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "./core";
 import { Tus } from "./tus";
 import { Client } from "./client";
-
-import { AnomaliesAPI } from './api/AnomaliesAPI';
-
-import { CommissionsAPI } from './api/CommissionsAPI';
-
-import { CommissionsMembresAPI } from './api/CommissionsMembresAPI';
-
-import { ContactsAPI } from './api/ContactsAPI';
-
-import { ControlesPEIAPI } from './api/ControlesPEIAPI';
-
-import { DatesPassageCommissionAPI } from './api/DatesPassageCommissionAPI';
-
-import { DocumentsAPI } from './api/DocumentsAPI';
-
-import { DossiersAPI } from './api/DossiersAPI';
-
-import { ERPAPI } from './api/ERPAPI';
-
-import { EvenementsAPI } from './api/EvenementsAPI';
-
-import { FeedAPI } from './api/FeedAPI';
-
-import { HealthcheckAPI } from './api/HealthcheckAPI';
-
-import { MoiAPI } from './api/MoiAPI';
-
-import { NotificationsAPI } from './api/NotificationsAPI';
-
-import { OrdresDuJourAPI } from './api/OrdresDuJourAPI';
-
-import { OrganisationsAPI } from './api/OrganisationsAPI';
-
-import { PEIAPI } from './api/PEIAPI';
-
-import { PingAPI } from './api/PingAPI';
-
-import { PrescriptionsAPI } from './api/PrescriptionsAPI';
-
-import { TournesDECIAPI } from './api/TournesDECIAPI';
-
-import { UtilisateursAPI } from './api/UtilisateursAPI';
-
-import { WorkflowsAPI } from './api/WorkflowsAPI';
+import * as resources from './resources';
 
 export class Metarisc extends Core
 {
-    
-    public utilisateurs?: UtilisateursAPI;
-    
-    public dates_passage_commission?: DatesPassageCommissionAPI;
-    
-    public erp?: ERPAPI;
-    
-    public dossiers?: DossiersAPI;
-    
-    public documents?: DocumentsAPI;
-    
-    public moi?: MoiAPI;
-    
-    public ping?: PingAPI;
-    
-    public workflows?: WorkflowsAPI;
-    
-    public anomalies?: AnomaliesAPI;
-    
-    public supports_reglementaires?: PrescriptionsAPI;
-    
-    public feed?: FeedAPI;
-    
-    public healthcheck?: HealthcheckAPI;
-    
-    public tournees_deci?: TournesDECIAPI;
-    
-    public organisations?: OrganisationsAPI;
-    
-    public pei?: PEIAPI;
-    
-    public commissions?: CommissionsAPI;
-    
-    public controles_pei?: ControlesPEIAPI;
-    
-    public evenements?: EvenementsAPI;
-    
-    public ordres_du_jour?: OrdresDuJourAPI;
-    
-    public commissions_membres?: CommissionsMembresAPI;
-    
-    public prescriptions?: PrescriptionsAPI;
-    
-    public contacts?: ContactsAPI;
-    
-    public notifications?: NotificationsAPI;
-    
-    public tus?: Tus;
+    public dates_passage_commission: resources.DatesPassageCommissionAPI;
+    public dossiers: resources.DossiersAPI;
+    public documents: resources.DocumentsAPI;
+    public moi: resources.MoiAPI;
+    public ping: resources.PingAPI;
+    public sites_geographiques: resources.SitesGeographiquesAPI;
+    public workflows: resources.WorkflowsAPI;
+    public healthcheck: resources.HealthcheckAPI;
+    public enveloppes: resources.EnveloppesAPI;
+    public organisations: resources.OrganisationsAPI;
+    public pei: resources.PEIAPI;
+    public commissions: resources.CommissionsAPI;
+    public prescriptions: resources.PrescriptionsAPI;
+    public utilisateurs: resources.UtilisateursAPI;
+    public erp: resources.ERPAPI;
+    public dossiers_affectations: resources.DossiersAffectationsAPI;
+    public anomalies: resources.AnomaliesAPI;
+    public supports_reglementaires: resources.PrescriptionsAPI;
+    public feed: resources.FeedAPI;
+    public tournees_deci: resources.TourneesDECIAPI;
+    public controles_pei: resources.ControlesPEIAPI;
+    public evenements: resources.EvenementsAPI;
+    public ordres_du_jour: resources.OrdresDuJourAPI;
+    public commissions_membres: resources.CommissionsMembresAPI;
+    public contacts: resources.ContactsAPI;
+    public notifications: resources.NotificationsAPI;
+    public tus: Tus;
 
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
@@ -105,80 +42,34 @@ export class Metarisc extends Core
         return new Proxy(this, {
             get: function(metarisc, name, receiver) {
                 switch(name) {
-                    
-                    case 'utilisateurs':
-                        return new UtilisateursAPI(config, tmpClient);
-                    
-                    case 'dates_passage_commission':
-                        return new DatesPassageCommissionAPI(config, tmpClient);
-                    
-                    case 'erp':
-                        return new ERPAPI(config, tmpClient);
-                    
-                    case 'dossiers':
-                        return new DossiersAPI(config, tmpClient);
-                    
-                    case 'documents':
-                        return new DocumentsAPI(config, tmpClient);
-                    
-                    case 'moi':
-                        return new MoiAPI(config, tmpClient);
-                    
-                    case 'ping':
-                        return new PingAPI(config, tmpClient);
-                    
-                    case 'workflows':
-                        return new WorkflowsAPI(config, tmpClient);
-                    
-                    case 'anomalies':
-                        return new AnomaliesAPI(config, tmpClient);
-                    
-                    case 'supports_reglementaires':
-                        return new PrescriptionsAPI(config, tmpClient);
-                    
-                    case 'feed':
-                        return new FeedAPI(config, tmpClient);
-                    
-                    case 'healthcheck':
-                        return new HealthcheckAPI(config, tmpClient);
-                    
-                    case 'tournees_deci':
-                        return new TournesDECIAPI(config, tmpClient);
-                    
-                    case 'organisations':
-                        return new OrganisationsAPI(config, tmpClient);
-                    
-                    case 'pei':
-                        return new PEIAPI(config, tmpClient);
-                    
-                    case 'commissions':
-                        return new CommissionsAPI(config, tmpClient);
-                    
-                    case 'controles_pei':
-                        return new ControlesPEIAPI(config, tmpClient);
-                    
-                    case 'evenements':
-                        return new EvenementsAPI(config, tmpClient);
-                    
-                    case 'ordres_du_jour':
-                        return new OrdresDuJourAPI(config, tmpClient);
-                    
-                    case 'commissions_membres':
-                        return new CommissionsMembresAPI(config, tmpClient);
-                    
-                    case 'prescriptions':
-                        return new PrescriptionsAPI(config, tmpClient);
-                    
-                    case 'contacts':
-                        return new ContactsAPI(config, tmpClient);
-                    
-                    case 'notifications':
-                        return new NotificationsAPI(config, tmpClient);
-                    
-                    case 'tus':
-                        return new Tus(config, tmpClient);
-                    default:
-                        return Reflect.get(metarisc, name, receiver);
+                    case 'dates_passage_commission': return new resources.DatesPassageCommissionAPI(config, tmpClient);
+                    case 'dossiers': return new resources.DossiersAPI(config, tmpClient);
+                    case 'documents': return new resources.DocumentsAPI(config, tmpClient);
+                    case 'moi': return new resources.MoiAPI(config, tmpClient);
+                    case 'ping': return new resources.PingAPI(config, tmpClient);
+                    case 'sites_geographiques': return new resources.SitesGeographiquesAPI(config, tmpClient);
+                    case 'workflows': return new resources.WorkflowsAPI(config, tmpClient);
+                    case 'healthcheck': return new resources.HealthcheckAPI(config, tmpClient);
+                    case 'enveloppes': return new resources.EnveloppesAPI(config, tmpClient);
+                    case 'organisations': return new resources.OrganisationsAPI(config, tmpClient);
+                    case 'pei': return new resources.PEIAPI(config, tmpClient);
+                    case 'commissions': return new resources.CommissionsAPI(config, tmpClient);
+                    case 'prescriptions': return new resources.PrescriptionsAPI(config, tmpClient);
+                    case 'utilisateurs': return new resources.UtilisateursAPI(config, tmpClient);
+                    case 'erp': return new resources.ERPAPI(config, tmpClient);
+                    case 'dossiers_affectations': return new resources.DossiersAffectationsAPI(config, tmpClient);
+                    case 'anomalies': return new resources.AnomaliesAPI(config, tmpClient);
+                    case 'supports_reglementaires': return new resources.PrescriptionsAPI(config, tmpClient);
+                    case 'feed': return new resources.FeedAPI(config, tmpClient);
+                    case 'tournees_deci': return new resources.TourneesDECIAPI(config, tmpClient);
+                    case 'controles_pei': return new resources.ControlesPEIAPI(config, tmpClient);
+                    case 'evenements': return new resources.EvenementsAPI(config, tmpClient);
+                    case 'ordres_du_jour': return new resources.OrdresDuJourAPI(config, tmpClient);
+                    case 'commissions_membres': return new resources.CommissionsMembresAPI(config, tmpClient);
+                    case 'contacts': return new resources.ContactsAPI(config, tmpClient);
+                    case 'notifications': return new resources.NotificationsAPI(config, tmpClient);
+                    case 'tus': return new Tus(config, tmpClient);
+                    default: return Reflect.get(metarisc, name, receiver);
                 }
             }
         });

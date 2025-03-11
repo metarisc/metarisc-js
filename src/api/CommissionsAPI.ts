@@ -58,7 +58,7 @@ export class CommissionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
-            params: Utils.payloadFilter({ 'libelle': (new String(libelle)).toString(), 'type': (new String(type)).toString() }),
+            params: Utils.payloadFilter({ 'libelle': libelle === undefined ? undefined : (new String(libelle)).toString(), 'type': type === undefined ? undefined : (new String(type)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
@@ -91,7 +91,7 @@ export class CommissionsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
-            params: Utils.payloadFilter({ 'commission': (new String(commission)).toString() }),
+            params: Utils.payloadFilter({ 'commission': commission === undefined ? undefined : (new String(commission)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

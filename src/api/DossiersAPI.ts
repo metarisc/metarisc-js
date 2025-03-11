@@ -165,7 +165,7 @@ export class DossiersAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
-            params: Utils.payloadFilter({ 'objet': (new String(objet)).toString(), 'erp': (new String(erp)).toString(), 'pei': (new String(pei)).toString(), 'type': (new String(type)).toString(), 'workflow_actif': (new String(workflowActif)).toString(), 'affecte': (new String(affecte)).toString(), 'enveloppe': (new String(enveloppe)).toString() }),
+            params: Utils.payloadFilter({ 'objet': objet === undefined ? undefined : (new String(objet)).toString(), 'erp': erp === undefined ? undefined : (new String(erp)).toString(), 'pei': pei === undefined ? undefined : (new String(pei)).toString(), 'type': type === undefined ? undefined : (new String(type)).toString(), 'workflow_actif': workflow_actif === undefined ? undefined : (new String(workflowActif)).toString(), 'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

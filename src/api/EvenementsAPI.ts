@@ -56,7 +56,7 @@ export class EvenementsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            params: Utils.payloadFilter({ 'period': (new String(period)).toString(), 'type': (new String(type)).toString() }),
+            params: Utils.payloadFilter({ 'period': period === undefined ? undefined : (new String(period)).toString(), 'type': type === undefined ? undefined : (new String(type)).toString() }),
             body: Utils.payloadFilter({})
         });
     }

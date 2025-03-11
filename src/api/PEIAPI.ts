@@ -147,7 +147,7 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            params: Utils.payloadFilter({ 'sort': (new String(sort)).toString(), 'numero': (new String(numero)).toString(), 'type': (new String(type)).toString(), 'statut': (new String(statut)).toString(), 'est_disponible': (new String(estDisponible)).toString(), 'domanialite': (new String(domanialite)).toString(), 'geojson': (new String(geojson)).toString(), 'references_exterieures': (new String(referencesExterieures)).toString() }),
+            params: Utils.payloadFilter({ 'sort': sort === undefined ? undefined : (new String(sort)).toString(), 'numero': numero === undefined ? undefined : (new String(numero)).toString(), 'type': type === undefined ? undefined : (new String(type)).toString(), 'statut': statut === undefined ? undefined : (new String(statut)).toString(), 'est_disponible': est_disponible === undefined ? undefined : (new String(estDisponible)).toString(), 'domanialite': domanialite === undefined ? undefined : (new String(domanialite)).toString(), 'geojson': geojson === undefined ? undefined : (new String(geojson)).toString(), 'references_exterieures': references_exterieures === undefined ? undefined : (new String(referencesExterieures)).toString() }),
             body: Utils.payloadFilter({})
         });
     }
