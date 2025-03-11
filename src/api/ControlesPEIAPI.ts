@@ -20,9 +20,7 @@ export class ControlesPEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/controles_pei/{pei_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/controles_pei/{pei_id}')
         });
     }
     
@@ -36,9 +34,7 @@ export class ControlesPEIAPI extends Core {
         const pathVariable = { 'pei_id': (new String(peiId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/controles_pei/{pei_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/controles_pei/{pei_id}')
         });
     }
     
@@ -54,7 +50,6 @@ export class ControlesPEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/controles_pei/{pei_id}'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }

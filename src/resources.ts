@@ -44,7 +44,7 @@ export { PrescriptionsAPI } from './api/PrescriptionsAPI';
 
 export { SitesGeographiquesAPI } from './api/SitesGeographiquesAPI';
 
-export { TournesDECIAPI } from './api/TournesDECIAPI';
+export { TourneesDECIAPI } from './api/TourneesDECIAPI';
 
 export { UtilisateursAPI } from './api/UtilisateursAPI';
 

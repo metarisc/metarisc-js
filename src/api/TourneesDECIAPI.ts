@@ -9,7 +9,7 @@ import { TourneeDeci } from '../model/TourneeDeci';
 import { TourneeDeciPei } from '../model/TourneeDeciPei';
 import { TourneeDeciSimple } from '../model/TourneeDeciSimple';
 
-export class TournesDECIAPI extends Core {
+export class TourneesDECIAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
     }
@@ -24,9 +24,7 @@ export class TournesDECIAPI extends Core {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}')
         });
     }
     
@@ -40,9 +38,7 @@ export class TournesDECIAPI extends Core {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/documents'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/documents')
         });
     }
     
@@ -56,9 +52,7 @@ export class TournesDECIAPI extends Core {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei')
         });
     }
     
@@ -75,8 +69,11 @@ export class TournesDECIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
-            params: Utils.payloadFilter({ 'libelle': (new String(libelle)).toString(), 'periode': (new String(periode)).toString(), 'pei': (new String(pei)).toString() }),
-            body: Utils.payloadFilter({})
+            params: Utils.payloadFilter({
+                'libelle': libelle === undefined ? undefined : (new String(libelle)).toString(), 
+                'periode': periode === undefined ? undefined : (new String(periode)).toString(), 
+                'pei': pei === undefined ? undefined : (new String(pei)).toString()
+            })
         });
     }
     
@@ -90,9 +87,7 @@ export class TournesDECIAPI extends Core {
         const pathVariable = { 'tournee_deci_id': (new String(tourneeDeciId)).toString() };
         return this.request({
             method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/declencher'),
-            params: Utils.payloadFilter({ }),
-            body: Utils.payloadFilter({})
+            endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/declencher')
         });
     }
     
@@ -108,7 +103,6 @@ export class TournesDECIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/documents'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -125,7 +119,6 @@ export class TournesDECIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}/pei'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -142,7 +135,6 @@ export class TournesDECIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci/{tournee_deci_id}'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
@@ -158,7 +150,6 @@ export class TournesDECIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/tournees_deci'),
-            params: Utils.payloadFilter({ }),
             body: Utils.payloadFilter(params)
         });
     }
