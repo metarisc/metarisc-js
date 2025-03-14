@@ -11,6 +11,20 @@ export class OrdresDuJourAPI extends Core {
     }
     
     /**
+     * Suppression du dossier de l'ordre du jour d'une date de passage en commission.
+     */
+    deleteCommissionDateDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}')
+        });
+    }
+    
+    /**
      * Mise à jour des détails d'un dossier lié à une date de passage en commission en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
     updateCommissionDateDossier(
