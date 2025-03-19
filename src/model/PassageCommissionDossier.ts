@@ -5,6 +5,7 @@ export type PassageCommissionDossier = {
     'id': string;
     'dossier': Dossier;
     'avis': AvisEnum | null;
+    'ge4_3': boolean | null;
     'date_de_passage': Date;
     'avis_differe': boolean | null;
     'observations': string | null;

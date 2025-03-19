@@ -7,6 +7,7 @@ import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
 import { ERP } from '../model/ERP';
+import { MainCourante } from '../model/MainCourante';
 import { PieceJointe } from '../model/PieceJointe';
 import { ReferenceExterieure } from '../model/ReferenceExterieure';
 import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
@@ -135,6 +136,24 @@ export class ERPAPI extends Core {
     }
     
     /**
+     * Récupération de la liste des mains courantes.
+     */
+    paginateErpMainsCourantes(
+        erpId: string,
+        sort? : 'date' | '-date'
+    ) : Collection<MainCourante>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/mains_courantes'),
+            params: Utils.payloadFilter({
+                'sort': sort === undefined ? undefined : (new String(sort)).toString()
+            })
+        });
+    }
+    
+    /**
      * Retourne la liste des textes applicables d'un ERP en fonction de son type d'activité.
      */
     paginateTextesApplicables(
@@ -239,6 +258,22 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajout d'une main courante.
+     */
+    postMainsCourantesErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<MainCourante>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/mains_courantes'),
             body: Utils.payloadFilter(params)
         });
     }
