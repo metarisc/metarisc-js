@@ -18,10 +18,12 @@ export class Metarisc extends Core
     public organisations: resources.OrganisationsAPI;
     public pei: resources.PEIAPI;
     public commissions: resources.CommissionsAPI;
+    public mains_courantes_participants: resources.MainsCourantesParticipantsAPI;
     public prescriptions: resources.PrescriptionsAPI;
     public utilisateurs: resources.UtilisateursAPI;
     public erp: resources.ERPAPI;
     public dossiers_affectations: resources.DossiersAffectationsAPI;
+    public mains_courantes: resources.MainsCourantesAPI;
     public anomalies: resources.AnomaliesAPI;
     public supports_reglementaires: resources.PrescriptionsAPI;
     public feed: resources.FeedAPI;
@@ -54,10 +56,12 @@ export class Metarisc extends Core
                     case 'organisations': return new resources.OrganisationsAPI(config, tmpClient);
                     case 'pei': return new resources.PEIAPI(config, tmpClient);
                     case 'commissions': return new resources.CommissionsAPI(config, tmpClient);
+                    case 'mains_courantes_participants': return new resources.MainsCourantesParticipantsAPI(config, tmpClient);
                     case 'prescriptions': return new resources.PrescriptionsAPI(config, tmpClient);
                     case 'utilisateurs': return new resources.UtilisateursAPI(config, tmpClient);
                     case 'erp': return new resources.ERPAPI(config, tmpClient);
                     case 'dossiers_affectations': return new resources.DossiersAffectationsAPI(config, tmpClient);
+                    case 'mains_courantes': return new resources.MainsCourantesAPI(config, tmpClient);
                     case 'anomalies': return new resources.AnomaliesAPI(config, tmpClient);
                     case 'supports_reglementaires': return new resources.PrescriptionsAPI(config, tmpClient);
                     case 'feed': return new resources.FeedAPI(config, tmpClient);

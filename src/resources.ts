@@ -28,6 +28,10 @@ export { FeedAPI } from './api/FeedAPI';
 
 export { HealthcheckAPI } from './api/HealthcheckAPI';
 
+export { MainsCourantesAPI } from './api/MainsCourantesAPI';
+
+export { MainsCourantesParticipantsAPI } from './api/MainsCourantesParticipantsAPI';
+
 export { MoiAPI } from './api/MoiAPI';
 
 export { NotificationsAPI } from './api/NotificationsAPI';
