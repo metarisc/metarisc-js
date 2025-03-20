@@ -28,7 +28,7 @@ export class SireneAI extends Core
     return new OpenAI({
       baseURL: url+"sirene-ai/v1",
       apiKey: this.client.getAccessToken().replace("Bearer ", ""),
-      dangerouslyAllowBrowser: true,
+      dangerouslyAllowBrowser: true
     });
   }
 }
