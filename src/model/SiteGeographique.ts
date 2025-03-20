@@ -3,4 +3,6 @@
 export type SiteGeographique = {
     'id': string;
     'libelle': string;
+    'geojson': string;
+    'erp_periodicite_contrainte': number | null;
 };

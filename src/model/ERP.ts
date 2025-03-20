@@ -1,8 +1,10 @@
 // File generated from our OpenAPI spec
 import { AdressePostale } from './AdressePostale';
+import { Commission } from './Commission';
 import { DescriptifTechniqueERP } from './DescriptifTechniqueERP';
 import { ReferenceExterieure } from './ReferenceExterieure';
 import { SiteGeographique } from './SiteGeographique';
+import { Utilisateur } from './Utilisateur';
 
 export type ERP = {
     'id': string;
@@ -18,6 +20,8 @@ export type ERP = {
     'references_exterieures': Array<ReferenceExterieure>;
     'a_visiter_en': string | null;
     'sites_geographiques': Array<SiteGeographique>;
+    'commission_de_securite': Commission | null;
+    'titulaires': Array<Utilisateur>;
 };
 
 export enum AvisExploitationEnum {
