@@ -23,6 +23,7 @@
     "axios-oauth-client": "^2.0.4",
     "axios-retry": "^3.5.0",
     "jwt-decode": "^4.0.0",
+    "openai": "^4.89.0",
     "tus-js-client": "^4.1.0"
   }
 }

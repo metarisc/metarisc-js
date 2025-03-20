@@ -226,4 +226,9 @@ export class Client {
 
 		return headers;
 	}
+
+	getBaseUrl() : string
+	{
+		return this.axios.defaults.baseURL;
+	}
 }

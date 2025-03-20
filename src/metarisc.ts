@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec
 import { Core, MetariscConfig } from "./core";
 import { Tus } from "./tus";
+import { SireneAI } from "./sirene-ai";
 import { Client } from "./client";
 import * as resources from './resources';
 
@@ -35,6 +36,7 @@ export class Metarisc extends Core
     public contacts: resources.ContactsAPI;
     public notifications: resources.NotificationsAPI;
     public tus: Tus;
+    public sirene_ai: SireneAI;
 
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
@@ -73,6 +75,7 @@ export class Metarisc extends Core
                     case 'contacts': return new resources.ContactsAPI(config, tmpClient);
                     case 'notifications': return new resources.NotificationsAPI(config, tmpClient);
                     case 'tus': return new Tus(config, tmpClient);
+                    case 'sirene_ai': return new SireneAI(config, tmpClient);
                     default: return Reflect.get(metarisc, name, receiver);
                 }
             }
