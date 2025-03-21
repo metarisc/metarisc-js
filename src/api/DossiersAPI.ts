@@ -77,6 +77,20 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * L'export du rapport d'étude est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments du dossier d'étude. Le SIS réalise pour chaque étude ou visite un rapport détaillé par ERP. Ce document est présenté en commission par le sapeur pompier préventionniste en sa qualité de rapporteur et de technicien du risque. Le PDF généré est un document de synthèse qui reprend les informations du dossier, en se basant sur le modèle de rapport de l'organisation. L'export du dossier est une opération qui peut être longue, en fonction de la taille du dossier et du nombre d'éléments à exporter.
+     */
+    getPdfRapportEtudeDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<string>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/pdf')
+        });
+    }
+    
+    /**
      * Récupération de la liste des prescriptions sur le rapport d'étude.
      */
     getPrescriptionsRapportEtudeDossier(
@@ -263,22 +277,6 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
-            body: Utils.payloadFilter(params)
-        });
-    }
-    
-    /**
-     * L'export du dossier est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments du dossier. Le PDF généré est un document de synthèse qui reprend les informations du dossier, en se basant sur le modèle de rapport de l'organisation. L'export du dossier est une opération qui peut être longue, en fonction de la taille du dossier et du nombre d'éléments à exporter. Le fichier PDF généré est disponible en téléchargement depuis les pièces jointes du dossier.
-     */
-    postExportDossier(
-        dossierId: string,
-        params : any
-    ) : Promise<AxiosResponse<PieceJointe>>
-    {
-        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        return this.request({
-            method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/export'),
             body: Utils.payloadFilter(params)
         });
     }
