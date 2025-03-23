@@ -81,11 +81,12 @@ export class DossiersAPI extends Core {
      */
     getPdfRapportEtudeDossier(
         dossierId: string
-    ) : Promise<AxiosResponse<string>>
+    ) : Promise<AxiosResponse<Blob>>
     {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
+            responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/pdf')
         });
     }
