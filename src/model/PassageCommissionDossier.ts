@@ -9,6 +9,7 @@ export type PassageCommissionDossier = {
     'date_de_passage': Date;
     'avis_differe': boolean | null;
     'observations': string | null;
+    'duree_minutes': number;
 };
 
 export enum AvisEnum {

@@ -1,4 +1,5 @@
 // File generated from our OpenAPI spec
+import { Commission } from './Commission';
 
 export type PassageCommission = {
     'id': string;
@@ -8,6 +9,7 @@ export type PassageCommission = {
     'libelle': string;
     'raison_reprogrammation': string | null;
     'nb_dossiers': number;
+    'commission': Commission;
 };
 
 export enum TypeEnum {
