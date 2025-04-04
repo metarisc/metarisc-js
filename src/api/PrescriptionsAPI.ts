@@ -72,7 +72,8 @@ export class PrescriptionsAPI extends Core {
      * Liste des prescriptions.
      */
     paginatePrescriptions(
-        contenu? : string
+        contenu? : string,
+        supportReglementaireReference? : string
     ) : Collection<Prescription>
     {
         const pathVariable = { };
@@ -80,7 +81,8 @@ export class PrescriptionsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
             params: Utils.payloadFilter({
-                'contenu': contenu === undefined ? undefined : (new String(contenu)).toString()
+                'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
+                'support_reglementaire_reference': supportReglementaireReference === undefined ? undefined : (new String(supportReglementaireReference)).toString()
             })
         });
     }
