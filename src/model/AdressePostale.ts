@@ -5,7 +5,7 @@ export type AdressePostale = {
     'commune': string | null;
     'voie': string | null;
     'code_insee': string | null;
-    'arrondissement': number | null;
+    'arrondissement': string | null;
     'arrondissement_municipal': string | null;
     'latitude': number | null;
     'longitude': number | null;
