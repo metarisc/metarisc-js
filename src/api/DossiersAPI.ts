@@ -11,6 +11,7 @@ import { FilRougeMessage } from '../model/FilRougeMessage';
 import { PieceJointe } from '../model/PieceJointe';
 import { PrescriptionAnalyseDeRisque } from '../model/PrescriptionAnalyseDeRisque';
 import { RapportEtude } from '../model/RapportEtude';
+import { RapportVisite } from '../model/RapportVisite';
 import { Essai } from '../model/Essai';
 import { Tag } from '../model/Tag';
 import { Workflow } from '../model/Workflow';
@@ -120,6 +121,20 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Récupération des détails du rapport de visite.
+     */
+    getRapportVisiteDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<RapportVisite>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite')
+        });
+    }
+    
+    /**
      * Récupération de la liste des contacts.
      */
     paginateDossierContacts(
@@ -157,7 +172,8 @@ export class DossiersAPI extends Core {
         type? : string,
         workflowActif? : 'analyse_de_risque' | 'validation' | 'arrivee_sis' | 'arrivee_sis_prev' | 'arrivee_secretariat_commission' | 'consultation_sis' | 'passage_commission' | 'relecture' | 'visite' | 'arrivee_secretariat' | 'workflow' | 'reception_de_travaux_en_attente',
         affecte? : string,
-        enveloppe? : string
+        enveloppe? : string,
+        numeroUrba? : string
     ) : Collection<Dossier>
     {
         const pathVariable = { };
@@ -171,7 +187,8 @@ export class DossiersAPI extends Core {
                 'type': type === undefined ? undefined : (new String(type)).toString(), 
                 'workflow_actif': workflowActif === undefined ? undefined : (new String(workflowActif)).toString(), 
                 'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 
-                'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString()
+                'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString(), 
+                'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString()
             })
         });
     }
@@ -326,6 +343,22 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Mise à jour du rapport de visite en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    postRapportVisiteDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<RapportVisite>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite'),
             body: Utils.payloadFilter(params)
         });
     }

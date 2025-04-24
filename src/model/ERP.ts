@@ -2,6 +2,7 @@
 import { AdressePostale } from './AdressePostale';
 import { Commission } from './Commission';
 import { DescriptifTechniqueERP } from './DescriptifTechniqueERP';
+import { ERPLie } from './ERPLie';
 import { ReferenceExterieure } from './ReferenceExterieure';
 import { SiteGeographique } from './SiteGeographique';
 import { Utilisateur } from './Utilisateur';
@@ -22,6 +23,7 @@ export type ERP = {
     'sites_geographiques': Array<SiteGeographique>;
     'commission_de_securite': Commission | null;
     'titulaires': Array<Utilisateur>;
+    'etablissement_rattache'?: ERPLie;
 };
 
 export enum AvisExploitationEnum {
