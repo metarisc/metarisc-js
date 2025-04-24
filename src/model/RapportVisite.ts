@@ -1,17 +1,15 @@
 // File generated from our OpenAPI spec
-import { Clicdvcrem } from './Clicdvcrem';
 import { DocumentTechnique } from './DocumentTechnique';
-import { TexteApplicable } from './TexteApplicable';
+import { Essai } from './Essai';
 
-export type RapportEtude = {
-    'analyse_risque': Clicdvcrem;
+export type RapportVisite = {
     'observations': string | null;
     'prise_de_note_interne': string | null;
     'proposition_avis': PropositionAvisEnum | null;
     'proposition_avis_observations': string;
     'facteur_dangerosite': number | null;
     'documents_techniques': Array<DocumentTechnique>;
-    'textes_applicables': Array<TexteApplicable>;
+    'essais': Array<Essai>;
 };
 
 export enum PropositionAvisEnum {

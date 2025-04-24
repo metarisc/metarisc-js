@@ -11,6 +11,7 @@ import { MainCourante } from '../model/MainCourante';
 import { PieceJointe } from '../model/PieceJointe';
 import { ReferenceExterieure } from '../model/ReferenceExterieure';
 import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
+import { Prescription } from '../model/Prescription';
 import { PrescriptionSupportReglementaire } from '../model/PrescriptionSupportReglementaire';
 
 export class ERPAPI extends Core {
@@ -100,7 +101,10 @@ export class ERPAPI extends Core {
         typeActivite? : 'CTS - Châpiteaux' | 'CTS - Structures' | 'CTS - Tentes' | 'EF - Bateaux en stationnement sur les eaux intérieures' | 'EF - Bateaux stationnaires' | 'EF - Etablissements flottants' | 'GA - Gares' | 'GEEM - Grands établissements à exploitation multiple' | 'J - Etablissements d\'enseignement avec internat pour jeunes handicapés ou inadaptés' | 'J - Etablissements d\'hébergement pour adultes handicapés' | 'J - Etablissements médico-éducatifs avec internat pour jeunes handicapés ou inadaptés' | 'J - Structures d\'accueil pour personnes âgées' | 'J - Structures d\'accueil pour personnes handicapées' | 'L - Cabarets' | 'L - Salles d\'audition' | 'L - Salle de conférences' | 'L - Salles de pari' | 'L - Salles de projection' | 'L - Salles de quartier (ou assimilée)' | 'L - Salles de réunions' | 'L - Salles de spectacles' | 'L - Salles multimédia' | 'L - Salles polyvalentes à dominante sportive, dont la superficie unitaire est supérieure ou égale à 1 200 m2' | 'L - Salles polyvalentes non visée par le Type X (salle polyvalente qui n\'a pas une destination unique)' | 'L - Salles réservées aux associations' | 'M - Aires de vente' | 'M - Centres commerciaux' | 'M - Locaux de vente' | 'M - Magasin de vente' | 'N - Bars' | 'N - Brasseries' | 'N - Cafétaria' | 'N - Cafés' | 'N - Cantines' | 'N - Débits de boissons' | 'N - Restaurants' | 'O - Hôtels' | 'O - Pensions de famille' | 'OA - Hôtels-restaurants d\'altitude' | 'P - Salle de bals' | 'P - Dancing / discothèque' | 'P - Salles de jeux' | 'PA - Arènes' | 'PA - Hippodromes' | 'PA - Piscines' | 'PA - Pistes de patinage' | 'PA - Stades' | 'PA - Terrains de sport' | 'PA - Parc d\'attraction' | 'PE 2 §2 - Locaux à usage collectif d\'une surface unitaire supérieure à 50 mètres carrés des logements-foyers et de l\'habitat de loisirs à gestion collective' | 'PE 2 §2 - Bâtiments ou locaux à usage d\'hébergement qui ne relèvent d\'aucun type défini à l\'article GN 1 et qui permettent d\'accueillir plus de 15 et moins de 100 personnes n\'y élisant pas domicile' | 'PE 2 §2 - Hébergement de mineurs en dehors de leurs familles, le seuil de l\'effectif est fixé à 7 mineurs' | 'PE 2 §2 - Maisons d\'assistants maternels (MAM) dont les locaux accessibles au public sont strictement limités à un seul étage sur rez-de-chaussée et dont l\'effectif ne dépasse pas 16 enfants' | 'PS - Parcs de stationnement couverts' | 'PS - Parc de stationnement mixte' | 'PS - Parc de stationnement largement ventilé' | 'PS - Parc de stationnement à rangement automatisé' | 'R - Auberges de jeunesse (comprenant au moins un local collectif à sommeil)' | 'R - Auto-écoles' | 'R - Centres aérés' | 'R - Centres de loisirs (sans hébergement)' | 'R - Centres de vacances' | 'R - Colonies de vacances' | 'R - Crèches' | 'R - Ecoles maternelles' | 'R - Etablissements d\'enseignement' | 'R - Etablissements de formation' | 'R - Haltes-garderies' | 'R - Internats des établissements de l\'enseignement primaire et secondaire' | 'R - Jardins d\'enfant' | 'R - Lycee public' | 'R - Collège public' | 'R - Lycee privé' | 'R - Collège privé' | 'R - École élémentaire' | 'REF - Refuges de montagne' | 'S - Bibliothèques' | 'S - Centres de documentation et de consultation d\'archives' | 'SG - Structures gonflables' | 'T - Etablissements à vocation commerciale destinés à des expositions' | 'T - Foires-expositions' | 'T - Salles d\'expositions à caractère permanent n\'ayant pas une vocation de foire ou de salon' | 'T - Salles d\'expositions à caractère permanent de véhicules automobiles, bateaux, machines et autres volumineux biens d\'équipements assimilables' | 'T - Salons à caractère temporaire' | 'U - Etablissements de cure thermale ou de thalassothérapie' | 'U - Etablissements de santé publics ou privés dispensant des soins de courte durée en médecine, chirurgie, obstétrique' | 'U - Etablissements de santé publics ou privés dispensant des soins de psychiatrie, de suite ou de réadaptation, des soins de longue durée, à des personnes n\'ayant pas leur autonomie de vie dont l\'état nécessite une surveillance médicale constante' | 'U - Pouponnières (enfants de moins de 3 ans)' | 'V - Eglises' | 'V - Mosquées' | 'V - Synagogues' | 'V - Temples' | 'W - Administrations' | 'W - Banques' | 'W - Bureaux' | 'X - Manèges' | 'X - Patinoires' | 'X - Piscines couvertes, transformables et mixtes' | 'X - Salles d\'éducation physique et sportive' | 'X - Salles omnisports' | 'X - Salles polyvalentes à dominante sportive, dont l\'aire d\'activité est inférieure à 1200 m² et la hauteur sous plafond supérieure ou égale à 6,50 mètres' | 'X - Salles sportives spécialisées' | 'Y - Musées' | 'Y - Salles destinées à recevoir des expositions à vocation culturelle, scientifique, technique, artistique, etc. ayant un caractère temporaire',
         avisExploitation? : 'favorable' | 'defavorable',
         aVisiterEn? : string,
-        siteGeographique? : string
+        siteGeographique? : string,
+        commissionConcernee? : string,
+        categorie? : 1 | 2 | 3 | 4 | 5,
+        erpRattacheA? : string
     ) : Collection<ERP>
     {
         const pathVariable = { };
@@ -116,7 +120,10 @@ export class ERPAPI extends Core {
                 'type_activite': typeActivite === undefined ? undefined : (new String(typeActivite)).toString(), 
                 'avis_exploitation': avisExploitation === undefined ? undefined : (new String(avisExploitation)).toString(), 
                 'a_visiter_en': aVisiterEn === undefined ? undefined : (new String(aVisiterEn)).toString(), 
-                'site_geographique': siteGeographique === undefined ? undefined : (new String(siteGeographique)).toString()
+                'site_geographique': siteGeographique === undefined ? undefined : (new String(siteGeographique)).toString(), 
+                'commission_concernee': commissionConcernee === undefined ? undefined : (new String(commissionConcernee)).toString(), 
+                'categorie': categorie === undefined ? undefined : (new String(categorie)).toString(), 
+                'erp_rattache_a': erpRattacheA === undefined ? undefined : (new String(erpRattacheA)).toString()
             })
         });
     }
@@ -150,6 +157,20 @@ export class ERPAPI extends Core {
             params: Utils.payloadFilter({
                 'sort': sort === undefined ? undefined : (new String(sort)).toString()
             })
+        });
+    }
+    
+    /**
+     * Retourne la liste des prescriptions soulevées dans les visites et les études de l'ERP.
+     */
+    paginateErpPrescriptions(
+        erpId: string
+    ) : Collection<Prescription>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/prescriptions')
         });
     }
     
