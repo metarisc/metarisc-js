@@ -56,5 +56,13 @@ export enum TypeEnum {
     ERP_VISITE_CONTROLE = 'erp:visite_controle',
     ERP_VISITE_INOPINEE = 'erp:visite_inopinee',
     ERP_VISITE_CHANTIER = 'erp:visite_chantier',
+    ERP_DEMANDE_AVIS = 'erp:demande_avis',
+    ERP_DEMANDE_RECLASSEMENT = 'erp:demande_reclassement',
+    ERP_SUIVI_AVIS_DEFAVORABLE = 'erp:suivi_avis_defavorable',
+    ERP_LEVEE_AVIS_DEFAVORABLE = 'erp:levee_avis_defavorable',
+    ERP_DOSSIER_GE_2 = 'erp:dossier_ge_2',
+    ERP_SCHEMA_GENERAL_ORGANISATION_SECURITE = 'erp:schema_general_organisation_securite',
+    ERP_ETUDE_INGENIERIE = 'erp:etude_ingenierie',
+    ERP_MANIFESTATION_TEMPORAIRE = 'erp:manifestation_temporaire',
     DECI_DECLARATION_PEI = 'deci:declaration_pei'
 }
