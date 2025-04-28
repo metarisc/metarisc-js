@@ -85,7 +85,8 @@ export class UtilisateursAPI extends Core {
      * Liste des utilisateurs.
      */
     paginateUtilisateurs(
-        lastName? : string
+        lastName? : string,
+        email? : string
     ) : Collection<Utilisateur>
     {
         const pathVariable = { };
@@ -93,7 +94,8 @@ export class UtilisateursAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs'),
             params: Utils.payloadFilter({
-                'last_name': lastName === undefined ? undefined : (new String(lastName)).toString()
+                'last_name': lastName === undefined ? undefined : (new String(lastName)).toString(), 
+                'email': email === undefined ? undefined : (new String(email)).toString()
             })
         });
     }
