@@ -65,13 +65,17 @@ export class CommissionsAPI extends Core {
      * Récupération de la liste des dates de passage de la commission. Cela peut représenter une visite périodique sur site de la commission, ou un passage en salle.
      */
     paginateCommissionDates(
-        commissionId: string
+        commissionId: string,
+        fromDate? : Date
     ) : Collection<PassageCommission>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates')
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
+            params: Utils.payloadFilter({
+                'from_date': fromDate === undefined ? undefined : (new String(fromDate)).toString()
+            })
         });
     }
     

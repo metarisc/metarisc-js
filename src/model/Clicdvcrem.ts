@@ -60,6 +60,7 @@ export type Clicdvcrem = {
     'degagement_escaliers_description': string | null;
     'degagement_ascenseurs_escaliers_mecaniques_trottoirs_roulants_description': string | null;
     'presence_eas_ou_equivalents': boolean | null;
+    'evacuation_personnes_situation_handicap_observation': string | null;
     'degagement_espaces_attente_securises_informations_complementaires': string | null;
     'degagement_tribunes_et_gradins_non_demontables_description': string | null;
     'enfouissement': boolean | null;
@@ -79,7 +80,7 @@ export type Clicdvcrem = {
     'puissance_cuisine': PuissanceCuisineEnum | null;
     'type_de_cuisine': TypeDeCuisineEnum | null;
     'presence_gaz_cuisine': boolean | null;
-    'systeme_extraction': boolean | null;
+    'systeme_ventilation': SystemeVentilationEnum | null;
     'risques_spéciaux_informations_complementaires': string | null;
     'presence_extincteur': boolean | null;
     'presence_ria': boolean | null;
@@ -92,6 +93,7 @@ export type Clicdvcrem = {
     'moyens_de_secours_informations_complementaires': string | null;
     'deci_description': string | null;
     'affichage_des_plans_intervention': boolean | null;
+    'affichage_des_consignes_de_securite': boolean | null;
     'tour_incendie': boolean | null;
     'tremie_attaque': boolean | null;
     'service_de_securite_incendie': ServiceDeSecuriteIncendieEnum | null;
@@ -430,9 +432,16 @@ export enum TypeDeCuisineEnum {
     FERMEE = 'Fermée'
 }
 
+export enum SystemeVentilationEnum {
+    MECANIQUE = 'Mécanique',
+    NATURELLE = 'Naturelle',
+    VENTILATEUR_DEXTRACTION = 'Ventilateur d\'extraction'
+}
+
 export enum InstallationExtinctionEnum {
-    AUTOMATIQUE = 'Automatique',
+    AUTOMATIQUE_SPRINKLER = 'Automatique sprinkler',
     MANUELLE = 'Manuelle',
+    BROUILLARD_DEAU = 'Brouillard d\'eau',
     AUTRE = 'Autre'
 }
 

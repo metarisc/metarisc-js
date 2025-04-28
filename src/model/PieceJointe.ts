@@ -13,5 +13,6 @@ export enum TypeEnum {
     PHOTO = 'photo',
     PLAN = 'plan',
     ANNEXE = 'annexe',
-    DIVERS = 'divers'
+    DIVERS = 'divers',
+    RAPPORT_DE_VERIFICATION_REGLEMENTAIRE_APRES_TRAVAUX = 'rapport de vérification réglementaire après travaux'
 }
