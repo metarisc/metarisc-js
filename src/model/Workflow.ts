@@ -17,7 +17,8 @@ export enum EtatEnum {
     EN_COURS = 'EN_COURS',
     ATTENTE = 'ATTENTE',
     PAUSE = 'PAUSE',
-    NON_CONCERNE = 'NON_CONCERNE'
+    NON_CONCERNE = 'NON_CONCERNE',
+    ATTENTE_VALIDATION = 'ATTENTE_VALIDATION'
 }
 
 export enum TypeEnum {
