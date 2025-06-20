@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec
-// import { WorkflowStepWorkflow } from './WorkflowStepWorkflow';
+import { WorkflowStepWorflowData } from './WorkflowStepWorflowData';
 
 export type WorkflowStep = {
     'name': string;
-    // 'workflow': WorkflowStepWorkflow;
+    'workflow': WorkflowStepWorflowData;
     'needs': Array<string>;
 };

@@ -12,6 +12,7 @@ export type RapportEtude = {
     'facteur_dangerosite': number | null;
     'documents_techniques': Array<DocumentTechnique>;
     'textes_applicables': Array<TexteApplicable>;
+    'descriptif_dossier': string | null;
 };
 
 export enum PropositionAvisEnum {

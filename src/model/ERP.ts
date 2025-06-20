@@ -5,6 +5,7 @@ import { DescriptifTechniqueERP } from './DescriptifTechniqueERP';
 import { ERPLie } from './ERPLie';
 import { ReferenceExterieure } from './ReferenceExterieure';
 import { SiteGeographique } from './SiteGeographique';
+import { TexteApplicable } from './TexteApplicable';
 import { Utilisateur } from './Utilisateur';
 
 export type ERP = {
@@ -23,7 +24,8 @@ export type ERP = {
     'sites_geographiques': Array<SiteGeographique>;
     'commission_de_securite': Commission | null;
     'titulaires': Array<Utilisateur>;
-    'etablissement_rattache'?: ERPLie;
+    'etablissement_rattache': ERPLie | null;
+    'textes_applicables': Array<TexteApplicable>;
 };
 
 export enum AvisExploitationEnum {

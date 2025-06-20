@@ -1,25 +1,9 @@
 // File generated from our OpenAPI spec
 
-export type Workflow = {
-    'id': string;
+export type WorkflowStepWorflowData = {
     'titre': string;
-    'date_de_creation': Date;
-    'date_de_debut': Date | null;
-    'date_de_fin': Date | null;
-    'workflow_automatise': boolean;
-    'etat': EtatEnum;
-    'observations': string | null;
     'type': TypeEnum;
 };
-
-export enum EtatEnum {
-    VALIDE = 'VALIDE',
-    EN_COURS = 'EN_COURS',
-    ATTENTE = 'ATTENTE',
-    PAUSE = 'PAUSE',
-    NON_CONCERNE = 'NON_CONCERNE',
-    ATTENTE_VALIDATION = 'ATTENTE_VALIDATION'
-}
 
 export enum TypeEnum {
     ANALYSE_DE_RISQUE = 'analyse_de_risque',
