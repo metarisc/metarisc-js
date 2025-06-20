@@ -10,5 +10,7 @@ export type DossierAffectation = {
 export enum RoleEnum {
     ADMIN = 'admin',
     PREVENTIONNISTE = 'preventionniste',
-    SECRETARIAT_PREV = 'secretariat_prev'
+    SECRETARIAT_PREV = 'secretariat_prev',
+    RAPPORTEUR = 'rapporteur',
+    RELECTEUR_VALIDEUR = 'relecteur|valideur'
 }
