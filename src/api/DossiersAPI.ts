@@ -13,6 +13,7 @@ import { PrescriptionAnalyseDeRisque } from '../model/PrescriptionAnalyseDeRisqu
 import { RapportEtude } from '../model/RapportEtude';
 import { RapportVisite } from '../model/RapportVisite';
 import { Essai } from '../model/Essai';
+import { PermissionDossier } from '../model/PermissionDossier';
 import { Tag } from '../model/Tag';
 import { Workflow } from '../model/Workflow';
 
@@ -89,6 +90,20 @@ export class DossiersAPI extends Core {
             method: 'GET',
             responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/pdf')
+        });
+    }
+    
+    /**
+     * Ensemble des permissions de l'utilisateur connecté sur le dossier.
+     */
+    getPermissionsDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<{data: PermissionDossier[]}>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/permissions')
         });
     }
     

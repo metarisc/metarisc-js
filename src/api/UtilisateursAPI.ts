@@ -5,6 +5,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Utilisateur } from '../model/Utilisateur';
+import { Permission } from '../model/Permission';
 import { Email } from '../model/Email';
 import { OrganisationMembre } from '../model/OrganisationMembre';
 
@@ -23,6 +24,20 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi')
+        });
+    }
+    
+    /**
+     * Retourne l'ensemble des permissions d'un utilisateur Metarisc.
+     */
+    getPermissionsUtilisateur(
+        utilisateurId: string
+    ) : Promise<AxiosResponse<{data: Permission[]}>>
+    {
+        const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/permissions')
         });
     }
     
