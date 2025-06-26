@@ -9,6 +9,7 @@ import { Dossier } from '../model/Dossier';
 import { ERP } from '../model/ERP';
 import { MainCourante } from '../model/MainCourante';
 import { PieceJointe } from '../model/PieceJointe';
+import { PermissionErp } from '../model/PermissionErp';
 import { ReferenceExterieure } from '../model/ReferenceExterieure';
 import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
 import { Prescription } from '../model/Prescription';
@@ -30,6 +31,20 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}')
+        });
+    }
+    
+    /**
+     * Ensemble des permissions de l'utilisateur connecté sur l'ERP.
+     */
+    getPermissionsErp(
+        erpId: string
+    ) : Promise<AxiosResponse<{data: PermissionErp[]}>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/permissions')
         });
     }
     

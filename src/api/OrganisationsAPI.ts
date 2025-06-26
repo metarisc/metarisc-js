@@ -9,6 +9,7 @@ import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
 import { OrganisationMembre } from '../model/OrganisationMembre';
 import { OrganisationPreferences } from '../model/OrganisationPreferences';
 import { ReglesDeci } from '../model/ReglesDeci';
+import { PermissionOrg } from '../model/PermissionOrg';
 import { WorkflowType } from '../model/WorkflowType';
 
 export class OrganisationsAPI extends Core {
@@ -27,6 +28,20 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}')
+        });
+    }
+    
+    /**
+     * Ensemble des permissions de l'utilisateur connecté sur l'organisation.
+     */
+    getPermissionsOrg(
+        orgId: string
+    ) : Promise<AxiosResponse<{data: PermissionOrg[]}>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/permissions')
         });
     }
     
