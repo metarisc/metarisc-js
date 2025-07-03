@@ -94,13 +94,19 @@ export class ERPAPI extends Core {
      * Récupération de la liste des dossiers.
      */
     paginateErpDossiers(
-        erpId: string
+        erpId: string,
+        type? : 'erp:autorisation_de_travaux' | 'erp:permis_de_construire' | 'erp:levee_de_prescriptions' | 'erp:changement_de_dus' | 'erp:salon_type_t' | 'erp:utilisation_exceptionnelle_de_locaux' | 'erp:demande_d_implantation_cts_inferieur_6_mois' | 'erp:demande_d_implantation_cts_superieur_6_mois' | 'erp:derogation' | 'erp:etude_cahier_des_charges_type_t' | 'erp:levee_de_reserve' | 'erp:echeancier_de_travaux' | 'erp:cahier_des_charges_ssi' | 'erp:etude_suite_a_un_avis_differe' | 'erp:visite_periodique' | 'erp:visite_reception' | 'erp:visite_avant_ouverture' | 'erp:visite_controle' | 'erp:visite_inopinee' | 'erp:visite_chantier' | 'erp:demande_avis' | 'erp:demande_reclassement' | 'erp:suivi_avis_defavorable' | 'erp:levee_avis_defavorable' | 'erp:dossier_ge_2' | 'erp:schema_general_organisation_securite' | 'erp:etude_ingenierie' | 'erp:manifestation_temporaire',
+        sort? : 'asc' | 'desc'
     ) : Collection<Dossier>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
+            params: Utils.payloadFilter({
+                'type': type === undefined ? undefined : (new String(type)).toString(), 
+                'sort': sort === undefined ? undefined : (new String(sort)).toString()
+            })
         });
     }
     
