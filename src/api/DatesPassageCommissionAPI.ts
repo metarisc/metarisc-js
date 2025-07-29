@@ -13,6 +13,21 @@ export class DatesPassageCommissionAPI extends Core {
     }
     
     /**
+     * Le compte rendu global est un document représentant la synthèse des avis et des échanges de tous les dossiers à l'ordre du jour d'une commission, en se basant sur le modèle de rapport de l'organisation. La génération du PDF est une opération qui peut être longue, en fonction de la taille et du nombre d'éléments à exporter.
+     */
+    getCompteRenduGlobalPdfDate(
+        dateId: string
+    ) : Promise<AxiosResponse<Blob>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'GET',
+            responseType: 'blob',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/compte_rendu_global_pdf')
+        });
+    }
+    
+    /**
      * L'export de la convocation des membres est une opération qui permet de récupérer un fichier PDF contenant la convocation pour une date de passage en commission. Le PDF généré est un document de synthèse qui reprend les informations de la commission, en se basant sur le modèle de rapport de l'organisation. La génération du PDF est une opération qui peut être longue, en fonction de la taille et du nombre d'éléments à exporter.
      */
     getConvocationPdfDate(
