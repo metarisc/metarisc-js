@@ -59,6 +59,25 @@ export class Client {
 			baseURL: config.metarisc_url ?? "https://api.metarisc.fr/",
 			headers: {
 				common: this.getDefaultHeaders()
+			},
+			paramsSerializer: {
+				serialize: (params) => {
+					const searchParams = new URLSearchParams();
+
+					Object.keys(params).forEach((key) => {
+						const value = params[key];
+						if (Array.isArray(value)) {
+							// Pour les tableaux, répéter le même nom de paramètre sans crochets
+							value.forEach((item) => {
+								searchParams.append(key, String(item));
+							});
+						} else if (value !== null && value !== undefined) {
+							searchParams.append(key, String(value));
+						}
+					});
+
+					return searchParams.toString();
+				}
 			}
 		});
 
