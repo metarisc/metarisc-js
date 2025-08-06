@@ -150,6 +150,20 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Récupération de la liste des tags d'un dossier.
+     */
+    paginateDossierTags(
+        dossierId: string
+    ) : Promise<AxiosResponse<{data: Tag[]}>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags')
+        });
+    }
+    
+    /**
      * Récupération de la liste des contacts.
      */
     paginateDossierContacts(
@@ -219,20 +233,6 @@ export class DossiersAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge')
-        });
-    }
-    
-    /**
-     * Récupération de la liste des tags d'un dossier.
-     */
-    paginateDossierTags(
-        dossierId: string
-    ) : Collection<Tag>
-    {
-        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        return this.collect({
-            method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags')
         });
     }
     
@@ -390,6 +390,22 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions/reorganiser'),
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Permet de remplacer les tags d'un dossier existant par les valeurs transmis. Si un tableau vide est envoyé, les tags seront réinitialisés.
+     */
+    postTagsDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<{data: Tag[]}>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
             body: Utils.payloadFilter(params)
         });
     }

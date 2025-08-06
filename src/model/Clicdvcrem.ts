@@ -25,6 +25,7 @@ export type Clicdvcrem = {
     'plancher_bas_du_dernier_niveau': PlancherBasDuDernierNiveauEnum | null;
     'plancher_bas_du_dernier_niveau_accessible_au_public': PlancherBasDuDernierNiveauAccessibleAuPublicEnum | null;
     'voie_engin': boolean | null;
+    'nombre_voies_engins': number | null;
     'voie_echelle': boolean | null;
     'nombre_facades_accessibles': number | null;
     'informations_acces_facades': string | null;
