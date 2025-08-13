@@ -66,7 +66,8 @@ export class CommissionsAPI extends Core {
      */
     paginateCommissionDates(
         commissionId: string,
-        fromDate? : Date
+        fromDate? : Date,
+        type? : 'salle' | 'visite_de_securite' | 'groupe_de_visite' | 'visite_reception_travaux' | 'visite_periodique' | 'visite_inopinee' | 'visite_controle'
     ) : Collection<PassageCommission>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
@@ -74,7 +75,8 @@ export class CommissionsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             params: Utils.payloadFilter({
-                'from_date': fromDate === undefined ? undefined : (new String(fromDate)).toString()
+                'from_date': fromDate === undefined ? undefined : (new String(fromDate)).toString(), 
+                'type': type === undefined ? undefined : (new String(type)).toString()
             })
         });
     }
