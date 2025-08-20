@@ -4,6 +4,7 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { PassageCommissionDossier } from '../model/PassageCommissionDossier';
+import { PrescriptionAnalyseDeRisque } from '../model/PrescriptionAnalyseDeRisque';
 
 export class OrdresDuJourAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -40,6 +41,20 @@ export class OrdresDuJourAPI extends Core {
     }
     
     /**
+     * Liste des prescriptions sur un dossier à l'ordre du jour d'une date de passage en commission. Les prescriptions sont ordonnées par leur numéro d'ordre.
+     */
+    getPrescriptionsDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<{data: PrescriptionAnalyseDeRisque[]}>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions')
+        });
+    }
+    
+    /**
      * Le procès verbal est le document officiel de la commission de sécurité remis à l’autorité de police compétente. Il contient l’avis unique prononcé, exprimant la position collégiale de la commission. Le PDF généré est un document de synthèse qui reprend les informations de la commission, en se basant sur le modèle de rapport de l'organisation. La génération du PDF est une opération qui peut être longue, en fonction de la taille et du nombre d'éléments à exporter.
      */
     getProcesVerbalPdfDossier(
@@ -66,6 +81,38 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}'),
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajout d'une prescription sur un dossier à l'ordre du jour à une date de passage en commission. La prescription est ajoutée à dans l'avis posé par la commission sur le dossier.
+     */
+    postPrescriptionsDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<PrescriptionAnalyseDeRisque>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions'),
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Réorganiser les numéros d'ordre des prescriptions d'un ordre du jour d'un dossier. Cela permet de mettre à jour simplement les numéros d'ordre des prescriptions.
+     */
+    postReorganiserPrescriptionsDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<{data: PrescriptionAnalyseDeRisque[]}>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions/reorganiser'),
             body: Utils.payloadFilter(params)
         });
     }
