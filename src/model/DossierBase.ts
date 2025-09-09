@@ -12,13 +12,13 @@ export type DossierBase = {
     'createur': Utilisateur | null;
     'application_utilisee_nom': string | null;
     'statut': StatutEnum;
-    'modules': Array<ModulesEnum>;
+    'modules': Set<ModulesEnum>;
     'tags': Array<Tag>;
     'est_archive': boolean;
     'passage_en_commission': PassageCommission | null;
     'avis': AvisEnum | null;
     'enveloppe': Enveloppe | null;
-    'workflows_actifs': Array<WorkflowsActifsEnum>;
+    'workflows_actifs': Set<WorkflowsActifsEnum>;
     'nb_messages_fil_rouge': number;
     'nb_contacts': number;
     'nb_pieces_jointes': number;

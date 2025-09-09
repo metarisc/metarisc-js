@@ -195,10 +195,11 @@ export class DossiersAPI extends Core {
      * Récupération de la liste des dossiers selon des critères de recherche.
      */
     paginateDossiers(
+        sort? : 'date_de_creation' | '-date_de_creation',
         objet? : string,
         erp? : string,
         pei? : string,
-        type? : string,
+        type? : string | Array<string>,
         workflowActif? : 'analyse_de_risque' | 'validation' | 'arrivee_sis' | 'arrivee_sis_prev' | 'arrivee_secretariat_commission' | 'consultation_sis' | 'passage_commission' | 'relecture' | 'visite' | 'arrivee_secretariat' | 'workflow' | 'reception_de_travaux_en_attente',
         affecte? : string,
         enveloppe? : string,
@@ -210,6 +211,7 @@ export class DossiersAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers'),
             params: Utils.payloadFilter({
+                'sort': sort === undefined ? undefined : (new String(sort)).toString(), 
                 'objet': objet === undefined ? undefined : (new String(objet)).toString(), 
                 'erp': erp === undefined ? undefined : (new String(erp)).toString(), 
                 'pei': pei === undefined ? undefined : (new String(pei)).toString(), 
