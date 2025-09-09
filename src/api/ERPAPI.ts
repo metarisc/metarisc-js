@@ -91,12 +91,17 @@ export class ERPAPI extends Core {
     }
     
     /**
-     * Récupération de la liste des dossiers.
+     * Récupération de la liste des dossiers. Cet endpoint partage certains paramètres de filtrage de /dossiers.
      */
     paginateErpDossiers(
         erpId: string,
-        type? : 'erp:autorisation_de_travaux' | 'erp:permis_de_construire' | 'erp:levee_de_prescriptions' | 'erp:changement_de_dus' | 'erp:salon_type_t' | 'erp:utilisation_exceptionnelle_de_locaux' | 'erp:demande_d_implantation_cts_inferieur_6_mois' | 'erp:demande_d_implantation_cts_superieur_6_mois' | 'erp:derogation' | 'erp:etude_cahier_des_charges_type_t' | 'erp:levee_de_reserve' | 'erp:echeancier_de_travaux' | 'erp:cahier_des_charges_ssi' | 'erp:etude_suite_a_un_avis_differe' | 'erp:visite_periodique' | 'erp:visite_reception' | 'erp:visite_avant_ouverture' | 'erp:visite_controle' | 'erp:visite_inopinee' | 'erp:visite_chantier' | 'erp:demande_avis' | 'erp:demande_reclassement' | 'erp:suivi_avis_defavorable' | 'erp:levee_avis_defavorable' | 'erp:dossier_ge_2' | 'erp:schema_general_organisation_securite' | 'erp:etude_ingenierie' | 'erp:manifestation_temporaire',
-        sort? : 'asc' | 'desc'
+        sort? : 'date_de_creation' | '-date_de_creation',
+        objet? : string,
+        type? : string | Array<string>,
+        workflowActif? : 'analyse_de_risque' | 'validation' | 'arrivee_sis' | 'arrivee_sis_prev' | 'arrivee_secretariat_commission' | 'consultation_sis' | 'passage_commission' | 'relecture' | 'visite' | 'arrivee_secretariat' | 'workflow' | 'reception_de_travaux_en_attente',
+        affecte? : string,
+        enveloppe? : string,
+        numeroUrba? : string
     ) : Collection<Dossier>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
@@ -104,8 +109,13 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
             params: Utils.payloadFilter({
+                'sort': sort === undefined ? undefined : (new String(sort)).toString(), 
+                'objet': objet === undefined ? undefined : (new String(objet)).toString(), 
                 'type': type === undefined ? undefined : (new String(type)).toString(), 
-                'sort': sort === undefined ? undefined : (new String(sort)).toString()
+                'workflow_actif': workflowActif === undefined ? undefined : (new String(workflowActif)).toString(), 
+                'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 
+                'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString(), 
+                'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString()
             })
         });
     }

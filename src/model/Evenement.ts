@@ -1,4 +1,5 @@
 // File generated from our OpenAPI spec
+import { EvenementSubject } from './EvenementSubject';
 
 export type Evenement = {
     'id': string;
@@ -7,6 +8,7 @@ export type Evenement = {
     'description': string | null;
     'date_debut': Date;
     'date_fin': Date;
+    'subject'?: EvenementSubject;
 };
 
 export enum TypeEnum {
