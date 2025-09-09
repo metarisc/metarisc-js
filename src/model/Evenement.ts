@@ -1,5 +1,5 @@
 // File generated from our OpenAPI spec
-import { EvenementSubject } from './EvenementSubject';
+import { PassageCommission } from './PassageCommission';
 
 export type Evenement = {
     'id': string;
@@ -8,7 +8,7 @@ export type Evenement = {
     'description': string | null;
     'date_debut': Date;
     'date_fin': Date;
-    'subject'?: EvenementSubject;
+    'subject'?: PassageCommission;
 };
 
 export enum TypeEnum {
