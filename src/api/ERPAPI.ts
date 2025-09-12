@@ -11,7 +11,7 @@ import { MainCourante } from '../model/MainCourante';
 import { PieceJointe } from '../model/PieceJointe';
 import { PermissionErp } from '../model/PermissionErp';
 import { ReferenceExterieure } from '../model/ReferenceExterieure';
-import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
+import { DescriptifTechniqueERPBase } from '../model/DescriptifTechniqueERPBase';
 import { Prescription } from '../model/Prescription';
 import { PrescriptionSupportReglementaire } from '../model/PrescriptionSupportReglementaire';
 
@@ -164,7 +164,7 @@ export class ERPAPI extends Core {
      */
     paginateErpHistorique(
         erpId: string
-    ) : Collection<DescriptifTechniqueERP>
+    ) : Collection<DescriptifTechniqueERPBase>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect({
