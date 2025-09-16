@@ -22,7 +22,11 @@ export class EvenementsAPI extends Core {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}')
+            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -36,7 +40,11 @@ export class EvenementsAPI extends Core {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}')
+            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -55,7 +63,11 @@ export class EvenementsAPI extends Core {
             params: Utils.payloadFilter({
                 'period': period === undefined ? undefined : (new String(period)).toString(), 
                 'type': type === undefined ? undefined : (new String(type)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -69,7 +81,11 @@ export class EvenementsAPI extends Core {
         const pathVariable = { 'evenement_id': (new String(evenementId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs')
+            endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -84,6 +100,10 @@ export class EvenementsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }

@@ -20,7 +20,11 @@ export class DossiersAffectationsAPI extends Core {
         const pathVariable = { 'affectation_id': (new String(affectationId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers_affectations/{affectation_id}')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers_affectations/{affectation_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -36,6 +40,10 @@ export class DossiersAffectationsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers_affectations/{affectation_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }

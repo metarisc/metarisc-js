@@ -2,14 +2,13 @@ import axios, {
 	AxiosInstance,
 	AxiosResponse,
 	RawAxiosRequestHeaders
-} from "axios";
+, AxiosRequestConfig } from "axios";
 import axiosRetry from "axios-retry";
 import { MetariscConfig, OAuth2Options } from "./core";
 import { GrantResponse, OAuth2, RefreshResponse } from "./auth/oauth2";
 import { setupCache } from "axios-cache-interceptor";
 import { Utils } from "./utils";
 import { SessionExpiredError } from "./error/SessionExpiredError";
-import { AxiosRequestConfig } from "axios";
 
 export interface RequestConfig extends AxiosRequestConfig {
 	body?: any;
@@ -162,10 +161,10 @@ export class Client {
 	 */
 	async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
 		this.emit(EventEnum.request, config);
-		return this.axios.request<T>({...config, ...{
+		return this.axios.request<T>({ ...config, ...{
 			method: config.method || "GET",
 			url: config.endpoint || "/"
-		}}).then((response) => {
+		} }).then((response) => {
             this.emit(EventEnum.response, response);
             return response;
         });

@@ -32,7 +32,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -46,7 +50,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -60,7 +68,17 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.modules) {
+                    parsedData.modules = new Set(parsedData.modules);
+                }
+                if (parsedData && parsedData.workflows_actifs) {
+                    parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
+                }
+                return parsedData;
+            }]
         });
     }
     
@@ -74,7 +92,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -89,7 +111,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/pdf')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/pdf'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -103,7 +129,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/permissions')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/permissions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -117,7 +147,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -131,7 +165,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -145,7 +183,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -159,7 +201,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -173,7 +219,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -187,7 +237,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -220,7 +274,11 @@ export class DossiersAPI extends Core {
                 'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 
                 'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString(), 
                 'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -234,7 +292,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -248,7 +310,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -264,6 +330,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -280,6 +350,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -296,6 +370,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -312,6 +390,16 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.modules) {
+                    parsedData.modules = new Set(parsedData.modules);
+                }
+                if (parsedData && parsedData.workflows_actifs) {
+                    parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
+                }
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -328,6 +416,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -344,6 +436,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -360,6 +456,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -376,6 +476,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -392,6 +496,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions/reorganiser'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -408,6 +516,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -422,7 +534,11 @@ export class DossiersAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'PUT',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver')
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -438,6 +554,10 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'PUT',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }

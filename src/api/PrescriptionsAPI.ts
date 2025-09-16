@@ -22,7 +22,11 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}')
+            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -36,7 +40,11 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}')
+            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -50,7 +58,11 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'prescription_id': (new String(prescriptionId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}')
+            endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -64,7 +76,11 @@ export class PrescriptionsAPI extends Core {
         const pathVariable = { 'support_reglementaire_id': (new String(supportReglementaireId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}')
+            endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -83,7 +99,11 @@ export class PrescriptionsAPI extends Core {
             params: Utils.payloadFilter({
                 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
                 'support_reglementaire_reference': supportReglementaireReference === undefined ? undefined : (new String(supportReglementaireReference)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -102,7 +122,11 @@ export class PrescriptionsAPI extends Core {
             params: Utils.payloadFilter({
                 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
                 'reference': reference === undefined ? undefined : (new String(reference)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -118,6 +142,10 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -133,6 +161,10 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -148,6 +180,10 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }

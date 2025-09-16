@@ -488,19 +488,19 @@ export enum ServiceDeSecuriteIncendieEnum {
 }
 
 export enum TypeSsiEnum {
-    A = 'A',
-    B = 'B',
-    C = 'C',
+    E = 'E',
     D = 'D',
-    E = 'E'
+    C = 'C',
+    B = 'B',
+    A = 'A'
 }
 
 export enum TypeAlarmeEnum {
-    _1 = '1',
-    _2_A = '2A',
-    _2_B = '2B',
+    _4 = '4',
     _3 = '3',
-    _4 = '4'
+    _2_B = '2B',
+    _2_A = '2A',
+    _1 = '1'
 }
 
 export enum AutreSystemeAlerteEnum {

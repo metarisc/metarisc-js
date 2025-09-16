@@ -11,7 +11,7 @@ import { MainCourante } from '../model/MainCourante';
 import { PieceJointe } from '../model/PieceJointe';
 import { PermissionErp } from '../model/PermissionErp';
 import { ReferenceExterieure } from '../model/ReferenceExterieure';
-import { DescriptifTechniqueERP } from '../model/DescriptifTechniqueERP';
+import { DescriptifTechniqueERPBase } from '../model/DescriptifTechniqueERPBase';
 import { Prescription } from '../model/Prescription';
 import { PrescriptionSupportReglementaire } from '../model/PrescriptionSupportReglementaire';
 
@@ -30,7 +30,11 @@ export class ERPAPI extends Core {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -44,7 +48,11 @@ export class ERPAPI extends Core {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/permissions')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/permissions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -58,7 +66,11 @@ export class ERPAPI extends Core {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -72,7 +84,11 @@ export class ERPAPI extends Core {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -86,7 +102,11 @@ export class ERPAPI extends Core {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -116,7 +136,11 @@ export class ERPAPI extends Core {
                 'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 
                 'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString(), 
                 'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -155,7 +179,11 @@ export class ERPAPI extends Core {
                 'commission_concernee': commissionConcernee === undefined ? undefined : (new String(commissionConcernee)).toString(), 
                 'categorie': categorie === undefined ? undefined : (new String(categorie)).toString(), 
                 'erp_rattache_a': erpRattacheA === undefined ? undefined : (new String(erpRattacheA)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -164,12 +192,16 @@ export class ERPAPI extends Core {
      */
     paginateErpHistorique(
         erpId: string
-    ) : Collection<DescriptifTechniqueERP>
+    ) : Collection<DescriptifTechniqueERPBase>
     {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/historique')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/historique'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -187,7 +219,11 @@ export class ERPAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/mains_courantes'),
             params: Utils.payloadFilter({
                 'sort': sort === undefined ? undefined : (new String(sort)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -201,7 +237,11 @@ export class ERPAPI extends Core {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/prescriptions')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/prescriptions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -215,7 +255,11 @@ export class ERPAPI extends Core {
         const pathVariable = { 'erp_id': (new String(erpId)).toString() };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/textes_applicables')
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/textes_applicables'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -231,6 +275,10 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -247,6 +295,10 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -263,6 +315,10 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -279,6 +335,16 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.modules) {
+                    parsedData.modules = new Set(parsedData.modules);
+                }
+                if (parsedData && parsedData.workflows_actifs) {
+                    parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
+                }
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -294,6 +360,10 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -310,6 +380,10 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -326,6 +400,10 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/mains_courantes'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }

@@ -24,7 +24,11 @@ export class CommissionsAPI extends Core {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}')
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -38,7 +42,11 @@ export class CommissionsAPI extends Core {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences')
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -57,7 +65,11 @@ export class CommissionsAPI extends Core {
             params: Utils.payloadFilter({
                 'libelle': libelle === undefined ? undefined : (new String(libelle)).toString(), 
                 'type': type === undefined ? undefined : (new String(type)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -77,7 +89,11 @@ export class CommissionsAPI extends Core {
             params: Utils.payloadFilter({
                 'from_date': fromDate === undefined ? undefined : (new String(fromDate)).toString(), 
                 'type': type === undefined ? undefined : (new String(type)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -95,7 +111,11 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
             params: Utils.payloadFilter({
                 'commission': commission === undefined ? undefined : (new String(commission)).toString()
-            })
+            }),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -110,6 +130,10 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -126,6 +150,10 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -142,6 +170,10 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -158,6 +190,10 @@ export class CommissionsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }

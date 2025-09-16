@@ -21,7 +21,11 @@ export class NotificationsAPI extends Core {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}')
+            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -35,7 +39,11 @@ export class NotificationsAPI extends Core {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}')
+            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -48,7 +56,11 @@ export class NotificationsAPI extends Core {
         const pathVariable = { };
         return this.collect({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/notifications')
+            endpoint: Utils.constructPath(pathVariable, '/notifications'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -62,7 +74,11 @@ export class NotificationsAPI extends Core {
         const pathVariable = { 'notification_id': (new String(notificationId)).toString() };
         return this.request({
             method: 'POST',
-            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue')
+            endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -77,6 +93,10 @@ export class NotificationsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
