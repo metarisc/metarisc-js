@@ -9,20 +9,13 @@ import { GrantResponse, OAuth2, RefreshResponse } from "./auth/oauth2";
 import { setupCache } from "axios-cache-interceptor";
 import { Utils } from "./utils";
 import { SessionExpiredError } from "./error/SessionExpiredError";
+import { AxiosRequestConfig } from "axios";
 
-interface RequestConfig {
+export interface RequestConfig extends AxiosRequestConfig {
 	body?: any;
 	headers?: { [name: string]: string | string[] };
 	params?: { [param: string]: string | string[] };
 	endpoint?: string;
-	method?: string;
-	responseType?:
-		| "arraybuffer"
-		| "blob"
-		| "document"
-		| "json"
-		| "text"
-		| "stream";
 }
 
 export enum AuthMethod {
@@ -169,14 +162,10 @@ export class Client {
 	 */
 	async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
 		this.emit(EventEnum.request, config);
-		return this.axios.request<T>({
+		return this.axios.request<T>({...config, ...{
 			method: config.method || "GET",
-			url: config.endpoint || "/",
-			params: config.params,
-			data: config.body,
-			headers: config.headers,
-			responseType: config.responseType
-		}).then((response) => {
+			url: config.endpoint || "/"
+		}}).then((response) => {
             this.emit(EventEnum.response, response);
             return response;
         });
