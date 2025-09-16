@@ -21,7 +21,11 @@ export class OrdresDuJourAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'DELETE',
-            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}')
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -36,7 +40,11 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'GET',
             responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/compte_rendu_pdf')
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/compte_rendu_pdf'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -50,7 +58,11 @@ export class OrdresDuJourAPI extends Core {
         const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
         return this.request({
             method: 'GET',
-            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions')
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -65,7 +77,11 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'GET',
             responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/proces_verbal_pdf')
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/proces_verbal_pdf'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
         });
     }
     
@@ -81,6 +97,10 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -97,6 +117,10 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }
@@ -113,6 +137,10 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions/reorganiser'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
             body: Utils.payloadFilter(params)
         });
     }

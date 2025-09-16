@@ -4,7 +4,7 @@ import { Collection } from "./collection";
 import { GrantResponse, RefreshResponse } from "./auth/oauth2";
 
 interface RequestConfig extends BaseRequestConfig {
-};
+}
 
 export interface MetariscConfig {
     metarisc_url?: string;
