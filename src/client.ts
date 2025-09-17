@@ -163,7 +163,8 @@ export class Client {
 		this.emit(EventEnum.request, config);
 		return this.axios.request<T>({ ...config, ...{
 			method: config.method || "GET",
-			url: config.endpoint || "/"
+			url: config.endpoint || "/",
+			data: config.body
 		} }).then((response) => {
             this.emit(EventEnum.response, response);
             return response;
