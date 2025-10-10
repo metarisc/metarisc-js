@@ -40,7 +40,7 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'GET',
             responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/compte_rendu_pdf'),
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/compte_rendu_pdf')
         });
     }
     
@@ -73,7 +73,7 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'GET',
             responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/proces_verbal_pdf'),
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/proces_verbal_pdf')
         });
     }
     
