@@ -23,11 +23,8 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'GET',
             responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/compte_rendu_global_pdf'),
-            transformResponse: [(data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData;
-            }]
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/compte_rendu_global_pdf')
+
         });
     }
     
@@ -42,11 +39,7 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'GET',
             responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/convocation_pdf'),
-            transformResponse: [(data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData;
-            }]
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/convocation_pdf')
         });
     }
     
