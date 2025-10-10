@@ -112,10 +112,6 @@ export class DossiersAPI extends Core {
             method: 'GET',
             responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/pdf'),
-            transformResponse: [(data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData;
-            }]
         });
     }
     

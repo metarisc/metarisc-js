@@ -41,10 +41,6 @@ export class OrdresDuJourAPI extends Core {
             method: 'GET',
             responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/compte_rendu_pdf'),
-            transformResponse: [(data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData;
-            }]
         });
     }
     
@@ -78,10 +74,6 @@ export class OrdresDuJourAPI extends Core {
             method: 'GET',
             responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/proces_verbal_pdf'),
-            transformResponse: [(data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData;
-            }]
         });
     }
     

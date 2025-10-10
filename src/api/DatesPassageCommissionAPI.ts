@@ -24,10 +24,7 @@ export class DatesPassageCommissionAPI extends Core {
             method: 'GET',
             responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/compte_rendu_global_pdf'),
-            transformResponse: [(data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData;
-            }]
+
         });
     }
     
@@ -43,10 +40,6 @@ export class DatesPassageCommissionAPI extends Core {
             method: 'GET',
             responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/convocation_pdf'),
-            transformResponse: [(data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData;
-            }]
         });
     }
     
