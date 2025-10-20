@@ -76,11 +76,11 @@ export class Collection<T>
         const generator = this.autoPagingIterator();
         const results = [];
         
-        limit = limit ?? 10000;
+        limit = limit ?? 1000;
 
-        if (limit > 10000) {
+        if (limit > 1000) {
             throw Error(
-                'You cannot specify a limit of more than 10,000 items to fetch in `autoPagingIteratorToArray`; use `autoPagingIterator` to iterate through longer lists.'
+                'You cannot specify a limit of more than 1,000 items to fetch in `autoPagingIteratorToArray`; use `autoPagingIterator` to iterate through longer lists.'
             );
         }
 

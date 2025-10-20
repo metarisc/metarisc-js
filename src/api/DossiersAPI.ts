@@ -77,6 +77,15 @@ export class DossiersAPI extends Core {
                 if (parsedData && parsedData.workflows_actifs) {
                     parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
                 }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }]
         });
@@ -164,6 +173,15 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.analyse_risque?.activites_secondaire) {
+                    parsedData.analyse_risque.activites_secondaire = new Set(parsedData.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.analyse_risque?.type_cloisonnement) {
+                    parsedData.analyse_risque.type_cloisonnement = new Set(parsedData.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.analyse_risque?.type_de_chauffage) {
+                    parsedData.analyse_risque.type_de_chauffage = new Set(parsedData.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }]
         });
@@ -394,6 +412,15 @@ export class DossiersAPI extends Core {
                 if (parsedData && parsedData.workflows_actifs) {
                     parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
                 }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
@@ -454,6 +481,15 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.analyse_risque?.activites_secondaire) {
+                    parsedData.analyse_risque.activites_secondaire = new Set(parsedData.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.analyse_risque?.type_cloisonnement) {
+                    parsedData.analyse_risque.type_cloisonnement = new Set(parsedData.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.analyse_risque?.type_de_chauffage) {
+                    parsedData.analyse_risque.type_de_chauffage = new Set(parsedData.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
