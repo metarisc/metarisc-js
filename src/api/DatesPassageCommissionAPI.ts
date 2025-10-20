@@ -24,7 +24,6 @@ export class DatesPassageCommissionAPI extends Core {
             method: 'GET',
             responseType: 'blob',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/compte_rendu_global_pdf')
-
         });
     }
     
@@ -93,6 +92,21 @@ export class DatesPassageCommissionAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.dossier.modules) {
+                    parsedData.dossier.modules = new Set(parsedData.dossier.modules);
+                }
+                if (parsedData && parsedData.dossier.workflows_actifs) {
+                    parsedData.dossier.workflows_actifs = new Set(parsedData.dossier.workflows_actifs);
+                }
+                if (parsedData && parsedData.dossier.erp?.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.dossier.erp?.descriptif_technique.analyse_risque?.activites_secondaire = new Set(parsedData.dossier.erp?.descriptif_technique.analyse_risque?.activites_secondaire);
+                }
+                if (parsedData && parsedData.dossier.erp?.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.dossier.erp?.descriptif_technique.analyse_risque?.type_cloisonnement = new Set(parsedData.dossier.erp?.descriptif_technique.analyse_risque?.type_cloisonnement);
+                }
+                if (parsedData && parsedData.dossier.erp?.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.dossier.erp?.descriptif_technique.analyse_risque?.type_de_chauffage = new Set(parsedData.dossier.erp?.descriptif_technique.analyse_risque?.type_de_chauffage);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
