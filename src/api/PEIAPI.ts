@@ -278,14 +278,14 @@ export class PEIAPI extends Core {
                 if (parsedData && parsedData.workflows_actifs) {
                     parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
                 }
-                if (parsedData && parsedData.erp?.descriptif_technique.analyse_risque?.activites_secondaire) {
-                    parsedData.erp?.descriptif_technique.analyse_risque?.activites_secondaire = new Set(parsedData.erp?.descriptif_technique.analyse_risque?.activites_secondaire);
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire);
                 }
-                if (parsedData && parsedData.erp?.descriptif_technique.analyse_risque?.type_cloisonnement) {
-                    parsedData.erp?.descriptif_technique.analyse_risque?.type_cloisonnement = new Set(parsedData.erp?.descriptif_technique.analyse_risque?.type_cloisonnement);
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement);
                 }
-                if (parsedData && parsedData.erp?.descriptif_technique.analyse_risque?.type_de_chauffage) {
-                    parsedData.erp?.descriptif_technique.analyse_risque?.type_de_chauffage = new Set(parsedData.erp?.descriptif_technique.analyse_risque?.type_de_chauffage);
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage);
                 }
                 return parsedData;
             }],
