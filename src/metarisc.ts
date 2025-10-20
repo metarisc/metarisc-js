@@ -15,6 +15,7 @@ export class Metarisc extends Core
     public sites_geographiques: resources.SitesGeographiquesAPI;
     public workflows: resources.WorkflowsAPI;
     public healthcheck: resources.HealthcheckAPI;
+    public search: resources.SearchAPI;
     public enveloppes: resources.EnveloppesAPI;
     public organisations: resources.OrganisationsAPI;
     public pei: resources.PEIAPI;
@@ -55,6 +56,7 @@ export class Metarisc extends Core
                     case 'sites_geographiques': return new resources.SitesGeographiquesAPI(config, tmpClient);
                     case 'workflows': return new resources.WorkflowsAPI(config, tmpClient);
                     case 'healthcheck': return new resources.HealthcheckAPI(config, tmpClient);
+                    case 'search': return new resources.SearchAPI(config, tmpClient);
                     case 'enveloppes': return new resources.EnveloppesAPI(config, tmpClient);
                     case 'organisations': return new resources.OrganisationsAPI(config, tmpClient);
                     case 'pei': return new resources.PEIAPI(config, tmpClient);

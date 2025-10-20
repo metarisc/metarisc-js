@@ -91,6 +91,21 @@ export class OrdresDuJourAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.dossier.modules) {
+                    parsedData.dossier.modules = new Set(parsedData.dossier.modules);
+                }
+                if (parsedData && parsedData.dossier.workflows_actifs) {
+                    parsedData.dossier.workflows_actifs = new Set(parsedData.dossier.workflows_actifs);
+                }
+                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.dossier.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.dossier.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
