@@ -87,7 +87,7 @@ export class CommissionsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             params: Utils.payloadFilter({
-                'from_date': fromDate === undefined ? undefined : (new String(fromDate)).toString(), 
+                'from_date': fromDate === undefined ? undefined : Utils.formatDate(fromDate), 
                 'type': type === undefined ? undefined : (new String(type)).toString()
             }),
             transformResponse: [(data) => {

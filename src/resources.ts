@@ -52,6 +52,8 @@ export { SearchAPI } from './api/SearchAPI';
 
 export { SitesGeographiquesAPI } from './api/SitesGeographiquesAPI';
 
+export { SupportsReglementairesAPI } from './api/SupportsReglementairesAPI';
+
 export { TourneesDECIAPI } from './api/TourneesDECIAPI';
 
 export { UtilisateursAPI } from './api/UtilisateursAPI';
