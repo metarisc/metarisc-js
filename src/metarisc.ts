@@ -28,7 +28,7 @@ export class Metarisc extends Core
     public dossiers_affectations: resources.DossiersAffectationsAPI;
     public mains_courantes: resources.MainsCourantesAPI;
     public anomalies: resources.AnomaliesAPI;
-    public supports_reglementaires: resources.PrescriptionsAPI;
+    public supports_reglementaires: resources.SupportsReglementairesAPI;
     public feed: resources.FeedAPI;
     public tournees_deci: resources.TourneesDECIAPI;
     public controles_pei: resources.ControlesPEIAPI;
@@ -69,7 +69,7 @@ export class Metarisc extends Core
                     case 'dossiers_affectations': return new resources.DossiersAffectationsAPI(config, tmpClient);
                     case 'mains_courantes': return new resources.MainsCourantesAPI(config, tmpClient);
                     case 'anomalies': return new resources.AnomaliesAPI(config, tmpClient);
-                    case 'supports_reglementaires': return new resources.PrescriptionsAPI(config, tmpClient);
+                    case 'supports_reglementaires': return new resources.SupportsReglementairesAPI(config, tmpClient);
                     case 'feed': return new resources.FeedAPI(config, tmpClient);
                     case 'tournees_deci': return new resources.TourneesDECIAPI(config, tmpClient);
                     case 'controles_pei': return new resources.ControlesPEIAPI(config, tmpClient);
