@@ -17,5 +17,7 @@ export type RapportEtude = {
 
 export enum PropositionAvisEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable'
+    DEFAVORABLE = 'defavorable',
+    FAVORABLE_EXPLOITATION = 'favorable_exploitation',
+    DEFAVORABLE_EXPLOITATION = 'defavorable_exploitation'
 }

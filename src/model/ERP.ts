@@ -30,5 +30,7 @@ export type ERP = {
 
 export enum AvisExploitationEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable'
+    DEFAVORABLE = 'defavorable',
+    FAVORABLE_EXPLOITATION = 'favorable_exploitation',
+    DEFAVORABLE_EXPLOITATION = 'defavorable_exploitation'
 }

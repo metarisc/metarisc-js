@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec
 import { Dossier } from './Dossier';
+import { MembreAvis } from './MembreAvis';
 
 export type PassageCommissionDossier = {
     'id': string;
@@ -10,9 +11,12 @@ export type PassageCommissionDossier = {
     'avis_differe': boolean | null;
     'observations': string | null;
     'duree_minutes': number;
+    'membres_avis': Array<MembreAvis>;
 };
 
 export enum AvisEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable'
+    DEFAVORABLE = 'defavorable',
+    FAVORABLE_EXPLOITATION = 'favorable_exploitation',
+    DEFAVORABLE_EXPLOITATION = 'defavorable_exploitation'
 }
