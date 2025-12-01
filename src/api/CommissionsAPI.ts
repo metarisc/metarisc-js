@@ -120,6 +120,47 @@ export class CommissionsAPI extends Core {
     }
     
     /**
+     * Modification d'une commission existant en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    patchCommission(
+        commissionId: string,
+        params : any
+    ) : Promise<AxiosResponse<Commission>>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Modification d'un passage en commission existant en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    patchPassageDatesCommission(
+        commissionId: string,
+        passageId: string,
+        params : any
+    ) : Promise<AxiosResponse<PassageCommission>>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString(), 'passage_id': (new String(passageId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{passage_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Ajoute une commission.
      */
     postCommission(

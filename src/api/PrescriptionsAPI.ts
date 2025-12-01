@@ -5,6 +5,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Prescription } from '../model/Prescription';
+import { PrescriptionExploreResult } from '../model/PrescriptionExploreResult';
 
 export class PrescriptionsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -40,6 +41,33 @@ export class PrescriptionsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
+     * Cette opération permet d'explorer les prescriptions en fonction de leur emplacement dans la structure de répertoires.
+Il est possible de filtrer les prescriptions en fonction de leur contenu ou de références aux supports réglementaires.
+Les résultats retournés peuvent être des prescriptions ou des chemins (répertoires).
+     */
+    paginateExplore(
+        contenu? : string,
+        supportReglementaireReference? : string,
+        chemin? : string
+    ) : Collection<PrescriptionExploreResult>
+    {
+        const pathVariable = { };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/prescriptions/explore'),
+            params: Utils.payloadFilter({
+                'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
+                'support_reglementaire_reference': supportReglementaireReference === undefined ? undefined : (new String(supportReglementaireReference)).toString(), 
+                'chemin': chemin === undefined ? undefined : (new String(chemin)).toString()
+            }),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
                 return parsedData;

@@ -38,7 +38,9 @@ export enum ModulesEnum {
 
 export enum AvisEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable'
+    DEFAVORABLE = 'defavorable',
+    FAVORABLE_EXPLOITATION = 'favorable_exploitation',
+    DEFAVORABLE_EXPLOITATION = 'defavorable_exploitation'
 }
 
 export enum WorkflowsActifsEnum {
