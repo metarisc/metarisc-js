@@ -9,7 +9,5 @@ export type MembreAvis = {
 
 export enum AvisEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable',
-    FAVORABLE_EXPLOITATION = 'favorable_exploitation',
-    DEFAVORABLE_EXPLOITATION = 'defavorable_exploitation'
+    DEFAVORABLE = 'defavorable'
 }

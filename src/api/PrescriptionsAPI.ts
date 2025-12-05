@@ -52,6 +52,7 @@ export class PrescriptionsAPI extends Core {
      * Cette opération permet d'explorer les prescriptions en fonction de leur emplacement dans la structure de répertoires.
 Il est possible de filtrer les prescriptions en fonction de leur contenu ou de références aux supports réglementaires.
 Les résultats retournés peuvent être des prescriptions ou des chemins (répertoires).
+Les résultats sont trié de manière à afficher en premier les répertoires (chemins) puis les prescriptions.
      */
     paginateExplore(
         contenu? : string,

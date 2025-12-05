@@ -8,7 +8,7 @@ export type Evenement = {
     'description': string | null;
     'date_debut': Date;
     'date_fin': Date;
-    'subject'?: PassageCommission;
+    'subject': PassageCommission;
 };
 
 export enum TypeEnum {
