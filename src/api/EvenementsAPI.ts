@@ -53,7 +53,8 @@ export class EvenementsAPI extends Core {
      */
     paginateEvenements(
         period? : string,
-        type? : 'DEFAUT' | 'RECONNAISSANCE_OPERATIONNELLE_ANNUELLE' | 'VISITE_PERIODIQUE' | 'COMMISSION_SECURITE'
+        type? : 'DEFAUT' | 'RECONNAISSANCE_OPERATIONNELLE_ANNUELLE' | 'VISITE_PERIODIQUE' | 'COMMISSION_SECURITE',
+        subjectId? : string
     ) : Collection<Evenement>
     {
         const pathVariable = { };
@@ -62,7 +63,8 @@ export class EvenementsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
             params: Utils.payloadFilter({
                 'period': period === undefined ? undefined : (new String(period)).toString(), 
-                'type': type === undefined ? undefined : (new String(type)).toString()
+                'type': type === undefined ? undefined : (new String(type)).toString(), 
+                'subject_id': subjectId === undefined ? undefined : (new String(subjectId)).toString()
             }),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
