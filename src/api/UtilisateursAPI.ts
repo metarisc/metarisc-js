@@ -162,4 +162,24 @@ export class UtilisateursAPI extends Core {
         });
     }
     
+    /**
+     * Mise à jour de l'utilisateur.
+     */
+    patchUtilisateur(
+        utilisateurId: string,
+        params : any
+    ) : Promise<AxiosResponse<Utilisateur>>
+    {
+        const pathVariable = { 'utilisateur_id': (new String(utilisateurId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
 }

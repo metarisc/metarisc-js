@@ -5,6 +5,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
+import { Derogation } from '../model/Derogation';
 import { Dossier } from '../model/Dossier';
 import { DossierAffectation } from '../model/DossierAffectation';
 import { FilRougeMessage } from '../model/FilRougeMessage';
@@ -51,6 +52,24 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
+     * Récupération de la liste des dérogations associées à un dossier spécifique.
+     */
+    getDerogationsDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<Derogation>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/derogations'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -364,6 +383,26 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Mise a jour d'une dérogation dans un dossier.
+     */
+    postDerogationsDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<Derogation>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/derogations'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
                 return parsedData;

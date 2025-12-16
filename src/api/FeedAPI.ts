@@ -4,7 +4,8 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
-import { FeedMessageTexte } from '../model/FeedMessageTexte';
+import { FeedMessageMessageUtilisateur } from '../model/FeedMessageMessageUtilisateur';
+import { FeedMessage } from '../model/FeedMessage';
 
 export class FeedAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
@@ -15,7 +16,7 @@ export class FeedAPI extends Core {
      * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
      */
     paginateFeedMessages(
-    ) : Collection<FeedMessageTexte>
+    ) : Collection<FeedMessage>
     {
         const pathVariable = { };
         return this.collect({
@@ -33,7 +34,7 @@ export class FeedAPI extends Core {
      */
     postMessage(
         params : any
-    ) : Promise<AxiosResponse<FeedMessageTexte>>
+    ) : Promise<AxiosResponse<FeedMessageMessageUtilisateur>>
     {
         const pathVariable = { };
         return this.request({
