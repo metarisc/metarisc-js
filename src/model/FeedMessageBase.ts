@@ -9,5 +9,6 @@ export type FeedMessageBase = {
 
 export enum TypeEnum {
     TEXTE = 'texte',
-    LISTE_PEI = 'liste_pei'
+    LISTE_PEI = 'liste_pei',
+    MESSAGE_UTILISATEUR = 'message_utilisateur'
 }

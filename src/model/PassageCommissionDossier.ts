@@ -11,12 +11,10 @@ export type PassageCommissionDossier = {
     'avis_differe': boolean | null;
     'observations': string | null;
     'duree_minutes': number;
-    'membres_avis': Array<MembreAvis>;
+    'membres_avis': Array<MembreAvis> | null;
 };
 
 export enum AvisEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable',
-    FAVORABLE_EXPLOITATION = 'favorable_exploitation',
-    DEFAVORABLE_EXPLOITATION = 'defavorable_exploitation'
+    DEFAVORABLE = 'defavorable'
 }

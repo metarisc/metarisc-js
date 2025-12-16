@@ -163,7 +163,7 @@ export class ERPAPI extends Core {
         referencesExterieures? : string | Array<string>,
         presenceLocauxSommeil? : boolean,
         typeActivite? : string | Array<string>,
-        avisExploitation? : 'favorable' | 'defavorable' | 'favorable_exploitation' | 'defavorable_exploitation',
+        avisExploitation? : 'favorable' | 'defavorable',
         aVisiterEn? : string,
         siteGeographique? : string,
         commissionConcernee? : string,

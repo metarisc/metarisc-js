@@ -33,14 +33,13 @@ export enum StatutEnum {
 export enum ModulesEnum {
     ERP_ANALYSE_DE_RISQUE = 'erp:analyse_de_risque',
     ERP_ESSAIS_VISITE = 'erp:essais_visite',
+    ERP_DEROGATIONS = 'erp:derogations',
     DECI_CONTROLE_TECHNIQUE_PEI = 'deci:controle_technique_pei'
 }
 
 export enum AvisEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable',
-    FAVORABLE_EXPLOITATION = 'favorable_exploitation',
-    DEFAVORABLE_EXPLOITATION = 'defavorable_exploitation'
+    DEFAVORABLE = 'defavorable'
 }
 
 export enum WorkflowsActifsEnum {
