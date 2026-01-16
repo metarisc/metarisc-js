@@ -15,7 +15,7 @@ export type DossierBase = {
     'modules': Set<ModulesEnum>;
     'tags': Array<Tag>;
     'est_archive': boolean;
-    'passage_en_commission': PassageCommission | null;
+    'passages_en_commission': Array<PassageCommission> | null;
     'avis': AvisEnum | null;
     'enveloppe': Enveloppe | null;
     'workflows_actifs': Set<WorkflowsActifsEnum>;

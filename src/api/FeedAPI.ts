@@ -13,6 +13,24 @@ export class FeedAPI extends Core {
     }
     
     /**
+     * Suppression d'un message existant.
+     */
+    deleteMessage(
+        messageId: string
+    ) : Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'message_id': (new String(messageId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
      * Récupération d'une liste de message composant un flux d'activité pour l'utilisateur connecté.
      */
     paginateFeedMessages(
@@ -26,6 +44,26 @@ export class FeedAPI extends Core {
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
+        });
+    }
+    
+    /**
+     * Modifier un message dans le feed général.
+     */
+    postMessage(
+        messageId: string,
+        params : any
+    ) : Promise<AxiosResponse<FeedMessageMessageUtilisateur>>
+    {
+        const pathVariable = { 'message_id': (new String(messageId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
         });
     }
     

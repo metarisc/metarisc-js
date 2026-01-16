@@ -168,7 +168,8 @@ export class ERPAPI extends Core {
         siteGeographique? : string,
         commissionConcernee? : string,
         categorie? : 1 | 2 | 3 | 4 | 5,
-        erpRattacheA? : string
+        erpRattacheA? : string,
+        titulaires? : string
     ) : Collection<ERP>
     {
         const pathVariable = { };
@@ -187,7 +188,8 @@ export class ERPAPI extends Core {
                 'site_geographique': siteGeographique === undefined ? undefined : (new String(siteGeographique)).toString(), 
                 'commission_concernee': commissionConcernee === undefined ? undefined : (new String(commissionConcernee)).toString(), 
                 'categorie': categorie === undefined ? undefined : (new String(categorie)).toString(), 
-                'erp_rattache_a': erpRattacheA === undefined ? undefined : (new String(erpRattacheA)).toString()
+                'erp_rattache_a': erpRattacheA === undefined ? undefined : (new String(erpRattacheA)).toString(), 
+                'titulaires': titulaires === undefined ? undefined : (new String(titulaires)).toString()
             }),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
