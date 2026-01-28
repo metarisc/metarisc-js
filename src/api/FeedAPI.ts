@@ -48,6 +48,26 @@ export class FeedAPI extends Core {
     }
     
     /**
+     * Modifier un message dans le feed général.
+     */
+    patchMessage(
+        messageId: string,
+        params : any
+    ) : Promise<AxiosResponse<FeedMessageMessageUtilisateur>>
+    {
+        const pathVariable = { 'message_id': (new String(messageId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Ajoute un message dans le feed général.
      */
     postMessage(

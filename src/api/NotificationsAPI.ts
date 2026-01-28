@@ -42,6 +42,21 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.subject.modules) {
+                    parsedData.subject.modules = new Set(parsedData.subject.modules);
+                }
+                if (parsedData && parsedData.subject.workflows_actifs) {
+                    parsedData.subject.workflows_actifs = new Set(parsedData.subject.workflows_actifs);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }]
         });
@@ -77,6 +92,21 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.subject.modules) {
+                    parsedData.subject.modules = new Set(parsedData.subject.modules);
+                }
+                if (parsedData && parsedData.subject.workflows_actifs) {
+                    parsedData.subject.workflows_actifs = new Set(parsedData.subject.workflows_actifs);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }]
         });
@@ -95,6 +125,21 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.subject.modules) {
+                    parsedData.subject.modules = new Set(parsedData.subject.modules);
+                }
+                if (parsedData && parsedData.subject.workflows_actifs) {
+                    parsedData.subject.workflows_actifs = new Set(parsedData.subject.workflows_actifs);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
