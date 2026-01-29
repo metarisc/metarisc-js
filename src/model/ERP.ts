@@ -26,9 +26,15 @@ export type ERP = {
     'titulaires': Array<Utilisateur>;
     'etablissement_rattache': ERPLie | null;
     'textes_applicables': Array<TexteApplicable>;
+    'genre': GenreEnum;
 };
 
 export enum AvisExploitationEnum {
     FAVORABLE = 'favorable',
     DEFAVORABLE = 'defavorable'
+}
+
+export enum GenreEnum {
+    CELLULE = 'cellule',
+    ERP = 'erp'
 }

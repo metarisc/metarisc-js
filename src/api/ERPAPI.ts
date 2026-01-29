@@ -169,7 +169,8 @@ export class ERPAPI extends Core {
         commissionConcernee? : string,
         categorie? : 1 | 2 | 3 | 4 | 5,
         erpRattacheA? : string,
-        titulaires? : string
+        titulaires? : string,
+        genre? : 'cellule' | 'erp'
     ) : Collection<ERP>
     {
         const pathVariable = { };
@@ -189,7 +190,8 @@ export class ERPAPI extends Core {
                 'commission_concernee': commissionConcernee === undefined ? undefined : (new String(commissionConcernee)).toString(), 
                 'categorie': categorie === undefined ? undefined : (new String(categorie)).toString(), 
                 'erp_rattache_a': erpRattacheA === undefined ? undefined : (new String(erpRattacheA)).toString(), 
-                'titulaires': titulaires === undefined ? undefined : (new String(titulaires)).toString()
+                'titulaires': titulaires === undefined ? undefined : (new String(titulaires)).toString(), 
+                'genre': genre === undefined ? undefined : (new String(genre)).toString()
             }),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
