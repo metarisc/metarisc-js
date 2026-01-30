@@ -48,8 +48,10 @@ export class Core {
 
     collect<T>(config: RequestConfig): Collection<T> {
         return new Collection<T>(this, {
+            method: config.method as 'GET' | 'POST',
             endpoint: config.endpoint || "/",
             params: config.params,
+            data: config.body,
             headers: config.headers
         });
     }
