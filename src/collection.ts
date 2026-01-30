@@ -17,9 +17,11 @@ export type PaginationData = {
 };
 
 type PaginationRequestConfig = {
-    headers ?: {[name: string]: string | string[]};
-    params ?: {[param: string]: string | string[]};
-    endpoint ?: string;
+    method?: 'GET' | 'POST';
+    headers?: {[name: string]: string | string[]};
+    params?: {[param: string]: string | string[]};
+    data?: Record<string, unknown>;  // Body pour POST
+    endpoint?: string;
 };
 
 export class Collection<T>
@@ -32,16 +34,26 @@ export class Collection<T>
     /**
      * Fetch current page results.
      */
-    async fetchPage(page : number, per_page : number) : Promise<AxiosResponse<PaginationResults<T>>>
-    {
+    async fetchPage(page: number, per_page: number): Promise<AxiosResponse<PaginationResults<T>>> {
+        const paginationParams = {
+            page: page.toString(),
+            per_page: per_page.toString()
+        };
+        
+        if (this.config.method === 'POST') {
+            return this.client.request({
+                method: 'POST',
+                endpoint: this.config.endpoint,
+                headers: this.config.headers,
+                body: { ...this.config.data, ...paginationParams }
+            });
+        }
+        
         return this.client.request({
             method: 'GET',
             endpoint: this.config.endpoint,
             headers: this.config.headers,
-            params: { ...this.config.params, ...{
-                page: page.toString(),
-                per_page: per_page.toString()
-            } }  
+            params: { ...this.config.params, ...paginationParams }
         });
     }
 
