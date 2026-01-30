@@ -20,7 +20,7 @@ type PaginationRequestConfig = {
     method?: 'GET' | 'POST';
     headers?: {[name: string]: string | string[]};
     params?: {[param: string]: string | string[]};
-    data?: Record<string, unknown>;  // Body pour POST
+    data?: Record<string, unknown>;
     endpoint?: string;
 };
 
