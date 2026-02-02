@@ -43,9 +43,10 @@ export class Collection<T>
         if (this.config.method === 'POST') {
             return this.client.request({
                 method: 'POST',
-                endpoint: this.config.endpoint,
+                endpoint: 'search/' + this.config.endpoint,
                 headers: this.config.headers,
-                body: { ...this.config.data, ...paginationParams }
+                body: this.config.data,
+                params: paginationParams
             });
         }
         
