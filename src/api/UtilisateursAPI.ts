@@ -26,6 +26,9 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.roles) {
+                    parsedData.roles = new Set(parsedData.roles);
+                }
                 return parsedData;
             }]
         });
@@ -62,6 +65,9 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.roles) {
+                    parsedData.roles = new Set(parsedData.roles);
+                }
                 return parsedData;
             }]
         });
@@ -156,6 +162,9 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.roles) {
+                    parsedData.roles = new Set(parsedData.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
@@ -176,6 +185,9 @@ export class UtilisateursAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.roles) {
+                    parsedData.roles = new Set(parsedData.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

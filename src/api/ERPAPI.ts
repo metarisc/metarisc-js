@@ -350,6 +350,9 @@ export class ERPAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.createur?.roles) {
+                    parsedData.createur.roles = new Set(parsedData.createur.roles);
+                }
                 if (parsedData && parsedData.modules) {
                     parsedData.modules = new Set(parsedData.modules);
                 }

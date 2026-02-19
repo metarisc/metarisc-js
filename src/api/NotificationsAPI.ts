@@ -42,6 +42,12 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
+                if (parsedData && parsedData.subject.createur?.roles) {
+                    parsedData.subject.createur.roles = new Set(parsedData.subject.createur.roles);
+                }
                 if (parsedData && parsedData.subject.modules) {
                     parsedData.subject.modules = new Set(parsedData.subject.modules);
                 }
@@ -92,6 +98,12 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
+                if (parsedData && parsedData.subject.createur?.roles) {
+                    parsedData.subject.createur.roles = new Set(parsedData.subject.createur.roles);
+                }
                 if (parsedData && parsedData.subject.modules) {
                     parsedData.subject.modules = new Set(parsedData.subject.modules);
                 }
@@ -125,6 +137,12 @@ export class NotificationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
+                if (parsedData && parsedData.subject.createur?.roles) {
+                    parsedData.subject.createur.roles = new Set(parsedData.subject.createur.roles);
+                }
                 if (parsedData && parsedData.subject.modules) {
                     parsedData.subject.modules = new Set(parsedData.subject.modules);
                 }

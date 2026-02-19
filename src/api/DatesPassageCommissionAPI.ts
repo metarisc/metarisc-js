@@ -92,6 +92,9 @@ export class DatesPassageCommissionAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.dossier.createur?.roles) {
+                    parsedData.dossier.createur.roles = new Set(parsedData.dossier.createur.roles);
+                }
                 if (parsedData && parsedData.dossier.modules) {
                     parsedData.dossier.modules = new Set(parsedData.dossier.modules);
                 }

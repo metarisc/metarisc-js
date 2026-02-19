@@ -5,6 +5,8 @@ import { FeedMessageBase } from './FeedMessageBase';
 
 export type FeedMessageMessageUtilisateur = FeedMessageBase & { 
 
+    'organisation_id': string;
+
     'type': TypeEnum;
 
     'categorie': CategorieEnum;
