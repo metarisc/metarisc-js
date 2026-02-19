@@ -204,6 +204,9 @@ export class OrganisationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

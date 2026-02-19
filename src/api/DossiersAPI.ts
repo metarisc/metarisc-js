@@ -90,6 +90,9 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.createur?.roles) {
+                    parsedData.createur.roles = new Set(parsedData.createur.roles);
+                }
                 if (parsedData && parsedData.modules) {
                     parsedData.modules = new Set(parsedData.modules);
                 }
@@ -365,6 +368,9 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
@@ -445,6 +451,9 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.createur?.roles) {
+                    parsedData.createur.roles = new Set(parsedData.createur.roles);
+                }
                 if (parsedData && parsedData.modules) {
                     parsedData.modules = new Set(parsedData.modules);
                 }
@@ -480,6 +489,9 @@ export class DossiersAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.auteur?.roles) {
+                    parsedData.auteur.roles = new Set(parsedData.auteur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

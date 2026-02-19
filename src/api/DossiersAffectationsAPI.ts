@@ -42,6 +42,9 @@ export class DossiersAffectationsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/dossiers_affectations/{affectation_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

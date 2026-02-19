@@ -139,6 +139,9 @@ export class MainsCourantesAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/mains_courantes/{main_courante_id}/participants'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

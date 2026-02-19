@@ -23,6 +23,7 @@ export type DossierBase = {
     'nb_contacts': number;
     'nb_pieces_jointes': number;
     'affectations': Array<DossierAffectation>;
+    'organisation_id': string;
 };
 
 export enum StatutEnum {

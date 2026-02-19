@@ -10,6 +10,7 @@ export type PassageCommission = {
     'raison_reprogrammation': string | null;
     'nb_dossiers': number;
     'commission': Commission;
+    'organisation_id': string;
 };
 
 export enum TypeEnum {
