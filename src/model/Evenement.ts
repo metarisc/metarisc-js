@@ -9,6 +9,7 @@ export type Evenement = {
     'date_debut': Date;
     'date_fin': Date;
     'subject': PassageCommission;
+    'organisation_id': string;
 };
 
 export enum TypeEnum {

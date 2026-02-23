@@ -61,6 +61,9 @@ export class FeedAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.redacteur?.roles) {
+                    parsedData.redacteur.roles = new Set(parsedData.redacteur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)
@@ -80,6 +83,9 @@ export class FeedAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/feed'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.redacteur?.roles) {
+                    parsedData.redacteur.roles = new Set(parsedData.redacteur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

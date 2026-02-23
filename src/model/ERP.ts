@@ -27,6 +27,7 @@ export type ERP = {
     'etablissement_rattache': ERPLie | null;
     'textes_applicables': Array<TexteApplicable>;
     'genre': GenreEnum;
+    'organisation_id': string;
 };
 
 export enum AvisExploitationEnum {
