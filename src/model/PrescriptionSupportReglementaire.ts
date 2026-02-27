@@ -20,7 +20,9 @@ export enum NatureEnum {
     DOCTRINE = 'doctrine',
     TEXTES_NATIONAUX_AUTRE_TEXTE = 'textes_nationaux_autre_texte',
     AVIS_CCS = 'avis_ccs',
-    INSTRUCTIONS_TECHNIQUES = 'instructions_techniques'
+    INSTRUCTIONS_TECHNIQUES = 'instructions_techniques',
+    DECRET = 'decret',
+    CIRCULAIRE = 'circulaire'
 }
 
 export enum EtatEnum {
