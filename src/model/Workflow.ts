@@ -4,6 +4,7 @@ export type Workflow = {
     'id': string;
     'titre': string;
     'date_de_creation': Date;
+    'date_de_reception': Date | null;
     'date_de_debut': Date | null;
     'date_de_fin': Date | null;
     'workflow_automatise': boolean;

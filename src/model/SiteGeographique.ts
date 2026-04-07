@@ -7,6 +7,7 @@ export type SiteGeographique = {
     'erp_periodicite_contrainte': number | null;
     'notes': string;
     'type': TypeEnum;
+    'organisation_id': string;
 };
 
 export enum TypeEnum {
