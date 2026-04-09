@@ -15,5 +15,7 @@ export enum StatutEnum {
     REPRISE_DE_DONNEES = 'reprise_de_donnees',
     OUVERT = 'ouvert',
     PROJET = 'projet',
-    FERME = 'ferme'
+    FERME = 'ferme',
+    ITINERANT_PERIODIQUE = 'itinerant_periodique',
+    ERREUR_SAISIE = 'erreur_saisie'
 }
