@@ -6,6 +6,7 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
+import { DossierEnhanced } from '../model/DossierEnhanced';
 import { ERP } from '../model/ERP';
 import { MainCourante } from '../model/MainCourante';
 import { PieceJointe } from '../model/PieceJointe';
@@ -350,6 +351,44 @@ export class ERPAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
+            transformResponse: [(data) => {
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.createur?.roles) {
+                    parsedData.createur.roles = new Set(parsedData.createur.roles);
+                }
+                if (parsedData && parsedData.modules) {
+                    parsedData.modules = new Set(parsedData.modules);
+                }
+                if (parsedData && parsedData.workflows_actifs) {
+                    parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajout d'un dossier avec des champs supplémentaires (reprise de données).
+     */
+    postEnhancedDossiersErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<DossierEnhanced>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers/enhanced'),
             transformResponse: [(data) => {
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.createur?.roles) {
