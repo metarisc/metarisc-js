@@ -20,6 +20,7 @@ export class HealthcheckAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/healthcheck'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]

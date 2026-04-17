@@ -23,6 +23,7 @@ export class SitesGeographiquesAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class SitesGeographiquesAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -64,6 +66,7 @@ export class SitesGeographiquesAPI extends Core {
                 'libelle': libelle === undefined ? undefined : (new String(libelle)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -83,6 +86,7 @@ export class SitesGeographiquesAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques/{site_geographique_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -102,6 +106,7 @@ export class SitesGeographiquesAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/sites_geographiques'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

@@ -24,6 +24,7 @@ export class PrescriptionsAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -42,6 +43,7 @@ export class PrescriptionsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -70,6 +72,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
                 'chemin': chemin === undefined ? undefined : (new String(chemin)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -93,6 +96,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
                 'support_reglementaire_reference': supportReglementaireReference === undefined ? undefined : (new String(supportReglementaireReference)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -112,6 +116,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/{prescription_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -131,6 +136,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

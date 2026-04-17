@@ -6,6 +6,7 @@ import { Client } from "../client";
 import { Collection } from "../collection";
 import { Contact } from '../model/Contact';
 import { Dossier } from '../model/Dossier';
+import { DossierEnhanced } from '../model/DossierEnhanced';
 import { ERP } from '../model/ERP';
 import { MainCourante } from '../model/MainCourante';
 import { PieceJointe } from '../model/PieceJointe';
@@ -32,6 +33,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.descriptif_technique.analyse_risque?.activites_secondaire) {
                     parsedData.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.descriptif_technique.analyse_risque.activites_secondaire);
@@ -59,6 +61,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/permissions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -77,6 +80,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -95,6 +99,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -113,6 +118,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -147,6 +153,7 @@ export class ERPAPI extends Core {
                 'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -196,6 +203,7 @@ export class ERPAPI extends Core {
                 'statut': statut === undefined ? undefined : (new String(statut)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -214,6 +222,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/historique'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -236,6 +245,7 @@ export class ERPAPI extends Core {
                 'sort': sort === undefined ? undefined : (new String(sort)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -254,6 +264,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/prescriptions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -272,6 +283,7 @@ export class ERPAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/textes_applicables'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -291,6 +303,7 @@ export class ERPAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/references_exterieures'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -311,6 +324,7 @@ export class ERPAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/contacts'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -331,6 +345,7 @@ export class ERPAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/documents'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -351,6 +366,46 @@ export class ERPAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers'),
             transformResponse: [(data) => {
+                if (!data) return data;
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.createur?.roles) {
+                    parsedData.createur.roles = new Set(parsedData.createur.roles);
+                }
+                if (parsedData && parsedData.modules) {
+                    parsedData.modules = new Set(parsedData.modules);
+                }
+                if (parsedData && parsedData.workflows_actifs) {
+                    parsedData.workflows_actifs = new Set(parsedData.workflows_actifs);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.erp.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.erp.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajout d'un dossier avec des champs supplémentaires (reprise de données).
+     */
+    postEnhancedDossiersErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<DossierEnhanced>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/dossiers/enhanced'),
+            transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.createur?.roles) {
                     parsedData.createur.roles = new Set(parsedData.createur.roles);
@@ -388,6 +443,7 @@ export class ERPAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.descriptif_technique.analyse_risque?.activites_secondaire) {
                     parsedData.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.descriptif_technique.analyse_risque.activites_secondaire);
@@ -417,6 +473,7 @@ export class ERPAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.descriptif_technique.analyse_risque?.activites_secondaire) {
                     parsedData.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.descriptif_technique.analyse_risque.activites_secondaire);
@@ -446,6 +503,7 @@ export class ERPAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}/mains_courantes'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

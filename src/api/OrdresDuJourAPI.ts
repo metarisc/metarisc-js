@@ -23,6 +23,7 @@ export class OrdresDuJourAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -56,6 +57,7 @@ export class OrdresDuJourAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -90,6 +92,7 @@ export class OrdresDuJourAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.dossier.createur?.roles) {
                     parsedData.dossier.createur.roles = new Set(parsedData.dossier.createur.roles);
@@ -128,6 +131,7 @@ export class OrdresDuJourAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -148,6 +152,7 @@ export class OrdresDuJourAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/prescriptions/reorganiser'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

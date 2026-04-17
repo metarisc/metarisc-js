@@ -22,6 +22,7 @@ export class DossiersAffectationsAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/dossiers_affectations/{affectation_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class DossiersAffectationsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers_affectations/{affectation_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.utilisateur?.roles) {
                     parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);

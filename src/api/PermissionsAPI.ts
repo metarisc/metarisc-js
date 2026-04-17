@@ -21,6 +21,7 @@ export class PermissionsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/permissions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]

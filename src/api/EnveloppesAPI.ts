@@ -23,6 +23,7 @@ export class EnveloppesAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class EnveloppesAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -64,6 +66,7 @@ export class EnveloppesAPI extends Core {
                 'titre': titre === undefined ? undefined : (new String(titre)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -83,6 +86,7 @@ export class EnveloppesAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes/{enveloppe_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -102,6 +106,7 @@ export class EnveloppesAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/enveloppes'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

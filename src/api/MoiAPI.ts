@@ -21,6 +21,7 @@ export class MoiAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/@moi'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);

@@ -21,6 +21,7 @@ export class PingAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/ping'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]

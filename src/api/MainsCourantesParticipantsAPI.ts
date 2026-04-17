@@ -21,6 +21,7 @@ export class MainsCourantesParticipantsAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/mains_courantes_participants/{participant_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]

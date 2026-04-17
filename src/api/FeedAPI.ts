@@ -24,6 +24,7 @@ export class FeedAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class FeedAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -60,6 +62,7 @@ export class FeedAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.redacteur?.roles) {
                     parsedData.redacteur.roles = new Set(parsedData.redacteur.roles);
@@ -82,6 +85,7 @@ export class FeedAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.redacteur?.roles) {
                     parsedData.redacteur.roles = new Set(parsedData.redacteur.roles);
