@@ -26,6 +26,7 @@ export class CommissionsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -44,6 +45,7 @@ export class CommissionsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -67,6 +69,7 @@ export class CommissionsAPI extends Core {
                 'type': type === undefined ? undefined : (new String(type)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -91,6 +94,7 @@ export class CommissionsAPI extends Core {
                 'type': type === undefined ? undefined : (new String(type)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -113,6 +117,7 @@ export class CommissionsAPI extends Core {
                 'commission': commission === undefined ? undefined : (new String(commission)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -132,6 +137,7 @@ export class CommissionsAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -153,6 +159,7 @@ export class CommissionsAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{passage_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -172,6 +179,7 @@ export class CommissionsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -192,6 +200,7 @@ export class CommissionsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -212,6 +221,7 @@ export class CommissionsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/membres'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -232,6 +242,7 @@ export class CommissionsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/preferences'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

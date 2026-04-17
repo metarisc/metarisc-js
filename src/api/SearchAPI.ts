@@ -24,6 +24,7 @@ Cet endpoint de recherche permet de saffranchir des limitations de la recherche 
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/search/erp'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

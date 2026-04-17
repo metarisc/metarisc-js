@@ -22,6 +22,7 @@ export class WorkflowsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/workflows/{workflow_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class WorkflowsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/workflows/{workflow_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

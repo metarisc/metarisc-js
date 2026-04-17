@@ -25,6 +25,7 @@ export class UtilisateursAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);
@@ -46,6 +47,7 @@ export class UtilisateursAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/permissions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -64,6 +66,7 @@ export class UtilisateursAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);
@@ -84,6 +87,7 @@ export class UtilisateursAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -102,6 +106,7 @@ export class UtilisateursAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -120,6 +125,7 @@ export class UtilisateursAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -143,6 +149,7 @@ export class UtilisateursAPI extends Core {
                 'email': email === undefined ? undefined : (new String(email)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -161,6 +168,7 @@ export class UtilisateursAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);
@@ -184,6 +192,7 @@ export class UtilisateursAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);

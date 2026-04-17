@@ -23,6 +23,7 @@ export class CommissionsMembresAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class CommissionsMembresAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -58,6 +60,7 @@ export class CommissionsMembresAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -77,6 +80,7 @@ export class CommissionsMembresAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/commissions_membres/{membre_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

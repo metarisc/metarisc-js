@@ -29,6 +29,7 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -47,6 +48,7 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -65,6 +67,7 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -83,6 +86,7 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -101,6 +105,7 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -119,6 +124,7 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -137,6 +143,7 @@ export class PEIAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -172,6 +179,7 @@ export class PEIAPI extends Core {
                 'references_exterieures': referencesExterieures === undefined ? undefined : (new String(referencesExterieures)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -191,6 +199,7 @@ export class PEIAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -211,6 +220,7 @@ export class PEIAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -231,6 +241,7 @@ export class PEIAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -251,6 +262,7 @@ export class PEIAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -271,6 +283,7 @@ export class PEIAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.createur?.roles) {
                     parsedData.createur.roles = new Set(parsedData.createur.roles);
@@ -308,6 +321,7 @@ export class PEIAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

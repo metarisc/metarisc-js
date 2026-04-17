@@ -23,6 +23,7 @@ export class NotificationsAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class NotificationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.utilisateur?.roles) {
                     parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
@@ -79,6 +81,7 @@ export class NotificationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -97,6 +100,7 @@ export class NotificationsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/notifications/{notification_id}/marquer_comme_lue'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.utilisateur?.roles) {
                     parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
@@ -136,6 +140,7 @@ export class NotificationsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/notifications'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.utilisateur?.roles) {
                     parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);

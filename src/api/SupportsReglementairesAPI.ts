@@ -23,6 +23,7 @@ export class SupportsReglementairesAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,6 +42,7 @@ export class SupportsReglementairesAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -64,6 +66,7 @@ export class SupportsReglementairesAPI extends Core {
                 'reference': reference === undefined ? undefined : (new String(reference)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -83,6 +86,7 @@ export class SupportsReglementairesAPI extends Core {
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires/{support_reglementaire_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -102,6 +106,7 @@ export class SupportsReglementairesAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

@@ -29,6 +29,7 @@ export class OrganisationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -47,6 +48,7 @@ export class OrganisationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/permissions'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -65,6 +67,7 @@ export class OrganisationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/preferences'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -83,6 +86,7 @@ export class OrganisationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.pibi_performance_natures_performance_restreinte) {
                     parsedData.pibi_performance_natures_performance_restreinte = new Set(parsedData.pibi_performance_natures_performance_restreinte);
@@ -107,6 +111,7 @@ export class OrganisationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/dossiers-workflows-suites'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -125,6 +130,7 @@ export class OrganisationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -147,6 +153,7 @@ export class OrganisationsAPI extends Core {
                 'last_name': lastName === undefined ? undefined : (new String(lastName)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -164,6 +171,7 @@ export class OrganisationsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/organisations'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -183,6 +191,7 @@ export class OrganisationsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/geoservices'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -203,6 +212,7 @@ export class OrganisationsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/membres'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.utilisateur?.roles) {
                     parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
@@ -226,6 +236,7 @@ export class OrganisationsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/preferences'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -246,6 +257,7 @@ export class OrganisationsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/regles-deci'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.pibi_performance_natures_performance_restreinte) {
                     parsedData.pibi_performance_natures_performance_restreinte = new Set(parsedData.pibi_performance_natures_performance_restreinte);

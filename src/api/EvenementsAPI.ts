@@ -24,6 +24,7 @@ export class EvenementsAPI extends Core {
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -42,6 +43,7 @@ export class EvenementsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -67,6 +69,7 @@ export class EvenementsAPI extends Core {
                 'subject_id': subjectId === undefined ? undefined : (new String(subjectId)).toString()
             }),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -85,6 +88,7 @@ export class EvenementsAPI extends Core {
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -103,6 +107,7 @@ export class EvenementsAPI extends Core {
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
             transformResponse: [(data) => {
+                if (!data) return data;
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
