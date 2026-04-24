@@ -8,6 +8,7 @@ import { Contact } from '../model/Contact';
 import { Derogation } from '../model/Derogation';
 import { Dossier } from '../model/Dossier';
 import { DossierAffectation } from '../model/DossierAffectation';
+import { DossierBaseRattachement } from '../model/DossierBaseRattachement';
 import { FilRougeMessage } from '../model/FilRougeMessage';
 import { PieceJointe } from '../model/PieceJointe';
 import { PrescriptionAnalyseDeRisque } from '../model/PrescriptionAnalyseDeRisque';
@@ -237,6 +238,25 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Liste des rattachements du dossier.
+     */
+    getRattachementsDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<{data: DossierBaseRattachement[]}>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rattachements'),
+            transformResponse: [(data) => {
+                if (!data) return data;
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
      * Récupération de la liste des tags d'un dossier.
      */
     paginateDossierTags(
@@ -305,7 +325,8 @@ export class DossiersAPI extends Core {
         workflowActif? : 'analyse_de_risque' | 'validation' | 'arrivee_sis' | 'arrivee_sis_prev' | 'arrivee_secretariat_commission' | 'consultation_sis' | 'passage_commission' | 'relecture' | 'visite' | 'arrivee_secretariat' | 'workflow' | 'reception_de_travaux_en_attente',
         affecte? : string,
         enveloppe? : string,
-        numeroUrba? : string
+        numeroUrba? : string,
+        estParent? : boolean
     ) : Collection<Dossier>
     {
         const pathVariable = { };
@@ -321,7 +342,8 @@ export class DossiersAPI extends Core {
                 'workflow_actif': workflowActif === undefined ? undefined : (new String(workflowActif)).toString(), 
                 'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 
                 'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString(), 
-                'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString()
+                'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString(), 
+                'est_parent': estParent === undefined ? undefined : (new String(estParent)).toString()
             }),
             transformResponse: [(data) => {
                 if (!data) return data;
@@ -585,6 +607,36 @@ export class DossiersAPI extends Core {
             transformResponse: [(data) => {
                 if (!data) return data;
                 const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajoute un rattachement à un dossier. Vous pouvez rattacher plusieurs dossiers à un dossier.
+     */
+    postRattachementsDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<DossierBaseRattachement>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rattachements'),
+            transformResponse: [(data) => {
+                if (!data) return data;
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.dossier_enfant.createur?.roles) {
+                    parsedData.dossier_enfant.createur.roles = new Set(parsedData.dossier_enfant.createur.roles);
+                }
+                if (parsedData && parsedData.dossier_enfant.modules) {
+                    parsedData.dossier_enfant.modules = new Set(parsedData.dossier_enfant.modules);
+                }
+                if (parsedData && parsedData.dossier_enfant.workflows_actifs) {
+                    parsedData.dossier_enfant.workflows_actifs = new Set(parsedData.dossier_enfant.workflows_actifs);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

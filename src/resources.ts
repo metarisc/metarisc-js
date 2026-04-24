@@ -18,6 +18,8 @@ export { DossiersAPI } from './api/DossiersAPI';
 
 export { DossiersAffectationsAPI } from './api/DossiersAffectationsAPI';
 
+export { DossiersRattachementsAPI } from './api/DossiersRattachementsAPI';
+
 export { ERPAPI } from './api/ERPAPI';
 
 export { EnveloppesAPI } from './api/EnveloppesAPI';
