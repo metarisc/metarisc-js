@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec
 import { DossierAffectation } from './DossierAffectation';
+import { DossierBaseRattachement } from './DossierBaseRattachement';
 import { Enveloppe } from './Enveloppe';
 import { PassageCommission } from './PassageCommission';
 import { Tag } from './Tag';
@@ -24,6 +25,7 @@ export type DossierBase = {
     'nb_pieces_jointes': number;
     'affectations': Array<DossierAffectation>;
     'organisation_id': string;
+    'dossiers_enfants': Array<DossierBaseRattachement>;
 };
 
 export enum StatutEnum {
