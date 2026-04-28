@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec
 import { DossierAffectation } from './DossierAffectation';
+import { DossierBaseRattachement } from './DossierBaseRattachement';
 import { Enveloppe } from './Enveloppe';
 import { PassageCommission } from './PassageCommission';
 import { Tag } from './Tag';
@@ -16,7 +17,7 @@ export type DossierBase = {
     'tags': Array<Tag>;
     'est_archive': boolean;
     'passages_en_commission': Array<PassageCommission> | null;
-    'avis': AvisEnum | null;
+    'avis'?: AvisEnum | null;
     'enveloppe': Enveloppe | null;
     'workflows_actifs': Set<WorkflowsActifsEnum>;
     'nb_messages_fil_rouge': number;
@@ -24,6 +25,7 @@ export type DossierBase = {
     'nb_pieces_jointes': number;
     'affectations': Array<DossierAffectation>;
     'organisation_id': string;
+    'dossiers_enfants': Array<DossierBaseRattachement>;
 };
 
 export enum StatutEnum {
