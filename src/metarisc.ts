@@ -14,6 +14,7 @@ export class Metarisc extends Core
     public ping: resources.PingAPI;
     public sites_geographiques: resources.SitesGeographiquesAPI;
     public workflows: resources.WorkflowsAPI;
+    public dossiers_rattachements: resources.DossiersRattachementsAPI;
     public healthcheck: resources.HealthcheckAPI;
     public search: resources.SearchAPI;
     public enveloppes: resources.EnveloppesAPI;
@@ -55,6 +56,7 @@ export class Metarisc extends Core
                     case 'ping': return new resources.PingAPI(config, tmpClient);
                     case 'sites_geographiques': return new resources.SitesGeographiquesAPI(config, tmpClient);
                     case 'workflows': return new resources.WorkflowsAPI(config, tmpClient);
+                    case 'dossiers_rattachements': return new resources.DossiersRattachementsAPI(config, tmpClient);
                     case 'healthcheck': return new resources.HealthcheckAPI(config, tmpClient);
                     case 'search': return new resources.SearchAPI(config, tmpClient);
                     case 'enveloppes': return new resources.EnveloppesAPI(config, tmpClient);
