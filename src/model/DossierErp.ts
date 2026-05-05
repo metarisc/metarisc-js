@@ -22,6 +22,8 @@ export type DossierErp = DossierBase & {
     'date_limite_traitement': Date | null;
 
     'dossier_complet': boolean | null;
+
+    'dossier_complet_observations': string | null;
 };
 
 export enum StatutEnum {
