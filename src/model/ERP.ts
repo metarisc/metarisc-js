@@ -28,6 +28,7 @@ export type ERP = {
     'textes_applicables': Array<TexteApplicable>;
     'genre': GenreEnum;
     'organisation_id': string;
+    'resume_historique': string | null;
 };
 
 export enum AvisExploitationEnum {
