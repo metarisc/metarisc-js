@@ -59,5 +59,8 @@ export enum NameEnum {
     FEED_CREATE = 'feed:create',
     FEED_EDIT = 'feed:edit:*',
     FEED_DELETE = 'feed:delete',
-    FEED_VIEW = 'feed:view'
+    FEED_VIEW = 'feed:view',
+    COMMISSION_PASSAGE_ADD_DOSSIER = 'commission:passage:add:dossier',
+    SITE_CREATE_FONCTIONNEL = 'site:create:fonctionnel',
+    SITE_CREATE_GEOGRAPHIQUE = 'site:create:geographique'
 }

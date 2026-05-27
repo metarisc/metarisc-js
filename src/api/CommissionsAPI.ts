@@ -82,7 +82,7 @@ export class CommissionsAPI extends Core {
     paginateCommissionDates(
         commissionId: string,
         fromDate? : Date,
-        type? : 'salle' | 'visite_reception_travaux_en_groupe_de_visite' | 'visite_reception_avant_ouverture_en_groupe_de_visite' | 'visite_periodique_en_groupe_de_visite' | 'visite_inopinee_en_groupe_de_visite' | 'visite_controle_en_groupe_de_visite' | 'visite_chantier_en_groupe_de_visite' | 'visite_conseil_en_groupe_de_visite' | 'visite_reception_travaux_en_pleniere' | 'visite_reception_avant_ouverture_en_pleniere' | 'visite_periodique_en_pleniere' | 'visite_inopinee_en_pleniere' | 'visite_controle_en_pleniere' | 'visite_chantier_en_pleniere' | 'visite_conseil_en_pleniere'
+        types? : string | Array<string>
     ) : Collection<PassageCommission>
     {
         const pathVariable = { 'commission_id': (new String(commissionId)).toString() };
@@ -91,7 +91,7 @@ export class CommissionsAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates'),
             params: Utils.payloadFilter({
                 'from_date': fromDate === undefined ? undefined : Utils.formatDate(fromDate), 
-                'type': type === undefined ? undefined : (new String(type)).toString()
+                'types': types === undefined ? undefined : (new String(types)).toString()
             }),
             transformResponse: [(data) => {
                 if (!data) return data;
