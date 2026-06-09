@@ -1,12 +1,11 @@
 // File generated from our OpenAPI spec
-import { Cloisonnement } from './Cloisonnement';
 import { Degagement } from './Degagement';
 import { EffectifsNiveau } from './EffectifsNiveau';
 import { Local } from './Local';
 
 export type Clicdvcrem = {
     'activite_principale': ActivitePrincipaleEnum | null;
-    'autres_activites': Set<AutresActivitesEnum> | null;
+    'activites_secondaire': Set<ActivitesSecondaireEnum> | null;
     'categorie': CategorieEnum | null;
     'groupement_etablissement': GroupementEtablissementEnum | null;
     'tableau_des_effectifs': Array<EffectifsNiveau> | null;
@@ -34,14 +33,14 @@ export type Clicdvcrem = {
     'desserte_informations_complementaires': string | null;
     'presence_erp_ou_tiers_contigus': boolean | null;
     'isolement_contigus_realise_degre_cf': IsolementContigusRealiseDegreCfEnum | null;
-    'isolement_contigus_realise_degre_cf_informations_complementaires': string | null;
+    'isolement_contigus_realise_degre_cf_autre_precision': string | null;
     'isolement_contigus_informations_complementaires': string | null;
     'air_libre': AirLibreEnum | null;
     'vis_a_vis': VisAVisEnum | null;
     'isolement_vis_a_vis_informations_complementaires': string | null;
     'presence_erp_ou_tiers_superpose': boolean | null;
     'isolement_superpose_realise_degre_cf': IsolementSuperposeRealiseDegreCfEnum | null;
-    'isolement_superpose_realise_degre_cf_informations_complementaires': string | null;
+    'isolement_superpose_realise_degre_cf_autre_precision': string | null;
     'isolement_superpose_informations_complementaires': string | null;
     'structure_sf': StructureSfEnum | null;
     'plancher_sf': PlancherSfEnum | null;
@@ -50,15 +49,15 @@ export type Clicdvcrem = {
     'construction_structures_description': string | null;
     'construction_couverture_description': string | null;
     'construction_facades_description': string | null;
-    'cloisonnements': Array<Cloisonnement> | null;
+    'type_cloisonnement': Set<TypeCloisonnementEnum> | null;
     'construction_distribution_interieure_informations_complementaires': string | null;
     'locaux': Array<Local> | null;
     'construction_conduits_et_gaines_description': string | null;
     'construction_amenagements_interieurs_description': string | null;
-    'degagements_normaux': Array<Degagement> | null;
+    'degagement_normaux': Array<Degagement> | null;
     'degagements_accessoires': Array<Degagement> | null;
-    'degagements_exigibles_informations_complementaires': string | null;
-    'degagements_supplementaires': Array<Degagement> | null;
+    'degagement_exigibles_informations_complementaires': string | null;
+    'degagement_supplementaires': Array<Degagement> | null;
     'degagement_escaliers_description': string | null;
     'degagement_ascenseurs_escaliers_mecaniques_trottoirs_roulants_description': string | null;
     'presence_eas_ou_equivalents': boolean | null;
@@ -237,7 +236,7 @@ export enum ActivitePrincipaleEnum {
     Y___SALLES_DESTINEES_A_RECEVOIR_DES_EXPOSITIONS_A_VOCATION_CULTURELLE_SCIENTIFIQUE_TECHNIQUE_ARTISTIQUE_ETC__AYANT_UN_CARACTERE_TEMPORAIRE = 'Y - Salles destinées à recevoir des expositions à vocation culturelle, scientifique, technique, artistique, etc. ayant un caractère temporaire'
 }
 
-export enum AutresActivitesEnum {
+export enum ActivitesSecondaireEnum {
     CTS___CHAPITEAUX = 'CTS - Châpiteaux',
     CTS___STRUCTURES = 'CTS - Structures',
     CTS___TENTES = 'CTS - Tentes',
@@ -435,6 +434,12 @@ export enum PlancherSfEnum {
     AUTRE = 'Autre'
 }
 
+export enum TypeCloisonnementEnum {
+    TRADITIONNELS = 'Traditionnels',
+    SECTEURS = 'Secteurs',
+    COMPARTIMENTS = 'Compartiments'
+}
+
 export enum PuissanceChaufferieEnum {
     _70K_W = '<=70kW',
     _70K_W2 = '>70kW',
@@ -483,24 +488,22 @@ export enum ServiceDeSecuriteIncendieEnum {
 }
 
 export enum TypeSsiEnum {
-    A = 'A',
-    A_OPTION_IGH = 'A option IGH',
-    B = 'B',
-    C = 'C',
+    E = 'E',
     D = 'D',
-    E = 'E'
+    C = 'C',
+    B = 'B',
+    A = 'A'
 }
 
 export enum TypeAlarmeEnum {
-    _1 = '1',
-    _2_A = '2A',
-    _2_B = '2B',
+    _4 = '4',
     _3 = '3',
-    _4 = '4'
+    _2_B = '2B',
+    _2_A = '2A',
+    _1 = '1'
 }
 
 export enum AutreSystemeAlerteEnum {
     TELEPHONE_URBAIN_FIXE_OU_BOX_SECOURUE = 'Telephone urbain fixe ou box secourue',
-    GSM = 'GSM',
-    TELEPHONE_DIRECT_RELIE_AU_PCS = 'Téléphone direct relié au PCS'
+    GSM = 'GSM'
 }
