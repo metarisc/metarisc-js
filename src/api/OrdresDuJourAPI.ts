@@ -80,6 +80,21 @@ export class OrdresDuJourAPI extends Core {
     }
     
     /**
+     * Le procès verbal de visite est le document officiel de la commission de sécurité remis à l’autorité de police compétente. Il contient l’avis unique prononcé, exprimant la position collégiale de la commission. Le PDF généré est un document de synthèse qui reprend les informations de la commission, en se basant sur le modèle de rapport de l'organisation. La génération du PDF est une opération qui peut être longue, en fonction de la taille et du nombre d'éléments à exporter.
+     */
+    getProcesVerbalVisitePdfDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<Blob>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            responseType: 'blob',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/proces_verbal_visite_pdf')
+        });
+    }
+    
+    /**
      * Mise à jour des détails d'un dossier lié à une date de passage en commission en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
     updateCommissionDateDossier(
@@ -103,11 +118,8 @@ export class OrdresDuJourAPI extends Core {
                 if (parsedData && parsedData.dossier.workflows_actifs) {
                     parsedData.dossier.workflows_actifs = new Set(parsedData.dossier.workflows_actifs);
                 }
-                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
-                    parsedData.dossier.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.activites_secondaire);
-                }
-                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
-                    parsedData.dossier.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.autres_activites) {
+                    parsedData.dossier.erp.descriptif_technique.analyse_risque.autres_activites = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.autres_activites);
                 }
                 if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
                     parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage);

@@ -56,11 +56,8 @@ export class NotificationsAPI extends Core {
                 if (parsedData && parsedData.subject.workflows_actifs) {
                     parsedData.subject.workflows_actifs = new Set(parsedData.subject.workflows_actifs);
                 }
-                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
-                    parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire);
-                }
-                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
-                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.autres_activites) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.autres_activites = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.autres_activites);
                 }
                 if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
                     parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage);
@@ -114,11 +111,8 @@ export class NotificationsAPI extends Core {
                 if (parsedData && parsedData.subject.workflows_actifs) {
                     parsedData.subject.workflows_actifs = new Set(parsedData.subject.workflows_actifs);
                 }
-                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
-                    parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire);
-                }
-                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
-                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.autres_activites) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.autres_activites = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.autres_activites);
                 }
                 if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
                     parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage);
@@ -154,11 +148,8 @@ export class NotificationsAPI extends Core {
                 if (parsedData && parsedData.subject.workflows_actifs) {
                     parsedData.subject.workflows_actifs = new Set(parsedData.subject.workflows_actifs);
                 }
-                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
-                    parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.activites_secondaire);
-                }
-                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
-                    parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.autres_activites) {
+                    parsedData.subject.erp.descriptif_technique.analyse_risque.autres_activites = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.autres_activites);
                 }
                 if (parsedData && parsedData.subject.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
                     parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.subject.erp.descriptif_technique.analyse_risque.type_de_chauffage);

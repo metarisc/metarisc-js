@@ -62,6 +62,21 @@ export class DatesPassageCommissionAPI extends Core {
     }
     
     /**
+     * L'export de la préparation de visite est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments de la préparation de visite. Le SIS réalise pour chaque visite un document de préparation de visite détaillé par ERP.
+     */
+    getPdfPreparationVisiteDate(
+        dateId: string
+    ) : Promise<AxiosResponse<Blob>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'GET',
+            responseType: 'blob',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/preparation_visite/pdf')
+        });
+    }
+    
+    /**
      * Récupération d'une liste de dossiers à l'ordre du jour liés à une date de passage en commission.
      */
     paginateCommissionDateDossiers(
@@ -104,11 +119,8 @@ export class DatesPassageCommissionAPI extends Core {
                 if (parsedData && parsedData.dossier.workflows_actifs) {
                     parsedData.dossier.workflows_actifs = new Set(parsedData.dossier.workflows_actifs);
                 }
-                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.activites_secondaire) {
-                    parsedData.dossier.erp.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.activites_secondaire);
-                }
-                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.type_cloisonnement) {
-                    parsedData.dossier.erp.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.type_cloisonnement);
+                if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.autres_activites) {
+                    parsedData.dossier.erp.descriptif_technique.analyse_risque.autres_activites = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.autres_activites);
                 }
                 if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
                     parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage);
