@@ -18,5 +18,6 @@ export enum TypeEnum {
     RVRAT = 'RVRAT',
     RVRE = 'RVRE',
     RVRMD = 'RVRMD',
+    LETTRE_ACCOMPAGNEMENT_RUS = 'lettre_accompagnement_RUS',
     DIVERS = 'divers'
 }
