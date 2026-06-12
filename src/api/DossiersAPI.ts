@@ -217,6 +217,21 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * L'export de la préparation de visite est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments de la préparation de visite. Le SIS réalise pour chaque visite un document de préparation de visite détaillé par ERP.
+     */
+    getPreparationVisitePdfDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<Blob>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            responseType: 'blob',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/Preparation_visite_pdf')
+        });
+    }
+    
+    /**
      * Récupération de la liste des prescriptions sur le rapport d'étude.
      */
     getPrescriptionsRapportEtudeDossier(

@@ -62,21 +62,6 @@ export class DatesPassageCommissionAPI extends Core {
     }
     
     /**
-     * L'export de la préparation de visite est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments de la préparation de visite. Le SIS réalise pour chaque visite un document de préparation de visite détaillé par ERP.
-     */
-    getPdfPreparationVisiteDate(
-        dateId: string
-    ) : Promise<AxiosResponse<Blob>>
-    {
-        const pathVariable = { 'date_id': (new String(dateId)).toString() };
-        return this.request({
-            method: 'GET',
-            responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/preparation_visite/pdf')
-        });
-    }
-    
-    /**
      * Récupération d'une liste de dossiers à l'ordre du jour liés à une date de passage en commission.
      */
     paginateCommissionDateDossiers(
