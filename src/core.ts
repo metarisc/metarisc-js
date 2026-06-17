@@ -1,9 +1,16 @@
 import { AxiosResponse } from "axios";
-import { AuthMethod, Client, EventEnum, RequestConfig as BaseRequestConfig } from "./client";
+import {
+	AuthMethod,
+	Client,
+	EventEnum,
+	RequestConfig as BaseRequestConfig,
+	TokenProvider
+} from "./client";
 import { Collection } from "./collection";
 import { GrantResponse, RefreshResponse } from "./auth/oauth2";
 
-interface RequestConfig extends BaseRequestConfig {
+export interface RequestConfig extends BaseRequestConfig {
+	method?: string;
 }
 
 export interface MetariscConfig {
@@ -77,5 +84,13 @@ export class Core {
 
     setActiveOrganisation(orgId: string): void {
         this.client.setActiveOrganisation(orgId);
+    }
+
+    /**
+     * Délègue la gestion des tokens à un provider externe (ex: angular-oauth2-oidc).
+     * À appeler juste après l'instanciation du service Metarisc.
+     */
+    setTokenProvider(provider: TokenProvider): void {
+        this.client.setTokenProvider(provider);
     }
 }

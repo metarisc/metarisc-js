@@ -11,6 +11,7 @@ import { Utils } from "./utils";
 import { SessionExpiredError } from "./error/SessionExpiredError";
 
 export interface RequestConfig extends AxiosRequestConfig {
+	method?: string;
 	body?: any;
 	headers?: { [name: string]: string | string[] };
 	params?: { [param: string]: string | string[] };
@@ -28,6 +29,10 @@ export enum EventEnum {
     error = "error",
 }
 
+export interface TokenProvider {
+	getAccessToken(): Promise<string | undefined>;
+}
+
 export class Client {
 	private eventStream = new EventTarget();
 
@@ -36,6 +41,7 @@ export class Client {
 	private oauth2: OAuth2;
 	private access_token?: string;
 	private refresh_token?: string;
+	private tokenProvider?: TokenProvider;
 
 	private orgId ?: string;
 
@@ -85,9 +91,15 @@ export class Client {
 		});
 
 		// Axios interceptor : Ajoute l'access token à la requête
-		// L'access token peut venir d'un premier authenticate, ou d'un refresh token obtenu au cours des interceptors
-		this.axios.interceptors.request.use((config) => {
-			config.headers["Authorization"] = this.getAccessToken();
+		// Si un TokenProvider externe est défini, on lui délègue l'obtention du token
+        // (il gère aussi le refresh de manière transparente).
+		this.axios.interceptors.request.use(async (config) => {
+			if (this.tokenProvider) {
+				config.headers["Authorization"] =
+					await this.tokenProvider.getAccessToken();
+			} else {
+				config.headers["Authorization"] = this.getAccessToken();
+			}
 			return config;
 		});
 
@@ -98,7 +110,11 @@ export class Client {
 		});
 
 		// Axios interceptor : Refresh Token (https://datatracker.ietf.org/doc/html/rfc6749#section-1.5)
+		// Désactivé si un TokenProvider est défini — le provider gère lui-même le refresh.
 		this.axios.interceptors.request.use(async (config) => {
+			if (this.tokenProvider) {
+				return config;
+			}
 			// Si l'access_token a expiré on demande un échange avec le refresh token obtenu précedemment
 			// Si le refresh ne fonctionne pas, on ne fait rien
 			if (this.getAccessToken() !== undefined && Utils.tokenExpired(this.getAccessToken())) {
@@ -179,6 +195,14 @@ export class Client {
 
 	public getEventStream(): EventTarget {
 		return this.eventStream;
+	}
+
+	/**
+	 * Définit un TokenProvider externe qui sera utilisé pour obtenir les access tokens.
+	 * Une fois défini, la logique de refresh interne du SDK est désactivée.
+	 */
+	setTokenProvider(provider: TokenProvider): void {
+		this.tokenProvider = provider;
 	}
 
 	/**
