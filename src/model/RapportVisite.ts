@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec
 import { DocumentTechnique } from './DocumentTechnique';
 import { Essai } from './Essai';
+import { TexteApplicable } from './TexteApplicable';
 
 export type RapportVisite = {
     'observations': string | null;
@@ -11,6 +12,7 @@ export type RapportVisite = {
     'documents_techniques': Array<DocumentTechnique>;
     'essais': Array<Essai>;
     'descriptif_dossier': string | null;
+    'textes_applicables': Array<TexteApplicable>;
 };
 
 export enum PropositionAvisEnum {

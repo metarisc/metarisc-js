@@ -31,6 +31,7 @@ export class Metarisc extends Core
     public anomalies: resources.AnomaliesAPI;
     public supports_reglementaires: resources.SupportsReglementairesAPI;
     public feed: resources.FeedAPI;
+    public geoservices: resources.GeoservicesAPI;
     public tournees_deci: resources.TourneesDECIAPI;
     public controles_pei: resources.ControlesPEIAPI;
     public evenements: resources.EvenementsAPI;
@@ -73,6 +74,7 @@ export class Metarisc extends Core
                     case 'anomalies': return new resources.AnomaliesAPI(config, tmpClient);
                     case 'supports_reglementaires': return new resources.SupportsReglementairesAPI(config, tmpClient);
                     case 'feed': return new resources.FeedAPI(config, tmpClient);
+                    case 'geoservices': return new resources.GeoservicesAPI(config, tmpClient);
                     case 'tournees_deci': return new resources.TourneesDECIAPI(config, tmpClient);
                     case 'controles_pei': return new resources.ControlesPEIAPI(config, tmpClient);
                     case 'evenements': return new resources.EvenementsAPI(config, tmpClient);

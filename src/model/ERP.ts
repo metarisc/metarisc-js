@@ -10,6 +10,7 @@ import { Utilisateur } from './Utilisateur';
 
 export type ERP = {
     'id': string;
+    'metarisc_erp_id'?: string;
     'date_de_realisation': Date;
     'date_de_derniere_mise_a_jour': Date | null;
     'implantation': AdressePostale;
