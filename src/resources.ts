@@ -28,6 +28,8 @@ export { EvenementsAPI } from './api/EvenementsAPI';
 
 export { FeedAPI } from './api/FeedAPI';
 
+export { GeoservicesAPI } from './api/GeoservicesAPI';
+
 export { HealthcheckAPI } from './api/HealthcheckAPI';
 
 export { MainsCourantesAPI } from './api/MainsCourantesAPI';

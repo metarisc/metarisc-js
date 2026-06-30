@@ -55,6 +55,7 @@ export enum NameEnum {
     DOCUMENT_DOSSIER_CREATE = 'document:dossier:create',
     DOCUMENT_DOSSIER_DELETE = 'document:dossier:delete',
     COMMISSION_GENERATE_PROCESVERBAL = 'commission:generate:procesverbal',
+    COMMISSION_GENERATE_COMPTE_RENDU = 'commission:generate:compte-rendu',
     DOCUMENT_MODEL_UPDATE = 'document:model:update',
     FEED_CREATE = 'feed:create',
     FEED_EDIT = 'feed:edit:*',
