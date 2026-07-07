@@ -178,7 +178,8 @@ export class ERPAPI extends Core {
         erpRattacheA? : string,
         titulaires? : string,
         genre? : 'cellule' | 'erp',
-        statut? : 'reprise_de_donnees' | 'ouvert' | 'projet' | 'ferme' | 'itinerant_periodique' | 'erreur_saisie'
+        statut? : 'reprise_de_donnees' | 'ouvert' | 'projet' | 'ferme' | 'itinerant_periodique' | 'erreur_saisie',
+        metariscErpId? : string
     ) : Collection<ERP>
     {
         const pathVariable = { };
@@ -200,7 +201,8 @@ export class ERPAPI extends Core {
                 'erp_rattache_a': erpRattacheA === undefined ? undefined : (new String(erpRattacheA)).toString(), 
                 'titulaires': titulaires === undefined ? undefined : (new String(titulaires)).toString(), 
                 'genre': genre === undefined ? undefined : (new String(genre)).toString(), 
-                'statut': statut === undefined ? undefined : (new String(statut)).toString()
+                'statut': statut === undefined ? undefined : (new String(statut)).toString(), 
+                'metarisc_erp_id': metariscErpId === undefined ? undefined : (new String(metariscErpId)).toString()
             }),
             transformResponse: [(data) => {
                 if (!data) return data;
