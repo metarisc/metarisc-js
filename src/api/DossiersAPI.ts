@@ -386,7 +386,8 @@ export class DossiersAPI extends Core {
         affecte? : string,
         enveloppe? : string,
         numeroUrba? : string,
-        estParent? : boolean
+        estParent? : boolean,
+        metariscDossierId? : string
     ) : Collection<Dossier>
     {
         const pathVariable = { };
@@ -403,7 +404,8 @@ export class DossiersAPI extends Core {
                 'affecte': affecte === undefined ? undefined : (new String(affecte)).toString(), 
                 'enveloppe': enveloppe === undefined ? undefined : (new String(enveloppe)).toString(), 
                 'numero_urba': numeroUrba === undefined ? undefined : (new String(numeroUrba)).toString(), 
-                'est_parent': estParent === undefined ? undefined : (new String(estParent)).toString()
+                'est_parent': estParent === undefined ? undefined : (new String(estParent)).toString(), 
+                'metarisc_dossier_id': metariscDossierId === undefined ? undefined : (new String(metariscDossierId)).toString()
             }),
             transformResponse: [(data) => {
                 if (!data) return data;
