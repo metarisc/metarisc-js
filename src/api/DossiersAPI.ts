@@ -44,6 +44,25 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Suppression d'un dossier a partir de son identifiant.
+     */
+    deleteDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
+            transformResponse: [(data) => {
+                if (!data) return data;
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
      * Liste des affectations du dossier.
      */
     getAffectationsDossier(

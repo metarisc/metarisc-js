@@ -81,6 +81,27 @@ export class DatesPassageCommissionAPI extends Core {
     }
     
     /**
+     * Modification d'une date de passage en commission. Cette opération permet de modifier une date de passage en commission.
+     */
+    patchDate(
+        dateId: string,
+        params : any
+    ) : Promise<AxiosResponse<PassageCommission>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}'),
+            transformResponse: [(data) => {
+                if (!data) return data;
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Ajout d'un dossier à l'ordre du jour d'un passage en commission.
      */
     postCommissionDateDossier(
