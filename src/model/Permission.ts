@@ -5,10 +5,6 @@ export type Permission = {
 };
 
 export enum NameEnum {
-    DECI_ACCESS = 'deci:access',
-    ERP_ACCESS = 'erp:access',
-    SIRENE_ACCESS = 'sirene:access',
-    COMMISSION_ACCESS = 'commission:access',
     DOSSIER_CREATE = 'dossier:create',
     DOSSIER_EDIT = 'dossier:edit:*',
     DOSSIER_DELETE = 'dossier:delete',
@@ -63,5 +59,8 @@ export enum NameEnum {
     FEED_VIEW = 'feed:view',
     COMMISSION_PASSAGE_ADD_DOSSIER = 'commission:passage:add:dossier',
     SITE_CREATE_FONCTIONNEL = 'site:create:fonctionnel',
-    SITE_CREATE_GEOGRAPHIQUE = 'site:create:geographique'
+    SITE_CREATE_GEOGRAPHIQUE = 'site:create:geographique',
+    DOSSIER_CREATE_ERP = 'dossier:create:erp',
+    DOSSIER_UPDATE_AFFECTATION = 'dossier:update:affectation',
+    PRESCRIPTION_BIBLIOTHEQUE_TYPE = 'prescription:bibliotheque:type'
 }

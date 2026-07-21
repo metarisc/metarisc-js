@@ -15,6 +15,26 @@ export class CommissionsAPI extends Core {
     }
     
     /**
+     * Suppression d'un passage en commission.
+     */
+    deletePassageDatesCommission(
+        commissionId: string,
+        passageId: string
+    ) : Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'commission_id': (new String(commissionId)).toString(), 'passage_id': (new String(passageId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/commissions/{commission_id}/dates/{passage_id}'),
+            transformResponse: [(data) => {
+                if (!data) return data;
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
      * Récupération des détails de la commission.
      */
     getCommission(

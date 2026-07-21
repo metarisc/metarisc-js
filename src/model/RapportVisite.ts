@@ -6,8 +6,8 @@ import { TexteApplicable } from './TexteApplicable';
 export type RapportVisite = {
     'observations': string | null;
     'prise_de_note_interne': string | null;
-    'proposition_avis': PropositionAvisEnum | null;
-    'proposition_avis_observations': string;
+    'proposition_avis'?: PropositionAvisEnum | null;
+    'proposition_avis_observations'?: string;
     'facteur_dangerosite': number | null;
     'documents_techniques': Array<DocumentTechnique>;
     'essais': Array<Essai>;
