@@ -157,66 +157,6 @@ export class DossiersAPI extends Core {
     }
     
     /**
-     * L'export du courrier de levée de prescription est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments du courrier de levée de prescription. Le SIS réalise pour chaque dossier un document de levée de prescription détaillé par ERP.
-     */
-    getPdfLeveeDePrescriptionsDossier(
-        dossierId: string
-    ) : Promise<AxiosResponse<Blob>>
-    {
-        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        return this.request({
-            method: 'GET',
-            responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/levee_de_prescriptions/pdf')
-        });
-    }
-    
-    /**
-     * L'export du courrier de levée de réserve est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments du courrier de levée de réserve. Le SIS réalise pour chaque dossier un document de levée de réserve détaillé par ERP.
-     */
-    getPdfLeveeDeReservesDossier(
-        dossierId: string
-    ) : Promise<AxiosResponse<Blob>>
-    {
-        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        return this.request({
-            method: 'GET',
-            responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/levee_de_reserves/pdf')
-        });
-    }
-    
-    /**
-     * L'export du rapport d'étude est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments du dossier d'étude. Le SIS réalise pour chaque étude ou visite un rapport détaillé par ERP. Ce document est présenté en commission par le sapeur pompier préventionniste en sa qualité de rapporteur et de technicien du risque. Le PDF généré est un document de synthèse qui reprend les informations du dossier, en se basant sur le modèle de rapport de l'organisation. L'export du dossier est une opération qui peut être longue, en fonction de la taille du dossier et du nombre d'éléments à exporter.
-     */
-    getPdfRapportEtudeDossier(
-        dossierId: string
-    ) : Promise<AxiosResponse<Blob>>
-    {
-        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        return this.request({
-            method: 'GET',
-            responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/pdf')
-        });
-    }
-    
-    /**
-     * L'export du rapport de visite est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments du dossier de visite. Le SIS réalise pour chaque étude ou visite un rapport détaillé par ERP. Ce document est présenté en commission par le sapeur pompier préventionniste en sa qualité de rapporteur et de technicien du risque. Le PDF généré est un document de synthèse qui reprend les informations du dossier, en se basant sur le modèle de rapport de l'organisation. L'export du dossier est une opération qui peut être longue, en fonction de la taille du dossier et du nombre d'éléments à exporter.
-     */
-    getPdfRapportVisiteDossier(
-        dossierId: string
-    ) : Promise<AxiosResponse<Blob>>
-    {
-        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        return this.request({
-            method: 'GET',
-            responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite/pdf')
-        });
-    }
-    
-    /**
      * Ensemble des permissions de l'utilisateur connecté sur le dossier.
      */
     getPermissionsDossier(
@@ -232,21 +172,6 @@ export class DossiersAPI extends Core {
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
-        });
-    }
-    
-    /**
-     * L'export de la préparation de visite est une opération qui permet de récupérer un fichier PDF contenant l'ensemble des éléments de la préparation de visite. Le SIS réalise pour chaque visite un document de préparation de visite détaillé par ERP.
-     */
-    getPreparationVisitePdfDossier(
-        dossierId: string
-    ) : Promise<AxiosResponse<Blob>>
-    {
-        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
-        return this.request({
-            method: 'GET',
-            responseType: 'blob',
-            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/Preparation_visite_pdf')
         });
     }
     
