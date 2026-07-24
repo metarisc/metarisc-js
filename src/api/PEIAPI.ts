@@ -28,8 +28,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -47,8 +50,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -66,8 +72,11 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -85,8 +94,11 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -104,8 +116,11 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -123,8 +138,11 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -142,8 +160,11 @@ export class PEIAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/historique'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -178,8 +199,11 @@ export class PEIAPI extends Core {
                 'geojson': geojson === undefined ? undefined : (new String(geojson)).toString(), 
                 'references_exterieures': referencesExterieures === undefined ? undefined : (new String(referencesExterieures)).toString()
             }),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -198,8 +222,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/references_exterieures'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -219,8 +246,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/anomalies'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -240,8 +270,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/contacts'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -261,8 +294,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/documents'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -282,8 +318,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei/{pei_id}/dossiers'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.createur?.roles) {
                     parsedData.createur.roles = new Set(parsedData.createur.roles);
@@ -320,8 +359,11 @@ export class PEIAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/pei'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

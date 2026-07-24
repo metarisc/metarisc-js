@@ -23,8 +23,11 @@ Cet endpoint de recherche permet de saffranchir des limitations de la recherche 
         return this.collect({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/search/erp'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

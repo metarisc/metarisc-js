@@ -35,8 +35,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -54,8 +57,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -73,8 +79,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -92,8 +101,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/derogations'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -111,8 +123,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.createur?.roles) {
                     parsedData.createur.roles = new Set(parsedData.createur.roles);
@@ -148,8 +163,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -167,8 +185,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/permissions'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -186,8 +207,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -205,8 +229,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.analyse_risque?.activites_secondaire) {
                     parsedData.analyse_risque.activites_secondaire = new Set(parsedData.analyse_risque.activites_secondaire);
@@ -233,8 +260,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -252,8 +282,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rattachements'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -271,8 +304,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -290,8 +326,11 @@ export class DossiersAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -309,8 +348,11 @@ export class DossiersAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -351,8 +393,11 @@ export class DossiersAPI extends Core {
                 'est_parent': estParent === undefined ? undefined : (new String(estParent)).toString(), 
                 'metarisc_dossier_id': metariscDossierId === undefined ? undefined : (new String(metariscDossierId)).toString()
             }),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -370,8 +415,11 @@ export class DossiersAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -389,8 +437,11 @@ export class DossiersAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/workflows'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -409,8 +460,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/affectations'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.utilisateur?.roles) {
                     parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
@@ -433,8 +487,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/contacts'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -454,8 +511,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/derogations'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -475,8 +535,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/documents'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -496,8 +559,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.createur?.roles) {
                     parsedData.createur.roles = new Set(parsedData.createur.roles);
@@ -535,8 +601,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/fil_rouge'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.auteur?.roles) {
                     parsedData.auteur.roles = new Set(parsedData.auteur.roles);
@@ -559,8 +628,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -580,8 +652,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.analyse_risque?.activites_secondaire) {
                     parsedData.analyse_risque.activites_secondaire = new Set(parsedData.analyse_risque.activites_secondaire);
@@ -610,8 +685,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -631,8 +709,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rattachements'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.dossier_enfant.createur?.roles) {
                     parsedData.dossier_enfant.createur.roles = new Set(parsedData.dossier_enfant.createur.roles);
@@ -661,8 +742,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude/prescriptions/reorganiser'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -682,8 +766,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/tags'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -702,8 +789,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'PUT',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/archiver'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -722,8 +812,11 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'PUT',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/essais'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

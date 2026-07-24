@@ -23,8 +23,11 @@ export class EvenementsAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -42,8 +45,11 @@ export class EvenementsAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -68,8 +74,11 @@ export class EvenementsAPI extends Core {
                 'type': type === undefined ? undefined : (new String(type)).toString(), 
                 'subject_id': subjectId === undefined ? undefined : (new String(subjectId)).toString()
             }),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -87,8 +96,11 @@ export class EvenementsAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/evenements/{evenement_id}/utilisateurs'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -106,8 +118,11 @@ export class EvenementsAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/evenements'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

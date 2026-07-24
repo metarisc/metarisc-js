@@ -53,8 +53,11 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -72,8 +75,11 @@ export class DatesPassageCommissionAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -92,8 +98,11 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],
@@ -113,8 +122,11 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.dossier.createur?.roles) {
                     parsedData.dossier.createur.roles = new Set(parsedData.dossier.createur.roles);
@@ -152,8 +164,11 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/reprogrammer'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }],

@@ -24,8 +24,11 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);
@@ -46,8 +49,11 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/permissions'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -65,8 +71,11 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);
@@ -86,8 +95,11 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi/emails'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -105,8 +117,11 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/emails'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -124,8 +139,11 @@ export class UtilisateursAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}/organisations'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -148,8 +166,11 @@ export class UtilisateursAPI extends Core {
                 'last_name': lastName === undefined ? undefined : (new String(lastName)).toString(), 
                 'email': email === undefined ? undefined : (new String(email)).toString()
             }),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -167,8 +188,11 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/@moi'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);
@@ -191,8 +215,11 @@ export class UtilisateursAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/utilisateurs/{utilisateur_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.roles) {
                     parsedData.roles = new Set(parsedData.roles);

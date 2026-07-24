@@ -23,8 +23,11 @@ export class FeedAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -41,8 +44,11 @@ export class FeedAPI extends Core {
         return this.collect({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 return parsedData;
             }]
@@ -61,8 +67,11 @@ export class FeedAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/feed/{message_id}'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.redacteur?.roles) {
                     parsedData.redacteur.roles = new Set(parsedData.redacteur.roles);
@@ -84,8 +93,11 @@ export class FeedAPI extends Core {
         return this.request({
             method: 'POST',
             endpoint: Utils.constructPath(pathVariable, '/feed'),
-            transformResponse: [(data) => {
+            transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.redacteur?.roles) {
                     parsedData.redacteur.roles = new Set(parsedData.redacteur.roles);
