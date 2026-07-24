@@ -8,6 +8,7 @@ export type ReglesDeci = {
     'pibi_conformite_seuil_surpression': number;
     'pibi_conformite_matrice_seuil_pesee_1bar_par_defaut': number;
     'pena_conformite_seuil_volume_citerne': number;
+    'pena_conformite_seuil_volume_citerne_': number;
 };
 
 export enum PibiPerformanceNaturesPerformanceRestreinteEnum {
