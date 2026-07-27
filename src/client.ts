@@ -184,7 +184,10 @@ export class Client {
 		} }).then((response) => {
             this.emit(EventEnum.response, response);
             return response;
-        });
+        }).catch((error) => {
+			this.emit(EventEnum.error, error);
+			throw error;
+		});
 	}
 
 	protected emit(eventName: EventEnum, payload: unknown) {

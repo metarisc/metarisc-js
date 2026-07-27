@@ -41,9 +41,11 @@ export class Core {
         return this.client.request<T>(config);
     }
 
-    on(eventName: EventEnum, callback: (event: Event) => void): void {
-        this.client.getEventStream().addEventListener(eventName, callback);
-    }
+    on(eventName: EventEnum, callback: (event: CustomEvent) => void): void {
+		this.client
+			.getEventStream()
+			.addEventListener(eventName, (e) => callback(e as CustomEvent));
+	}
 
     getAccessToken(): string {
         return this.client.getAccessToken();
