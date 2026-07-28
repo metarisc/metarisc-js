@@ -8,7 +8,7 @@ import { Utilisateur } from './Utilisateur';
 
 export type DossierBase = {
     'id': string;
-    'metarisc_dossier_id': string;
+    'metarisc_dossier_id': string | null;
     'objet': string;
     'date_de_creation': Date;
     'createur': Utilisateur | null;

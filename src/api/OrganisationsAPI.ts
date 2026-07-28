@@ -203,6 +203,30 @@ export class OrganisationsAPI extends Core {
     }
     
     /**
+     * Modifier l'url ou le nom de l'organisation.
+     */
+    patchOrg(
+        orgId: string,
+        params : any
+    ) : Promise<AxiosResponse<Organisation>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Ajout d'un un géo-service à une organisation.
      */
     postOrganisationGeoservices(
