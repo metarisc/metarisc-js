@@ -11,4 +11,6 @@ export type CommissionPreferences = {
     'modele_levee_de_reserve': string | null;
     'modele_levee_de_prescription': string | null;
     'modele_preparation_visite': string | null;
+    'modele_compte_rendu_visite_preside': string | null;
+    'modele_compte_rendu_visite_groupe_de_visite': string | null;
 };

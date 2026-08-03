@@ -49,6 +49,36 @@ export class OrdresDuJourAPI extends Core {
     }
     
     /**
+     * Le compte rendu de visite en groupe de visite.
+     */
+    getCompteRenduVisiteGroupeDeVisiteDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<Blob>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            responseType: 'blob',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/compte_rendu_visite_groupe_de_visite')
+        });
+    }
+    
+    /**
+     * Le compte rendu de visite présidé.
+     */
+    getCompteRenduVisitePresideDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<Blob>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            responseType: 'blob',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/compte_rendu_visite_preside')
+        });
+    }
+    
+    /**
      * Liste des prescriptions sur un dossier à l'ordre du jour d'une date de passage en commission. Les prescriptions sont ordonnées par leur numéro d'ordre.
      */
     getPrescriptionsDossier(
