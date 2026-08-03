@@ -449,6 +449,63 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Mise à jour du rapport d'étude en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    patchRapportEtudeDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<RapportEtude>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_etude'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.analyse_risque?.activites_secondaire) {
+                    parsedData.analyse_risque.activites_secondaire = new Set(parsedData.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.analyse_risque?.type_cloisonnement) {
+                    parsedData.analyse_risque.type_cloisonnement = new Set(parsedData.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.analyse_risque?.type_de_chauffage) {
+                    parsedData.analyse_risque.type_de_chauffage = new Set(parsedData.analyse_risque.type_de_chauffage);
+                }
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Mise à jour du rapport de visite en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    patchRapportVisiteDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<RapportVisite>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/rapport_visite'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Ajoute une affectation à un dossier. Vous pouvez affecter plusieurs personnes au dossier, y compris vous-même. Cela permet de débloquer des droits spécifiques sur le traitement du dossier.
      */
     postAffectationsDossier(
