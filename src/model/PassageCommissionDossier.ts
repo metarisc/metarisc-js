@@ -9,6 +9,7 @@ export type PassageCommissionDossier = {
     'ge4_3': boolean | null;
     'date_de_passage': Date;
     'avis_differe': boolean | null;
+    'na_pu_se_prononcer': boolean | null;
     'observations': string | null;
     'duree_minutes': number;
     'membres_avis': Array<MembreAvis> | null;

@@ -7,6 +7,7 @@ export type RapportVisite = {
     'observations': string | null;
     'prise_de_note_interne': string | null;
     'proposition_avis'?: PropositionAvisEnum | null;
+    'periodicite_modifiee'?: number | null;
     'proposition_avis_observations'?: string;
     'facteur_dangerosite': number | null;
     'documents_techniques': Array<DocumentTechnique>;
