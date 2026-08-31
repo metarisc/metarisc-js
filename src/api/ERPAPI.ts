@@ -196,7 +196,7 @@ export class ERPAPI extends Core {
         erpRattacheA? : string,
         titulaires? : string,
         genre? : 'cellule' | 'erp',
-        statut? : 'reprise_de_donnees' | 'ouvert' | 'projet' | 'ferme' | 'itinerant_periodique' | 'erreur_saisie',
+        statut? : string | Array<string>,
         metariscErpId? : string
     ) : Collection<ERP>
     {

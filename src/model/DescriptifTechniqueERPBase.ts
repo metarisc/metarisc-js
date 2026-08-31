@@ -6,6 +6,7 @@ export type DescriptifTechniqueERPBase = {
     'date': Date;
     'statut': StatutEnum;
     'periodicite': number | null;
+    'periodicite_modifiee'?: number | null;
     'libelle': string;
     'observations_generales': string | null;
     'analyse_risque': Clicdvcrem;
