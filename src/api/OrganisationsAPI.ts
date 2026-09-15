@@ -4,6 +4,7 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
+import { ArretesPrefectoraux } from '../model/ArretesPrefectoraux';
 import { Organisation } from '../model/Organisation';
 import { OrganisationGeoservice } from '../model/OrganisationGeoservice';
 import { OrganisationMembre } from '../model/OrganisationMembre';
@@ -15,6 +16,29 @@ import { WorkflowType } from '../model/WorkflowType';
 export class OrganisationsAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
+    }
+    
+    /**
+     * Supprime un arrêté préfectoral existant pour une organisation.
+     */
+    deleteOrganisationArretesPrefectoraux(
+        orgId: string,
+        arreteId: string
+    ) : Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString(), 'arrete_id': (new String(arreteId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/arretes-prefectoraux/{arrete_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
     }
     
     /**
@@ -112,6 +136,32 @@ export class OrganisationsAPI extends Core {
     }
     
     /**
+     * Retourne la liste paginée des arrêtés préfectoraux pour l'organisation.
+     */
+    paginateOrganisationArretesPrefectoraux(
+        orgId: string,
+        texte? : string
+    ) : Collection<ArretesPrefectoraux>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/arretes-prefectoraux'),
+            params: Utils.payloadFilter({
+                'texte': texte === undefined ? undefined : (new String(texte)).toString()
+            }),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
      * Retourne le référentiel du paramétrage des workflows pour l'organisation.
      */
     paginateOrganisationDossiersWorkflowsSuites(
@@ -203,6 +253,31 @@ export class OrganisationsAPI extends Core {
     }
     
     /**
+     * Modifier les arrêtés préfectoraux d'une organisation.
+     */
+    patchArreteArretesPrefectorauxOrg(
+        orgId: string,
+        arreteId: string,
+        params : any
+    ) : Promise<AxiosResponse<ArretesPrefectoraux>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString(), 'arrete_id': (new String(arreteId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/arretes-prefectoraux/{arrete_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Modifier l'url ou le nom de l'organisation.
      */
     patchOrg(
@@ -214,6 +289,30 @@ export class OrganisationsAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajoute un nouvel arrêté préfectoral pour une organisation.
+     */
+    addOrganisationArretesPrefectoraux(
+        orgId: string,
+        params : any
+    ) : Promise<AxiosResponse<ArretesPrefectoraux>>
+    {
+        const pathVariable = { 'org_id': (new String(orgId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/organisations/{org_id}/arretes-prefectoraux'),
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
