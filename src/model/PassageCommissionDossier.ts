@@ -13,6 +13,8 @@ export type PassageCommissionDossier = {
     'observations': string | null;
     'duree_minutes': number;
     'membres_avis': Array<MembreAvis> | null;
+    'periodicite_proposee'?: string | null;
+    'periodicite_accordee'?: boolean | null;
 };
 
 export enum AvisEnum {

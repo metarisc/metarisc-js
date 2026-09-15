@@ -1,5 +1,5 @@
 // File generated from our OpenAPI spec
-import { DocumentTechnique } from './DocumentTechnique';
+import { DocumentTechniqueVisite } from './DocumentTechniqueVisite';
 import { Essai } from './Essai';
 import { TexteApplicable } from './TexteApplicable';
 
@@ -10,7 +10,7 @@ export type RapportVisite = {
     'periodicite_modifiee'?: number | null;
     'proposition_avis_observations'?: string;
     'facteur_dangerosite': number | null;
-    'documents_techniques': Array<DocumentTechnique>;
+    'documents_techniques': Array<DocumentTechniqueVisite>;
     'essais': Array<Essai>;
     'descriptif_dossier': string | null;
     'textes_applicables': Array<TexteApplicable>;

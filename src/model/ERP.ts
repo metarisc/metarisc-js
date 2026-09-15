@@ -15,7 +15,7 @@ export type ERP = {
     'date_de_derniere_mise_a_jour': Date | null;
     'implantation': AdressePostale;
     'descriptif_technique'?: DescriptifTechniqueERPBase;
-    'avis_exploitation': AvisExploitationEnum | null;
+    'avis_exploitation'?: AvisExploitationEnum | null;
     'date_pc_initial': Date | null;
     'date_ouverture': Date | null;
     'date_derniere_visite': Date | null;
