@@ -9,6 +9,7 @@ export type MainCouranteIntervention = {
     'date_heure_intervention'?: Date | null;
     'date_heure_fin_intervention'?: Date | null;
     'duree_intervention'?: string | null;
+    'observations'?: string | null;
 };
 
 export enum NatureEnum {
