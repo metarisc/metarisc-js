@@ -19,6 +19,6 @@ export type MainCourante = {
 export enum TypeEnum {
     REUNION = 'REUNION',
     INTERVENTION = 'INTERVENTION',
-    COURRIEL_COURRIEL = 'COURRIEL_COURRIEL',
+    COURRIER_COURRIEL = 'COURRIER_COURRIEL',
     ARRETE = 'ARRETE'
 }
