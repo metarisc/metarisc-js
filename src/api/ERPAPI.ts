@@ -192,7 +192,7 @@ export class ERPAPI extends Core {
         aVisiterEn? : string,
         siteGeographique? : string,
         commissionConcernee? : string,
-        categorie? : 1 | 2 | 3 | 4 | 5,
+        categorie? : string | Array<string>,
         erpRattacheA? : string,
         titulaires? : string,
         genre? : 'cellule' | 'erp',

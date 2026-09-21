@@ -6,7 +6,7 @@ import { Local } from './Local';
 export type Clicdvcrem = {
     'activite_principale': ActivitePrincipaleEnum | null;
     'activites_secondaire': Set<ActivitesSecondaireEnum> | null;
-    'categorie': CategorieEnum | null;
+    'categorie': string | null;
     'groupement_etablissement': GroupementEtablissementEnum | null;
     'tableau_des_effectifs': Array<EffectifsNiveau> | null;
     'effectif_public': number | null;
@@ -362,14 +362,6 @@ export enum ActivitesSecondaireEnum {
     X___SALLES_SPORTIVES_SPECIALISEES = 'X - Salles sportives spécialisées',
     Y___MUSEES = 'Y - Musées',
     Y___SALLES_DESTINEES_A_RECEVOIR_DES_EXPOSITIONS_A_VOCATION_CULTURELLE_SCIENTIFIQUE_TECHNIQUE_ARTISTIQUE_ETC__AYANT_UN_CARACTERE_TEMPORAIRE = 'Y - Salles destinées à recevoir des expositions à vocation culturelle, scientifique, technique, artistique, etc. ayant un caractère temporaire'
-}
-
-export enum CategorieEnum {
-    NUMBER_1 = 1,
-    NUMBER_2 = 2,
-    NUMBER_3 = 3,
-    NUMBER_4 = 4,
-    NUMBER_5 = 5
 }
 
 export enum GroupementEtablissementEnum {
