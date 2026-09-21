@@ -1,8 +1,9 @@
 import axios, {
 	AxiosInstance,
 	AxiosResponse,
-	RawAxiosRequestHeaders
-, AxiosRequestConfig } from "axios";
+	RawAxiosRequestHeaders,
+	AxiosRequestConfig
+} from "axios";
 import axiosRetry from "axios-retry";
 import { MetariscConfig, OAuth2Options } from "./core";
 import { GrantResponse, OAuth2, RefreshResponse } from "./auth/oauth2";
@@ -20,13 +21,13 @@ export interface RequestConfig extends AxiosRequestConfig {
 
 export enum AuthMethod {
 	CLIENT_CREDENTIALS,
-	AUTHORIZATION_CODE,
+	AUTHORIZATION_CODE
 }
 
 export enum EventEnum {
-    request = "request",
-    response = "response",
-    error = "error",
+	request = "request",
+	response = "response",
+	error = "error"
 }
 
 export interface TokenProvider {
@@ -43,9 +44,9 @@ export class Client {
 	private refresh_token?: string;
 	private tokenProvider?: TokenProvider;
 
-	private orgId ?: string;
+	private orgId?: string;
 
-	constructor(config : MetariscConfig) {
+	constructor(config: MetariscConfig) {
 		// Paramétrage OAuth2
 		this.oauth2 = new OAuth2({
 			client_id: config.client_id,
@@ -92,7 +93,7 @@ export class Client {
 
 		// Axios interceptor : Ajoute l'access token à la requête
 		// Si un TokenProvider externe est défini, on lui délègue l'obtention du token
-        // (il gère aussi le refresh de manière transparente).
+		// (il gère aussi le refresh de manière transparente).
 		this.axios.interceptors.request.use(async (config) => {
 			if (this.tokenProvider) {
 				config.headers["Authorization"] =
@@ -117,22 +118,26 @@ export class Client {
 			}
 			// Si l'access_token a expiré on demande un échange avec le refresh token obtenu précedemment
 			// Si le refresh ne fonctionne pas, on ne fait rien
-			if (this.getAccessToken() !== undefined && Utils.tokenExpired(this.getAccessToken())) {
+			if (
+				this.getAccessToken() !== undefined &&
+				Utils.tokenExpired(this.getAccessToken())
+			) {
 				try {
 					await this.refreshToken();
-				}
-				catch(e) {
-                    this.emit(EventEnum.error, e);
-					throw new SessionExpiredError('La session utilisateur a expirée. ' + e.message);
+				} catch (e) {
+					this.emit(EventEnum.error, e);
+					throw new SessionExpiredError(
+						"La session utilisateur a expirée. " + e.message
+					);
 				}
 			}
 			return config;
 		});
-		
+
 		// Si la requête doit être réalisée en tant que membre d'une organisation Metarisc, on injecte son identifiant dans les headers
 		// de la requête.
 		this.axios.interceptors.request.use((config) => {
-			if(this.orgId) {
+			if (this.orgId) {
 				config.headers["Metarisc-Org-Id"] = this.orgId;
 			}
 			return config;
@@ -159,17 +164,22 @@ export class Client {
 
 	async refreshToken(): Promise<RefreshResponse> {
 		if (this.refresh_token === undefined) {
-			throw new Error('Impossible de refresh sans refresh token');
+			throw new Error("Impossible de refresh sans refresh token");
 		}
 		try {
-			const refreshResponse = await this.oauth2.refreshToken(this.refresh_token);
-			this.setAccessToken(refreshResponse.token_type + " " + refreshResponse.access_token);
+			const refreshResponse = await this.oauth2.refreshToken(
+				this.refresh_token
+			);
+			this.setAccessToken(
+				refreshResponse.token_type + " " + refreshResponse.access_token
+			);
 			this.setRefreshToken(refreshResponse.refresh_token);
 			return refreshResponse;
 		} catch (e) {
-			throw new Error('Erreur pendant la tentative de refresh du token: ' + e.message);
+			throw new Error(
+				"Erreur pendant la tentative de refresh du token: " + e.message
+			);
 		}
-		
 	}
 
 	/**
@@ -177,24 +187,30 @@ export class Client {
 	 */
 	async request<T>(config: RequestConfig): Promise<AxiosResponse<T>> {
 		this.emit(EventEnum.request, config);
-		return this.axios.request<T>({ ...config, ...{
-			method: config.method || "GET",
-			url: config.endpoint || "/",
-			data: config.body
-		} }).then((response) => {
-            this.emit(EventEnum.response, response);
-            return response;
-        }).catch((error) => {
-			this.emit(EventEnum.error, error);
-			throw error;
-		});
+		return this.axios
+			.request<T>({
+				...config,
+				...{
+					method: config.method || "GET",
+					url: config.endpoint || "/",
+					data: config.body
+				}
+			})
+			.then((response) => {
+				this.emit(EventEnum.response, response);
+				return response;
+			})
+			.catch((error) => {
+				this.emit(EventEnum.error, error);
+				throw error;
+			});
 	}
 
 	protected emit(eventName: EventEnum, payload: unknown) {
-        this.eventStream.dispatchEvent(
-            new CustomEvent(eventName, { detail: payload })
-        );
-    }
+		this.eventStream.dispatchEvent(
+			new CustomEvent(eventName, { detail: payload })
+		);
+	}
 
 	public getEventStream(): EventTarget {
 		return this.eventStream;
@@ -209,6 +225,18 @@ export class Client {
 	}
 
 	/**
+	 * Récupère un access token utilisable pour une requête HTTP.
+	 * Si un TokenProvider est configuré, il est la source de vérité.
+	 */
+	async getAuthorizationHeader(): Promise<string | undefined> {
+		if (this.tokenProvider) {
+			return await this.tokenProvider.getAccessToken();
+		}
+
+		return this.getAccessToken();
+	}
+
+	/**
 	 * Définition de l'Access Token
 	 */
 	setAccessToken(access_token: string): void {
@@ -218,7 +246,7 @@ export class Client {
 	/**
 	 * Récupération de l'Access Token
 	 */
-	getAccessToken(): string|undefined {
+	getAccessToken(): string | undefined {
 		return this.access_token;
 	}
 
@@ -232,7 +260,7 @@ export class Client {
 	/**
 	 * Récupération du Refresh Token
 	 */
-	getRefreshToken(): string|undefined {
+	getRefreshToken(): string | undefined {
 		return this.refresh_token;
 	}
 
@@ -247,23 +275,23 @@ export class Client {
 	 * Retourne les headers HTTP par défauts devant être présents dans toutes les requêtes Metarisc.
 	 */
 	private getDefaultHeaders(): RawAxiosRequestHeaders {
-		const hasBrowserEnv = typeof window !== 'undefined' && typeof document !== 'undefined'; // https://github.com/axios/axios/blob/v1.x/lib/platform/common/utils.js#L1
+		const hasBrowserEnv =
+			typeof window !== "undefined" && typeof document !== "undefined"; // https://github.com/axios/axios/blob/v1.x/lib/platform/common/utils.js#L1
 		const headers: RawAxiosRequestHeaders = {};
 
 		// UA Headers (surcharge le UA uniquement sur un env Server car le navigateur considéra cela comme unsafe)
-		if(!hasBrowserEnv) {
+		if (!hasBrowserEnv) {
 			headers["User-Agent"] = "MetariscJs/dev"; // Format User-Agent (https://www.rfc-editor.org/rfc/rfc9110#name-user-agent)
 		}
 		headers["Metarisc-User-Agent"] = JSON.stringify({
 			lang: "js",
-			version: 'dev'
+			version: "dev"
 		});
 
 		return headers;
 	}
 
-	getBaseUrl() : string
-	{
+	getBaseUrl(): string {
 		return this.axios.defaults.baseURL;
 	}
 }
