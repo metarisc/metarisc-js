@@ -2,7 +2,6 @@
 
 export type MainCouranteCourriel = {
     'nature': NatureEnum;
-    'date_creation_dossier'?: Date | null;
     'demandeur'?: string | null;
     'date_reception_mairie'?: Date | null;
     'date_envoi_transit'?: Date | null;
