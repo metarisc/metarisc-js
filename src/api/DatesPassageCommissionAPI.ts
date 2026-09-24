@@ -4,12 +4,36 @@ import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
+import { CommissionPassageMembre } from '../model/CommissionPassageMembre';
 import { PassageCommission } from '../model/PassageCommission';
 import { PassageCommissionDossier } from '../model/PassageCommissionDossier';
 
 export class DatesPassageCommissionAPI extends Core {
     constructor(config: MetariscConfig, client?: Client) {
         super(config, client);
+    }
+    
+    /**
+     * Suppression d'un membre au passage en commission existant.
+     */
+    deleteMembreMembresDate(
+        dateId: string,
+        membreId: string
+    ) : Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString(), 'membre_id': (new String(membreId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/membres/{membre_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
     }
     
     /**
@@ -67,6 +91,28 @@ export class DatesPassageCommissionAPI extends Core {
     /**
      * Récupération d'une liste de dossiers à l'ordre du jour liés à une date de passage en commission.
      */
+    paginateDateMembres(
+        dateId: string
+    ) : Collection<CommissionPassageMembre>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/membres'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
+     * Récupération d'une liste de dossiers à l'ordre du jour liés à une date de passage en commission.
+     */
     paginateCommissionDateDossiers(
         dateId: string
     ) : Collection<PassageCommissionDossier>
@@ -98,6 +144,55 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'PATCH',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Mise à jour d'un membre à l'ordre du jour d'un passage en commission.
+     */
+    patchMembreMembresDate(
+        dateId: string,
+        membreId: string,
+        params : any
+    ) : Promise<AxiosResponse<CommissionPassageMembre>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString(), 'membre_id': (new String(membreId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/membres/{membre_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajout d'un membre dans le passage en commission.
+     */
+    postMembresDate(
+        dateId: string,
+        params : any
+    ) : Promise<AxiosResponse<CommissionPassageMembre>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/membres'),
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
