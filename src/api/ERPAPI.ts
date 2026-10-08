@@ -326,6 +326,39 @@ export class ERPAPI extends Core {
     }
     
     /**
+     * Mise à jour des détails d'un ERP en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    patchErp(
+        erpId: string,
+        params : any
+    ) : Promise<AxiosResponse<ERP>>
+    {
+        const pathVariable = { 'erp_id': (new String(erpId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/erp/{erp_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.descriptif_technique.analyse_risque?.activites_secondaire) {
+                    parsedData.descriptif_technique.analyse_risque.activites_secondaire = new Set(parsedData.descriptif_technique.analyse_risque.activites_secondaire);
+                }
+                if (parsedData && parsedData.descriptif_technique.analyse_risque?.type_cloisonnement) {
+                    parsedData.descriptif_technique.analyse_risque.type_cloisonnement = new Set(parsedData.descriptif_technique.analyse_risque.type_cloisonnement);
+                }
+                if (parsedData && parsedData.descriptif_technique.analyse_risque?.type_de_chauffage) {
+                    parsedData.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.descriptif_technique.analyse_risque.type_de_chauffage);
+                }
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Créez ou mettez à jour des références extérieures. L'utilisation d'une valeur null pour une référence extérieure supprimera ou « annulera » la valeur de la propriété de la référence extérieure.
      */
     patchReferencesExterieuresErp(

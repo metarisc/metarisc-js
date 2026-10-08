@@ -60,7 +60,7 @@ export class SupportsReglementairesAPI extends Core {
      */
     paginateSupportsReglementaires(
         contenu? : string,
-        reference? : string,
+        titre? : string,
         etat? : 'en_vigueur' | 'abroge'
     ) : Collection<PrescriptionSupportReglementaire>
     {
@@ -70,7 +70,7 @@ export class SupportsReglementairesAPI extends Core {
             endpoint: Utils.constructPath(pathVariable, '/supports_reglementaires'),
             params: Utils.payloadFilter({
                 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
-                'reference': reference === undefined ? undefined : (new String(reference)).toString(), 
+                'titre': titre === undefined ? undefined : (new String(titre)).toString(), 
                 'etat': etat === undefined ? undefined : (new String(etat)).toString()
             }),
             transformResponse: [(data, _headers, status) => {
