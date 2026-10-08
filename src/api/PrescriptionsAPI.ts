@@ -64,7 +64,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
      */
     paginateExplore(
         contenu? : string,
-        supportReglementaireReference? : string,
+        supportReglementaireArticle? : string,
         chemin? : string
     ) : Collection<PrescriptionExploreResult>
     {
@@ -74,7 +74,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
             endpoint: Utils.constructPath(pathVariable, '/prescriptions/explore'),
             params: Utils.payloadFilter({
                 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
-                'support_reglementaire_reference': supportReglementaireReference === undefined ? undefined : (new String(supportReglementaireReference)).toString(), 
+                'support_reglementaire_article': supportReglementaireArticle === undefined ? undefined : (new String(supportReglementaireArticle)).toString(), 
                 'chemin': chemin === undefined ? undefined : (new String(chemin)).toString()
             }),
             transformResponse: [(data, _headers, status) => {
@@ -93,7 +93,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
      */
     paginatePrescriptions(
         contenu? : string,
-        supportReglementaireReference? : string
+        supportReglementaireArticle? : string
     ) : Collection<Prescription>
     {
         const pathVariable = { };
@@ -102,7 +102,7 @@ Les résultats sont trié de manière à afficher en premier les répertoires (c
             endpoint: Utils.constructPath(pathVariable, '/prescriptions'),
             params: Utils.payloadFilter({
                 'contenu': contenu === undefined ? undefined : (new String(contenu)).toString(), 
-                'support_reglementaire_reference': supportReglementaireReference === undefined ? undefined : (new String(supportReglementaireReference)).toString()
+                'support_reglementaire_article': supportReglementaireArticle === undefined ? undefined : (new String(supportReglementaireArticle)).toString()
             }),
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;

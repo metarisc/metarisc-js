@@ -2,7 +2,6 @@
 
 export type MainCouranteArrete = {
     'nature': NatureEnum;
-    'date_creation'?: Date | null;
     'observations'?: string | null;
     'date_signature'?: Date | null;
 };

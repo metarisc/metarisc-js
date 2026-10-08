@@ -2,7 +2,6 @@
 
 export type MainCouranteReunion = {
     'nature': NatureEnum;
-    'date_creation'?: Date | null;
     'demandeur'?: string | null;
     'observations'?: string | null;
     'date_reunion'?: Date | null;

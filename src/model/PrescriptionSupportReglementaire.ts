@@ -7,7 +7,7 @@ export type PrescriptionSupportReglementaire = {
     'contenu'?: string;
     'titre'?: string;
     'etat': EtatEnum;
-    'reference': string;
+    'reference'?: string | null;
 };
 
 export enum NatureEnum {

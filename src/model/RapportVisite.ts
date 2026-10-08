@@ -18,5 +18,7 @@ export type RapportVisite = {
 
 export enum PropositionAvisEnum {
     FAVORABLE = 'favorable',
-    DEFAVORABLE = 'defavorable'
+    DEFAVORABLE = 'defavorable',
+    NE_SE_PRONONCE_PAS = 'ne_se_prononce_pas',
+    AVIS_DIFFERE = 'avis_differe'
 }
