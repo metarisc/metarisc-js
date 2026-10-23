@@ -27,6 +27,6 @@ jobs:
           npm version prerelease --preid alpha
           git push origin main --follow-tags --force
       
-      - run: npm publish --access=public
+      - run: npm publish --access=public --tag alpha
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
