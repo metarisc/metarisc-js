@@ -8,5 +8,6 @@ export type ERPLie = {
 
 export enum TypeEnum {
     CELLULE = 'CELLULE',
-    BATIMENT_NON_ISOLE = 'BATIMENT_NON_ISOLE'
+    BATIMENT_NON_ISOLE = 'BATIMENT_NON_ISOLE',
+    CODE_DU_TRAVAIL = 'CODE_DU_TRAVAIL'
 }
