@@ -197,7 +197,8 @@ export class ERPAPI extends Core {
         titulaires? : string,
         genre? : 'cellule' | 'erp',
         statut? : string | Array<string>,
-        metariscErpId? : string
+        metariscErpId? : string,
+        erpLieType? : string | Array<string>
     ) : Collection<ERP>
     {
         const pathVariable = { };
@@ -220,7 +221,8 @@ export class ERPAPI extends Core {
                 'titulaires': titulaires === undefined ? undefined : (new String(titulaires)).toString(), 
                 'genre': genre === undefined ? undefined : (new String(genre)).toString(), 
                 'statut': statut === undefined ? undefined : (new String(statut)).toString(), 
-                'metarisc_erp_id': metariscErpId === undefined ? undefined : (new String(metariscErpId)).toString()
+                'metarisc_erp_id': metariscErpId === undefined ? undefined : (new String(metariscErpId)).toString(), 
+                'erp_lie_type': erpLieType === undefined ? undefined : (new String(erpLieType)).toString()
             }),
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
