@@ -13,7 +13,7 @@ export enum TypeEnum {
     ARRIVEE_SECRETARIAT_COMMISSION = 'arrivee_secretariat_commission',
     CONSULTATION_SIS = 'consultation_sis',
     PASSAGE_COMMISSION = 'passage_commission',
-    RELECTURE = 'relecture',
+    RELECTURE_SECRETARIAT = 'relecture_secretariat',
     VISITE = 'visite',
     ARRIVEE_SECRETARIAT = 'arrivee_secretariat',
     WORKFLOW = 'workflow',
