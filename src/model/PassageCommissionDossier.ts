@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec
 import { Dossier } from './Dossier';
-import { MembreAvis } from './MembreAvis';
 
 export type PassageCommissionDossier = {
     'id': string;
@@ -12,7 +11,6 @@ export type PassageCommissionDossier = {
     'na_pu_se_prononcer': boolean | null;
     'observations': string | null;
     'duree_minutes': number;
-    'membres_avis': Array<MembreAvis> | null;
     'periodicite_proposee'?: string | null;
     'periodicite_accordee'?: boolean | null;
 };

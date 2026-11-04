@@ -1,8 +1,9 @@
 // File generated from our OpenAPI spec
-import { CommissionMembre } from './CommissionMembre';
+import { CommissionPassageMembre } from './CommissionPassageMembre';
 
 export type MembreAvis = {
-    'membre': CommissionMembre;
+    'id': string;
+    'commission_passage_membre'?: CommissionPassageMembre | null;
     'avis': AvisEnum;
     'motivation_avis'?: string | null;
 };
