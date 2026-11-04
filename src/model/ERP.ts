@@ -30,6 +30,7 @@ export type ERP = {
     'genre': GenreEnum;
     'organisation_id': string;
     'resume_historique': string | null;
+    'appliquer_avis_exploitation'?: boolean | null;
 };
 
 export enum AvisExploitationEnum {
