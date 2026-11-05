@@ -40,7 +40,7 @@ export class DatesPassageCommissionAPI extends Core {
     /**
      * Suppression d'un membre de l'ordre du jour d'un passage en commission.
      */
-    deleteCommissionDateMembre(
+    deleteMembreOdjMembresOdjOrdreDuJourDate(
         dateId: string,
         odjId: string,
         membreOdjId: string,
@@ -144,7 +144,7 @@ export class DatesPassageCommissionAPI extends Core {
     /**
      * Récupération d'une liste de membres liés à un dossier à une date de passage en commission.
      */
-    paginateCommissionDateMembres(
+    paginateDateOrdreDuJourOdjMembres(
         dateId: string,
         odjId: string
     ) : Collection<MembreAvis>
@@ -238,7 +238,7 @@ export class DatesPassageCommissionAPI extends Core {
     /**
      * Mise à jour d'un membre à l'ordre du jour d'un passage en commission.
      */
-    patchCommissionDateMembre(
+    patchMembreOdjMembresOdjOrdreDuJourDate(
         dateId: string,
         odjId: string,
         membreOdjId: string,
