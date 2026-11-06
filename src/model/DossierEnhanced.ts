@@ -31,6 +31,7 @@ export enum WorkflowsActifsEnum {
     CONSULTATION_SIS = 'consultation_sis',
     PASSAGE_COMMISSION = 'passage_commission',
     RELECTURE_SECRETARIAT = 'relecture_secretariat',
+    VALIDATION_RAPPORTEUR = 'validation_rapporteur',
     VISITE = 'visite',
     ARRIVEE_SECRETARIAT = 'arrivee_secretariat',
     WORKFLOW = 'workflow',

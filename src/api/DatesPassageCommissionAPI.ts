@@ -262,6 +262,30 @@ export class DatesPassageCommissionAPI extends Core {
     }
     
     /**
+     * Ajoute plusieurs dossiers à l'ordre du jour d'un passage en commission. L'ajout est atomique : si un dossier ne peut pas être ajouté, aucun dossier de la demande n'est ajouté.
+     */
+    postAjoutsOrdreDuJourDate(
+        dateId: string,
+        params : any
+    ) : Promise<AxiosResponse<{data: PassageCommissionDossier[]}>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/ordre_du_jour/ajouts'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Ajout d'un membre dans le passage en commission.
      */
     postMembresDate(
