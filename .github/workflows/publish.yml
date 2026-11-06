@@ -2,18 +2,21 @@ name: "NPM Publish"
 
 on: workflow_dispatch
 
-jobs:
+permissions:
+  contents: write
 
+jobs:
   build:
-  
+
     runs-on: ubuntu-latest
 
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
 
       - run: npm install
@@ -25,8 +28,14 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
           npm version prerelease --preid alpha
-          git push origin main --follow-tags --force
-      
-      - run: npm publish --access=public --tag alpha
+          git push origin main --follow-tags
+
+      - name: Publish (tag alpha)
+        run: npm publish --access=public --tag alpha
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Move latest tag to the published version
+        run: npm dist-tag add @metarisc/metarisc-js@$(node -p "require('./package.json').version") latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
