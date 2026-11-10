@@ -3,6 +3,8 @@ import { Core, MetariscConfig } from "../core";
 import { Utils } from "../utils";
 import type { AxiosResponse } from "axios";
 import { Client } from "../client";
+import { Collection } from "../collection";
+import { MembreAvis } from '../model/MembreAvis';
 import { PassageCommissionDossier } from '../model/PassageCommissionDossier';
 import { PrescriptionAnalyseDeRisque } from '../model/PrescriptionAnalyseDeRisque';
 
@@ -22,6 +24,35 @@ export class OrdresDuJourAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
+     * Suppression d'un membre de l'ordre du jour d'un passage en commission.
+     */
+    deleteMembreOdjMembresDossier(
+        dossierId: string,
+        membreOdjId: string,
+        page? : number,
+        perPage? : number
+    ) : Promise<AxiosResponse<void>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString(), 'membre_odj_id': (new String(membreOdjId)).toString() };
+        return this.request({
+            method: 'DELETE',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/membres/{membre_odj_id}'),
+            params: Utils.payloadFilter({
+                'page': page === undefined ? undefined : (new String(page)).toString(), 
+                'per_page': perPage === undefined ? undefined : (new String(perPage)).toString()
+            }),
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
@@ -131,6 +162,53 @@ export class OrdresDuJourAPI extends Core {
     }
     
     /**
+     * Récupération d'une liste de membres liés à un dossier à une date de passage en commission.
+     */
+    paginateDossierMembres(
+        dossierId: string
+    ) : Collection<MembreAvis>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.collect({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/membres'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
+     * Mise à jour d'un membre à l'ordre du jour d'un passage en commission.
+     */
+    patchMembreOdjMembresDossier(
+        dossierId: string,
+        membreOdjId: string,
+        params : any
+    ) : Promise<AxiosResponse<MembreAvis>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString(), 'membre_odj_id': (new String(membreOdjId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/membres/{membre_odj_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Mise à jour des détails d'un dossier lié à une date de passage en commission en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
     updateCommissionDateDossier(
@@ -166,6 +244,30 @@ export class OrdresDuJourAPI extends Core {
                 if (parsedData && parsedData.dossier.erp.descriptif_technique.analyse_risque?.type_de_chauffage) {
                     parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage = new Set(parsedData.dossier.erp.descriptif_technique.analyse_risque.type_de_chauffage);
                 }
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajoute plusieurs membres à l'ordre du jour d'un passage en commission. L'ajout est atomique : si un membre ne peut pas être ajouté, aucun membre de la demande n'est ajouté.
+     */
+    postMembresDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<{data: MembreAvis[]}>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/ordres_du_jour/{dossier_id}/membres'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

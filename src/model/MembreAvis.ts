@@ -4,7 +4,7 @@ import { CommissionPassageMembre } from './CommissionPassageMembre';
 export type MembreAvis = {
     'id': string;
     'commission_passage_membre'?: CommissionPassageMembre | null;
-    'avis': AvisEnum;
+    'avis'?: AvisEnum | null;
     'motivation_avis'?: string | null;
 };
 
