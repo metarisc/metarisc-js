@@ -5,6 +5,7 @@ import type { AxiosResponse } from "axios";
 import { Client } from "../client";
 import { Collection } from "../collection";
 import { CommissionPassageMembre } from '../model/CommissionPassageMembre';
+import { DossierAffectation } from '../model/DossierAffectation';
 import { PassageCommission } from '../model/PassageCommission';
 import { PassageCommissionDossier } from '../model/PassageCommissionDossier';
 
@@ -25,6 +26,28 @@ export class DatesPassageCommissionAPI extends Core {
         return this.request({
             method: 'DELETE',
             endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/membres/{membre_id}'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
+     * Liste des affectations d'une date de passage en commission.
+     */
+    getAffectationsDate(
+        dateId: string
+    ) : Promise<AxiosResponse<{data: DossierAffectation[]}>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/affectations'),
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
@@ -175,6 +198,33 @@ export class DatesPassageCommissionAPI extends Core {
                     return data;
                 }
                 const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Ajoute une affectation à une date de passage en commission. Vous pouvez affecter plusieurs personnes à une date de passage en commission, y compris vous-même. Cela permet de débloquer des droits spécifiques sur le traitement du passage en commission.
+     */
+    postAffectationsDate(
+        dateId: string,
+        params : any
+    ) : Promise<AxiosResponse<DossierAffectation>>
+    {
+        const pathVariable = { 'date_id': (new String(dateId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dates_passage_commission/{date_id}/affectations'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    return data;
+                }
+                const parsedData = JSON.parse(data);
+                if (parsedData && parsedData.utilisateur?.roles) {
+                    parsedData.utilisateur.roles = new Set(parsedData.utilisateur.roles);
+                }
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

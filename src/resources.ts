@@ -46,6 +46,8 @@ export { OrganisationsAPI } from './api/OrganisationsAPI';
 
 export { PEIAPI } from './api/PEIAPI';
 
+export { PassagesCommissionAffectationsAPI } from './api/PassagesCommissionAffectationsAPI';
+
 export { PermissionsAPI } from './api/PermissionsAPI';
 
 export { PingAPI } from './api/PingAPI';

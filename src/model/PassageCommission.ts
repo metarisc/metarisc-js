@@ -1,5 +1,6 @@
 // File generated from our OpenAPI spec
 import { Commission } from './Commission';
+import { PassageAffectation } from './PassageAffectation';
 
 export type PassageCommission = {
     'id': string;
@@ -11,6 +12,7 @@ export type PassageCommission = {
     'nb_dossiers': number;
     'commission': Commission;
     'organisation_id': string;
+    'affectations': Array<PassageAffectation>;
 };
 
 export enum TypeEnum {

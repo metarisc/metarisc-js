@@ -31,6 +31,7 @@ export type ERP = {
     'organisation_id': string;
     'resume_historique': string | null;
     'appliquer_avis_exploitation'?: boolean | null;
+    'duree_visite_estimee'?: number | null;
 };
 
 export enum AvisExploitationEnum {
