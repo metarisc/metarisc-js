@@ -1,4 +1,5 @@
 // File generated from our OpenAPI spec
+import { Annexes } from './Annexes';
 import { Dossier } from './Dossier';
 
 export type PassageCommissionDossier = {
@@ -13,6 +14,8 @@ export type PassageCommissionDossier = {
     'duree_minutes': number;
     'periodicite_proposee'?: string | null;
     'periodicite_accordee'?: boolean | null;
+    'annexes'?: Array<Annexes> | null;
+    'inclure_annexes_dans_le_proces_verbal'?: boolean | null;
 };
 
 export enum AvisEnum {

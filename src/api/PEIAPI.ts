@@ -31,7 +31,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -53,7 +59,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -75,7 +87,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -97,7 +115,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -119,7 +143,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -141,7 +171,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -163,7 +199,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -202,7 +244,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -225,7 +273,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -249,7 +303,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -273,7 +333,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -297,7 +363,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
@@ -321,7 +393,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 if (parsedData && parsedData.createur?.roles) {
@@ -362,7 +440,13 @@ export class PEIAPI extends Core {
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
-                    return data;
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
                 }
                 const parsedData = JSON.parse(data);
                 return parsedData;
