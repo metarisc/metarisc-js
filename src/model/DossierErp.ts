@@ -1,4 +1,5 @@
 // File generated from our OpenAPI spec
+import { Annexes } from './Annexes';
 import { ERP } from './ERP';
 
 import { DossierBase } from './DossierBase';
@@ -24,6 +25,10 @@ export type DossierErp = DossierBase & {
     'dossier_complet': boolean | null;
 
     'dossier_complet_observations': string | null;
+
+    'inculre_annexes_dans_le_rapport'?: boolean | null;
+
+    'annexes'?: Array<Annexes> | null;
 };
 
 export enum StatutEnum {
