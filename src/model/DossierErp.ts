@@ -26,7 +26,7 @@ export type DossierErp = DossierBase & {
 
     'dossier_complet_observations': string | null;
 
-    'inculre_annexes_dans_le_rapport'?: boolean | null;
+    'inclure_annexes_dans_le_rapport'?: boolean | null;
 
     'annexes'?: Array<Annexes> | null;
 };
