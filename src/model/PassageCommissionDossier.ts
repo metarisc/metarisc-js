@@ -16,6 +16,7 @@ export type PassageCommissionDossier = {
     'periodicite_accordee'?: boolean | null;
     'annexes'?: Array<Annexes> | null;
     'inclure_annexes_dans_le_proces_verbal'?: boolean | null;
+    'numero_proces_verbal'?: string | null;
 };
 
 export enum AvisEnum {
