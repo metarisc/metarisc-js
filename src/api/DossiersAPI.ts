@@ -11,6 +11,7 @@ import { DossierAffectation } from '../model/DossierAffectation';
 import { DossierBaseRattachement } from '../model/DossierBaseRattachement';
 import { FilRougeMessage } from '../model/FilRougeMessage';
 import { PieceJointe } from '../model/PieceJointe';
+import { PorteConnaissanceMembre } from '../model/PorteConnaissanceMembre';
 import { PrescriptionAnalyseDeRisque } from '../model/PrescriptionAnalyseDeRisque';
 import { RapportEtude } from '../model/RapportEtude';
 import { RapportVisite } from '../model/RapportVisite';
@@ -221,6 +222,34 @@ export class DossiersAPI extends Core {
         return this.request({
             method: 'GET',
             endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/permissions'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }]
+        });
+    }
+    
+    /**
+     * Récupération des détails du porté à connaissance des membres d'un dossier de type erp:porte_connaissance_membre.
+     */
+    getPorteConnaissanceMembreDossier(
+        dossierId: string
+    ) : Promise<AxiosResponse<PorteConnaissanceMembre>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'GET',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/porte_connaissance_membre'),
             transformResponse: [(data, _headers, status) => {
                 if (!data) return data;
                 if (status !== undefined && status >= 400) {
@@ -551,6 +580,36 @@ export class DossiersAPI extends Core {
     }
     
     /**
+     * Mise à jour du porté à connaissance des membres d'un dossier de type erp:porte_connaissance_membre en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    patchPorteConnaissanceMembreDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<PorteConnaissanceMembre>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'PATCH',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/porte_connaissance_membre'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
+                }
+                const parsedData = JSON.parse(data);
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
      * Mise à jour du rapport d'étude en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
      */
     patchRapportEtudeDossier(
@@ -817,6 +876,36 @@ export class DossiersAPI extends Core {
                 if (parsedData && parsedData.auteur?.roles) {
                     parsedData.auteur.roles = new Set(parsedData.auteur.roles);
                 }
+                return parsedData;
+            }],
+            body: Utils.payloadFilter(params)
+        });
+    }
+    
+    /**
+     * Mise à jour du porté à connaissance des membres d'un dossier de type erp:porte_connaissance_membre en définissant les valeurs des paramètres transmis. Tous les paramètres non fournis resteront inchangés.
+     */
+    postPorteConnaissanceMembreDossier(
+        dossierId: string,
+        params : any
+    ) : Promise<AxiosResponse<PorteConnaissanceMembre>>
+    {
+        const pathVariable = { 'dossier_id': (new String(dossierId)).toString() };
+        return this.request({
+            method: 'POST',
+            endpoint: Utils.constructPath(pathVariable, '/dossiers/{dossier_id}/porte_connaissance_membre'),
+            transformResponse: [(data, _headers, status) => {
+                if (!data) return data;
+                if (status !== undefined && status >= 400) {
+                    // Réponse d'erreur : on tente de parser le JSON (ex: application/problem+json)
+                    // pour que error.response.data soit exploitable, sinon on garde le corps brut.
+                    try {
+                        return JSON.parse(data);
+                    } catch {
+                        return data;
+                    }
+                }
+                const parsedData = JSON.parse(data);
                 return parsedData;
             }],
             body: Utils.payloadFilter(params)

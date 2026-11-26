@@ -66,5 +66,6 @@ export enum TypeEnum {
     ERP_DOSSIER_GE_2 = 'erp:dossier_ge_2',
     ERP_SCHEMA_GENERAL_ORGANISATION_SECURITE = 'erp:schema_general_organisation_securite',
     ERP_ETUDE_INGENIERIE = 'erp:etude_ingenierie',
-    ERP_MANIFESTATION_TEMPORAIRE = 'erp:manifestation_temporaire'
+    ERP_MANIFESTATION_TEMPORAIRE = 'erp:manifestation_temporaire',
+    ERP_PORTE_CONNAISSANCE_MEMBRE = 'erp:porte_connaissance_membre'
 }
